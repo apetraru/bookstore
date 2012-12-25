@@ -9,29 +9,38 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jetty.version>6.1.4</jetty.version>
 		<spring.version>3.2.0.RELEASE</spring.version>
 		<slf4j.version>1.5.10</slf4j.version>
 		<java.version>1.7</java.version>
-		<junit.version>4.8.2</junit.version>
+		<junit.version>4.11</junit.version>
 	</properties>
 
 	<dependencies>
 
-		<!-- JSF Dependencies -->
+		<!-- JSF 2 -->
 
 		<dependency>
-			<groupId>javax.faces</groupId>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
-			<version>2.0</version>
-			<scope>compile</scope>
+			<version>2.1.16</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-impl</artifactId>
-			<version>2.0.2-b10</version>
-			<scope>compile</scope>
+			<version>2.1.16</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- Primefaces -->
@@ -43,7 +52,7 @@
 		<dependency>
 			<groupId>org.primefaces.extensions</groupId>
 			<artifactId>primefaces-extensions</artifactId>
-			<version>0.5.1</version>
+			<version>0.6.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.primefaces.themes</groupId>
@@ -60,33 +69,42 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>4.0.0.GA</version>
-			<scope>compile</scope>
-		</dependency>
-
 		<!-- JPA Persistence Dependencies -->
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>3.6.0.Final</version>
+			<version>4.2.0-SNAPSHOT</version>
+			<type>jar</type>
 			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.3.1.Final</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+			<version>1.0.0.Final</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
 		</dependency>
 
 		<dependency>
 			<groupId>hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>1.8.0.10</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>1.0.0.Final</version>
-			<scope>compile</scope>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- Spring Dependencies -->
@@ -236,7 +254,6 @@
 	</repositories>
 
 	<build>
-		<finalName>spring-jsf-jpa</finalName>
 		<plugins>
 
 			<!-- Facilitates downloading source and javadoc in Eclipse -->
@@ -281,36 +298,6 @@
 					<path>/${project.build.finalName}</path>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>org.bsc.maven</groupId>
-				<artifactId>maven-processor-plugin</artifactId>
-				<version>2.0.5</version>
-				<extensions>false</extensions>
-				<executions>
-					<execution>
-						<id>process</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>process</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>target/generated-sources/metamodel/</outputDirectory>
-							<processors>
-								<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
-							</processors>
-						</configuration>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.hibernate</groupId>
-						<artifactId>hibernate-jpamodelgen</artifactId>
-						<version>1.2.0.Final</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-
 
 		</plugins>
 	</build>

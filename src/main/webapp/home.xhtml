@@ -10,7 +10,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </h:head>
 <h:body>
-	<h:outputText value="This is the welcome page" />
+	<h:form>
+		<h:outputText value="#{bean.name}" id="id" />
+		<p:commandButton value="Change" update="id" actionListener="#{bean.change}" />
+	</h:form>
 </h:body>
 
 </ui:composition>
