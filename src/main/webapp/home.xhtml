@@ -10,9 +10,15 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </h:head>
 <h:body>
-	<h:form>
-		<h:outputText value="#{bean.name}" id="id" />
-		<p:commandButton value="Change" update="id" actionListener="#{bean.change}" />
+	<h:form id="form">
+        <h:outputText value="First name :" />
+		<p:inputText value="#{customerBean.customer.firstname}" id="firstname" />
+        <br/>
+        <h:outputText value="Last Name" />
+        <p:inputText value="#{customerBean.customer.lastname}" id="lastname" />
+        <br/>
+
+		<p:commandButton value="Add Test" actionListener="#{customerBean.findCustomer}" update="form"/>
 	</h:form>
 </h:body>
 
