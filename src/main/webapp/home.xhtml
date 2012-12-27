@@ -12,13 +12,13 @@
 <h:body>
 	<h:form id="form">
         <h:outputText value="First name :" />
-		<p:inputText value="#{customerBean.customer.firstname}" id="firstname" />
+		<p:inputText value="#{customerBean.addedCustomer.firstname}" id="firstname" />
         <br/>
         <h:outputText value="Last Name" />
-        <p:inputText value="#{customerBean.customer.lastname}" id="lastname" />
+        <p:inputText value="#{customerBean.addedCustomer.lastname}" id="lastname" />
         <br/>
 
-		<p:commandButton value="Add Test" actionListener="#{customerBean.findCustomer}" update="form"/>
+		<p:commandButton value="Add Customer" actionListener="#{customerBean.addCustomer}" update="form"/>
 	</h:form>
 </h:body>
 
