@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-				xmlns:ui="http://java.sun.com/jsf/facelets"
-				xmlns:f="http://java.sun.com/jsf/core"
-				xmlns:h="http://java.sun.com/jsf/html"
-				xmlns:p="http://primefaces.org/ui">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui" xmlns:P="http://java.sun.com/jsf/html">
 
 <h:head>
 	<title>Welcome page</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta content="text/html; charset=UTF-8" />
 </h:head>
 <h:body>
 	<h:form id="form">
@@ -19,6 +19,10 @@
         <br/>
 
 		<p:commandButton value="Add Customer" actionListener="#{customerBean.addCustomer}" update="form"/>
+        <br />
+        <p:commandButton value="Search" actionListener="#{customerBean.findCustomer}" update="list"/>
+        <h:outputText value="#{customerBean.listSize}" id="list"/>
+        <p:commandButton value="gigi" />
 	</h:form>
 </h:body>
 

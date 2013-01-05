@@ -1,11 +1,14 @@
 package com.bk.bean;
 
+import com.bk.service.CustomerService;
 import com.bk.model.Address;
 import com.bk.model.Customer;
 import com.bk.model.EmailAddress;
-import com.bk.repository.CustomerRepository;
+import com.bk.predicate.CustomerPredicate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -16,11 +19,12 @@ import org.springframework.stereotype.Component;
 @Scope("session")
 public class CustomerBean {
 
-	@Autowired
-	CustomerRepository repository;
+	@Resource
+    CustomerService customerService;
 
 	private Customer addedCustomer;
 	private Customer foundCustomer;
+    private List<Customer> customers = new ArrayList<>();
 
 	@PostConstruct
 	public void init() {
@@ -44,15 +48,21 @@ public class CustomerBean {
 		this.foundCustomer = foundCustomer;
 	}
 
-	public void addCustomer() {
+    public void addCustomer() {
 		EmailAddress emailAddress = new EmailAddress("andrei@yahoo.com");
 		Address address = new Address("asd", "asd", "asd");
 		addedCustomer.setEmailAddress(emailAddress);
 		addedCustomer.add(address);
-		addedCustomer = repository.save(addedCustomer);
+		addedCustomer = customerService.save(addedCustomer);
 	}
 
-	public void findCustomer(Long id) {
-		foundCustomer = repository.findById(id);
+	public void findCustomer() {
+        String search = "gigi";
+        CustomerPredicate cp = new CustomerPredicate();
+        customers = customerService.searchQueryDsl(search);
 	}
+
+    public String getListSize() {
+        return String.valueOf(customers.size());
+    }
 }

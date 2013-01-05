@@ -13,7 +13,9 @@
 		<slf4j.version>1.7.2</slf4j.version>
 		<java.version>1.7</java.version>
 		<junit.version>4.11</junit.version>
-	 <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
+		<querydsl.version>2.9.0</querydsl.version>
+		<hamcrest.version>1.3</hamcrest.version>
+		<netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
 	</properties>
 
 	<dependencies>
@@ -177,16 +179,27 @@
 		<!-- Querydsl -->
 		<dependency>
 			<groupId>com.mysema.querydsl</groupId>
-			<artifactId>querydsl-apt</artifactId>
-			<version>1.8.2</version>
-			<scope>provided</scope>
+			<artifactId>querydsl-collections</artifactId>
+			<version>${querydsl.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-core</artifactId>
+			<version>2.8.2</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.mysema.querydsl</groupId>
 			<artifactId>querydsl-hql</artifactId>
-			<version>1.8.2</version>
+			<version>1.9.7</version>
 		</dependency>
+
+        <dependency>
+            <groupId>com.mysema.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+            <version>${querydsl.version}</version>
+        </dependency>
 
 		<!-- View Dependencies -->
 		<dependency>
@@ -203,6 +216,19 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-library</artifactId>
+			<version>${hamcrest.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-core</artifactId>
+			<version>${hamcrest.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -298,7 +324,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>3.3.2</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
@@ -314,13 +340,20 @@
 					<path>/${project.build.finalName}</path>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>com.mysema.maven</groupId>
 				<artifactId>maven-apt-plugin</artifactId>
-				<version>0.3.2</version>
+				<version>1.0.4</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.mysema.querydsl</groupId>
+						<artifactId>querydsl-apt</artifactId>
+						<version>${querydsl.version}</version>
+					</dependency>
+				</dependencies>
 				<executions>
 					<execution>
+						<phase>generate-sources</phase>
 						<goals>
 							<goal>process</goal>
 						</goals>
