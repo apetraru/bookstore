@@ -1,14 +1,14 @@
 package com.bk.bean;
 
-import com.bk.service.CustomerService;
 import com.bk.model.Address;
 import com.bk.model.Customer;
 import com.bk.model.EmailAddress;
 import com.bk.predicate.CustomerPredicate;
+import com.bk.service.CustomerService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -16,10 +16,10 @@ import org.springframework.stereotype.Component;
  * @author ph Date: 12/26/12
  */
 @Component
-@Scope("session")
+@Scope("request")
 public class CustomerBean {
 
-	@Resource
+	@Autowired
     CustomerService customerService;
 
 	private Customer addedCustomer;
@@ -47,6 +47,14 @@ public class CustomerBean {
 	public void setFoundCustomer(Customer foundCustomer) {
 		this.foundCustomer = foundCustomer;
 	}
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
+    }
 
     public void addCustomer() {
 		EmailAddress emailAddress = new EmailAddress("andrei@yahoo.com");

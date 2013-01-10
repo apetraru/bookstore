@@ -9,17 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Resource;
 import org.apache.commons.collections.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * User: ph
  * Date: 1/5/13
  */
 
-@Component
+@Service
 public class CustomerService {
 
-    @Resource
+    @Autowired
     private CustomerRepository repository;
 
     public Customer save(Customer customer) {

@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui" xmlns:P="http://java.sun.com/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<title>Welcome page</title>
-	<meta content="text/html; charset=UTF-8" />
-</h:head>
-<h:body>
-	<h:form id="form">
-        <h:outputText value="First name :" />
-		<p:inputText value="#{customerBean.addedCustomer.firstname}" id="firstname" />
-        <br/>
-        <h:outputText value="Last Name" />
-        <p:inputText value="#{customerBean.addedCustomer.lastname}" id="lastname" />
-        <br/>
+<ui:composition template="/templates/template.xhtml">
+    <ui:define name="body">
+        <h:form id="form">
+            <h:outputText value="First name :"/>
+            <p:inputText value="#{customerBean.addedCustomer.firstname}" id="firstname"/>
+            <br/>
+            <h:outputText value="Last Name"/>
+            <p:inputText value="#{customerBean.addedCustomer.lastname}" id="lastname" required="true"
+                         requiredMessage="Fill this in"/>
+            <p:message for="lastname" showSummary="false" display="text"/>
+            <br/>
 
-		<p:commandButton value="Add Customer" actionListener="#{customerBean.addCustomer}" update="form"/>
-        <br />
-        <p:commandButton value="Search" actionListener="#{customerBean.findCustomer}" update="list"/>
-        <h:outputText value="#{customerBean.listSize}" id="list"/>
-        <p:commandButton value="gigi" />
-	</h:form>
-</h:body>
-
+            <p:commandButton value="Add Customer" actionListener="#{customerBean.addCustomer}" update="form"/>
+            <br/>
+            <p:commandButton value="Search" actionListener="#{customerBean.findCustomer}" update="form"/>
+            <br/>
+            <h:outputFormat rendered="#{customerBean.listSize gt 0}" id="list" value="There are {0} customers">
+                <f:param value="#{customerBean.listSize}"/>
+            </h:outputFormat>
+        </h:form>
+    </ui:define>
 </ui:composition>
+
+</html>
