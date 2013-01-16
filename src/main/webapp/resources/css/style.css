@@ -1,0 +1,62 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    min-width: 960px;
+}
+
+#form {
+    margin-left: 20%;
+    margin-right: 20%;
+    text-align: left;
+}
+
+.header {
+    font-size: 0.8em;
+    font-weight: bold;
+    text-shadow: 0 0 3px white;
+    background-color: #dcdcdc;
+    padding: 10px 0 10px 0;
+    width: 100%;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.header .center {
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.footer {
+    font-weight: bold;
+    color: rgb(204,204,204);
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:100%;
+    background:#999;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px 5px 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.float-right {
+    float: right;
+    padding: 5px 10px 5px 10px;
+}
+
+.login-dialog {
+    width: 200px !important;
+    height: 200px !important;
+    margin-top: 10%;
+}
+
+.ui-panelgrid td {
+    border: none !important;
+}
+

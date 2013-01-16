@@ -57,11 +57,6 @@
 			<artifactId>primefaces-extensions</artifactId>
 			<version>0.6.1</version>
 		</dependency>
-		<dependency>
-			<groupId>org.primefaces.themes</groupId>
-			<artifactId>glass-x</artifactId>
-			<version>1.0.2</version>
-		</dependency>
 
 		<!-- Bean Validation Dependencies -->
 
