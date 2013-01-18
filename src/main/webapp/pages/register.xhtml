@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+    <ui:define name="body">
+        <h:form id="registerFormId" styleClass="reg">
+            <p:panel header="Register" styleClass="login-register-panel">
+                <p:panelGrid id="registerPanelId">
+                    <p:row>
+                        <p:column styleClass="login-column">
+                            <h:outputText value="Username"/>
+                            <br/>
+                            <p:inputText value="#{registerBean.username}" required="true" id="registerUsernameId">
+                                <f:validateLength minimum="3" maximum="20"/>
+                            </p:inputText>
+                            <p:message for="registerUsernameId" display="text"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column styleClass="login-column">
+                            <h:outputText value="Email"/>
+                            <br/>
+                            <p:inputText value="#{registerBean.email}" required="true" id="registerEmailId">
+                                <f:validator validatorId="emailValidator"/>
+                            </p:inputText>
+                            <p:message for="registerEmailId" display="text"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column styleClass="login-column">
+                            <h:outputText value="Password"/>
+                            <br/>
+                            <p:password value="#{registerBean.password}" required="true" id="registerPasswordId">
+                                <f:validateLength minimum="5"/>
+                            </p:password>
+                            <p:message for="registerPasswordId" display="text"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column>
+                            <p:commandButton value="Register" update="registerPanelId" id="registerButtonId"
+                                             action="#{registerBean.register}"/>
+                            <p:message for="registerButtonId" display="text"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

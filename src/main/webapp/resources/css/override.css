@@ -1,0 +1,38 @@
+/* remove panelgrid border */
+.ui-panelgrid td, .ui-panelgrid .ui-widget-content {
+    border-style: none !important;
+    border: none !important;
+}
+
+/* input field color */
+.ui-inputfield {
+    background: #ffffff;
+    font-size: 1em;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* input field inside a widget */
+.ui-widget .ui-inputfield {
+    background: #ffffff;
+}
+
+/* remove borders from messages*/
+.ui-message-info, .ui-message-error, .ui-message-warn, .ui-message-fatal {
+    border: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* remove background color from messages */
+.ui-messages-info, .ui-message-info,
+.ui-messages-fatal, .ui-message-fatal,
+.ui-messages-warn, .ui-message-warn,
+.ui-messages-error, .ui-message-error {
+    background-color: #fff !important;
+}
+
+/* change info message color */
+.ui-messages-info, .ui-message-info {
+    color: green !important;
+    margin-top: 5px !important;
+}

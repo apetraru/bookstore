@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+    <ui:define name="body">
+        <h:form id="form">
+            <p:panel header="Login" styleClass="login-register-panel">
+                <p:panelGrid id="loginPanelId">
+                    <p:row>
+                        <p:column styleClass="login-column">
+                            <h:outputText value="Username"/>
+                            <br/>
+                            <p:inputText value="#{testBean.username}" required="true" id="usernameId"/>
+                            <p:message for="usernameId" display="text"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column styleClass="login-column">
+                            <h:outputText value="Password"/>
+                            <br/>
+                            <p:password value="#{testBean.password}" required="true" id="passwordId"/>
+                            <p:message for="passwordId" display="text"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column>
+                            <p:commandButton value="Login" update="loginPanelId"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>
