@@ -4,10 +4,31 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+        >
 
 <ui:composition>
-        This is the header
+    <h:form>
+        <div class="header">
+            <div class="center">
+                <p:commandLink action="#{navigationBean.HOME}">
+                    <p:graphicImage value="/resources/images/logo.png" styleClass="logo"/>
+                </p:commandLink>
+                <p:inputText title="search" id="searchBar"/>
+                <p:watermark value="Title / Author / ISBN" for="searchBar"/>
+                <p:commandLink value="Home"/>
+                <p:commandLink value="Groups"/>
+                <p:commandLink value="Recommendations"/>
+                <div class="float-right">
+                    <p:commandLink value="Login" action="#{navigationBean.LOGIN}"/>
+                    <h:outputText value="or" styleClass="or" />
+                    <p:commandLink value="Register" action="#{navigationBean.REGISTER}" />
+                </div>
+            </div>
+        </div>
+    </h:form>
 </ui:composition>
 
 </html>

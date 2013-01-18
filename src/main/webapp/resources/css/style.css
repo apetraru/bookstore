@@ -3,7 +3,7 @@ body {
     min-width: 960px;
 }
 
-#form {
+.registerForm {
     margin-left: 20%;
     margin-right: 20%;
     text-align: left;
@@ -17,6 +17,7 @@ body {
     padding: 10px 0 10px 0;
     width: 100%;
     border-bottom: 1px solid #aaaaaa;
+    margin-bottom: 1%;
 }
 
 .header .center {
@@ -27,12 +28,12 @@ body {
 
 .footer {
     font-weight: bold;
-    color: rgb(204,204,204);
-    left:0px;
-    bottom:0px;
-    height:30px;
-    width:100%;
-    background:#999;
+    color: rgb(204, 204, 204);
+    left: 0px;
+    bottom: 0px;
+    height: 30px;
+    width: 100%;
+    background: #999;
 }
 
 a {
@@ -50,13 +51,25 @@ a:hover {
     padding: 5px 10px 5px 10px;
 }
 
-.login-dialog {
-    width: 200px !important;
-    height: 200px !important;
-    margin-top: 10%;
+.or {
+    padding: 0;
+    margin: 0;
+    font-size: 0.9em;
 }
 
-.ui-panelgrid td {
-    border: none !important;
+.login-column {
+    height: 85px;
+    width: 300px
 }
 
+.logo {
+    height: 25px;
+    width: 95px;
+    margin-bottom: -10px;
+}
+
+.login-register-panel {
+    margin-left: 40%;
+    margin-right: 40%;
+    height: 400px;
+}

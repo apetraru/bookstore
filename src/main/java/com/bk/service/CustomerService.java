@@ -36,6 +36,10 @@ public class CustomerService {
         return repository.findByEmailAddress(emailAddress);
     }
 
+    public Customer findByUsername(String username) {
+        return repository.findByUsername(username);
+    }
+
     public List<Customer> search(String searchTerm) {
         return repository.findCustomers(searchTerm);
     }

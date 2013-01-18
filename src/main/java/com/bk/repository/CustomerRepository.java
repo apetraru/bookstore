@@ -23,6 +23,8 @@ public interface CustomerRepository extends Repository<Customer, Long>, QueryDsl
 
     Customer findByEmailAddress(EmailAddress emailAddress);
 
+    Customer findByUsername(String username);
+
     @Query(value = "SELECT c FROM Customer c WHERE LOWER(c.firstname) LIKE :searchTerm OR LOWER(c.lastname) LIKE :searchTerm")
     public List<Customer> findCustomers(@Param("searchTerm") String searchTerm);
 }

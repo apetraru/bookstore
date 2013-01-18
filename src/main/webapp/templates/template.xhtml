@@ -5,10 +5,19 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
-    <meta content="text/html; charset=UTF-8"/>
+    <f:facet name="first">
+        <meta content="text/html; charset=UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    </f:facet>
+    <f:facet name="last">
+        <h:outputStylesheet name="reset.css" library="css" />
+        <h:outputStylesheet name="style.css" library="css"/>
+        <h:outputStylesheet name="override.css" library="css" />
+    </f:facet>
 </h:head>
 
 <h:body>
@@ -16,10 +25,10 @@
         <ui:include src="header.xhtml"/>
     </ui:insert>
 
-    <ui:insert name="body" />
+    <ui:insert name="body"/>
 
     <ui:insert name="footer">
-        <ui:include src="footer.xhtml" />
+        <ui:include src="footer.xhtml"/>
     </ui:insert>
 
 </h:body>
