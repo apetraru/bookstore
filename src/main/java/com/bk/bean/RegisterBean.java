@@ -52,10 +52,10 @@ public class RegisterBean {
         newCustomer.setEmailAddress(new EmailAddress(email));
 
         if (customerService.save(newCustomer) != null) {
-            Message.addMessage("registerFormId:registerButtonId", "Registration successful!", FacesMessage.SEVERITY_INFO);
+            addSuccessMessage();
             clearFields();
         } else {
-            Message.addMessage("registerFormId:registerButtonId", "Registration failed!", FacesMessage.SEVERITY_ERROR);
+            addErrorMessage();
         }
     }
 
@@ -91,10 +91,18 @@ public class RegisterBean {
             pass = PasswordHash.hash(password);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
-            Message.addMessage("registerFormId:registerButtonId", "Registration failed!", FacesMessage.SEVERITY_ERROR);
+            addErrorMessage();
             return null;
         }
         return pass;
+    }
+
+    private void addErrorMessage() {
+        Message.addMessage("registerFormId:registerButtonId", "Registration failed !", FacesMessage.SEVERITY_ERROR);
+    }
+
+    private void addSuccessMessage() {
+        Message.addMessage("registerFormId:registerButtonId", "Registration successful !", FacesMessage.SEVERITY_INFO);
     }
 
     private void clearFields() {

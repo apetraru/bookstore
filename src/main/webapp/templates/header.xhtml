@@ -18,14 +18,16 @@
                 </p:commandLink>
                 <p:inputText title="search" id="searchBar"/>
                 <p:watermark value="Title / Author / ISBN" for="searchBar"/>
-                <p:commandLink value="Home"/>
+                <p:commandLink value="Home" action="#{navigationBean.HOME}"/>
                 <p:commandLink value="Groups"/>
                 <p:commandLink value="Recommendations"/>
-                <div class="float-right">
-                    <p:commandLink value="Login" action="#{navigationBean.LOGIN}"/>
-                    <h:outputText value="or" styleClass="or" />
-                    <p:commandLink value="Register" action="#{navigationBean.REGISTER}" />
-                </div>
+                <p:panel styleClass="login-register-panel" >
+                    <p:commandLink value="Login" action="#{navigationBean.LOGIN}" rendered="#{!loginBean.loggedOn}"/>
+                    <h:outputText value="or" styleClass="or" rendered="#{!loginBean.loggedOn}"/>
+                    <p:commandLink value="Register" action="#{navigationBean.REGISTER}" rendered="#{!loginBean.loggedOn}"/>
+                    <p:commandLink value="#{loginBean.loggedInUser.username}" rendered="#{loginBean.loggedOn}"/>
+                    <p:commandLink value="Logout" rendered="#{loginBean.loggedOn}" action="#{loginBean.logout}" update="@all"/>
+                </p:panel>
             </div>
         </div>
     </h:form>

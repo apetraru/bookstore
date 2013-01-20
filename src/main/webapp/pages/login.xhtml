@@ -6,28 +6,30 @@
 
 <ui:composition template="/templates/template.xhtml">
     <ui:define name="body">
-        <h:form id="form">
-            <p:panel header="Login" styleClass="login-register-panel">
+        <h:form id="loginFormId">
+            <p:panel header="Login" styleClass="login-panel">
                 <p:panelGrid id="loginPanelId">
                     <p:row>
                         <p:column styleClass="login-column">
                             <h:outputText value="Username"/>
                             <br/>
-                            <p:inputText value="#{testBean.username}" required="true" id="usernameId"/>
-                            <p:message for="usernameId" display="text"/>
+                            <p:inputText value="#{loginBean.username}" required="true" id="loginUsernameId"/>
+                            <p:message for="loginUsernameId" display="text"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column styleClass="login-column">
                             <h:outputText value="Password"/>
                             <br/>
-                            <p:password value="#{testBean.password}" required="true" id="passwordId"/>
+                            <p:password value="#{loginBean.password}" required="true" id="passwordId"/>
                             <p:message for="passwordId" display="text"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column>
-                            <p:commandButton value="Login" update="loginPanelId"/>
+                            <p:commandButton value="Login" update="loginPanelId" id="loginButtonId"
+                                             action="#{loginBean.login}" />
+                            <p:message for="loginButtonId" display="text"/>
                         </p:column>
                     </p:row>
                 </p:panelGrid>

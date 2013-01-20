@@ -1,5 +1,14 @@
 package com.bk.bean;
 
+import com.bk.model.Customer;
+import com.bk.service.CustomerService;
+import com.bk.util.Message;
+import com.bk.util.PasswordHash;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import javax.faces.application.FacesMessage;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -15,13 +24,77 @@ public class LoginBean {
     private boolean loggedOn = false;
     private String username;
     private String password;
+    private Customer loggedInUser;
+
+    @Autowired
+    private CustomerService customerService;
+
+    public String login() {
+        if (verifyCredentials()) {
+            loggedOn = true;
+            Message.addMessage("loginFormId:loginButtonId", "Welcome back " + username + "! Redirecting...",
+                FacesMessage.SEVERITY_INFO);
+            clearFields();
+            return NavigationBean.HOME();
+        }
+        clearFields();
+        return null;
+    }
+
+    public void logout() {
+        loggedInUser = null;
+        loggedOn = false;
+    }
+
+    private boolean verifyCredentials() {
+        loggedInUser = customerService.findByUsername(username);
+        if (loggedInUser == null) {
+            addErrorMessage();
+            return false;
+        }
+
+        if (!StringUtils.equals(username,loggedInUser.getUsername())) {
+            addErrorMessage();
+            return false;
+        }
+
+        String pass = loggedInUser.getPassword();
+        String loginPass = hashPassword();
+        if (!StringUtils.equals(pass, loginPass)) {
+            addErrorMessage();
+            return false;
+        }
+
+        if (StringUtils.equals(username, loggedInUser.getUsername()) && (StringUtils.equals(pass, loggedInUser.getPassword()))) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private void addErrorMessage() {
+        Message.addMessage("loginFormId:loginButtonId", "Incorrect username or password", FacesMessage.SEVERITY_ERROR);
+    }
+
+    private String hashPassword() {
+        String pass = null;
+        try {
+            pass = PasswordHash.hash(password);
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+            Message.addMessage("loginFormId:loginButtonId", "Login failed!", FacesMessage.SEVERITY_ERROR);
+            return null;
+        }
+        return pass;
+    }
+
+    private void clearFields() {
+        username = "";
+        password = "";
+    }
 
     public boolean isLoggedOn() {
         return loggedOn;
-    }
-
-    public void setLoggedOn(boolean loggedOn) {
-        this.loggedOn = loggedOn;
     }
 
     public String getUsername() {
@@ -38,5 +111,9 @@ public class LoginBean {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Customer getLoggedInUser() {
+        return loggedInUser;
     }
 }
