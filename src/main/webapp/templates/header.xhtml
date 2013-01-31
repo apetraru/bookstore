@@ -17,16 +17,16 @@
                     <p:graphicImage value="/resources/images/logo.png" styleClass="logo"/>
                 </p:commandLink>
                 <p:inputText title="search" id="searchBar"/>
-                <p:watermark value="Title / Author / ISBN" for="searchBar"/>
+                <p:watermark value="Title / Author" for="searchBar"/>
                 <p:commandLink value="Home" action="#{navigationBean.HOME}"/>
-                <p:commandLink value="Groups"/>
+                <p:commandLink value="Add Books" action="#{navigationBean.ADD_BOOK}"/>
                 <p:commandLink value="Recommendations"/>
                 <p:panel styleClass="login-register-panel" >
                     <p:commandLink value="Login" action="#{navigationBean.LOGIN}" rendered="#{!loginBean.loggedOn}"/>
                     <h:outputText value="or" styleClass="or" rendered="#{!loginBean.loggedOn}"/>
                     <p:commandLink value="Register" action="#{navigationBean.REGISTER}" rendered="#{!loginBean.loggedOn}"/>
                     <p:commandLink value="#{loginBean.loggedInUser.username}" rendered="#{loginBean.loggedOn}"/>
-                    <p:commandLink value="Logout" rendered="#{loginBean.loggedOn}" action="#{loginBean.logout}" update="@all"/>
+                    <p:commandLink value="Logout" rendered="#{loginBean.loggedOn}" action="#{loginBean.logout}" ajax="false"/>
                 </p:panel>
             </div>
         </div>

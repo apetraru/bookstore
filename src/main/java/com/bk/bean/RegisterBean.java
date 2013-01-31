@@ -8,9 +8,7 @@ import com.bk.util.PasswordHash;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import org.apache.commons.lang3.StringUtils;
-import org.hibernate.jpamodelgen.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -86,15 +84,13 @@ public class RegisterBean {
     }
 
     private String hashPassword() {
-        String pass = null;
         try {
-            pass = PasswordHash.hash(password);
+            return PasswordHash.hash(password);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
             addErrorMessage();
             return null;
         }
-        return pass;
     }
 
     private void addErrorMessage() {

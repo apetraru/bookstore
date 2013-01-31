@@ -7,7 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import org.springframework.util.Assert;
 
@@ -20,7 +19,11 @@ public class Customer extends AbstractEntity {
 
 	private String firstname;
 	private String lastname;
+
+    @Column(nullable = false)
     private String username;
+
+    @Column(nullable = false)
     private String password;
 
 	@Column(unique = true)

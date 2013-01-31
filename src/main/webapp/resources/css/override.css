@@ -36,3 +36,16 @@
     color: green !important;
     margin-top: 5px !important;
 }
+
+/* textarea */
+.ui-inputtextarea {
+    width: 700px;
+    height: 150px;
+}
+
+/* resize calendar previous/next */
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+    height: 1em !important;
+    width: 1em !important;
+}

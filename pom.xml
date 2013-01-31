@@ -63,7 +63,20 @@
             <version>1.0.8</version>
         </dependency>
 
-		<!-- Bean Validation Dependencies -->
+        <!-- file upload -->
+
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+        <!-- Bean Validation Dependencies -->
 
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -324,7 +337,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3.2</version>
+				<version>3.0</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>

@@ -9,10 +9,13 @@ import java.security.NoSuchAlgorithmException;
  * Date: 1/17/13
  */
 public class PasswordHash {
+
+    private static final String ALGORITHM = "SHA-256";
+
     public static String hash(String password)
         throws NoSuchAlgorithmException, UnsupportedEncodingException {
 
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        MessageDigest md = MessageDigest.getInstance(ALGORITHM);
         md.update(password.getBytes());
 
         byte byteData[] = md.digest();

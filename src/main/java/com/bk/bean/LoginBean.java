@@ -53,7 +53,7 @@ public class LoginBean {
             return false;
         }
 
-        if (!StringUtils.equals(username,loggedInUser.getUsername())) {
+        if (!StringUtils.equals(username, loggedInUser.getUsername())) {
             addErrorMessage();
             return false;
         }
@@ -65,11 +65,8 @@ public class LoginBean {
             return false;
         }
 
-        if (StringUtils.equals(username, loggedInUser.getUsername()) && (StringUtils.equals(pass, loggedInUser.getPassword()))) {
-            return true;
-        }
+        return StringUtils.equals(username, loggedInUser.getUsername()) && (StringUtils.equals(pass, loggedInUser.getPassword()));
 
-        return false;
     }
 
     private void addErrorMessage() {
@@ -77,15 +74,13 @@ public class LoginBean {
     }
 
     private String hashPassword() {
-        String pass = null;
         try {
-            pass = PasswordHash.hash(password);
+            return PasswordHash.hash(password);
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
             e.printStackTrace();
             Message.addMessage("loginFormId:loginButtonId", "Login failed!", FacesMessage.SEVERITY_ERROR);
             return null;
         }
-        return pass;
     }
 
     private void clearFields() {

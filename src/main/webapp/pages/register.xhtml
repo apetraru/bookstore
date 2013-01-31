@@ -11,17 +11,17 @@
             <p:panel header="Register" styleClass="register-panel" >
                 <p:panelGrid id="registerPanelId" >
                     <p:row>
-                        <p:column styleClass="login-column">
+                        <p:column styleClass="panel-column">
                             <h:outputText value="Username"/>
                             <br/>
                             <p:inputText value="#{registerBean.username}" required="true" id="registerUsernameId">
-                                <f:validateLength minimum="3" maximum="20"/>
+                                <f:validateLength minimum="3" />
                             </p:inputText>
                             <p:message for="registerUsernameId" display="text"/>
                         </p:column>
                     </p:row>
                     <p:row>
-                        <p:column styleClass="login-column">
+                        <p:column styleClass="panel-column">
                             <h:outputText value="Email"/>
                             <br/>
                             <p:inputText value="#{registerBean.email}" required="true" id="registerEmailId">
@@ -31,7 +31,7 @@
                         </p:column>
                     </p:row>
                     <p:row>
-                        <p:column styleClass="login-column">
+                        <p:column styleClass="panel-column">
                             <h:outputText value="Password"/>
                             <br/>
                             <p:password value="#{registerBean.password}" required="true" id="registerPasswordId">

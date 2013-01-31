@@ -3,6 +3,7 @@ body {
     min-width: 960px;
 }
 
+/* HEADER */
 .header {
     font-size: 0.8em;
     font-weight: bold;
@@ -20,31 +21,10 @@ body {
     margin-right: 20%;
 }
 
-
 .logo {
     height: 25px;
     width: 95px;
     margin-bottom: -10px;
-}
-
-.footer {
-    font-weight: bold;
-    color: rgb(204, 204, 204);
-    left: 0px;
-    bottom: 0px;
-    height: 30px;
-    width: 100%;
-    background: #999;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-    padding: 5px 10px 5px 10px;
-}
-
-a:hover {
-    text-decoration: underline;
 }
 
 .login-register-panel {
@@ -61,19 +41,53 @@ a:hover {
     font-size: 0.9em;
 }
 
-.login-column {
+/* FOOTER */
+.footer {
+    font-weight: bold;
+    color: rgb(204, 204, 204);
+    left: 0;
+    bottom: 0;
+    height: 30px;
+    width: 100%;
+    background: #999;
+}
+
+/* LINKS */
+a {
+    text-decoration: none;
+    color: black;
+    padding: 5px 10px 5px 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* LOGIN */
+.panel-column {
     height: 85px;
     width: 300px
 }
 
+.login-panel {
+    margin-left: 20%;
+    margin-right: 20%;
+    height: 300px;
+}
+
+/* REGISTER */
 .register-panel {
-    margin-left: 39%;
-    margin-right: 39%;
+    margin-left: 20%;
+    margin-right: 20%;
     height: 400px;
 }
 
-.login-panel {
-    margin-left: 39%;
-    margin-right: 39%;
-    height: 300px;
+/* ADD BOOK */
+.addBook-panel {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.selectonemenu-style {
+    width: 210px !important;
 }

@@ -2,8 +2,6 @@ package com.bk.predicate;
 
 import com.bk.model.QCustomer;
 import com.mysema.query.types.Predicate;
-import javax.persistence.PersistenceContext;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * User: ph
@@ -11,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 public class CustomerPredicate {
 
-    @Transactional(readOnly = true)
     public static Predicate firstOrLastNameStartsWith(final String searchTerm) {
 
         QCustomer customer = QCustomer.customer;
@@ -19,4 +16,12 @@ public class CustomerPredicate {
         return customer.firstname.startsWithIgnoreCase(searchTerm)
             .or(customer.lastname.startsWithIgnoreCase(searchTerm));
     }
+
+    public static Predicate test() {
+        QCustomer customer = QCustomer.customer;
+
+        return customer.id.eq(5L).or(firstOrLastNameStartsWith("gigi"));
+    }
 }
+
+
