@@ -68,17 +68,15 @@
                             <p:message for="bookDescriptionId" display="text"/>
                         </p:column>
                     </p:row>
-                    <ui:remove>
-                        <p:row>
-                            <p:column styleClass="description-column" colspan="3">
-                                <h:outputText value="Cover (1 file max)"/>
-                                <p:fileUpload allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="coverUploadMessageId"
-                                              id="coverUploadId" sizeLimit="100000"
-                                              fileUploadListener="#{bookBean.upload}"/>
-                                <p:message for="coverUploadId" display="text" id="coverUploadMessageId"/>
-                            </p:column>
-                        </p:row>
-                    </ui:remove>
+                    <p:row>
+                        <p:column styleClass="description-column" colspan="3">
+                            <h:outputText value="Cover (1 file max)"/>
+                            <p:fileUpload allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="coverUploadMessageId"
+                                          id="coverUploadId" sizeLimit="100000"
+                                          fileUploadListener="#{bookBean.upload}"/>
+                            <p:message for="coverUploadId" display="text" id="coverUploadMessageId"/>
+                        </p:column>
+                    </p:row>
                     <p:row>
                         <p:column styleClass="description-column" colspan="2">
                             <p:commandButton value="Add Book" action="#{bookBean.save}" update="addBookPanelId"

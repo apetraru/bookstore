@@ -1,7 +1,7 @@
 package com.bk.bean;
 
 import com.bk.model.Book;
-import com.bk.model.BookCover;
+import com.bk.model.Image;
 import com.bk.service.BookService;
 import com.bk.util.Language;
 import com.bk.util.Message;
@@ -52,9 +52,9 @@ public class BookBean {
 
     public void upload(FileUploadEvent event) {
         UploadedFile file = event.getFile();
-        if (book.getCover() == null) {
-            BookCover cover = convertToFileCover(file);
-            book.setCover(cover);
+        if (book.getImage() == null) {
+            Image image = convertToFileCover(file);
+            book.setImage(image);
             Message.addMessage("addBookFormId:coverUploadId", file.getFileName() + " uploaded", FacesMessage.SEVERITY_INFO);
         }
         else {
@@ -62,11 +62,11 @@ public class BookBean {
         }
     }
 
-    private BookCover convertToFileCover(UploadedFile file) {
+    private Image convertToFileCover(UploadedFile file) {
         if (file == null) {
             return null;
         }
-        BookCover cover = new BookCover();
+        Image cover = new Image();
         cover.setContentType(file.getContentType());
         cover.setName(file.getFileName());
         cover.setSize(file.getSize());

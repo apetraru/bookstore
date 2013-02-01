@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,8 +19,6 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Book extends AbstractEntity {
-
-    private static final int MAX_LENGTH = 32000;
 
     @Column(nullable = false)
     private String title;
@@ -32,7 +31,7 @@ public class Book extends AbstractEntity {
 
     private String author;
 
-    @Column(length = MAX_LENGTH)
+    @Lob
     private String description;
 
     @Temporal(TemporalType.DATE)
@@ -42,17 +41,8 @@ public class Book extends AbstractEntity {
     private Language language;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "cover_id")
-    private BookCover cover;
-
-    public Book() {
-    }
-
-    public Book(String title, Integer pages, String isbn) {
-        this.title = title;
-        this.pages = pages;
-        this.isbn = isbn;
-    }
+    @JoinColumn(name = "image_id")
+    private Image image;
 
     public void setTitle(String title) {
         this.title = title;
@@ -110,11 +100,11 @@ public class Book extends AbstractEntity {
         this.language = language;
     }
 
-    public BookCover getCover() {
-        return cover;
+    public Image getImage() {
+        return image;
     }
 
-    public void setCover(BookCover cover) {
-        this.cover = cover;
+    public void setImage(Image image) {
+        this.image = image;
     }
 }

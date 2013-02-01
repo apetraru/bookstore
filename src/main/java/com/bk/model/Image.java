@@ -9,7 +9,7 @@ import javax.persistence.Lob;
  */
 
 @Entity
-public class BookCover extends AbstractEntity{
+public class Image extends AbstractEntity{
     private String name;
     private Long size;
     private String contentType;
