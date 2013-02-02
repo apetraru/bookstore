@@ -20,7 +20,7 @@
                         <p:column styleClass="panel-column">
                             <h:outputText value="Author"/>
                             <br/>
-                            <p:inputText value="#{bookBean.book.author}" id="bookAuthorId" maxlength="200"/>
+                            <p:inputText value="#{bookBean.author.name}" id="bookAuthorId" maxlength="200"/>
                             <p:message for="bookAuthorId" display="text"/>
                         </p:column>
                     </p:row>
@@ -82,7 +82,7 @@
                             <p:commandButton value="Add Book" action="#{bookBean.save}" update="addBookPanelId"
                                              id="addBookButtonId"/>
                             <p:spacer width="5%" height="1%"/>
-                            <p:commandButton value="Reset" action="#{bookBean.resetBook}" immediate="true"
+                            <p:commandButton value="Reset" action="#{bookBean.reset}" immediate="true"
                                              update="addBookPanelId"/>
                             <p:message for="addBookButtonId" display="text"/>
                         </p:column>

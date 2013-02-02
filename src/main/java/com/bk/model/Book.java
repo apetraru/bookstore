@@ -9,6 +9,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +30,8 @@ public class Book extends AbstractEntity {
     @Column(nullable = false, unique = true)
     private String isbn;
 
-    private String author;
+    @ManyToOne
+    private Author author;
 
     @Lob
     private String description;
@@ -41,7 +43,7 @@ public class Book extends AbstractEntity {
     private Language language;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "image_id")
+    @JoinColumn(name = "book_image_id")
     private Image image;
 
     public void setTitle(String title) {
@@ -68,11 +70,11 @@ public class Book extends AbstractEntity {
         this.isbn = isbn;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(Author author) {
         this.author = author;
     }
 
