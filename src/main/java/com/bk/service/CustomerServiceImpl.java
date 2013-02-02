@@ -7,10 +7,8 @@ import com.bk.repository.CustomerRepository;
 import com.mysema.query.types.Predicate;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Resource;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
