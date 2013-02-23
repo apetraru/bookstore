@@ -26,12 +26,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class IndexBean {
 
 	private List<Book> books = new ArrayList<>();
-
+	private String searchTerm;
+	private long timer;
+	
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	@Transactional
+	@Transactional(readOnly = true)
 	public void search() {
+
 		FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
 		try {
 			fullTextEntityManager.createIndexer().startAndWait();
@@ -40,21 +43,38 @@ public class IndexBean {
 		}
 		QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()
 				.buildQueryBuilder().forEntity(Book.class).get();
-		Query query = queryBuilder.keyword().onFields("title", "author.name").matching("gigi").createQuery();
+		Query query = queryBuilder.keyword().onFields("title", "author.name").matching(searchTerm).createQuery();
 
 		javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(query, Book.class);
 
+		timer = System.currentTimeMillis();
 		books = jpaQuery.getResultList();
+		timer = System.currentTimeMillis() - timer;
 	}
 
 	public String getResult() {
+		if (books.isEmpty()) {
+			return "No results found";
+		}
+
 		StringBuilder builder = new StringBuilder();
 		for (Book book : books) {
 			builder.append(book.getTitle());
 			builder.append(" by ");
 			builder.append(book.getAuthor().getName());
-			builder.append(" | ");
+			builder.append(" | in ");
 		}
+
+		builder.append(Long.toString(timer));
+		builder.append(" ms");
 		return builder.toString();
+	}
+
+	public String getSearchTerm() {
+		return searchTerm;
+	}
+
+	public void setSearchTerm(String searchTerm) {
+		this.searchTerm = searchTerm;
 	}
 }
