@@ -1,5 +1,6 @@
 package com.bk.model;
 
+import java.io.Serializable;
 import java.util.regex.Pattern;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -9,28 +10,27 @@ import org.springframework.util.Assert;
  * @author ph
  */
 @Embeddable
-public class EmailAddress {
+public class EmailAddress implements Serializable {
 
-    private static final String EMAIL_REGEX = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-    private static final Pattern PATTERN = Pattern.compile(EMAIL_REGEX);
+	private static final String EMAIL_REGEX = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	private static final Pattern PATTERN = Pattern.compile(EMAIL_REGEX);
+	@Column(name = "email")
+	private String value;
 
-    @Column(name = "email")
-    private String value;
+	public EmailAddress(String emailAddress) {
+		Assert.isTrue(isValid(emailAddress), "Invalid email address");
+		this.value = emailAddress;
+	}
 
-    public EmailAddress(String emailAddress) {
-        Assert.isTrue(isValid(emailAddress), "Invalid email address");
-        this.value = emailAddress;
-    }
+	protected EmailAddress() {
+	}
 
-    protected EmailAddress() {
-    }
+	public boolean isValid(String candidate) {
+		return (candidate != null && PATTERN.matcher(candidate).matches());
+	}
 
-    public boolean isValid(String candidate) {
-        return (candidate != null && PATTERN.matcher(candidate).matches());
-    }
-
-    @Override
-    public String toString() {
-        return value;
-    }
+	@Override
+	public String toString() {
+		return value;
+	}
 }

@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/templates/template.xhtml">
     <ui:define name="body">
@@ -26,7 +27,7 @@
                     </p:row>
                     <p:row>
                         <p:column styleClass="panel-column">
-                            <h:outputText value="ISBN"/>
+                            <h:outputText value="ISBN13"/>
                             <br/>
                             <p:inputText value="#{bookBean.book.isbn}" required="true" id="bookIsbnId">
                                 <f:validator validatorId="isbnValidator"/>
@@ -37,7 +38,7 @@
                             <h:outputText value="Number of Pages"/>
                             <br/>
                             <p:inputText value="#{bookBean.book.pages}" required="true" id="bookPagesId">
-                                <f:validateLongRange minimum="0"/>
+                                <f:validateLongRange minimum="0" maximum="20000"/>
                             </p:inputText>
                             <p:message for="bookPagesId" display="text"/>
                         </p:column>
@@ -46,7 +47,7 @@
                         <p:column styleClass="panel-column">
                             <h:outputText value="Publish Date"/>
                             <br/>
-                            <p:calendar value="#{bookBean.book.publishDate}" pattern="dd/MM/yyyy" yearRange="1600:"
+                            <p:calendar value="#{bookBean.book.publishDate}" pattern="dd/MM/yyyy" yearRange="1500:"
                                         showButtonPanel="true" navigator="true" readonlyInput="true"
                                         maxdate="#{bookBean.today}"/>
                         </p:column>

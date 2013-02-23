@@ -12,7 +12,7 @@ public class BookPredicate {
     public static Predicate searchTitleOrAuthor(String searchTerm) {
         QBook book = QBook.book;
         return book.title.containsIgnoreCase(searchTerm)
-            .or(book.author.containsIgnoreCase(searchTerm));
+            .or(book.author.name.containsIgnoreCase(searchTerm));
     }
 
 }

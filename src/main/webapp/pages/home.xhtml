@@ -2,14 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-        >
+	  xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/templates/template.xhtml">
-    <ui:define name="body">
-        <h:form id="form">
-            WELCOME
-        </h:form>
-    </ui:define>
-</ui:composition>
+    <ui:composition template="/templates/template.xhtml">
+        <ui:define name="body">
+            <h:form id="form">
+                <p:commandButton value="Search" update="form" actionListener="#{indexBean.search()}"/>
+				<h:outputText value="#{indexBean.result}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
 
 </html>

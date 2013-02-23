@@ -1,5 +1,6 @@
 package com.bk.model;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,20 +16,16 @@ import org.springframework.util.Assert;
  * @author ph
  */
 @Entity
-public class Customer extends AbstractEntity {
+public class Customer extends AbstractEntity implements Serializable {
 
 	private String firstname;
 	private String lastname;
-
-    @Column(nullable = false)
-    private String username;
-
-    @Column(nullable = false)
-    private String password;
-
+	@Column(nullable = false)
+	private String username;
+	@Column(nullable = false)
+	private String password;
 	@Column(unique = true)
 	private EmailAddress emailAddress;
-
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "customer_id")
 	private Set<Address> addresses = new HashSet<>();
@@ -77,19 +74,19 @@ public class Customer extends AbstractEntity {
 		return Collections.unmodifiableSet(addresses);
 	}
 
-    public String getUsername() {
-        return username;
-    }
+	public String getUsername() {
+		return username;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }

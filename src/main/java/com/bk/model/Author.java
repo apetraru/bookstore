@@ -1,6 +1,7 @@
 package com.bk.model;
 
 import com.bk.util.Gender;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import org.hibernate.search.annotations.Field;
 
 /**
  * User: ph
@@ -17,7 +19,9 @@ import javax.persistence.OneToOne;
  */
 
 @Entity
-public class Author extends AbstractEntity {
+public class Author extends AbstractEntity implements Serializable {
+
+	@Field
     private String name;
     private Gender gender;
     private String website;
@@ -26,7 +30,7 @@ public class Author extends AbstractEntity {
     private String about;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "author_image_id")
+    @JoinColumn(name = "fk_author_image_id")
     private Image image;
 
     @OneToMany(mappedBy = "author")

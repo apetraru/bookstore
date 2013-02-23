@@ -8,7 +8,7 @@ import java.util.List;
  * Date: 1/28/13
  */
 public interface BookService {
-    List<Book> search(String searchTerm, int page, int index);
+    List<Book> search(String searchTerm);
     Book save(Book book);
     Book findByIsbn(String isbn);
 }
