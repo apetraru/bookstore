@@ -37,7 +37,12 @@
     margin-top: 5px !important;
 }
 
-/* textarea */
+/* change error message color */
+.ui-messages-error, .ui-message-error{
+    color: #b22222 !important;
+}
+
+/* text area */
 .ui-inputtextarea {
     width: 700px;
     height: 150px;
