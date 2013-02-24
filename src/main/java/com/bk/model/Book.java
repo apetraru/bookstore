@@ -14,44 +14,65 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.apache.solr.analysis.LowerCaseFilterFactory;
+import org.apache.solr.analysis.NGramFilterFactory;
+import org.apache.solr.analysis.StandardFilterFactory;
+import org.apache.solr.analysis.StandardTokenizerFactory;
+import org.apache.solr.analysis.StopFilterFactory;
 import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.AnalyzerDef;
 import org.hibernate.search.annotations.DateBridge;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.Parameter;
 import org.hibernate.search.annotations.Resolution;
 import org.hibernate.search.annotations.Store;
+import org.hibernate.search.annotations.TokenFilterDef;
+import org.hibernate.search.annotations.TokenizerDef;
 
 /**
  * @author ph
  */
 
 @Entity
+@AnalyzerDef(name = "customanalyzer",
+    tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
+    filters = {
+        @TokenFilterDef(factory = StandardFilterFactory.class),
+        @TokenFilterDef(factory = LowerCaseFilterFactory.class),
+        @TokenFilterDef(factory = StopFilterFactory.class),
+        @TokenFilterDef(factory = NGramFilterFactory.class,
+            params = {
+                @Parameter(name = "minGramSize", value = "3"),
+                @Parameter(name = "maxGramSize", value = "3")})
+    })
 @Indexed
 public class Book extends AbstractEntity implements Serializable {
 
     @Column(nullable = false)
-	@Field
+    @Field(analyzer = @Analyzer(definition = "customanalyzer"))
     private String title;
 
     @Column(nullable = false)
     private Integer pages;
 
     @Column(nullable = false, unique = true)
-	@Field
+    @Field
     private String isbn;
 
     @ManyToOne
-	@IndexedEmbedded
+    @IndexedEmbedded
     private Author author;
 
     @Lob
     private String description;
 
     @Temporal(TemporalType.DATE)
-	@Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
-	@DateBridge(resolution = Resolution.YEAR)
+    @Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
+    @DateBridge(resolution = Resolution.YEAR)
     private Date publishDate;
 
     @Enumerated(EnumType.STRING)
