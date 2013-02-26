@@ -29,8 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class IndexBean {
 
     private List<Book> books = new ArrayList<>();
-    private String searchTerm;
-    private long timer;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -41,22 +39,25 @@ public class IndexBean {
     }
 
     @Transactional(readOnly = true)
-    public void search() {
+    public List<String> search(String input) {
 
-        timer = System.currentTimeMillis();
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
 
         QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()
             .buildQueryBuilder().forEntity(Book.class).get();
         Query query = queryBuilder.keyword()
             .onFields("title", "author.name")
-            .matching(searchTerm)
+            .matching(input)
             .createQuery();
 
         javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(query, Book.class);
 
         books = jpaQuery.getResultList();
-        timer = System.currentTimeMillis() - timer;
+        List<String> titles = new ArrayList<>();
+        for (Book book : books) {
+            titles.add(book.getTitle() + " by " + book.getAuthor().getName());
+        }
+        return titles;
     }
 
     private void index() {
@@ -68,19 +69,7 @@ public class IndexBean {
         }
     }
 
-    public String getSearchTerm() {
-        return searchTerm;
-    }
-
-    public void setSearchTerm(String searchTerm) {
-        this.searchTerm = searchTerm;
-    }
-
     public List<Book> getBooks() {
         return Collections.unmodifiableList(books);
-    }
-
-    public long getTimer() {
-        return timer;
     }
 }

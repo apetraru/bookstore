@@ -16,7 +16,7 @@
                 <p:commandLink action="#{navigationBean.HOME}">
                     <p:graphicImage value="/resources/images/logo.png" styleClass="logo"/>
                 </p:commandLink>
-                <p:inputText title="search" id="searchBar"/>
+                <p:autoComplete completeMethod="#{indexBean.search}" id="searchBar" minQueryLength="3" maxResults="10"/>
                 <p:watermark value="Title / Author" for="searchBar"/>
                 <p:commandLink value="Home" action="#{navigationBean.HOME}"/>
                 <p:commandLink value="Add Books" action="#{navigationBean.ADD_BOOK}"/>

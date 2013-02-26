@@ -3,7 +3,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-	  xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/templates/template.xhtml">
     <ui:define name="body">
@@ -27,11 +27,12 @@
                     </p:row>
                     <p:row>
                         <p:column styleClass="panel-column">
-                            <h:outputText value="ISBN13"/>
+                            <h:outputText value="ISBN-13"/>
                             <br/>
-                            <p:inputText value="#{bookBean.book.isbn}" required="true" id="bookIsbnId">
+                            <p:inputMask value="#{bookBean.book.isbn}" required="true" id="bookIsbnId"
+                                         mask="999-9999999999" placeHolder="x">
                                 <f:validator validatorId="isbnValidator"/>
-                            </p:inputText>
+                            </p:inputMask>
                             <p:message for="bookIsbnId" display="text"/>
                         </p:column>
                         <p:column styleClass="panel-column">

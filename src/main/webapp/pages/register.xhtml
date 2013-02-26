@@ -8,14 +8,14 @@
 <ui:composition template="/templates/template.xhtml">
     <ui:define name="body">
         <h:form id="registerFormId">
-            <p:panel header="Register" styleClass="register-panel" >
-                <p:panelGrid id="registerPanelId" >
+            <p:panel header="Register" styleClass="register-panel">
+                <p:panelGrid id="registerPanelId">
                     <p:row>
                         <p:column styleClass="panel-column">
                             <h:outputText value="Username"/>
                             <br/>
                             <p:inputText value="#{registerBean.username}" required="true" id="registerUsernameId">
-                                <f:validateLength minimum="3" />
+                                <f:validateLength minimum="3"/>
                             </p:inputText>
                             <p:message for="registerUsernameId" display="text"/>
                         </p:column>
@@ -34,7 +34,8 @@
                         <p:column styleClass="panel-column">
                             <h:outputText value="Password"/>
                             <br/>
-                            <p:password value="#{registerBean.password}" required="true" id="registerPasswordId">
+                            <p:password value="#{registerBean.password}" required="true" id="registerPasswordId"
+                                        feedback="true">
                                 <f:validateLength minimum="5"/>
                             </p:password>
                             <p:message for="registerPasswordId" display="text"/>

@@ -8,14 +8,7 @@
     <ui:composition template="/templates/template.xhtml">
         <ui:define name="body">
             <h:form id="form" style="margin-left: 20%; margin-right: 20%">
-				<p:inputText value="#{indexBean.searchTerm}" required="true" id="searchTerm" />
-                <p:commandButton value="Search" update="form" actionListener="#{indexBean.search()}"/>
-                <p:message for="searchTerm" display="text" />
-				<p:selectOneListbox style="width: auto; height: 400px">
-					<f:selectItems value="#{indexBean.books}" var="book"
-								   itemLabel="#{book.title} by #{book.author.name}"  />
-				</p:selectOneListbox>
-                <h:outputText value="Query executed in #{indexBean.timer}ms" />
+				WELCOME
             </h:form>
         </ui:define>
     </ui:composition>
