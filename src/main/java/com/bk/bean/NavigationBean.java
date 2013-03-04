@@ -16,6 +16,7 @@ public class NavigationBean {
     private static final String LOGIN = "/pages/login.jsf";
     private static final String REGISTER = "/pages/register.jsf";
     private static final String ADD_BOOK = "/pages/admin/addBook.jsf";
+    private static final String BOOK = "/pages/book.jsf";
 
     public static String LOGIN() {
         return LOGIN + REDIRECT;
@@ -31,5 +32,9 @@ public class NavigationBean {
 
     public static String ADD_BOOK() {
         return ADD_BOOK + REDIRECT;
+    }
+
+    public static String BOOK() {
+        return BOOK;
     }
 }
