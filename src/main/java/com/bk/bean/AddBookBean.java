@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("view")
-public class BookBean {
+public class AddBookBean {
 
     @Autowired
     private BookService bookService;
