@@ -11,7 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import org.hibernate.search.annotations.Analyzer;
 import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 
 /**
  * User: ph
@@ -21,7 +23,7 @@ import org.hibernate.search.annotations.Field;
 @Entity
 public class Author extends AbstractEntity implements Serializable {
 
-	@Field
+    @Field(analyzer = @Analyzer(definition = "customanalyzer"))
     private String name;
     private Gender gender;
     private String website;

@@ -15,7 +15,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.solr.analysis.LowerCaseFilterFactory;
-import org.apache.solr.analysis.NGramFilterFactory;
 import org.apache.solr.analysis.StandardFilterFactory;
 import org.apache.solr.analysis.StandardTokenizerFactory;
 import org.apache.solr.analysis.StopFilterFactory;
@@ -27,7 +26,6 @@ import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
-import org.hibernate.search.annotations.Parameter;
 import org.hibernate.search.annotations.Resolution;
 import org.hibernate.search.annotations.Store;
 import org.hibernate.search.annotations.TokenFilterDef;
@@ -43,11 +41,7 @@ import org.hibernate.search.annotations.TokenizerDef;
     filters = {
         @TokenFilterDef(factory = StandardFilterFactory.class),
         @TokenFilterDef(factory = LowerCaseFilterFactory.class),
-        @TokenFilterDef(factory = StopFilterFactory.class),
-        @TokenFilterDef(factory = NGramFilterFactory.class,
-            params = {
-                @Parameter(name = "minGramSize", value = "3"),
-                @Parameter(name = "maxGramSize", value = "3")})
+        @TokenFilterDef(factory = StopFilterFactory.class)
     })
 @Indexed
 public class Book extends AbstractEntity implements Serializable {
