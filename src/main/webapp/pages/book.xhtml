@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/template.xhtml">
+    <ui:define name="body">
+        <f:metadata>
+            <f:viewParam name="id" value="#{bookBean.id}"/>
+            <f:event type="preRenderView" listener="#{bookBean.init()}"/>
+        </f:metadata>
+        <h:form id="bookForm">
+            <p:panel styleClass="book-panel">
+                <div class="book-image">
+                    <p:graphicImage value="#{bookBean.image}" width="50%" height="50%"/>
+                </div>
+                <div class="book-details">
+                    <h:outputText value="#{bookBean.book.title}" styleClass="book-title"/>
+                    <br/>
+                    <h:outputText value="by "/>
+                    <h:outputText value="#{bookBean.book.author.name}"/>
+                    <br/>
+                    <p:spacer width="100%" height="20px"/>
+                    <h:outputText value="#{bookBean.book.description}"/>
+                    <br/>
+                    <p:spacer width="100%" height="20px"/>
+                    <p:separator/>
+                    <p:panelGrid>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="ISBN-13"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="#{bookBean.book.isbn}"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="Published"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="#{bookBean.book.publishDate}" />
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <h:outputText value="Language"/>
+                            </p:column>
+                            <p:column>
+                                <h:outputText value="#{bookBean.book.language.toString()}" />
+                            </p:column>
+                        </p:row>
+
+                    </p:panelGrid>
+                </div>
+            </p:panel>
+            <p:messages globalOnly="true"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>

@@ -38,6 +38,11 @@ body {
     margin: -5px;
 }
 
+.searchButton.ui-button {
+    border: none;
+    background: none;
+}
+
 /* FOOTER */
 .footer {
     font-weight: bold;
@@ -87,4 +92,30 @@ a:hover {
 
 .selectonemenu-style {
     width: 210px !important;
+}
+
+/* BOOK */
+.book-panel {
+    margin-left: 20%;
+    margin-right: 20%;
+    border: none;
+    clear: both;
+}
+
+.book-image {
+    width: 30%;
+    height: 50%;
+    float: left;
+    margin-left: 5%;
+    margin-right: -100px;
+}
+
+.book-details {
+    width: 60%;
+    float: left;
+    margin-right: 5%;
+}
+
+.book-title {
+    font-size: 1.6em;
 }
