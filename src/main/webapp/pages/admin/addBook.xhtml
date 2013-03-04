@@ -14,14 +14,14 @@
                         <p:column styleClass="panel-column">
                             <h:outputText value="Title"/>
                             <br/>
-                            <p:inputText value="#{bookBean.book.title}" required="true" id="bookTitleId"
+                            <p:inputText value="#{addBookBean.book.title}" required="true" id="bookTitleId"
                                          maxlength="200"/>
                             <p:message for="bookTitleId" display="text"/>
                         </p:column>
                         <p:column styleClass="panel-column">
                             <h:outputText value="Author"/>
                             <br/>
-                            <p:inputText value="#{bookBean.author.name}" id="bookAuthorId" maxlength="200"/>
+                            <p:inputText value="#{addBookBean.author.name}" id="bookAuthorId" maxlength="200"/>
                             <p:message for="bookAuthorId" display="text"/>
                         </p:column>
                     </p:row>
@@ -29,7 +29,7 @@
                         <p:column styleClass="panel-column">
                             <h:outputText value="ISBN-13"/>
                             <br/>
-                            <p:inputMask value="#{bookBean.book.isbn}" required="true" id="bookIsbnId"
+                            <p:inputMask value="#{addBookBean.book.isbn}" required="true" id="bookIsbnId"
                                          mask="999-9999999999" placeHolder="x">
                                 <f:validator validatorId="isbnValidator"/>
                             </p:inputMask>
@@ -38,7 +38,7 @@
                         <p:column styleClass="panel-column">
                             <h:outputText value="Number of Pages"/>
                             <br/>
-                            <p:inputText value="#{bookBean.book.pages}" required="true" id="bookPagesId">
+                            <p:inputText value="#{addBookBean.book.pages}" required="true" id="bookPagesId">
                                 <f:validateLongRange minimum="0" maximum="20000"/>
                             </p:inputText>
                             <p:message for="bookPagesId" display="text"/>
@@ -48,16 +48,16 @@
                         <p:column styleClass="panel-column">
                             <h:outputText value="Publish Date"/>
                             <br/>
-                            <p:calendar value="#{bookBean.book.publishDate}" pattern="dd/MM/yyyy" yearRange="1500:"
+                            <p:calendar value="#{addBookBean.book.publishDate}" pattern="dd/MM/yyyy" yearRange="1500:"
                                         showButtonPanel="true" navigator="true" readonlyInput="true"
-                                        maxdate="#{bookBean.today}"/>
+                                        maxdate="#{addBookBean.today}"/>
                         </p:column>
                         <p:column styleClass="panel-column">
                             <h:outputText value="Language"/>
                             <br/>
-                            <p:selectOneMenu value="#{bookBean.book.language}" id="bookLanguageId"
+                            <p:selectOneMenu value="#{addBookBean.book.language}" id="bookLanguageId"
                                              styleClass="selectonemenu-style">
-                                <f:selectItems value="#{bookBean.languages}"/>
+                                <f:selectItems value="#{addBookBean.languages}"/>
                             </p:selectOneMenu>
                         </p:column>
                     </p:row>
@@ -65,7 +65,7 @@
                         <p:column styleClass="description-column" colspan="2">
                             <h:outputText value="Description"/>
                             <br/>
-                            <p:inputTextarea value="#{bookBean.book.description}" id="bookDescriptionId"
+                            <p:inputTextarea value="#{addBookBean.book.description}" id="bookDescriptionId"
                                              maxlength="32000"/>
                             <p:message for="bookDescriptionId" display="text"/>
                         </p:column>
@@ -75,16 +75,16 @@
                             <h:outputText value="Cover (1 file max)"/>
                             <p:fileUpload allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="coverUploadMessageId"
                                           id="coverUploadId" sizeLimit="100000"
-                                          fileUploadListener="#{bookBean.upload}"/>
+                                          fileUploadListener="#{addBookBean.upload}"/>
                             <p:message for="coverUploadId" display="text" id="coverUploadMessageId"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column styleClass="description-column" colspan="2">
-                            <p:commandButton value="Add Book" action="#{bookBean.save}" update="addBookPanelId"
+                            <p:commandButton value="Add Book" action="#{addBookBean.save}" update="addBookPanelId"
                                              id="addBookButtonId"/>
                             <p:spacer width="5%" height="1%"/>
-                            <p:commandButton value="Reset" action="#{bookBean.reset}" immediate="true"
+                            <p:commandButton value="Reset" action="#{addBookBean.reset}" immediate="true"
                                              update="addBookPanelId"/>
                             <p:message for="addBookButtonId" display="text"/>
                         </p:column>
