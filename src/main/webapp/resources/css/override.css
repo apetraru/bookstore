@@ -54,3 +54,13 @@
     height: 1em !important;
     width: 1em !important;
 }
+
+/* autocomplete list always below the input text */
+.ui-autocomplete-panel {
+    top: 40px !important;
+    border: none;
+}
+
+.ui-autocomplete-panel:hover {
+    background: #d3d3d3;
+}
