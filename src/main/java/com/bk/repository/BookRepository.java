@@ -17,4 +17,6 @@ public interface BookRepository extends Repository<Book, Long>, QueryDslPredicat
 
     @Transactional
     Book save(Book book);
+
+    Book findById(Long id);
 }

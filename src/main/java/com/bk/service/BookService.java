@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface BookService {
     List<Book> search(String searchTerm);
+
     Book save(Book book);
-    Book findByIsbn(String isbn);
+
+    Book findById(Long id);
 }
