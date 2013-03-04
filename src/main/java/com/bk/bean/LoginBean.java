@@ -41,9 +41,10 @@ public class LoginBean {
         return null;
     }
 
-    public void logout() {
+    public String logout() {
         loggedInUser = null;
         loggedOn = false;
+        return NavigationBean.HOME();
     }
 
     private boolean verifyCredentials() {
