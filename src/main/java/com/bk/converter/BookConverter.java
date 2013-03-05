@@ -24,7 +24,7 @@ public class BookConverter implements Converter {
         if (value.isEmpty()) {
             return null;
         }
-        return (Book) bookService.findById(Long.parseLong(value));
+        return bookService.findById(Long.parseLong(value));
     }
 
     @Override
