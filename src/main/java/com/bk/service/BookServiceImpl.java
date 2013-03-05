@@ -1,16 +1,17 @@
 package com.bk.service;
 
 import com.bk.model.Book;
-import com.bk.predicate.BookPredicate;
 import com.bk.repository.BookRepository;
-import com.mysema.query.types.Predicate;
-import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.collections.CollectionUtils;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import org.apache.lucene.search.Query;
+import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.jpa.Search;
+import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * User: ph
@@ -23,15 +24,28 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private BookRepository repository;
 
-    @Override
-    public List<Book> search(String searchTerm) {
-        Predicate predicate = BookPredicate.searchTitleOrAuthor(searchTerm);
+    @PersistenceContext
+    private EntityManager entityManager;
 
-        Iterable<Book> books = repository.findAll(predicate);
-        List<Book> bookList = new ArrayList<>();
-        CollectionUtils.addAll(bookList, books.iterator());
+    @Transactional(readOnly = true)
+    public List<Book> search(String searchTerm, int firstResult, int maxResults) {
 
-        return bookList;
+        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
+
+        QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()
+            .buildQueryBuilder().forEntity(Book.class).get();
+        Query query = queryBuilder.keyword()
+            .fuzzy()
+            .withThreshold(0.7f)
+            .onFields("title", "author.name")
+            .matching(searchTerm)
+            .createQuery();
+
+        javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(query, Book.class);
+        jpaQuery.setFirstResult(firstResult);
+        jpaQuery.setMaxResults(maxResults);
+
+        return jpaQuery.getResultList();
     }
 
     @Override
