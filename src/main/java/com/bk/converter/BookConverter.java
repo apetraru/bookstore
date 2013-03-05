@@ -1,30 +1,30 @@
 package com.bk.converter;
 
-import com.bk.bean.IndexBean;
 import com.bk.model.Book;
-import java.util.List;
+import com.bk.service.BookService;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import javax.faces.convert.FacesConverter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * User: ph
  * Date: 3/2/13
  */
 
-@FacesConverter("bookConverter")
+@Component
 public class BookConverter implements Converter {
+
+    @Autowired
+    BookService bookService;
+
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        IndexBean bean = (IndexBean) context.getApplication().evaluateExpressionGet(context, "#{indexBean}", IndexBean.class);
-        List<Book> books = bean.getBooks();
-        for (Book book : books) {
-            if (book.getId().equals(Long.parseLong(value))) {
-                return book;
-            }
+        if (value.isEmpty()) {
+            return null;
         }
-        return null;
+        return (Book) bookService.findById(Long.parseLong(value));
     }
 
     @Override
