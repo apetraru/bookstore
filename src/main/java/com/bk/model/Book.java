@@ -70,6 +70,7 @@ public class Book extends AbstractEntity implements Serializable {
     private Date publishDate;
 
     @Enumerated(EnumType.STRING)
+	@Column(name = "EDITION_LANGUAGE")
     private Language language;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)

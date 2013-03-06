@@ -1,6 +1,7 @@
 package com.bk.model;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 
@@ -12,8 +13,10 @@ import javax.persistence.Lob;
 @Entity
 public class Image extends AbstractEntity implements Serializable{
     private String name;
-    private Long size;
     private String contentType;
+	
+	@Column(name="FILE_SIZE")
+    private Long size;
 
     @Lob
     private byte[] fileContent;
