@@ -23,27 +23,33 @@ public class CustomerServiceImpl implements CustomerService{
     @Autowired
     private CustomerRepository repository;
 
+    @Override
     public Customer save(Customer customer) {
         return repository.save(customer);
     }
 
+    @Override
     public Customer findById(Long id) {
         return repository.findById(id);
     }
 
+    @Override
     public Customer findByEmailAddress(EmailAddress emailAddress) {
         return repository.findByEmailAddress(emailAddress);
     }
 
+    @Override
     public Customer findByUsername(String username) {
         return repository.findByUsername(username);
     }
 
+    @Override
     public List<Customer> search(String searchTerm) {
         return repository.findCustomers(searchTerm);
     }
 
     @Transactional(readOnly = true)
+    @Override
     public List<Customer> searchQueryDsl(String searchTerm) {
         Predicate customerPredicate = CustomerPredicate.firstOrLastNameStartsWith(searchTerm);
 

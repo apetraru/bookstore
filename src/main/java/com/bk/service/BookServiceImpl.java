@@ -28,6 +28,7 @@ public class BookServiceImpl implements BookService {
     private EntityManager entityManager;
 
     @Transactional(readOnly = true)
+    @Override
     public List<Book> search(String searchTerm, int firstResult, int maxResults) {
 
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);

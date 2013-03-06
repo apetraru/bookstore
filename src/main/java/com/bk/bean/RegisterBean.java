@@ -7,6 +7,8 @@ import com.bk.util.Message;
 import com.bk.util.PasswordHash;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,8 +88,8 @@ public class RegisterBean {
     private String hashPassword() {
         try {
             return PasswordHash.hash(password);
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-            e.printStackTrace();
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+            Logger.getLogger(RegisterBean.class.getName()).log(Level.SEVERE, null, ex);
             addErrorMessage();
             return null;
         }

@@ -5,15 +5,8 @@ import com.bk.service.BookService;
 import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import org.hibernate.search.jpa.FullTextEntityManager;
-import org.hibernate.search.jpa.Search;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,17 +24,9 @@ public class BookBean implements Serializable {
     @Autowired
     private BookService bookService;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     private Book book;
     private Long id;
     private StreamedContent image;
-
-    @PostConstruct
-    public void initIndex() {
-        index();
-    }
 
     public void init() {
         if (id == null) {
@@ -65,15 +50,6 @@ public class BookBean implements Serializable {
 
     public List<Book> search(String input) {
         return bookService.search(input, 0, 10);
-    }
-
-    private void index() {
-        FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
-        try {
-            fullTextEntityManager.createIndexer().startAndWait();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(BookBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     public StreamedContent getImage() {

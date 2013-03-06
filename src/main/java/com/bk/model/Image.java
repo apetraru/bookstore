@@ -1,5 +1,6 @@
 package com.bk.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 
@@ -9,7 +10,7 @@ import javax.persistence.Lob;
  */
 
 @Entity
-public class Image extends AbstractEntity{
+public class Image extends AbstractEntity implements Serializable{
     private String name;
     private Long size;
     private String contentType;

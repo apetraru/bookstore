@@ -47,7 +47,7 @@ public class IsbnValidator implements Validator {
     }
 
     private FacesMessage errorMessage() {
-        FacesMessage msg = new FacesMessage("Invalid ISBN format");
+        FacesMessage msg = new FacesMessage(INVALID_ISBN);
         msg.setSeverity(FacesMessage.SEVERITY_ERROR);
         return msg;
     }
