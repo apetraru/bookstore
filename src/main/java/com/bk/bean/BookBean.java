@@ -37,7 +37,7 @@ public class BookBean implements Serializable {
         }
 
         book = bookService.findById(id);
-        if (book != null) {
+        if (book != null && book.getImage() != null) {
             image = new DefaultStreamedContent(new ByteArrayInputStream(book.getImage().getFileContent()));
         }
 
