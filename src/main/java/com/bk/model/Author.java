@@ -3,6 +3,7 @@ package com.bk.model;
 import com.bk.util.Gender;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -11,11 +12,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.hibernate.search.annotations.Analyzer;
+import org.hibernate.search.annotations.ContainedIn;
 import org.hibernate.search.annotations.Field;
 
 /**
- * User: ph
+ * @author Andrei Petaru
  * Date: 2/2/13
  */
 
@@ -26,6 +30,9 @@ public class Author extends AbstractEntity implements Serializable {
     private String name;
     private Gender gender;
     private String website;
+	
+	@Temporal(TemporalType.DATE)
+	private Date birthDate;
 
     @Lob
     private String about;
@@ -34,6 +41,7 @@ public class Author extends AbstractEntity implements Serializable {
     @JoinColumn(name = "fk_author_image_id")
     private Image image;
 
+	@ContainedIn
     @OneToMany(mappedBy = "author")
     Set<Book> books = new HashSet<>();
 
@@ -84,4 +92,12 @@ public class Author extends AbstractEntity implements Serializable {
     public void addBook(Book book) {
         this.books.add(book);
     }
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
 }
