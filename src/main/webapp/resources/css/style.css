@@ -119,3 +119,19 @@ a:hover {
 .book-title {
     font-size: 1.6em;
 }
+
+.book-author-name.ui-button {
+	border: none;
+	background: none;
+	margin-left: -5px;
+}
+.book-author-name.ui-button:hover {
+	text-decoration: underline !important;
+}
+
+/* AUTHOR */
+.author-panel {
+	margin: 0 auto; 
+	width: 960px; 
+	border: none
+}

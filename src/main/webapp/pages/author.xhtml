@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="body">
+			<f:metadata>
+				<f:viewParam name="id" value="#{authorBean.id}"/>
+				<f:event type="preRenderView" listener="#{authorBean.init()}"/>
+			</f:metadata>
+			<h:form id="authorForm">
+				<p:panel styleClass="author-panel" header="#{authorBean.author.name}">
+					<p:panelGrid>
+						<p:row>
+							<p:column>
+								<h:outputText value="Date of Birth" />
+							</p:column>
+							<p:column>
+								<h:outputText value="#{authorBean.author.birthDate}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText value="Gender" />
+							</p:column>
+							<p:column>
+								<h:outputText value="#{authorBean.author.gender}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText value="Genre"/>
+							</p:column>
+							<p:column>
+								<h:outputText value="TO BE ADDED" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText value="About this author"/>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<h:outputText value="#{authorBean.author.about}" />
+							</p:column> 
+						</p:row>
+					</p:panelGrid>
+				</p:panel>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>
