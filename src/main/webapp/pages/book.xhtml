@@ -19,8 +19,12 @@
 					<div class="book-details">
 						<h:outputText value="#{bookBean.book.title}" styleClass="book-title"/>
 						<br/>
-						<h:outputText value="by "/>
-						<h:outputText value="#{bookBean.book.author.name}"/>
+						<h:outputText value="by"/>
+						<p:button value="#{bookBean.book.author.name}" outcome="#{navigationBean.author()}"
+								  styleClass="book-author-name" >
+                            <f:param name="id" value="#{bookBean.book.author.id}" />
+                            <f:param name="author" value="#{bookBean.book.author.name}" />
+                        </p:button>
 						<br/>
 						<p:spacer width="100%" height="20px"/>
 						<h:outputText value="#{bookBean.book.description}"/>
