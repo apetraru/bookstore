@@ -2,7 +2,6 @@ package com.bk.bean;
 
 import com.bk.model.Author;
 import com.bk.model.Book;
-import com.bk.model.Image;
 import com.bk.repository.AuthorRepository;
 import com.bk.service.BookService;
 import com.bk.util.Language;
@@ -11,8 +10,6 @@ import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -39,18 +36,6 @@ public class AddBookBean {
     @PostConstruct
     public void init() {
         reset();
-    }
-
-    private Image convertToFileCover(UploadedFile file) {
-        if (file == null) {
-            return null;
-        }
-        Image image = new Image();
-        image.setContentType(file.getContentType());
-        image.setName(file.getFileName());
-        image.setSize(file.getSize());
-        image.setFileContent(file.getContents());
-        return image;
     }
 
     private Author saveAuthorIfNew() {
@@ -87,18 +72,6 @@ public class AddBookBean {
 
     public Language[] getLanguages() {
         return Language.values();
-    }
-
-    public void upload(FileUploadEvent event) {
-        UploadedFile file = event.getFile();
-        Image image = convertToFileCover(file);
-        if (image != null) {
-            book.setImage(image);
-            Message.addMessage("addBookFormId:coverUploadId", "Current file: " + file.getFileName(), FacesMessage.SEVERITY_INFO);
-        }
-        else {
-            Message.addMessage("addBookFormId:coverUploadId", "Error uploading file", FacesMessage.SEVERITY_ERROR);
-        }
     }
 
     public void reset() {

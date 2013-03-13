@@ -72,11 +72,9 @@
                     </p:row>
                     <p:row>
                         <p:column styleClass="description-column" colspan="3">
-                            <h:outputText value="Cover (1 file max)"/>
-                            <p:fileUpload allowTypes="/(\.|\/)(gif|jpe?g|png)$/" update="coverUploadMessageId"
-                                          id="coverUploadId" sizeLimit="100000"
-                                          fileUploadListener="#{addBookBean.upload}"/>
-                            <p:message for="coverUploadId" display="text" id="coverUploadMessageId"/>
+                            <h:outputText value="Book cover URL"/>
+                            <br/>
+                            <p:inputText value="#{addBookBean.book.imageUrl}" size="70"/>
                         </p:column>
                     </p:row>
                     <p:row>
