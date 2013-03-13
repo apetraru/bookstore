@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * @author Andrei Petraru
  */
 @Component
-@Scope("session")
+@Scope("request")
 public class AuthorBean implements Serializable {
 
 	@Autowired
