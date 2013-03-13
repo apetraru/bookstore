@@ -3,15 +3,12 @@ package com.bk.model;
 import com.bk.util.Language;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.apache.solr.analysis.LowerCaseFilterFactory;
@@ -70,12 +67,10 @@ public class Book extends AbstractEntity implements Serializable {
     private Date publishDate;
 
     @Enumerated(EnumType.STRING)
-	@Column(name = "EDITION_LANGUAGE")
+    @Column(name = "EDITION_LANGUAGE")
     private Language language;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "fk_book_image_id")
-    private Image image;
+    private String imageUrl;
 
     public void setTitle(String title) {
         this.title = title;
@@ -133,11 +128,11 @@ public class Book extends AbstractEntity implements Serializable {
         this.language = language;
     }
 
-    public Image getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

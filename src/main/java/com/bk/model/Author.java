@@ -30,16 +30,13 @@ public class Author extends AbstractEntity implements Serializable {
     private String name;
     private Gender gender;
     private String website;
-	
+    private String imageUrl;
+
 	@Temporal(TemporalType.DATE)
 	private Date birthDate;
 
     @Lob
     private String about;
-
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "fk_author_image_id")
-    private Image image;
 
 	@ContainedIn
     @OneToMany(mappedBy = "author")
@@ -77,14 +74,6 @@ public class Author extends AbstractEntity implements Serializable {
         this.about = about;
     }
 
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
     public Set<Book> getBooks() {
         return Collections.unmodifiableSet(books);
     }
@@ -100,4 +89,12 @@ public class Author extends AbstractEntity implements Serializable {
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }
