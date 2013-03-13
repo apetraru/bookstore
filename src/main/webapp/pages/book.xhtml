@@ -14,9 +14,13 @@
 			<h:form id="bookForm">
 				<p:panel styleClass="book-panel" rendered="#{not empty bookBean.book.id}">
 					<div class="book-image">
-						<p:graphicImage value="#{bookBean.image}" width="50%" height="50%"/>
+                        <p:rating value="#{bookBean.userRating}" >
+                            <p:ajax event="rate" listener="#{bookBean.addRating}" update="bookForm"/>
+                        </p:rating>
 					</div>
 					<div class="book-details">
+                        Rating: <p:rating value="#{bookBean.bookRating}" readonly="true"/>
+                        <br/>
 						<h:outputText value="#{bookBean.book.title}" styleClass="book-title"/>
 						<br/>
 						<h:outputText value="by"/>

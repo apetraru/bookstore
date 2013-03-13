@@ -1,14 +1,14 @@
 package com.bk.bean;
 
 import com.bk.model.Book;
+import com.bk.model.Rating;
+import com.bk.repository.RatingRepository;
 import com.bk.service.BookService;
-import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
+import org.primefaces.event.RateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -18,15 +18,22 @@ import org.springframework.stereotype.Component;
  * Date: 3/4/13
  */
 @Component
-@Scope("session")
+@Scope("view")
 public class BookBean implements Serializable {
 
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private RatingRepository ratingRepository;
+
+    @Autowired
+    private LoginBean loginBean;
+
     private Book book;
     private Long id;
-    private StreamedContent image;
+    private Integer userRating;
+    private Integer bookRating;
 
     public void init() {
         if (id == null) {
@@ -37,23 +44,25 @@ public class BookBean implements Serializable {
         }
 
         book = bookService.findById(id);
-        if (book != null && book.getImage() != null) {
-            image = new DefaultStreamedContent(new ByteArrayInputStream(book.getImage().getFileContent()));
-        }
 
         if (book == null) {
             String message = "Bad request. Unknown book.";
             FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
         }
+
+    }
+
+    public void addRating(RateEvent rateEvent) {
+        Rating rating = new Rating();
+        rating.setBook(book);
+        rating.setCustomer(loginBean.getLoggedInUser());
+        rating.setRating(userRating);
+        ratingRepository.save(rating);
     }
 
     public List<Book> search(String input) {
         return bookService.search(input, 0, 10);
-    }
-
-    public StreamedContent getImage() {
-        return this.image;
     }
 
     public Book getBook() {
@@ -70,5 +79,17 @@ public class BookBean implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getUserRating() {
+        return userRating;
+    }
+
+    public void setUserRating(Integer userRating) {
+        this.userRating = userRating;
+    }
+
+    public Integer getBookRating() {
+        return bookRating;
     }
 }
