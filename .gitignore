@@ -1,0 +1,10 @@
+.settings
+.project
+.classpath
+.factorypath
+.idea
+bookstore.iml
+nb-configuration.xml
+/target/
+/rebel.xml
+/src/main/resources/rebel.xml
