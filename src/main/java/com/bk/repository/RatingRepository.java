@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
  * @author Andrei Petraru
  * Date: 3/13/13
  */
@@ -23,8 +22,11 @@ public interface RatingRepository extends Repository<Rating, Long> {
     Rating delete(Rating rating);
 
     @Query("select AVG(r.rating) from Rating r where r.book = :book")
-    Integer getBookRating(@Param("book") Book book);
+    Double getBookRating(@Param("book") Book book);
 
-    @Query("select r.rating from Rating r where r.book = :book and r.customer = :customer")
-    Integer getCustomerRating(@Param("book")Book book, @Param("customer") Customer customer);
+    @Query("select r from Rating r where r.book = :book and r.customer = :customer")
+    Rating getCustomerRating(@Param("book")Book book, @Param("customer") Customer customer);
+
+	@Query("select count(r) from Rating r where r.book = :book")
+	Long getNumberOfBookRatings(@Param("book") Book book);
 }
