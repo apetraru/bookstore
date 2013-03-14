@@ -14,12 +14,23 @@
 			<h:form id="bookForm">
 				<p:panel styleClass="book-panel" rendered="#{not empty bookBean.book.id}">
 					<div class="book-image">
-                        <p:rating value="#{bookBean.userRating}" >
-                            <p:ajax event="rate" listener="#{bookBean.addRating}" update="bookForm"/>
-                        </p:rating>
+						<p:graphicImage width="50%" height="50%"/>
+						<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!loginBean.loggedOn}"
+								  id="bookRatingId">
+							<p:ajax event="rate" listener="#{bookBean.addRating}" update="bookForm"/>
+							<p:ajax event="cancel" listener="#{bookBean.removeRating}" update="bookForm"/>
+						</p:rating>
 					</div>
 					<div class="book-details">
-                        Rating: <p:rating value="#{bookBean.bookRating}" readonly="true"/>
+						<p:panel rendered="#{not empty bookBean.averageRating}" styleClass="book-ratings-panel">
+							<h:outputText value="Rating: " />
+							<h:outputText value="#{bookBean.averageRating}" >
+								<f:convertNumber maxFractionDigits="2" />
+							</h:outputText>
+							<h:outputText value="${bookBean.numberOfRatings}" />
+							<h:outputText value=" ratings" />
+						</p:panel>
+						<h:outputText value="No ratings" rendered="#{empty bookBean.averageRating}" />
                         <br/>
 						<h:outputText value="#{bookBean.book.title}" styleClass="book-title"/>
 						<br/>

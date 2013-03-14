@@ -21,19 +21,18 @@ import org.springframework.stereotype.Component;
 @Scope("view")
 public class BookBean implements Serializable {
 
+	@Autowired
+	private LoginBean loginBean;
+
+	@Autowired
+	private RatingRepository ratingRepository;
+
     @Autowired
     private BookService bookService;
 
-    @Autowired
-    private RatingRepository ratingRepository;
-
-    @Autowired
-    private LoginBean loginBean;
-
     private Book book;
+	private Rating bookRating;
     private Long id;
-    private Integer userRating;
-    private Integer bookRating;
 
     public void init() {
         if (id == null) {
@@ -49,17 +48,39 @@ public class BookBean implements Serializable {
             String message = "Bad request. Unknown book.";
             FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+			return;
         }
 
-    }
+		if (loginBean.getLoggedInUser() != null) {
+			bookRating = ratingRepository.getCustomerRating(book, loginBean.getLoggedInUser());
+		}
+		if (bookRating == null) {
+			bookRating = new Rating();
+			bookRating.setRating(0);
+		}
+	}
 
-    public void addRating(RateEvent rateEvent) {
-        Rating rating = new Rating();
-        rating.setBook(book);
-        rating.setCustomer(loginBean.getLoggedInUser());
-        rating.setRating(userRating);
-        ratingRepository.save(rating);
-    }
+	public Double getAverageRating() {
+		return ratingRepository.getBookRating(book);
+	}
+
+	public Long getNumberOfRatings() {
+		return ratingRepository.getNumberOfBookRatings(book);
+	}
+
+	public void addRating(RateEvent event) {
+		Integer rate = (Integer) event.getRating();
+		if (bookRating.getId() == null) {
+			bookRating.setBook(book);
+			bookRating.setCustomer(loginBean.getLoggedInUser());
+		}
+		bookRating.setRating(rate);
+		ratingRepository.save(bookRating);
+	}
+
+	public void removeRating() {
+		ratingRepository.delete(bookRating);
+	}
 
     public List<Book> search(String input) {
         return bookService.search(input, 0, 10);
@@ -81,15 +102,11 @@ public class BookBean implements Serializable {
         this.id = id;
     }
 
-    public Integer getUserRating() {
-        return userRating;
-    }
+	public Rating getBookRating() {
+		return bookRating;
+	}
 
-    public void setUserRating(Integer userRating) {
-        this.userRating = userRating;
-    }
-
-    public Integer getBookRating() {
-        return bookRating;
-    }
+	public void setBookRating(Rating bookRating) {
+		this.bookRating = bookRating;
+	}
 }
