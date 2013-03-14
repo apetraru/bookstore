@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-@Scope("view")
+@Scope("request")
 public class AddBookBean {
 
     @Autowired
