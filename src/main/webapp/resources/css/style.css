@@ -129,15 +129,21 @@ a:hover {
 	text-decoration: underline !important;
 }
 
-.book-ratings-panel.ui-panel,
-.book-ratings-panel.ui-panel-content{
-	border: none !important;
-	padding: 0 !important;
+.book-ratings-panel.ui-panel .ui-panel-content{
+	padding: 0;
+}
+
+.book-ratings-panel.ui-panel {
+	border: none;
+}
+
+.book-ratings-totalRatings {
+	font-size: 0.9em;
 }
 
 /* AUTHOR */
 .author-panel {
 	margin: 0 auto;
 	width: 960px;
-	border: none
+	border: none;
 }

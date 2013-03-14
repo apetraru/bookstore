@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
  * Date: 3/4/13
  */
 @Component
-@Scope("view")
+@Scope("session")
 public class BookBean implements Serializable {
 
 	@Autowired
@@ -27,41 +27,45 @@ public class BookBean implements Serializable {
 	@Autowired
 	private RatingRepository ratingRepository;
 
-    @Autowired
-    private BookService bookService;
+	@Autowired
+	private BookService bookService;
 
-    private Book book;
+	private Book book;
 	private Rating bookRating;
-    private Long id;
+	private Long id;
 
-    public void init() {
-        if (id == null) {
-            String message = "Bad request. Please use a link from within the system.";
-            FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
-            return;
-        }
-
-        book = bookService.findById(id);
-
-        if (book == null) {
-            String message = "Bad request. Unknown book.";
-            FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+	public void init() {
+		if (id == null) {
+			String message = "Bad request. Please use a link from within the system.";
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
 			return;
-        }
+		}
+
+		book = bookService.findById(id);
+
+		if (book == null) {
+			String message = "Bad request. Unknown book.";
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+			return;
+		}
 
 		if (loginBean.getLoggedInUser() != null) {
 			bookRating = ratingRepository.getCustomerRating(book, loginBean.getLoggedInUser());
+			if (bookRating == null) {
+				bookRating = new Rating();
+				bookRating.setRating(0);
+			}
 		}
-		if (bookRating == null) {
-			bookRating = new Rating();
+		else {
 			bookRating.setRating(0);
 		}
 	}
 
-	public Double getAverageRating() {
-		return ratingRepository.getBookRating(book);
+	public String getAverageRating() {
+		Double averageRating = ratingRepository.getBookRating(book);
+		return String.format("%1$,.2f", averageRating);
 	}
 
 	public Long getNumberOfRatings() {
@@ -70,7 +74,7 @@ public class BookBean implements Serializable {
 
 	public void addRating(RateEvent event) {
 		Integer rate = (Integer) event.getRating();
-		if (bookRating.getId() == null) {
+		if (bookRating.getBook() == null) {
 			bookRating.setBook(book);
 			bookRating.setCustomer(loginBean.getLoggedInUser());
 		}
@@ -82,25 +86,25 @@ public class BookBean implements Serializable {
 		ratingRepository.delete(bookRating);
 	}
 
-    public List<Book> search(String input) {
-        return bookService.search(input, 0, 10);
-    }
+	public List<Book> search(String input) {
+		return bookService.search(input, 0, 10);
+	}
 
-    public Book getBook() {
-        return book;
-    }
+	public Book getBook() {
+		return book;
+	}
 
-    public void setBook(Book book) {
-        this.book = book;
-    }
+	public void setBook(Book book) {
+		this.book = book;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Rating getBookRating() {
 		return bookRating;
