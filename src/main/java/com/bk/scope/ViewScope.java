@@ -14,7 +14,7 @@ public class ViewScope implements Scope {
     public static final String VIEW_SCOPE_CALLBACKS = "viewScope.callbacks";
 
     @Override
-    public Object get(String name, ObjectFactory objectFactory) {
+    public Object get(String name, ObjectFactory<?> objectFactory) {
         Map<String, Object> viewMap = FacesContext.getCurrentInstance().getViewRoot().getViewMap();
 
         if (viewMap.containsKey(name)) {

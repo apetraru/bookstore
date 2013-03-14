@@ -1,22 +1,22 @@
 package com.bk.model;
 
-import com.bk.util.Gender;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import org.hibernate.search.annotations.Analyzer;
 import org.hibernate.search.annotations.ContainedIn;
 import org.hibernate.search.annotations.Field;
+
+import com.bk.util.Gender;
 
 /**
  * @author Andrei Petaru
@@ -26,61 +26,61 @@ import org.hibernate.search.annotations.Field;
 @Entity
 public class Author extends AbstractEntity implements Serializable {
 
-    @Field(analyzer = @Analyzer(definition = "customanalyzer"))
-    private String name;
-    private Gender gender;
-    private String website;
-    private String imageUrl;
+	@Field(analyzer = @Analyzer(definition = "customanalyzer"))
+	private String name;
+	private Gender gender;
+	private String website;
+	private String imageUrl;
 
 	@Temporal(TemporalType.DATE)
 	private Date birthDate;
 
-    @Lob
-    private String about;
+	@Lob
+	private String about;
 
 	@ContainedIn
-    @OneToMany(mappedBy = "author")
-    Set<Book> books = new HashSet<>();
+	@OneToMany(mappedBy = "author")
+	Set<Book> books = new HashSet<>();
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Gender getGender() {
-        return gender;
-    }
+	public Gender getGender() {
+		return gender;
+	}
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
 
-    public String getWebsite() {
-        return website;
-    }
+	public String getWebsite() {
+		return website;
+	}
 
-    public void setWebsite(String website) {
-        this.website = website;
-    }
+	public void setWebsite(String website) {
+		this.website = website;
+	}
 
-    public String getAbout() {
-        return about;
-    }
+	public String getAbout() {
+		return about;
+	}
 
-    public void setAbout(String about) {
-        this.about = about;
-    }
+	public void setAbout(String about) {
+		this.about = about;
+	}
 
-    public Set<Book> getBooks() {
-        return Collections.unmodifiableSet(books);
-    }
+	public Set<Book> getBooks() {
+		return Collections.unmodifiableSet(books);
+	}
 
-    public void addBook(Book book) {
-        this.books.add(book);
-    }
+	public void addBook(Book book) {
+		this.books.add(book);
+	}
 
 	public Date getBirthDate() {
 		return birthDate;
@@ -90,11 +90,11 @@ public class Author extends AbstractEntity implements Serializable {
 		this.birthDate = birthDate;
 	}
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
+	public String getImageUrl() {
+		return imageUrl;
+	}
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 }

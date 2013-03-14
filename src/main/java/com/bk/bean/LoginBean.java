@@ -4,6 +4,8 @@ import com.bk.model.Customer;
 import com.bk.service.CustomerService;
 import com.bk.util.Message;
 import com.bk.util.PasswordHash;
+
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -21,7 +23,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("session")
-public class LoginBean {
+public class LoginBean implements Serializable{
 
     private boolean loggedOn = false;
     private String username;
