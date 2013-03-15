@@ -1,9 +1,10 @@
 package com.bk.repository;
 
-import com.bk.model.Book;
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.repository.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.bk.model.Book;
 
 /**
  * User: ph
@@ -19,4 +20,6 @@ public interface BookRepository extends Repository<Book, Long>, QueryDslPredicat
     Book save(Book book);
 
     Book findById(Long id);
+    
+    Long count();
 }

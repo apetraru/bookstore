@@ -1,7 +1,8 @@
 package com.bk.service;
 
-import com.bk.model.Book;
 import java.util.List;
+
+import com.bk.model.Book;
 
 /**
  * User: ph
@@ -13,4 +14,6 @@ public interface BookService {
     Book save(Book book);
 
     Book findById(Long id);
+    
+    Long count();
 }

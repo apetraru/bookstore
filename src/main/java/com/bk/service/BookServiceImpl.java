@@ -1,10 +1,10 @@
 package com.bk.service;
 
-import com.bk.model.Book;
-import com.bk.repository.BookRepository;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import org.apache.lucene.search.Query;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
@@ -12,6 +12,9 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.bk.model.Book;
+import com.bk.repository.BookRepository;
 
 /**
  * User: ph
@@ -58,5 +61,10 @@ public class BookServiceImpl implements BookService {
     public Book findById(Long id) {
         return repository.findById(id);
     }
+
+	@Override
+	public Long count() {
+		return repository.count();
+	}
 
 }
