@@ -24,16 +24,13 @@
 					<p:panel rendered="#{not empty bookBean.averageRating}"
 						styleClass="book-ratings-panel">
 						<h:outputText value="Rating: " />
-						<h:outputText value="#{bookBean.averageRating}">
-							<f:convertNumber maxFractionDigits="2" />
-						</h:outputText>
-						<p:spacer width="15"/>
+						<h:outputText value="#{bookBean.averageRating}" />
+						<p:spacer width="25"/>
 						<h:outputText value="${bookBean.numberOfRatings}" styleClass="book-ratings-totalRatings" />
 						<h:outputText value=" rating" styleClass="book-ratings-totalRatings" rendered="#{bookBean.numberOfRatings eq 1}"/>
 						<h:outputText value=" ratings" styleClass="book-ratings-totalRatings" rendered="#{bookBean.numberOfRatings gt 1}"/>
 					</p:panel>
 					<h:outputText value="No ratings" rendered="#{empty bookBean.averageRating}" />
-					<br />
 					<h:outputText value="#{bookBean.book.title}" styleClass="book-title" />
 					<br />
 					<h:outputText value="by" />
@@ -43,10 +40,8 @@
 						<f:param name="author" value="#{bookBean.book.author.name}" />
 					</p:button>
 					<br />
-					<p:spacer width="100%" height="20px" />
 					<h:outputText value="#{bookBean.book.description}" />
 					<br />
-					<p:spacer width="100%" height="20px" />
 					<p:separator />
 					<p:panelGrid>
 						<p:row>

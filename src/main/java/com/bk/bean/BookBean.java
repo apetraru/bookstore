@@ -1,17 +1,20 @@
 package com.bk.bean;
 
-import com.bk.model.Book;
-import com.bk.model.Rating;
-import com.bk.repository.RatingRepository;
-import com.bk.service.BookService;
 import java.io.Serializable;
 import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+
 import org.primefaces.event.RateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import com.bk.model.Book;
+import com.bk.model.Rating;
+import com.bk.repository.RatingRepository;
+import com.bk.service.BookService;
 
 /**
  * User: ph
@@ -54,17 +57,19 @@ public class BookBean implements Serializable {
 		if (loginBean.getLoggedInUser() != null) {
 			bookRating = ratingRepository.getCustomerRating(book, loginBean.getLoggedInUser());
 			if (bookRating == null) {
-				bookRating = new Rating();
-				bookRating.setRating(0);
+				newRating();
 			}
 		}
 		else {
-			bookRating.setRating(0);
+			newRating();
 		}
 	}
 
 	public String getAverageRating() {
 		Double averageRating = ratingRepository.getBookRating(book);
+		if (averageRating == null) {
+			return null;
+		}
 		return String.format("%1$,.2f", averageRating);
 	}
 
@@ -88,6 +93,11 @@ public class BookBean implements Serializable {
 
 	public List<Book> search(String input) {
 		return bookService.search(input, 0, 10);
+	}
+	
+	private void newRating() {
+		bookRating = new Rating();
+		bookRating.setRating(0);
 	}
 
 	public Book getBook() {

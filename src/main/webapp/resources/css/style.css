@@ -125,16 +125,20 @@ a:hover {
 	background: none;
 	margin-left: -5px;
 }
+
 .book-author-name.ui-button:hover {
 	text-decoration: underline !important;
 }
 
 .book-ratings-panel.ui-panel .ui-panel-content{
 	padding: 0;
+	margin: 0;
 }
 
 .book-ratings-panel.ui-panel {
 	border: none;
+	padding: 0;
+	margin: 0;
 }
 
 .book-ratings-totalRatings {
