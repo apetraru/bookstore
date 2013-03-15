@@ -1,16 +1,23 @@
 package com.bk.model;
 
-import com.bk.util.Language;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import org.apache.solr.analysis.LowerCaseFilterFactory;
 import org.apache.solr.analysis.StandardFilterFactory;
 import org.apache.solr.analysis.StandardTokenizerFactory;
@@ -27,6 +34,9 @@ import org.hibernate.search.annotations.Resolution;
 import org.hibernate.search.annotations.Store;
 import org.hibernate.search.annotations.TokenFilterDef;
 import org.hibernate.search.annotations.TokenizerDef;
+
+import com.bk.util.Genre;
+import com.bk.util.Language;
 
 /**
  * @author ph
@@ -71,6 +81,11 @@ public class Book extends AbstractEntity implements Serializable {
     private Language language;
 
     private String imageUrl;
+    
+    @ElementCollection
+    @Enumerated(EnumType.STRING)
+    @JoinTable(name="book_genres", joinColumns=@JoinColumn(name="book_id"))
+    private Set<Genre> genres = new HashSet<>();
 
     public void setTitle(String title) {
         this.title = title;
@@ -134,5 +149,13 @@ public class Book extends AbstractEntity implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+    
+    public void addGenre(Genre genre) {
+    	this.genres.add(genre);
+    }
+    
+    public Set<Genre> getGenres() {
+    	return Collections.unmodifiableSet(genres);
     }
 }
