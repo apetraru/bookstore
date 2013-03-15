@@ -5,12 +5,27 @@
 	  xmlns:p="http://primefaces.org/ui"
 	  xmlns:f="http://java.sun.com/jsf/core">
 
-    <ui:composition template="/templates/template.xhtml">
-        <ui:define name="body">
-            <h:form id="form" style="margin-left: 20%; margin-right: 20%">
-				WELCOME
-            </h:form>
-        </ui:define>
-    </ui:composition>
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="body">
+		<h:form id="form" style="margin-left: 30%; margin-right: 30%">
+			<h:outputText value="Recommended for you" styleClass="homepage-recommended" />
+			<p:dataGrid columns="1" lazy="false" value="#{homeBean.books}" var="book" styleClass="home-datagrid">
+				<p:graphicImage width="50px" height="75px"
+					style="float: left" />
+				<p:button value="#{book.title}" outcome="#{navigationBean.book()}" styleClass="homepage-book-title">
+					<f:param name="id" value="#{book.id}" />
+					<f:param name="title" value="#{book.title}" />
+				</p:button>
+				<br />
+				<p:spacer width="15px" />
+				<h:outputText value="by" />
+				<p:button value="#{book.author.name}" outcome="#{navigationBean.author()}" styleClass="homepage-book-author">
+					<f:param name="id" value="#{book.author.id}" />
+					<f:param name="author" value="#{book.author.name}" />
+				</p:button>
+			</p:dataGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
 
 </html>
