@@ -2,7 +2,7 @@ package com.bk.repository;
 
 import com.bk.model.Book;
 import com.bk.model.Customer;
-import com.bk.model.Rating;
+import com.bk.model.Review;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
@@ -13,20 +13,20 @@ import org.springframework.transaction.annotation.Transactional;
  * Date: 3/13/13
  */
 @Transactional(readOnly = true)
-public interface RatingRepository extends Repository<Rating, Long> {
+public interface ReviewRepository extends Repository<Review, Long> {
 
     @Transactional
-    Rating save(Rating rating);
+    Review save(Review review);
 
     @Transactional
-    Rating delete(Rating rating);
+    Review delete(Review review);
 
-    @Query("select AVG(r.rating) from Rating r where r.book = :book")
+    @Query("select AVG(r.rating) from Review r where r.book = :book")
     Double getBookRating(@Param("book") Book book);
 
-    @Query("select r from Rating r where r.book = :book and r.customer = :customer")
-    Rating getCustomerRating(@Param("book")Book book, @Param("customer") Customer customer);
+    @Query("select r from Review r where r.book = :book and r.customer = :customer")
+    Review getCustomerRating(@Param("book")Book book, @Param("customer") Customer customer);
 
-	@Query("select count(r) from Rating r where r.book = :book")
+	@Query("select count(r) from Review r where r.book = :book")
 	Long getNumberOfBookRatings(@Param("book") Book book);
 }

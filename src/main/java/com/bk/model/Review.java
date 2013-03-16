@@ -1,46 +1,77 @@
-
-/**
- * @author Andrei Petraru
- * Date: 3/13/13
- */
+/** @author Andrei Petraru Date: 3/13/13 */
 package com.bk.model;
 
-import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-public class Rating extends AbstractEntity implements Serializable {
+public class Review extends AbstractEntity {
 
-    private Integer rating;
+	private Long likes;
+	private Integer rating;
 
-    @ManyToOne
-    private Book book;
+	@Lob
+	private String review;
 
-    @ManyToOne
-    private Customer customer;
+	@Temporal(TemporalType.DATE)
+	private Date publishDate;
 
-    public Integer getRating() {
-        return rating;
-    }
+	@ManyToOne
+	private Book book;
 
-    public void setRating(Integer rating) {
-        this.rating = rating;
-    }
+	@ManyToOne
+	private Customer customer;
 
-    public Book getBook() {
-        return book;
-    }
+	public Long getLikes() {
+		return likes;
+	}
 
-    public void setBook(Book book) {
-        this.book = book;
-    }
+	public void setLikes(Long likes) {
+		this.likes = likes;
+	}
 
-    public Customer getCustomer() {
-        return customer;
-    }
+	public Integer getRating() {
+		return rating;
+	}
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+
+	public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
+	}
+
+	public Date getPublishDate() {
+		return publishDate;
+	}
+
+	public void setPublishDate(Date publishDate) {
+		this.publishDate = publishDate;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 }
