@@ -1,4 +1,3 @@
-
 -- AUTHORS
 INSERT INTO goodbooks.author (id, about, gender, name, website, imageUrl) VALUES (1, null, null, 'J.K. Rowling', null, null);
 INSERT INTO goodbooks.author (id, about, gender, name, website, imageUrl) VALUES (2, null, null, 'Robert A. Heinlein', null, null);
@@ -85,6 +84,32 @@ INSERT INTO goodbooks.book (id, description, isbn, EDITION_LANGUAGE, pages, publ
 INSERT INTO goodbooks.book (id, description, isbn, EDITION_LANGUAGE, pages, publishDate, title, author_id, imageUrl) VALUES (63, 'With more than ten million copies sold, Frank Herbert''s magnificent Dune books stand among the major achievements of the human imagination. In this, the fifth and most spectacular Dune book of all, the planet Arrakis--now called Rakis--is becoming desert again. The Lost Ones are returning home from the far reaches of space. The great sandworms are dying. And the children of Dune''s children awaken from empire as from a dream, wielding the new power of a heresy called love...', '9780441328000', 'ENGLISH', 480, '1984-01-01', 'Heretics of Dune', 18, null);
 INSERT INTO goodbooks.book (id, description, isbn, EDITION_LANGUAGE, pages, publishDate, title, author_id, imageUrl) VALUES (64, 'The desert planet Arrakis, called Dune, has been destroyed. Now, the Bene Gesserit, heirs to Dune''s power, have colonized a green world--and are turning it into a desert, mile by scorched mile. Here IS the LAST book Frank Herbert wrote before his death. A stunning climax TO the epic Dune legend that will live ON forever...', '9780441102679', 'ENGLISH', 448, '1985-01-01', 'Chapterhouse: Dune', 18, null);
 
+-- GENRES 
+INSERT INTO goodbooks.genre(id, genre) VALUES (1, 'Art');
+INSERT INTO goodbooks.genre(id, genre) VALUES (2, 'Biography');
+INSERT INTO goodbooks.genre(id, genre) VALUES (3, 'Business');
+INSERT INTO goodbooks.genre(id, genre) VALUES (4, 'Contemporary');
+INSERT INTO goodbooks.genre(id, genre) VALUES (5, 'Crime');
+INSERT INTO goodbooks.genre(id, genre) VALUES (6, 'Erotica');
+INSERT INTO goodbooks.genre(id, genre) VALUES (7, 'Fantasy');
+INSERT INTO goodbooks.genre(id, genre) VALUES (8, 'General Fiction');
+INSERT INTO goodbooks.genre(id, genre) VALUES (9, 'Graphic Novel');
+INSERT INTO goodbooks.genre(id, genre) VALUES (10, 'Humor');
+INSERT INTO goodbooks.genre(id, genre) VALUES (11, 'Mystery');
+INSERT INTO goodbooks.genre(id, genre) VALUES (12, 'Religious');
+INSERT INTO goodbooks.genre(id, genre) VALUES (13, 'Inspirational');
+INSERT INTO goodbooks.genre(id, genre) VALUES (14, 'Romance');
+INSERT INTO goodbooks.genre(id, genre) VALUES (15, 'Science Fiction');
+INSERT INTO goodbooks.genre(id, genre) VALUES (16, 'Thriller');
+INSERT INTO goodbooks.genre(id, genre) VALUES (17, 'Western');
+INSERT INTO goodbooks.genre(id, genre) VALUES (18, 'Young Adult');
+INSERT INTO goodbooks.genre(id, genre) VALUES (19, 'Psychology');
+INSERT INTO goodbooks.genre(id, genre) VALUES (20, 'Relationships and Dating');
+INSERT INTO goodbooks.genre(id, genre) VALUES (21, 'Self Help');
+INSERT INTO goodbooks.genre(id, genre) VALUES (22, 'Sports');
+INSERT INTO goodbooks.genre(id, genre) VALUES (23, 'Travel');
+
+-- CUSTOMERS
 INSERT INTO goodbooks.customer(id,  email, firstname, lastname, password, username) VALUES (1, 'gigi@yahoo.com', null, null, 'b717f7ac0fa6434719119715dd45fe2fe6adea035ba3babc73238ebab0755dc7', 'gigi');
 
 commit;
