@@ -3,46 +3,40 @@
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition>
-    <h:form>
-        <div class="header">
-            <div class="center">
-                <p:commandLink action="#{navigationBean.home}">
-                    <p:graphicImage value="/resources/images/logo.png" styleClass="logo"/>
-                </p:commandLink>
-                <p:autoComplete completeMethod="#{bookBean.search}" id="searchBar"
-                                minQueryLength="2" maxResults="10"
-                                converter="#{bookConverter}" var="book">
-                    <p:column>
-                        <p:button value="#{book.title} by #{book.author.name}" outcome="#{navigationBean.book()}"
-                                styleClass="searchButton">
-                            <f:param name="id" value="#{book.id}" />
-                            <f:param name="title" value="#{book.title}" />
-                        </p:button>
-                    </p:column>
-                </p:autoComplete>
-                <p:watermark value="Title / Author" for="searchBar"/>
-                <p:commandLink value="Home" action="#{navigationBean.home}"/>
-                <p:commandLink value="Add Books" action="#{navigationBean.addBook}"/>
-                <p:commandLink value="Recommendations"/>
-                <p:panel styleClass="login-register-panel">
-                    <p:commandLink value="Login" action="#{navigationBean.login}" rendered="#{!loginBean.loggedOn}"/>
-                    <h:outputText value="or" styleClass="or" rendered="#{!loginBean.loggedOn}"/>
-                    <p:commandLink value="Register" action="#{navigationBean.register}"
-                                   rendered="#{!loginBean.loggedOn}"/>
-                    <p:commandLink value="#{loginBean.loggedInUser.username}" rendered="#{loginBean.loggedOn}"/>
-                    <p:commandLink value="Logout" rendered="#{loginBean.loggedOn}" action="#{loginBean.logout}"
-                                   ajax="false"/>
-                </p:panel>
-            </div>
-        </div>
-    </h:form>
+	<h:form>
+		<div class="header">
+			<p:commandLink action="#{navigationBean.home}">
+				<p:graphicImage value="/resources/images/logo.png" styleClass="logo" />
+			</p:commandLink>
+			<p:autoComplete completeMethod="#{bookBean.search}" id="searchBar" minQueryLength="2"
+				maxResults="10" converter="#{bookConverter}" var="book">
+				<p:column>
+					<p:button value="#{book.title} by #{book.author.name}" outcome="#{navigationBean.book()}"
+						styleClass="searchButton">
+						<f:param name="id" value="#{book.id}" />
+						<f:param name="title" value="#{book.title}" />
+					</p:button>
+				</p:column>
+			</p:autoComplete>
+			<p:watermark value="Title / Author" for="searchBar" />
+			<p:commandLink value="Home" action="#{navigationBean.home}" />
+			<p:commandLink value="Add Books" action="#{navigationBean.addBook}" />
+			<p:commandLink value="Recommendations" />
+			<p:commandLink value="Login" action="#{navigationBean.login}" rendered="#{!loginBean.loggedOn}"
+				styleClass="float-right" />
+			<p:commandLink value="Register" action="#{navigationBean.register}"
+				rendered="#{!loginBean.loggedOn}" styleClass="float-right" />
+			<p:commandLink value="Logout" rendered="#{loginBean.loggedOn}" action="#{loginBean.logout}"
+				ajax="false" styleClass="float-right" />
+			<p:commandLink value="#{loginBean.loggedInUser.username}" rendered="#{loginBean.loggedOn}"
+				styleClass="float-right" />
+		</div>
+	</h:form>
 </ui:composition>
 
 </html>

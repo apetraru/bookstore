@@ -1,7 +1,8 @@
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 0.8em;
-    min-width: 960px;
+    width: 960px;
+    margin: 0 auto;
 }
 
 /* HEADER */
@@ -11,31 +12,14 @@ body {
     text-shadow: 0 0 3px white;
     background-color: #dcdcdc;
     padding: 10px 0 10px 0;
-    width: 100%;
     border-bottom: 1px solid #aaaaaa;
     margin-bottom: 1%;
-}
-
-.center {
-    margin-left: 20%;
-    margin-right: 20%;
 }
 
 .logo {
     height: 25px;
     width: 95px;
     margin-bottom: -10px;
-}
-
-.login-register-panel {
-    float: right;
-    padding: 5px 10px 5px 10px;
-    background: #dcdcdc;
-    border: none;
-}
-
-.or {
-    margin: -5px;
 }
 
 .searchButton.ui-button {
@@ -50,7 +34,6 @@ body {
     left: 0;
     bottom: 0;
     height: 30px;
-    width: 100%;
     background: #999;
 }
 
@@ -73,8 +56,8 @@ a:hover {
 
 .login-panel {
     margin-left: 20%;
-    margin-right: 20%;
-    height: 270px;
+	margin-right: 20%;
+	height: 270px;
 }
 
 /* REGISTER */
@@ -85,25 +68,18 @@ a:hover {
 }
 
 /* ADD BOOK */
-.addBook-panel {
-    margin-left: 20%;
-    margin-right: 20%;
-}
-
-.selectonemenu-style {
-    width: 210px !important;
+.selectonemenu-style  {
+	width: 210px !important;
 }
 
 /* BOOK */
 .book-panel {
-    margin-left: 20%;
-    margin-right: 20%;
     border: none;
     clear: both;
 }
 
 .book-image {
-    width: 30%;
+    width: 35%;
     height: 50%;
     float: left;
     margin-left: 5%;
@@ -147,8 +123,6 @@ a:hover {
 
 /* AUTHOR */
 .author-panel {
-	margin: 0 auto;
-	width: 960px;
 	border: none;
 }
 
@@ -174,6 +148,15 @@ a:hover {
 	font-size: 2em;
 }
 
-.home-datagrid {
-	border: none;
+.homepage-form {
+	margin-left: 5%;
+	margin-right: 30%;
+}
+
+.float-right {
+	float: right;
+}
+
+.float-left {
+	float: left;
 }
