@@ -1,6 +1,5 @@
 package com.bk.model;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
 
 /**
@@ -8,7 +7,7 @@ import javax.persistence.Entity;
  * @author ph
  */
 @Entity
-public class Address extends AbstractEntity implements Serializable {
+public class Address extends AbstractEntity {
 
 	private String street;
 	private String city;

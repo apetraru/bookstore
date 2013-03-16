@@ -1,14 +1,15 @@
 package com.bk.model;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+
 import org.springframework.util.Assert;
 
 /**
@@ -16,7 +17,7 @@ import org.springframework.util.Assert;
  * @author ph
  */
 @Entity
-public class Customer extends AbstractEntity implements Serializable {
+public class Customer extends AbstractEntity {
 
 	private String firstname;
 	private String lastname;

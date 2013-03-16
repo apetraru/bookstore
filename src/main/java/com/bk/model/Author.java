@@ -1,6 +1,5 @@
 package com.bk.model;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -24,7 +23,7 @@ import com.bk.util.Gender;
  */
 
 @Entity
-public class Author extends AbstractEntity implements Serializable {
+public class Author extends AbstractEntity {
 
 	@Field(analyzer = @Analyzer(definition = "customanalyzer"))
 	private String name;
