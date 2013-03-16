@@ -1,19 +1,18 @@
 package com.bk.model;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,7 +34,7 @@ import org.hibernate.search.annotations.Store;
 import org.hibernate.search.annotations.TokenFilterDef;
 import org.hibernate.search.annotations.TokenizerDef;
 
-import com.bk.util.Genre;
+import com.bk.util.BookStatus;
 import com.bk.util.Language;
 
 /**
@@ -43,119 +42,128 @@ import com.bk.util.Language;
  */
 
 @Entity
-@AnalyzerDef(name = "customanalyzer",
-    tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class),
-    filters = {
-        @TokenFilterDef(factory = StandardFilterFactory.class),
-        @TokenFilterDef(factory = LowerCaseFilterFactory.class),
-        @TokenFilterDef(factory = StopFilterFactory.class)
-    })
+@AnalyzerDef(name = "customanalyzer", tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class), filters = {
+		@TokenFilterDef(factory = StandardFilterFactory.class),
+		@TokenFilterDef(factory = LowerCaseFilterFactory.class), @TokenFilterDef(factory = StopFilterFactory.class) })
 @Indexed
-public class Book extends AbstractEntity implements Serializable {
+public class Book extends AbstractEntity {
 
-    @Column(nullable = false)
-    @Field(analyzer = @Analyzer(definition = "customanalyzer"))
-    private String title;
+	@Column(nullable = false)
+	@Field(analyzer = @Analyzer(definition = "customanalyzer"))
+	private String title;
 
-    @Column(nullable = false)
-    private Integer pages;
+	@Column(nullable = false)
+	private Integer pages;
 
-    @Column(nullable = false, unique = true)
-    @Field
-    private String isbn;
+	@Column(nullable = false, unique = true)
+	@Field
+	private String isbn;
 
-    @ManyToOne
-    @IndexedEmbedded
-    private Author author;
+	@ManyToOne
+	@IndexedEmbedded
+	private Author author;
 
-    @Lob
-    private String description;
+	@Lob
+	private String description;
 
-    @Temporal(TemporalType.DATE)
-    @Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
-    @DateBridge(resolution = Resolution.YEAR)
-    private Date publishDate;
+	@Temporal(TemporalType.DATE)
+	@Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
+	@DateBridge(resolution = Resolution.YEAR)
+	private Date publishDate;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "EDITION_LANGUAGE")
-    private Language language;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "EDITION_LANGUAGE")
+	private Language language;
 
-    private String imageUrl;
-    
-    @ElementCollection
-    @Enumerated(EnumType.STRING)
-    @JoinTable(name="book_genres", joinColumns=@JoinColumn(name="book_id"))
-    private Set<Genre> genres = new HashSet<>();
+	@Enumerated(EnumType.STRING)
+	private BookStatus status;
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	@ManyToMany
+	@JoinTable(name = "BOOK_GENRES", 
+		joinColumns = @JoinColumn(name = "BOOK_ID"), 
+		inverseJoinColumns = @JoinColumn(name = "GENRE_ID"))
+	private Set<Genre> genres = new HashSet<>();
 
-    public String getTitle() {
-        return title;
-    }
+	private String imageUrl;
 
-    public Integer getPages() {
-        return pages;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setPages(Integer pages) {
-        this.pages = pages;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getIsbn() {
-        return isbn;
-    }
+	public Integer getPages() {
+		return pages;
+	}
 
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
+	public void setPages(Integer pages) {
+		this.pages = pages;
+	}
 
-    public Author getAuthor() {
-        return author;
-    }
+	public String getIsbn() {
+		return isbn;
+	}
 
-    public void setAuthor(Author author) {
-        this.author = author;
-    }
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public Author getAuthor() {
+		return author;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
 
-    public Date getPublishDate() {
-        return publishDate;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setPublishDate(Date publishDate) {
-        this.publishDate = publishDate;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public Language getLanguage() {
-        return language;
-    }
+	public Date getPublishDate() {
+		return publishDate;
+	}
 
-    public void setLanguage(Language language) {
-        this.language = language;
-    }
+	public void setPublishDate(Date publishDate) {
+		this.publishDate = publishDate;
+	}
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
+	public Language getLanguage() {
+		return language;
+	}
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-    
-    public void addGenre(Genre genre) {
-    	this.genres.add(genre);
-    }
-    
-    public Set<Genre> getGenres() {
-    	return Collections.unmodifiableSet(genres);
-    }
+	public BookStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(BookStatus status) {
+		this.status = status;
+	}
+
+	public void setLanguage(Language language) {
+		this.language = language;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public void addGenre(Genre genre) {
+		this.genres.add(genre);
+	}
+	
+	public Set<Genre> getGenres() {
+		return Collections.unmodifiableSet(genres);
+	}
+
 }
