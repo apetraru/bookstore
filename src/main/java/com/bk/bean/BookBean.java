@@ -12,13 +12,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.bk.model.Book;
-import com.bk.model.Rating;
-import com.bk.repository.RatingRepository;
+import com.bk.model.Review;
+import com.bk.repository.ReviewRepository;
 import com.bk.service.BookService;
 
 /**
- * User: ph
- * Date: 3/4/13
+ * @author Andrei Petraru
+ * 4 Mar 2013
  */
 @Component
 @Scope("session")
@@ -28,13 +28,13 @@ public class BookBean implements Serializable {
 	private LoginBean loginBean;
 
 	@Autowired
-	private RatingRepository ratingRepository;
+	private ReviewRepository reviewRepository;
 
 	@Autowired
 	private BookService bookService;
 
 	private Book book;
-	private Rating bookRating;
+	private Review bookReview;
 	private Long id;
 
 	public void init() {
@@ -55,8 +55,8 @@ public class BookBean implements Serializable {
 		}
 
 		if (loginBean.getLoggedInUser() != null) {
-			bookRating = ratingRepository.getCustomerRating(book, loginBean.getLoggedInUser());
-			if (bookRating == null) {
+			bookReview = reviewRepository.getCustomerRating(book, loginBean.getLoggedInUser());
+			if (bookReview == null) {
 				newRating();
 			}
 		}
@@ -66,38 +66,38 @@ public class BookBean implements Serializable {
 	}
 
 	public String getAverageRating() {
-		Double averageRating = ratingRepository.getBookRating(book);
+		Double averageRating = reviewRepository.getBookRating(book);
 		if (averageRating == null) {
-			return null;
+			return "0.00";
 		}
 		return String.format("%1$,.2f", averageRating);
 	}
 
 	public Long getNumberOfRatings() {
-		return ratingRepository.getNumberOfBookRatings(book);
+		return reviewRepository.getNumberOfBookRatings(book);
 	}
 
 	public void addRating(RateEvent event) {
 		Integer rate = (Integer) event.getRating();
-		if (bookRating.getBook() == null) {
-			bookRating.setBook(book);
-			bookRating.setCustomer(loginBean.getLoggedInUser());
+		if (bookReview.getBook() == null) {
+			bookReview.setBook(book);
+			bookReview.setCustomer(loginBean.getLoggedInUser());
 		}
-		bookRating.setRating(rate);
-		ratingRepository.save(bookRating);
+		bookReview.setRating(rate);
+		reviewRepository.save(bookReview);
 	}
 
 	public void removeRating() {
-		ratingRepository.delete(bookRating);
+		reviewRepository.delete(bookReview);
 	}
 
 	public List<Book> search(String input) {
 		return bookService.search(input, 0, 10);
 	}
-	
+
 	private void newRating() {
-		bookRating = new Rating();
-		bookRating.setRating(0);
+		bookReview = new Review();
+		bookReview.setRating(0);
 	}
 
 	public Book getBook() {
@@ -116,11 +116,11 @@ public class BookBean implements Serializable {
 		this.id = id;
 	}
 
-	public Rating getBookRating() {
-		return bookRating;
+	public Review getBookRating() {
+		return bookReview;
 	}
 
-	public void setBookRating(Rating bookRating) {
-		this.bookRating = bookRating;
+	public void setBookRating(Review bookRating) {
+		this.bookReview = bookRating;
 	}
 }
