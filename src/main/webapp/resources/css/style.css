@@ -146,11 +146,14 @@ a:hover {
 
 .homepage-recommended {
 	font-size: 2em;
+	margin-left: 5%;
+	float: left;
 }
 
-.homepage-form {
+.homepage-datagrid {
 	margin-left: 5%;
-	margin-right: 30%;
+	width: 60%;
+	float: left;
 }
 
 .float-right {

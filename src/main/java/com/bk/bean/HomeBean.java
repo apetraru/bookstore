@@ -14,6 +14,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.bk.model.Book;
+import com.bk.model.Genre;
+import com.bk.repository.GenreRepository;
 import com.bk.service.BookService;
 
 /**
@@ -29,13 +31,18 @@ public class HomeBean implements Serializable {
 
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private GenreRepository genreRepository;
 
 	private List<Book> books = new ArrayList<>();
+	private List<Genre> genres = new ArrayList<>();
 
 	@PostConstruct
 	public void init() {
 		RandomData random = new RandomDataImpl();
 		Long count = bookService.count();
+		genres = genreRepository.findAll();
 		
 		if (DISPLAYED_BOOKS.compareTo(count) > 0) {
 			return;
@@ -45,10 +52,14 @@ public class HomeBean implements Serializable {
 			Book book = bookService.findById(random.nextLong(1, count));
 			books.add(book);
 		}
+		
 	}
 
 	public List<Book> getBooks() {
 		return Collections.unmodifiableList(books);
 	}
 
+	public List<Genre> getGenres() {
+		return Collections.unmodifiableList(genres);
+	}
 }
