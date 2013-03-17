@@ -88,7 +88,8 @@ public class BookBean implements Serializable {
 	}
 
 	public void removeRating() {
-		reviewRepository.delete(bookReview);
+		bookReview.setRating(null);
+		reviewRepository.save(bookReview);
 	}
 
 	public List<Book> search(String input) {
