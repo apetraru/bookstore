@@ -1,7 +1,7 @@
 package com.bk.repository;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.Repository;
 
 import com.bk.model.Genre;
@@ -11,8 +11,7 @@ import com.bk.model.Genre;
  * Mar 16, 2013
  */
 public interface GenreRepository extends Repository<Genre, Long> {
-	List<Genre> findAll();
 
-	Long count();
+	Page<Genre> findAll(Pageable pageable);
 
 }
