@@ -1,6 +1,7 @@
 package com.bk.repository;
 
-import org.springframework.data.querydsl.QueryDslPredicateExecutor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +13,7 @@ import com.bk.model.Book;
  */
 
 @Transactional(readOnly = true)
-public interface BookRepository extends Repository<Book, Long>, QueryDslPredicateExecutor<Book> {
+public interface BookRepository extends Repository<Book, Long>{
 
     Book findByIsbn(String isbn);
 
@@ -22,4 +23,6 @@ public interface BookRepository extends Repository<Book, Long>, QueryDslPredicat
     Book findById(Long id);
     
     Long count();
+    
+    Page<Book> findAll(Pageable pageable);
 }

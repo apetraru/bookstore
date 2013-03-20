@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.math.random.RandomData;
 import org.apache.commons.math.random.RandomDataImpl;
+import org.primefaces.model.LazyDataModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -27,32 +28,34 @@ import com.bk.service.BookService;
 @Scope("request")
 public class HomeBean implements Serializable {
 
-	private static final Long DISPLAYED_BOOKS = 10L;
+	private static final Long DISPLAYED_BOOKS = 5L;
 
 	@Autowired
 	private BookService bookService;
-	
+
 	@Autowired
 	private GenreRepository genreRepository;
 
 	private List<Book> books = new ArrayList<>();
 	private List<Genre> genres = new ArrayList<>();
 
+	@Autowired
+	private LazyDataModel<Book> lazyBooks;
+
 	@PostConstruct
 	public void init() {
 		RandomData random = new RandomDataImpl();
 		Long count = bookService.count();
 		genres = genreRepository.findAll();
-		
+
 		if (DISPLAYED_BOOKS.compareTo(count) > 0) {
 			return;
 		}
-		
+
 		for (int i = 0; i < DISPLAYED_BOOKS; i++) {
 			Book book = bookService.findById(random.nextLong(1, count));
 			books.add(book);
 		}
-		
 	}
 
 	public List<Book> getBooks() {
@@ -61,5 +64,9 @@ public class HomeBean implements Serializable {
 
 	public List<Genre> getGenres() {
 		return Collections.unmodifiableList(genres);
+	}
+
+	public LazyDataModel<Book> getLazyBooks() {
+		return lazyBooks;
 	}
 }
