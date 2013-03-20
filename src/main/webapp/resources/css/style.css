@@ -1,99 +1,99 @@
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 0.8em;
-    width: 960px;
-    margin: 0 auto;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 0.8em;
+	width: 960px;
+	margin: 0 auto;
 }
 
 /* HEADER */
 .header {
-    font-size: 0.95em;
-    font-weight: bold;
-    text-shadow: 0 0 3px white;
-    background-color: #dcdcdc;
-    padding: 10px 0 10px 0;
-    border-bottom: 1px solid #aaaaaa;
-    margin-bottom: 1%;
+	font-size: 0.95em;
+	font-weight: bold;
+	text-shadow: 0 0 3px white;
+	background-color: #dcdcdc;
+	padding: 10px 0 10px 0;
+	border-bottom: 1px solid #aaaaaa;
+	margin-bottom: 1%;
 }
 
 .logo {
-    height: 25px;
-    width: 95px;
-    margin-bottom: -10px;
+	height: 25px;
+	width: 95px;
+	margin-bottom: -10px;
 }
 
 .searchButton.ui-button {
-    border: none;
-    background: none;
+	border: none;
+	background: none;
 }
 
 /* FOOTER */
 .footer {
-    font-weight: bold;
-    color: rgb(204, 204, 204);
-    left: 0;
-    bottom: 0;
-    height: 30px;
-    background: #999;
+	font-weight: bold;
+	color: rgb(204, 204, 204);
+	left: 0;
+	bottom: 0;
+	height: 30px;
+	background: #999;
 }
 
 /* LINKS */
 a {
-    text-decoration: none;
-    color: black;
-    padding: 5px 10px 5px 10px;
+	text-decoration: none;
+	color: black;
+	padding: 5px 10px 5px 10px;
 }
 
 a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 
 /* LOGIN */
 .panel-column {
-    height: 75px;
-    width: 300px
+	height: 75px;
+	width: 300px
 }
 
 .login-panel {
-    margin-left: 20%;
+	margin-left: 20%;
 	margin-right: 20%;
 	height: 270px;
 }
 
 /* REGISTER */
 .register-panel {
-    margin-left: 20%;
-    margin-right: 20%;
-    height: 350px;
+	margin-left: 20%;
+	margin-right: 20%;
+	height: 350px;
 }
 
 /* ADD BOOK */
-.selectonemenu-style  {
+.selectonemenu-style {
 	width: 210px !important;
 }
 
 /* BOOK */
 .book-panel {
-    border: none;
-    clear: both;
+	border: none;
+	clear: both;
 }
 
 .book-image {
-    width: 35%;
-    height: 50%;
-    float: left;
-    margin-left: 5%;
-    margin-right: -100px;
+	width: 35%;
+	height: 50%;
+	float: left;
+	margin-left: 5%;
+	margin-right: -100px;
 }
 
 .book-details {
-    width: 60%;
-    float: left;
-    margin-right: 5%;
+	width: 60%;
+	float: left;
+	margin-right: 5%;
 }
 
 .book-title {
-    font-size: 1.6em;
+	font-size: 1.6em;
 }
 
 .book-author-name.ui-button {
@@ -106,7 +106,7 @@ a:hover {
 	text-decoration: underline !important;
 }
 
-.book-ratings-panel.ui-panel .ui-panel-content{
+.book-ratings-panel.ui-panel .ui-panel-content {
 	padding: 0;
 	margin: 0;
 }
@@ -130,30 +130,50 @@ a:hover {
 .homepage-book-title.ui-button {
 	font-size: 1em;
 	border: none;
-    background: none;
+	background: none;
 }
 
-.homepage-book-title.ui-button:HOVER,
-.homepage-book-author.ui-button:HOVER {
+.homepage-book-title.ui-button:HOVER,.homepage-book-author.ui-button:HOVER
+	{
 	text-decoration: underline !important;
 }
 
 .homepage-book-author.ui-button {
 	font-size: 0.9em;
 	border: none;
-    background: none;
+	background: none;
 }
 
 .homepage-recommended {
 	font-size: 2em;
-	margin-left: 5%;
 	float: left;
 }
 
-.homepage-datagrid {
-	margin-left: 5%;
+.homepage-genres {
+	margin-right: 5%;
+	float: right;
+	font-size: 2em;
+	padding-right: 23%;
+}
+
+.homepage-book-datagrid {
 	width: 60%;
 	float: left;
+}
+
+.homepage-genre-datagrid {
+	width: 37%;
+	float: right;
+}
+
+.homepage-genre.ui-button {
+	border: none;
+	background: none;
+	font-size: 0.8em;
+}
+
+.homepage-genre.ui-button:HOVER {
+	text-decoration: underline !important;
 }
 
 .float-right {

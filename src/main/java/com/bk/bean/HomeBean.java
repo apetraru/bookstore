@@ -9,18 +9,16 @@ import javax.annotation.PostConstruct;
 
 import org.apache.commons.math.random.RandomData;
 import org.apache.commons.math.random.RandomDataImpl;
-import org.primefaces.model.LazyDataModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.bk.lazydatamodel.GenreLazyDataModel;
 import com.bk.model.Book;
-import com.bk.model.Genre;
-import com.bk.repository.GenreRepository;
 import com.bk.service.BookService;
 
 /**
- * @author Andrei Petaru
+ * @author Andrei Petraru
  * 15 Mar 2013
  */
 
@@ -34,19 +32,14 @@ public class HomeBean implements Serializable {
 	private BookService bookService;
 
 	@Autowired
-	private GenreRepository genreRepository;
+	private GenreLazyDataModel lazyModel;
 
 	private List<Book> books = new ArrayList<>();
-	private List<Genre> genres = new ArrayList<>();
-
-	@Autowired
-	private LazyDataModel<Book> lazyBooks;
 
 	@PostConstruct
 	public void init() {
 		RandomData random = new RandomDataImpl();
 		Long count = bookService.count();
-		genres = genreRepository.findAll();
 
 		if (DISPLAYED_BOOKS.compareTo(count) > 0) {
 			return;
@@ -62,11 +55,8 @@ public class HomeBean implements Serializable {
 		return Collections.unmodifiableList(books);
 	}
 
-	public List<Genre> getGenres() {
-		return Collections.unmodifiableList(genres);
+	public GenreLazyDataModel getLazyModel() {
+		return lazyModel;
 	}
 
-	public LazyDataModel<Book> getLazyBooks() {
-		return lazyBooks;
-	}
 }

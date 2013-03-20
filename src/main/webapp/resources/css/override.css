@@ -69,3 +69,7 @@
     height: 15px !important;
     width: 15px !important;
 }
+
+.ui-datagrid-column {
+	padding: 0px !important;
+}

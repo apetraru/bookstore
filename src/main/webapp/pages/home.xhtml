@@ -1,47 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <ui:composition template="/templates/template.xhtml">
 	<ui:define name="body">
 		<h:form id="homeFormId" styleClass="homepage-form">
-			<ui:remove>
-				<h:outputText value="Recommended for you" styleClass="homepage-recommended" />
-				<h:outputText value="Genres" style="margin-right: 5%; float: right; font-size: 2em; padding-right: 17%" />
-				<p:spacer width="100%" height="1px" />
-				<p:dataGrid columns="1" lazy="false" value="#{homeBean.books}" var="book" styleClass="homepage-datagrid">
-					<p:graphicImage width="50px" height="75px" styleClass="float-left" value="/resources/images/no_image_available.jpg" />
-					<p:button value="#{book.title}" outcome="#{navigationBean.book()}" styleClass="homepage-book-title">
-						<f:param name="id" value="#{book.id}" />
-						<f:param name="title" value="#{book.title}" />
-					</p:button>
-					<br />
-					<p:spacer width="15px" />
-					<h:outputText value="by" />
-					<p:button value="#{book.author.name}" outcome="#{navigationBean.author()}" styleClass="homepage-book-author">
-						<f:param name="id" value="#{book.author.id}" />
-						<f:param name="author" value="#{book.author.name}" />
-					</p:button>
-				</p:dataGrid>
+			<h:outputText value="Recommended for you" styleClass="homepage-recommended" />
+			<h:outputText value="Genres" styleClass="homepage-genres" />
+			<p:spacer width="100%" height="1px" />
+			<p:dataGrid columns="1" lazy="false" value="#{homeBean.books}" var="book"
+				styleClass="homepage-book-datagrid">
+				<p:graphicImage width="50px" height="75px" styleClass="float-left"
+					value="/resources/images/no_image_available.jpg" />
+				<p:button value="#{book.title}" outcome="#{navigationBean.book()}"
+					styleClass="homepage-book-title">
+					<f:param name="id" value="#{book.id}" />
+					<f:param name="title" value="#{book.title}" />
+				</p:button>
+				<br />
+				<p:spacer width="15px" />
+				<h:outputText value="by" />
+				<p:button value="#{book.author.name}" outcome="#{navigationBean.author()}"
+					styleClass="homepage-book-author">
+					<f:param name="id" value="#{book.author.id}" />
+					<f:param name="author" value="#{book.author.name}" />
+				</p:button>
+			</p:dataGrid>
 
-				<p:selectOneListbox columns="1" styleClass="float-right" style="width: 25%; margin-right: 5%; height: 250px">
-					<f:selectItems value="#{homeBean.genres}" var="genre" itemLabel="#{genre.genre}" />
-				</p:selectOneListbox>
-			</ui:remove>
-
-			<div style="width: 50%">
-				<p:dataGrid id="lazyDataGrid" value="#{homeBean.lazyBooks}" var="book" paginator="true" rows="5" lazy="true"
-					columns="1">
-					<p:row>
-						<p:column>
-							<p:button value="#{book.title}" outcome="#{navigationBean.book()}" styleClass="homepage-book-title">
-								<f:param name="id" value="#{book.id}" />
-								<f:param name="title" value="#{book.title}" />
-							</p:button>
-						</p:column>
-					</p:row>
-				</p:dataGrid>
-			</div>
+			<p:dataGrid rows="15" paginator="true" columns="2" value="#{homeBean.lazyModel}" var="genre"
+				paginatorPosition="bottom" lazy="true" style="height: 400px"
+				paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
+				rowsPerPageTemplate="15" styleClass="homepage-genre-datagrid">
+				<p:button value="#{genre.genre}" outcome="#{navigationBean.book()}" styleClass="homepage-genre">
+					<f:param name="id" value="#{genre.id}" />
+				</p:button>
+			</p:dataGrid>
 		</h:form>
 	</ui:define>
 </ui:composition>
