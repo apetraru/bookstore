@@ -13,5 +13,7 @@ import com.bk.model.Genre;
 public interface GenreRepository extends Repository<Genre, Long> {
 
 	Page<Genre> findAll(Pageable pageable);
+	
+	Genre findById(Long id);
 
 }
