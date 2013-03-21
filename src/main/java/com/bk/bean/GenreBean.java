@@ -1,13 +1,13 @@
 package com.bk.bean;
 
-import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.bk.lazydatamodel.BookGenreLazyDataModel;
-import com.bk.model.Genre;
 
 /**
  * @author Andrei Petraru
@@ -19,17 +19,41 @@ import com.bk.model.Genre;
 public class GenreBean {
 	@Autowired
 	private BookGenreLazyDataModel lazyModel;
-	
-	private Genre genre;
-	
-	@PostConstruct
+
+	private Long id;
+
 	public void init() {
-		genre.getBooks();
-		lazyModel.setGenreId(genre.getId());
+		if (id == null) {
+			String message = "Bad request. Please use a link from within the system.";
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+			return;
+		}
+
+		lazyModel.setGenreId(id);
+
+		if (lazyModel == null) {
+			String message = "Bad request. Unknown book.";
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+			return;
+		}
 	}
 
 	public BookGenreLazyDataModel getLazyModel() {
 		return lazyModel;
+	}
+
+	public void setLazyModel(BookGenreLazyDataModel lazyModel) {
+		this.lazyModel = lazyModel;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

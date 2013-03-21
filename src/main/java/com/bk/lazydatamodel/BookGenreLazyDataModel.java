@@ -35,8 +35,7 @@ public class BookGenreLazyDataModel extends LazyDataModel<Book> {
 
 	@Override
 	public List<Book> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
-		Long id = Long.getLong(filters.get("genreId"));
-		Genre genre = genreRepository.findById(id);
+		Genre genre = genreRepository.findById(genreId);
 		Predicate predicate = BookPredicate.searchByGenre(genre);
 		int elementsPerPage = first / pageSize;
 		Pageable pageable = new PageRequest(elementsPerPage, pageSize);
