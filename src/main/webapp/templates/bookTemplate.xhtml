@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+<ui:composition>
+	<p:separator />
+	<p:graphicImage width="50px" height="75px" styleClass="float-left" value="/resources/images/no_image_available.jpg" />
+	<p:button value="#{book.title}" outcome="#{navigationBean.book()}" styleClass="book-title">
+		<f:param name="id" value="#{book.id}" />
+		<f:param name="title" value="#{book.title}" />
+	</p:button>
+	<br />
+	<h:outputText value="by" styleClass="book-publish-label" />
+	<p:button value="#{book.author.name}" outcome="#{navigationBean.author()}" styleClass="book-author">
+		<f:param name="id" value="#{book.author.id}" />
+		<f:param name="author" value="#{book.author.name}" />
+	</p:button>
+	<br />
+	<h:outputText value="published: " styleClass="book-publish-label" />
+	<h:outputText value="#{book.publishDate}" styleClass="book-publishDate">
+		<f:convertDateTime pattern="yyyy" />
+	</h:outputText>
+</ui:composition>
+</html>
