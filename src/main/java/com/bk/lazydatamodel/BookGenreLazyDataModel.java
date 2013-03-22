@@ -15,7 +15,6 @@ import com.bk.model.Book;
 import com.bk.model.Genre;
 import com.bk.predicate.BookPredicate;
 import com.bk.repository.BookRepository;
-import com.bk.repository.GenreRepository;
 import com.mysema.query.types.Predicate;
 
 /**
@@ -28,14 +27,10 @@ public class BookGenreLazyDataModel extends LazyDataModel<Book> {
 	@Autowired
 	private BookRepository bookRepository;
 
-	@Autowired
-	private GenreRepository genreRepository;
-
-	private Long genreId;
+	private Genre genre;
 
 	@Override
 	public List<Book> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
-		Genre genre = genreRepository.findById(genreId);
 		Predicate predicate = BookPredicate.searchByGenre(genre);
 		int elementsPerPage = first / pageSize;
 		Pageable pageable = new PageRequest(elementsPerPage, pageSize);
@@ -47,12 +42,12 @@ public class BookGenreLazyDataModel extends LazyDataModel<Book> {
 		return datasource.getContent();
 	}
 
-	public Long getGenreId() {
-		return genreId;
+	public Genre getGenre() {
+		return genre;
 	}
 
-	public void setGenreId(Long genreId) {
-		this.genreId = genreId;
+	public void setGenre(Genre genre) {
+		this.genre = genre;
 	}
 
 }
