@@ -55,7 +55,9 @@
 								<h:outputText value="Published" />
 							</p:column>
 							<p:column>
-								<h:outputText value="#{bookBean.book.publishDate}" />
+								<h:outputText value="#{bookBean.book.publishDate}" >
+									<f:convertDateTime pattern="dd/MMM/yyyy" />
+								</h:outputText>
 							</p:column>
 						</p:row>
 						<p:row>
