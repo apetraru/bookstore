@@ -109,6 +109,30 @@ INSERT INTO goodbooks.genre(id, genre) VALUES (21, 'Self Help');
 INSERT INTO goodbooks.genre(id, genre) VALUES (22, 'Sports');
 INSERT INTO goodbooks.genre(id, genre) VALUES (23, 'Travel');
 
+-- BOOK_GENRES
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(1, 1);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(1, 2);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(1, 3);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(1, 4);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(1, 5);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(1, 6);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(1, 7);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(1, 8);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(1, 9);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(1, 10);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(1, 11);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(5, 2);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(6, 3);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(15, 3);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(23, 4);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(7, 40);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(13, 25);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(13, 26);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(15, 50);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(19, 60);
+INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(20, 61);
+
+
 -- CUSTOMERS
 INSERT INTO goodbooks.customer(id,  email, firstname, lastname, password, username) VALUES (1, 'gigi@yahoo.com', null, null, 'b717f7ac0fa6434719119715dd45fe2fe6adea035ba3babc73238ebab0755dc7', 'gigi');
 
