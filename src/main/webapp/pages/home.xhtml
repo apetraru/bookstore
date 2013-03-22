@@ -6,33 +6,24 @@
 <ui:composition template="/templates/template.xhtml">
 	<ui:define name="body">
 		<h:form id="homeFormId" styleClass="homepage-form">
-			<h:outputText value="Recommended for you" styleClass="homepage-recommended" />
-			<h:outputText value="Genres" styleClass="homepage-genres" />
 			<p:spacer width="100%" height="1px" />
-			<p:dataGrid columns="1" lazy="false" value="#{homeBean.books}" var="book"
-				styleClass="homepage-book-datagrid">
-				<p:graphicImage width="50px" height="75px" styleClass="float-left"
-					value="/resources/images/no_image_available.jpg" />
-				<p:button value="#{book.title}" outcome="#{navigationBean.book()}"
-					styleClass="homepage-book-title">
-					<f:param name="id" value="#{book.id}" />
-					<f:param name="title" value="#{book.title}" />
-				</p:button>
-				<br />
-				<p:spacer width="15px" />
-				<h:outputText value="by" />
-				<p:button value="#{book.author.name}" outcome="#{navigationBean.author()}"
-					styleClass="homepage-book-author">
-					<f:param name="id" value="#{book.author.id}" />
-					<f:param name="author" value="#{book.author.name}" />
-				</p:button>
+			<p:dataGrid columns="1" lazy="false" value="#{homeBean.books}" var="book" styleClass="homepage-book-datagrid">
+				<f:facet name="header">
+					<h:outputText value="Recommended for you" />
+				</f:facet>
+				<ui:include src="/templates/bookTemplate.xhtml">
+					<ui:param name="book" value="#{book}" />
+				</ui:include>
 			</p:dataGrid>
 
 			<p:dataGrid rows="15" paginator="true" columns="2" value="#{homeBean.lazyModel}" var="genre"
-				paginatorPosition="bottom" lazy="true" style="height: 400px"
+				paginatorPosition="bottom" lazy="true"
 				paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
 				rowsPerPageTemplate="15" styleClass="homepage-genre-datagrid">
-				<p:button value="#{genre.genre}" outcome="#{navigationBean.book()}" styleClass="homepage-genre">
+				<f:facet name="header">
+					<h:outputText value="Genres" />
+				</f:facet>
+				<p:button value="#{genre.genre}" outcome="#{navigationBean.genre()}" styleClass="homepage-genre">
 					<f:param name="id" value="#{genre.id}" />
 				</p:button>
 			</p:dataGrid>
