@@ -1,14 +1,15 @@
 package com.bk.converter;
 
-import com.bk.model.Book;
-import com.bk.service.BookService;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+
+import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.bk.model.Book;
+import com.bk.service.BookService;
 
 /**
  * @author Andrei Petraru
@@ -22,16 +23,10 @@ public class BookConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		if (value.isEmpty()) {
+		if (!NumberUtils.isNumber(value)) {
 			return null;
 		}
-		try {
-			return bookService.findById(Long.parseLong(value));
-		}
-		catch (NumberFormatException ex) {
-			Logger.getLogger(BookConverter.class.getName()).log(Level.SEVERE, null, ex);
-			return null;
-		}
+		return bookService.findById(Long.parseLong(value));
 	}
 
 	@Override
