@@ -25,6 +25,9 @@ public class GenreBean {
 	@Autowired
 	private GenreRepository genreRepository;
 
+	@Autowired
+	private RatingsBean ratings;
+
 	private Long id;
 	private Genre genre;
 
@@ -44,16 +47,11 @@ public class GenreBean {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
 			return;
 		}
-		
 		lazyModel.setGenre(genre);
 	}
 
 	public BookGenreLazyDataModel getLazyModel() {
 		return lazyModel;
-	}
-
-	public void setLazyModel(BookGenreLazyDataModel lazyModel) {
-		this.lazyModel = lazyModel;
 	}
 
 	public Long getId() {
@@ -72,4 +70,7 @@ public class GenreBean {
 		this.genre = genre;
 	}
 
+	public RatingsBean getRatings() {
+		return ratings;
+	}
 }

@@ -18,6 +18,8 @@
 				</f:facet>
 				<ui:include src="/templates/bookTemplate.xhtml">
 					<ui:param name="book" value="#{book}" />
+					<ui:param name="totalRatings" value="#{genreBean.ratings.getNumberOfRatings(book)}" />
+					<ui:param name="averageRating" value="#{genreBean.ratings.getAverageRating(book)}" />
 				</ui:include>
 			</p:dataGrid>
 			<p:messages globalOnly="true" showDetail="false" />

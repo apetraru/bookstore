@@ -33,6 +33,9 @@ public class HomeBean implements Serializable {
 
 	@Autowired
 	private GenreLazyDataModel lazyModel;
+	
+	@Autowired
+	private RatingsBean ratings;
 
 	private List<Book> books = new ArrayList<>();
 
@@ -57,6 +60,10 @@ public class HomeBean implements Serializable {
 
 	public GenreLazyDataModel getLazyModel() {
 		return lazyModel;
+	}
+	
+	public RatingsBean getRatings() {
+		return ratings;
 	}
 
 }
