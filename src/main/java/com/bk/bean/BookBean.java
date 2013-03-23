@@ -1,7 +1,6 @@
 package com.bk.bean;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -90,10 +89,6 @@ public class BookBean implements Serializable {
 	public void removeRating() {
 		bookReview.setRating(null);
 		reviewRepository.save(bookReview);
-	}
-
-	public List<Book> search(String input) {
-		return bookService.search(input, 0, 10);
 	}
 
 	private void newRating() {
