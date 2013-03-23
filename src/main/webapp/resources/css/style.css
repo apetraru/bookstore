@@ -27,6 +27,10 @@ body {
 	background: none;
 }
 
+.search-button:HOVER {
+	background: white;
+}
+
 /* FOOTER */
 .footer {
 	font-weight: bold;

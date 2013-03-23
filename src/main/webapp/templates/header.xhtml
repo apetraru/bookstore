@@ -13,7 +13,7 @@
 			<p:commandLink action="#{navigationBean.home}">
 				<p:graphicImage value="/resources/images/logo.png" styleClass="logo" />
 			</p:commandLink>
-			<p:autoComplete completeMethod="#{bookBean.search}" id="searchBar" minQueryLength="2"
+			<p:autoComplete completeMethod="#{searchBean.search}" id="searchBar" minQueryLength="2"
 				maxResults="10" converter="#{bookConverter}" var="book">
 				<p:column>
 					<p:button value="#{book.title} by #{book.author.name}" outcome="#{navigationBean.book()}"
@@ -23,6 +23,9 @@
 					</p:button>
 				</p:column>
 			</p:autoComplete>
+			<p:commandLink action="#{navigationBean.search()}" styleClass="search-button" id="searchButton">
+				<p:graphicImage name="images/search.png" />
+			</p:commandLink>
 			<p:watermark value="Title / Author" for="searchBar" />
 			<p:commandLink value="Home" action="#{navigationBean.home}" />
 			<p:commandLink value="Add Books" action="#{navigationBean.addBook}" />
@@ -35,6 +38,7 @@
 				ajax="false" styleClass="float-right" />
 			<p:commandLink value="#{loginBean.loggedInUser.username}" rendered="#{loginBean.loggedOn}"
 				styleClass="float-right" />
+			<p:defaultCommand target="searchButton" /> 
 		</div>
 	</h:form>
 </ui:composition>
