@@ -26,7 +26,6 @@
 						<h:outputText value="#{bookBean.numberOfRatings eq 1 ? ' rating' : ' ratings'} "
 							styleClass="book-ratings-totalRatings" />
 					</p:panel>
-					<h:outputText value="No ratings" rendered="#{empty bookBean.averageRating}" />
 					<p:spacer width="100%" height="1%" />
 					<h:outputText value="#{bookBean.book.title}" styleClass="book-title" />
 					<br />
