@@ -1,15 +1,14 @@
 package com.bk.service;
 
-import java.util.List;
-
 import com.bk.model.Book;
+import com.bk.util.PaginatedHibernateSearch;
 
 /**
  * User: ph
  * Date: 1/28/13
  */
 public interface BookService {
-    List<Book> search(String searchTerm, int firstResult, int maxResults);
+    PaginatedHibernateSearch<Book> search(String searchTerm, int firstResult, int resultsPerPage);
 
     Book save(Book book);
 

@@ -1,6 +1,5 @@
 package com.bk.bean;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,7 +23,7 @@ import com.bk.service.BookService;
 
 @Component
 @Scope("request")
-public class HomeBean implements Serializable {
+public class HomeBean {
 
 	private static final Long DISPLAYED_BOOKS = 5L;
 

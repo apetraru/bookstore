@@ -1,12 +1,11 @@
 package com.bk.service;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.apache.lucene.search.Query;
 import org.hibernate.search.jpa.FullTextEntityManager;
+import org.hibernate.search.jpa.FullTextQuery;
 import org.hibernate.search.jpa.Search;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bk.model.Book;
 import com.bk.repository.BookRepository;
+import com.bk.util.PaginatedHibernateSearch;
 
 /**
  * User: ph
@@ -32,10 +32,10 @@ public class BookServiceImpl implements BookService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Book> search(String searchTerm, int firstResult, int maxResults) {
+    public PaginatedHibernateSearch<Book> search(String searchTerm, int firstResult, int resultsPerPage) {
 
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
-
+        
         QueryBuilder queryBuilder = fullTextEntityManager.getSearchFactory()
             .buildQueryBuilder().forEntity(Book.class).get();
         Query query = queryBuilder.keyword()
@@ -45,11 +45,15 @@ public class BookServiceImpl implements BookService {
             .matching(searchTerm)
             .createQuery();
 
-        javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(query, Book.class);
-        jpaQuery.setFirstResult(firstResult);
-        jpaQuery.setMaxResults(maxResults);
+        FullTextQuery fullTextQuery = fullTextEntityManager.createFullTextQuery(query, Book.class);
+        fullTextQuery.setFirstResult(firstResult);
+        fullTextQuery.setMaxResults(resultsPerPage);
+        
+        PaginatedHibernateSearch<Book> results = new PaginatedHibernateSearch<>();
+        results.setResults(fullTextQuery.getResultList());
+        results.setResultsSize(fullTextQuery.getResultSize());
 
-        return jpaQuery.getResultList();
+        return results;
     }
 
     @Override
