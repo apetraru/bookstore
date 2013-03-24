@@ -13,8 +13,8 @@
 			<p:commandLink action="#{navigationBean.home}">
 				<p:graphicImage value="/resources/images/logo.png" styleClass="logo" />
 			</p:commandLink>
-			<p:autoComplete completeMethod="#{searchBean.search}" id="searchBar" minQueryLength="2"
-				maxResults="10" converter="#{bookConverter}" var="book">
+			<p:autoComplete completeMethod="#{searchBean.search}" id="searchBar" minQueryLength="3"
+				maxResults="10" converter="#{bookConverter}" var="book" queryDelay="200">
 				<p:column>
 					<p:button value="#{book.title} by #{book.author.name}" outcome="#{navigationBean.book()}"
 						styleClass="searchButton">

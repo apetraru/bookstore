@@ -27,7 +27,7 @@ public class BookSearchLazyDataModel extends LazyDataModel<Book> {
 
 	@Override
 	public List<Book> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
-		if (StringUtils.length(searchTerm) <= 3) {
+		if (StringUtils.length(searchTerm) < 3) {
 			return null;
 		}
 		

@@ -1,5 +1,6 @@
 package com.bk.util;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ public class PaginatedHibernateSearch<AbstractEntity> {
 	private int resultsSize;
 
 	public List<AbstractEntity> getResults() {
-		return results;
+		return Collections.unmodifiableList(results);
 	}
 
 	public void setResults(List<AbstractEntity> results) {
