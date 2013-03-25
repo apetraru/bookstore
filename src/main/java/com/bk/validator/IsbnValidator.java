@@ -21,7 +21,7 @@ public class IsbnValidator implements Validator {
 	private static final String INVALID_ISBN = "Invalid ISBN format";
 
 	@Override
-	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+	public void validate(FacesContext context, UIComponent component, Object value) {
 
 		int check = 0;
 

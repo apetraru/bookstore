@@ -1,8 +1,9 @@
 package com.bk.repository;
 
-import com.bk.model.Author;
 import org.springframework.data.repository.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.bk.model.Author;
 
 /**
  * @author Andrei Petraru
@@ -16,5 +17,5 @@ public interface AuthorRepository extends Repository<Author, Long> {
 
     Author findByName(String name);
 
-	public Author findById(Long id);
+	Author findById(Long id);
 }
