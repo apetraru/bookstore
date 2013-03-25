@@ -2,12 +2,12 @@ package com.bk.model;
 
 import java.io.Serializable;
 import java.util.regex.Pattern;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import org.springframework.util.Assert;
 
 /**
- * @author ph
+ * @author Andrei Petraru
  */
 @Embeddable
 public class EmailAddress implements Serializable {
@@ -18,14 +18,15 @@ public class EmailAddress implements Serializable {
 	private String value;
 
 	public EmailAddress(String emailAddress) {
-		Assert.isTrue(isValid(emailAddress), "Invalid email address");
-		this.value = emailAddress;
+		if (isValid(emailAddress)) {
+			this.value = emailAddress;
+		}
 	}
 
 	protected EmailAddress() {
 	}
 
-	public boolean isValid(String candidate) {
+	private boolean isValid(String candidate) {
 		return (candidate != null && PATTERN.matcher(candidate).matches());
 	}
 

@@ -19,7 +19,7 @@ import com.bk.service.BookService;
 public class BookConverter implements Converter {
 
 	@Autowired
-	BookService bookService;
+	private BookService bookService;
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {

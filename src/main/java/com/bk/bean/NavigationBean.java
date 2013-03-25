@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * Date: 1/17/13
  */
 @Component
-public class NavigationBean {
+public final class NavigationBean {
 
 	private static final String REDIRECT = "?faces-redirect=true";
 	private static final String HOME = "/pages/home.jsf";
@@ -18,6 +18,9 @@ public class NavigationBean {
 	private static final String AUTHOR = "/pages/author.jsf";
 	private static final String GENRE = "/pages/genre.jsf";
 	private static final String SEARCH = "/pages/search.jsf";
+	
+	private NavigationBean() {
+	}
 
 	public static String login() {
 		return LOGIN + REDIRECT;

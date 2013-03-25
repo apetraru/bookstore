@@ -7,16 +7,16 @@ import java.util.List;
  * @author Andrei Petraru
  * Mar 24, 2013
  */
-public class PaginatedHibernateSearch<AbstractEntity> {
-	private List<AbstractEntity> results;
+public class PaginatedHibernateSearch<T> {
+	private List<T> results;
 
 	private int resultsSize;
 
-	public List<AbstractEntity> getResults() {
+	public List<T> getResults() {
 		return Collections.unmodifiableList(results);
 	}
 
-	public void setResults(List<AbstractEntity> results) {
+	public void setResults(List<T> results) {
 		this.results = results;
 	}
 

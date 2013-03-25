@@ -5,10 +5,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * User: ph
+ * @author Andrei Petraru
  * Date: 1/17/13
  */
-public class PasswordHash {
+public final class PasswordHash {
 
     private static final String ALGORITHM = "SHA-256";
 

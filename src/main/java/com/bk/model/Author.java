@@ -39,7 +39,7 @@ public class Author extends AbstractEntity {
 
 	@ContainedIn
 	@OneToMany(mappedBy = "author")
-	Set<Book> books = new HashSet<>();
+	private Set<Book> books = new HashSet<>();
 
 	public String getName() {
 		return name;

@@ -1,13 +1,16 @@
 package com.bk.bean;
 
-import com.bk.model.Author;
-import com.bk.repository.AuthorRepository;
 import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
+import com.bk.model.Author;
+import com.bk.repository.AuthorRepository;
 
 /**
  *
@@ -18,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class AuthorBean implements Serializable {
 
 	@Autowired
-	AuthorRepository authorRepository;
+	private AuthorRepository authorRepository;
 
 	private Author author;
 	private Long id;

@@ -1,22 +1,25 @@
 package com.bk.bean;
 
-import com.bk.model.Customer;
-import com.bk.model.EmailAddress;
-import com.bk.service.CustomerService;
-import com.bk.util.Message;
-import com.bk.util.PasswordHash;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.faces.application.FacesMessage;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.bk.model.Customer;
+import com.bk.model.EmailAddress;
+import com.bk.service.CustomerService;
+import com.bk.util.Message;
+import com.bk.util.PasswordHash;
+
 /**
- * User: ph
+ * @author Andrei Petraru
  * Date: 1/16/13
  */
 
@@ -29,7 +32,7 @@ public class RegisterBean {
     private String email;
 
     @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
 
     public void register() {
 

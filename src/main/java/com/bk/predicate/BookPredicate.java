@@ -5,10 +5,13 @@ import com.bk.model.QBook;
 import com.mysema.query.types.Predicate;
 
 /**
- * User: ph
+ * @author Andrei Petraru
  * Date: 1/28/13
  */
-public class BookPredicate {
+public final class BookPredicate {
+	
+	private BookPredicate() {
+	}
 
     public static Predicate searchTitleOrAuthor(String searchTerm) {
         QBook book = QBook.book;

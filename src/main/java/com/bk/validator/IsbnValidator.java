@@ -1,5 +1,8 @@
 package com.bk.validator;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -15,40 +18,40 @@ import javax.faces.validator.ValidatorException;
 @FacesValidator("isbnValidator")
 public class IsbnValidator implements Validator {
 
-    private static final String INVALID_ISBN = "Invalid ISBN format";
+	private static final String INVALID_ISBN = "Invalid ISBN format";
 
-    @Override
-    public void validate(FacesContext context, UIComponent component,
-                         Object value) throws ValidatorException {
+	@Override
+	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 
-        int check = 0;
+		int check = 0;
 
-        try {
-            String isbn = value.toString();
-            if (isbn.length() == 13) {
-                for (int i = 0; i < 12; i += 2) {
-                    check += Integer.valueOf(isbn.substring(i, i + 1));
-                }
-                for (int i = 1; i < 12; i += 2) {
-                    check += Integer.valueOf(isbn.substring(i, i + 1)) * 3;
-                }
-                check += Integer.valueOf(isbn.substring(12));
-            }
-            else {
-                check = -1;
-            }
-        } catch (NumberFormatException e) {
-            throw new ValidatorException(errorMessage());
-        }
+		try {
+			String isbn = value.toString();
+			if (isbn.length() == 13) {
+				for (int i = 0; i < 12; i += 2) {
+					check += Integer.valueOf(isbn.substring(i, i + 1));
+				}
+				for (int i = 1; i < 12; i += 2) {
+					check += Integer.valueOf(isbn.substring(i, i + 1)) * 3;
+				}
+				check += Integer.valueOf(isbn.substring(12));
+			}
+			else {
+				check = -1;
+			}
+		}
+		catch (NumberFormatException ex) {
+			Logger.getLogger(IsbnValidator.class.getName()).log(Level.SEVERE, null, ex);
+		}
 
-        if (check % 10 != 0) {
-            throw new ValidatorException(errorMessage());
-        }
-    }
+		if (check % 10 != 0) {
+			throw new ValidatorException(errorMessage());
+		}
+	}
 
-    private FacesMessage errorMessage() {
-        FacesMessage msg = new FacesMessage(INVALID_ISBN);
-        msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-        return msg;
-    }
+	private FacesMessage errorMessage() {
+		FacesMessage msg = new FacesMessage(INVALID_ISBN);
+		msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+		return msg;
+	}
 }
