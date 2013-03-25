@@ -23,6 +23,8 @@ import com.bk.util.PaginatedHibernateSearch;
 
 @Service
 public class BookServiceImpl implements BookService {
+	
+	private static final float THRESHOLD = 0.75f;
 
     @Autowired
     private BookRepository repository;
@@ -40,7 +42,7 @@ public class BookServiceImpl implements BookService {
             .buildQueryBuilder().forEntity(Book.class).get();
         Query query = queryBuilder.keyword()
             .fuzzy()
-            .withThreshold(0.7f)
+            .withThreshold(THRESHOLD)
             .onFields("title", "author.name")
             .matching(searchTerm)
             .createQuery();

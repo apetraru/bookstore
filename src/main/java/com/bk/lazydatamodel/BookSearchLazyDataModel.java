@@ -19,6 +19,8 @@ import com.bk.util.PaginatedHibernateSearch;
  */
 @Component
 public class BookSearchLazyDataModel extends LazyDataModel<Book> {
+	
+	private static final int LENGTH = 3;
 
 	@Autowired
 	private BookService bookService;
@@ -27,7 +29,7 @@ public class BookSearchLazyDataModel extends LazyDataModel<Book> {
 
 	@Override
 	public List<Book> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
-		if (StringUtils.length(searchTerm) < 3) {
+		if (StringUtils.length(searchTerm) < LENGTH) {
 			return null;
 		}
 		

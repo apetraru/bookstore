@@ -11,7 +11,7 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 /**
- * User: ph
+ * @author Andrei Petraru
  * Date: 1/31/13
  */
 
@@ -19,6 +19,11 @@ import javax.faces.validator.ValidatorException;
 public class IsbnValidator implements Validator {
 
 	private static final String INVALID_ISBN = "Invalid ISBN format";
+	private static final int THIRTEEN = 13;
+	private static final int TWELVE = 12;
+	private static final int TEN = 10;
+	private static final int THREE = 3;
+	private static final int TWO = 2;
 
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) {
@@ -27,14 +32,14 @@ public class IsbnValidator implements Validator {
 
 		try {
 			String isbn = value.toString();
-			if (isbn.length() == 13) {
-				for (int i = 0; i < 12; i += 2) {
+			if (isbn.length() == THIRTEEN) {
+				for (int i = 0; i < TWELVE; i += TWO) {
 					check += Integer.valueOf(isbn.substring(i, i + 1));
 				}
-				for (int i = 1; i < 12; i += 2) {
-					check += Integer.valueOf(isbn.substring(i, i + 1)) * 3;
+				for (int i = 1; i < TWELVE; i += TWO) {
+					check += Integer.valueOf(isbn.substring(i, i + 1)) * THREE;
 				}
-				check += Integer.valueOf(isbn.substring(12));
+				check += Integer.valueOf(isbn.substring(TWELVE));
 			}
 			else {
 				check = -1;
@@ -44,7 +49,7 @@ public class IsbnValidator implements Validator {
 			Logger.getLogger(IsbnValidator.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-		if (check % 10 != 0) {
+		if (check % TEN != 0) {
 			throw new ValidatorException(errorMessage());
 		}
 	}
