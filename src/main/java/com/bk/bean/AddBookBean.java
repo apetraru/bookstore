@@ -1,10 +1,10 @@
 package com.bk.bean;
 
+import com.bk.enums.Language;
 import com.bk.model.Author;
 import com.bk.model.Book;
 import com.bk.repository.AuthorRepository;
 import com.bk.service.BookService;
-import com.bk.util.Language;
 import com.bk.util.Message;
 import java.util.Date;
 import javax.annotation.PostConstruct;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
- * User: ph
+ * @author Andrei Petraru
  * Date: 1/28/13
  */
 

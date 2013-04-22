@@ -15,7 +15,7 @@ import org.hibernate.search.annotations.Analyzer;
 import org.hibernate.search.annotations.ContainedIn;
 import org.hibernate.search.annotations.Field;
 
-import com.bk.util.Gender;
+import com.bk.enums.Gender;
 
 /**
  * @author Andrei Petaru

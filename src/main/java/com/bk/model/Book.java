@@ -34,11 +34,11 @@ import org.hibernate.search.annotations.Store;
 import org.hibernate.search.annotations.TokenFilterDef;
 import org.hibernate.search.annotations.TokenizerDef;
 
-import com.bk.util.BookStatus;
-import com.bk.util.Language;
+import com.bk.enums.BookStatus;
+import com.bk.enums.Language;
 
 /**
- * @author ph
+ * @author Andrei Petraru
  */
 
 @Entity
