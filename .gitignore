@@ -8,3 +8,4 @@ nb-configuration.xml
 /target/
 /rebel.xml
 /src/main/resources/rebel.xml
+/com.bk.model.Book
