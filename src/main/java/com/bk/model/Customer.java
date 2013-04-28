@@ -1,16 +1,11 @@
 package com.bk.model;
 
+import org.springframework.util.Assert;
+
+import javax.persistence.*;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-
-import org.springframework.util.Assert;
 
 /**
  *
@@ -21,12 +16,12 @@ public class Customer extends AbstractEntity {
 
 	private String firstname;
 	private String lastname;
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String username;
 	@Column(nullable = false)
 	private String password;
-	@Column(unique = true)
-	private EmailAddress emailAddress;
+	@Column(nullable = false, unique = true)
+	private String emailAddress;
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "customer_id")
 	private Set<Address> addresses = new HashSet<>();
@@ -63,15 +58,15 @@ public class Customer extends AbstractEntity {
 		this.lastname = lastname;
 	}
 
-	public EmailAddress getEmailAddress() {
-		return emailAddress;
-	}
+    public String getEmailAddress() {
+        return emailAddress;
+    }
 
-	public void setEmailAddress(EmailAddress emailAddress) {
-		this.emailAddress = emailAddress;
-	}
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
 
-	public Set<Address> getAddresses() {
+    public Set<Address> getAddresses() {
 		return Collections.unmodifiableSet(addresses);
 	}
 

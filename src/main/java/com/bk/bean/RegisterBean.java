@@ -1,22 +1,19 @@
 package com.bk.bean;
 
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.faces.application.FacesMessage;
-
+import com.bk.model.Customer;
+import com.bk.service.CustomerService;
+import com.bk.util.Message;
+import com.bk.util.PasswordHash;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.bk.model.Customer;
-import com.bk.model.EmailAddress;
-import com.bk.service.CustomerService;
-import com.bk.util.Message;
-import com.bk.util.PasswordHash;
+import javax.faces.application.FacesMessage;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Andrei Petraru
@@ -52,7 +49,7 @@ public class RegisterBean {
         Customer newCustomer = new Customer();
         newCustomer.setUsername(username);
         newCustomer.setPassword(pass);
-        newCustomer.setEmailAddress(new EmailAddress(email));
+        newCustomer.setEmailAddress(email);
 
         if (customerService.save(newCustomer) != null) {
             addSuccessMessage();
@@ -76,11 +73,11 @@ public class RegisterBean {
     }
 
     public boolean checkExistingEmail() {
-        Customer existingCustomer = customerService.findByEmailAddress(new EmailAddress(email));
+        Customer existingCustomer = customerService.findByEmailAddress(email);
         if (existingCustomer == null) {
             return false;
         }
-        EmailAddress existingEmail = existingCustomer.getEmailAddress();
+        String existingEmail = existingCustomer.getEmailAddress();
         if (StringUtils.equalsIgnoreCase(email, existingEmail.toString())) {
             Message.addMessage("registerFormId:registerEmailId", "Email already taken", FacesMessage.SEVERITY_ERROR);
             return true;
