@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
@@ -14,6 +15,8 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class Genre extends AbstractEntity {
+
+    @Column(nullable = false, unique = true)
 	private String genre;
 
 	@ManyToMany(mappedBy = "genres")
@@ -30,7 +33,7 @@ public class Genre extends AbstractEntity {
 	public void addBook(Book book) {
 		this.books.add(book);
 	}
-	
+
 	public Set<Book> getBooks() {
 		return Collections.unmodifiableSet(books);
 	}
