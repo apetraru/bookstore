@@ -12,8 +12,10 @@ import com.bk.model.Genre;
  */
 public interface GenreRepository extends Repository<Genre, Long> {
 
+    Genre save(Genre genre);
+
 	Page<Genre> findAll(Pageable pageable);
-	
+
 	Genre findById(Long id);
 
 }
