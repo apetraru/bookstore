@@ -1,9 +1,6 @@
 package com.bk.service;
 
-import java.util.List;
-
 import com.bk.model.Customer;
-import com.bk.model.EmailAddress;
 
 /**
  * @author Andrei Petraru
@@ -16,12 +13,8 @@ public interface CustomerService {
 
     Customer findById(Long id);
 
-    Customer findByEmailAddress(EmailAddress emailAddress);
+    Customer findByEmailAddress(String emailAddress);
 
     Customer findByUsername(String username);
-
-    List<Customer> search(String searchTerm);
-
-    List<Customer> searchQueryDsl(String searchTerm);
 
 }
