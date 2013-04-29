@@ -78,7 +78,7 @@ public class RegisterBean {
             return false;
         }
         String existingEmail = existingCustomer.getEmailAddress();
-        if (StringUtils.equalsIgnoreCase(email, existingEmail.toString())) {
+        if (StringUtils.equalsIgnoreCase(email, existingEmail)) {
             Message.addMessage("registerFormId:registerEmailId", "Email already taken", FacesMessage.SEVERITY_ERROR);
             return true;
         }
