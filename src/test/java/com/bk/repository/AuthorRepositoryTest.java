@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * @author: Andrei Petraru
@@ -42,9 +43,9 @@ public class AuthorRepositoryTest extends AbstractIntegrationTest {
 
     @Test
     public void saveTest() {
-        Author newAuthor = new Author();
-        newAuthor = repository.save(newAuthor);
-        assertEquals(newAuthor.getId(), (Long) 2L);
+        Author author = new Author();
+        author = repository.save(author);
+        assertNotNull(author);
     }
 
 }

@@ -19,7 +19,7 @@ public class BookRepositoryTest extends AbstractIntegrationTest {
 
     private static final String ISBN = "9780439064866";
     private static final Long ID = 1L;
-    private static final Long count = 1L;
+    private static final Long COUNT = 1L;
 
     @Before
     public void setUp() {
@@ -34,17 +34,17 @@ public class BookRepositoryTest extends AbstractIntegrationTest {
     @Test
     public void findByIdTest() {
         Book book = repository.findById(ID);
-        assertNotNull(book);
+        assertEquals(book.getId(), ID);
     }
 
     @Test
     public void findByIsbnTest() {
         Book book = repository.findByIsbn(ISBN);
-        assertNotNull(book);
+        assertEquals(book.getIsbn(), ISBN);
     }
 
     @Test
-    public void saveTestOk() {
+    public void saveTest() {
         Book book = new Book();
         book.setTitle("title");
         book.setIsbn("isbn");
@@ -65,6 +65,6 @@ public class BookRepositoryTest extends AbstractIntegrationTest {
     @Test
     public void countTest() {
         Long bookCount = repository.count();
-        assertEquals(bookCount, count);
+        assertEquals(bookCount, COUNT);
     }
 }
