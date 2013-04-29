@@ -3,7 +3,6 @@ package com.bk.repository;
 import com.bk.common.AbstractIntegrationTest;
 import com.bk.model.Book;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,6 +23,7 @@ public class BookRepositoryTest extends AbstractIntegrationTest {
 
     @Before
     public void setUp() {
+    	reset();
         Book book = new Book();
         book.setIsbn(ISBN);
         book.setTitle("title");
@@ -32,11 +32,8 @@ public class BookRepositoryTest extends AbstractIntegrationTest {
     }
 
     @Test
-    @Ignore
     public void findByIdTest() {
-        // TODO
-        // Fix findById() + save() issue
-        Book book = repository.findById(1L);
+        Book book = repository.findById(ID);
         assertNotNull(book);
     }
 

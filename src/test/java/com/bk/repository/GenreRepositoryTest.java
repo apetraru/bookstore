@@ -1,17 +1,17 @@
 package com.bk.repository;
 
-import com.bk.common.AbstractIntegrationTest;
-import com.bk.model.Genre;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
+import com.bk.common.AbstractIntegrationTest;
+import com.bk.model.Genre;
 
 /**
  * @author: Andrei Petraru
@@ -27,13 +27,13 @@ public class GenreRepositoryTest extends AbstractIntegrationTest {
 
     @Before
     public void setUp() {
+    	reset();
         Genre genre = new Genre();
         genre.setGenre(GENRE);
         repository.save(genre);
     }
 
     @Test
-    @Ignore
     public void findByIdTest() {
         Genre genre = repository.findById(1L);
         assertNotNull(genre);

@@ -3,7 +3,6 @@ package com.bk.repository;
 import com.bk.common.AbstractIntegrationTest;
 import com.bk.model.Author;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,6 +22,7 @@ public class AuthorRepositoryTest extends AbstractIntegrationTest {
 
     @Before
     public void setUp() {
+    	reset();
         Author author = new Author();
         author.setName(AUTHOR_NAME);
         repository.save(author);
@@ -35,10 +35,7 @@ public class AuthorRepositoryTest extends AbstractIntegrationTest {
     }
 
     @Test
-    @Ignore
     public void findByAuthorId() {
-        // TODO
-        // Fix findById() + save() issue
         Author author = repository.findById(ID);
         assertEquals(author.getId(), ID);
     }

@@ -1,13 +1,14 @@
 package com.bk.repository;
 
-import com.bk.common.AbstractIntegrationTest;
-import com.bk.model.Customer;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.bk.common.AbstractIntegrationTest;
+import com.bk.model.Customer;
 
 /**
  * @author: Andrei Petraru
@@ -26,6 +27,7 @@ public class CustomerRepositoryTest extends AbstractIntegrationTest {
 
     @Before
     public void setUp() {
+    	reset();
         Customer customer = new Customer();
         customer.setUsername(USERNAME);
         customer.setPassword(PASSWORD);
@@ -34,7 +36,6 @@ public class CustomerRepositoryTest extends AbstractIntegrationTest {
     }
 
     @Test
-    @Ignore
     public void findByIdTest() {
         Customer customer = repository.findById(ID);
         assertEquals(customer.getId(), ID);
