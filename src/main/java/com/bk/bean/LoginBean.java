@@ -6,10 +6,6 @@ import com.bk.util.Message;
 import com.bk.util.PasswordHash;
 
 import java.io.Serializable;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
- * User: ph
+ * @author Andrei Petraru
  * Date: 1/15/13
  */
 
@@ -64,7 +60,7 @@ public class LoginBean implements Serializable{
         }
 
         String pass = loggedInUser.getPassword();
-        String loginPass = hashPassword();
+        String loginPass = PasswordHash.hash(password);
         if (!StringUtils.equals(pass, loginPass)) {
             addErrorMessage();
             return false;
@@ -76,16 +72,6 @@ public class LoginBean implements Serializable{
 
     private void addErrorMessage() {
         Message.addMessage("loginFormId:loginButtonId", "Incorrect username or password", FacesMessage.SEVERITY_ERROR);
-    }
-
-    private String hashPassword() {
-        try {
-            return PasswordHash.hash(password);
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
-            Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
-            Message.addMessage("loginFormId:loginButtonId", "Login failed!", FacesMessage.SEVERITY_ERROR);
-            return null;
-        }
     }
 
     private void clearFields() {

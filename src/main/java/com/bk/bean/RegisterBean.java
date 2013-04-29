@@ -10,10 +10,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.faces.application.FacesMessage;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author Andrei Petraru
@@ -41,8 +37,9 @@ public class RegisterBean {
             return;
         }
 
-        String pass = hashPassword();
+        String pass = PasswordHash.hash(password);
         if (pass == null) {
+        	addErrorMessage();
             return;
         }
 
@@ -83,16 +80,6 @@ public class RegisterBean {
             return true;
         }
         return false;
-    }
-
-    private String hashPassword() {
-        try {
-            return PasswordHash.hash(password);
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
-            Logger.getLogger(RegisterBean.class.getName()).log(Level.SEVERE, null, ex);
-            addErrorMessage();
-            return null;
-        }
     }
 
     private void addErrorMessage() {
