@@ -1,5 +1,7 @@
 package com.bk.repository;
 
+import java.io.Serializable;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
@@ -14,7 +16,7 @@ import com.bk.model.Review;
  * Date: 3/13/13
  */
 @Transactional(readOnly = true)
-public interface ReviewRepository extends Repository<Review, Long> {
+public interface ReviewRepository extends Repository<Review, Long>, Serializable {
 
     @Transactional
     Review save(Review review);

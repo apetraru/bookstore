@@ -1,5 +1,7 @@
 package com.bk.repository;
 
+import java.io.Serializable;
+
 import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.repository.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +14,7 @@ import com.bk.model.Book;
  */
 
 @Transactional(readOnly = true)
-public interface BookRepository extends Repository<Book, Long>, QueryDslPredicateExecutor<Book> {
+public interface BookRepository extends Repository<Book, Long>, QueryDslPredicateExecutor<Book>, Serializable {
 
 	Book findByIsbn(String isbn);
 

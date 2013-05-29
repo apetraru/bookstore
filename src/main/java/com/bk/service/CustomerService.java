@@ -1,5 +1,7 @@
 package com.bk.service;
 
+import java.io.Serializable;
+
 import com.bk.model.Customer;
 
 /**
@@ -7,7 +9,7 @@ import com.bk.model.Customer;
  * Date: 1/5/13
  */
 
-public interface CustomerService {
+public interface CustomerService extends Serializable {
 
     Customer save(Customer customer);
 
