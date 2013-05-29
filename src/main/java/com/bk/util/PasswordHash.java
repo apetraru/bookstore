@@ -1,5 +1,6 @@
 package com.bk.util;
 
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -12,7 +13,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public final class PasswordHash {
 
-	private static final String ALGORITHM = "SHA-256";
+	private static final String ALGORITHM = "SHA-512";
 	private static final int AND = 0xff;
 	private static final int PLUS = 0x100;
 	private static final int BASE = 16;
@@ -25,7 +26,7 @@ public final class PasswordHash {
 
 		try {
 			MessageDigest md = MessageDigest.getInstance(ALGORITHM);
-			md.update(password.getBytes());
+			md.update(password.getBytes("UTF-16"));
 
 			byte byteData[] = md.digest();
 
@@ -35,7 +36,7 @@ public final class PasswordHash {
 			}
 			return sb.toString();
 		}
-		catch (NoSuchAlgorithmException ex) {
+		catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
 			Logger.getLogger(PasswordHash.class.getName()).log(Level.SEVERE, null, ex);
 			return null;
 		}

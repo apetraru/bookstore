@@ -10,15 +10,15 @@ import org.junit.Test;
 public class PasswordHashTest {
 
 	private static final String EMPTY_PASSWORD = "";
-	private static final String PASSWORD = "1234";
-	private static final String HASHED_PASSWORD = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
-	
+	private static final String PASSWORD = "12345";
+	private static final String HASHED_PASSWORD = "00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95";
+
 	@Test
 	public void validPasswordHashTest() {
-		String hash = PasswordHash.hash(PASSWORD); 
+		String hash = PasswordHash.hash(PASSWORD);
 		assertEquals(hash, HASHED_PASSWORD);
 	}
-	
+
 	@Test
 	public void emptyPasswordHashTest() {
 		String hash = PasswordHash.hash(EMPTY_PASSWORD);
