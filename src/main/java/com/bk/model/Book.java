@@ -127,11 +127,11 @@ public class Book extends AbstractEntity {
 	}
 
 	public Date getPublishDate() {
-		return publishDate;
+		return (Date) publishDate.clone();
 	}
 
 	public void setPublishDate(Date publishDate) {
-		this.publishDate = publishDate;
+		this.publishDate = (Date) publishDate.clone();
 	}
 
 	public Language getLanguage() {

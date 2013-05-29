@@ -97,7 +97,7 @@ public class AddBookBean {
     }
 
     public Date getToday() {
-        return today;
+        return (Date) today.clone();
     }
 
 }
