@@ -82,11 +82,11 @@ public class Author extends AbstractEntity {
 	}
 
 	public Date getBirthDate() {
-		return (Date) birthDate.clone();
+		return birthDate;
 	}
 
 	public void setBirthDate(Date birthDate) {
-		this.birthDate = (Date) birthDate.clone();
+		this.birthDate = birthDate;
 	}
 
 	public String getImageUrl() {

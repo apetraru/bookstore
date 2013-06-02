@@ -52,11 +52,11 @@ public class Review extends AbstractEntity {
 	}
 
 	public Date getPublishDate() {
-		return (Date) publishDate.clone();
+		return publishDate;
 	}
 
 	public void setPublishDate(Date publishDate) {
-		this.publishDate = (Date) publishDate.clone();
+		this.publishDate = publishDate;
 	}
 
 	public Book getBook() {
