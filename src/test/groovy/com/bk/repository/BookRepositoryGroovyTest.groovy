@@ -1,15 +1,11 @@
 package com.bk.repository
 
+import com.bk.common.BaseGroovyTest
+import com.bk.model.Book
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
 
-import spock.lang.*
-
-import com.bk.common.BaseGroovyTest
-import com.bk.model.Author
-import com.bk.model.Book
-
-class BookRepositoryTest extends BaseGroovyTest {
+class BookRepositoryGroovyTest extends BaseGroovyTest {
 
 	@Autowired
 	BookRepository repository
