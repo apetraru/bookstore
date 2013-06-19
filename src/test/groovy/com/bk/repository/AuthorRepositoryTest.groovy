@@ -9,7 +9,7 @@ import com.bk.model.Author
  * @author Andrei Petraru
  * 5 Jun 2013
  */
-class AuthorRepositoryGroovyTest extends BaseGroovyTest {
+class AuthorRepositoryTest extends BaseGroovyTest {
 	@Autowired
 	AuthorRepository repository
 

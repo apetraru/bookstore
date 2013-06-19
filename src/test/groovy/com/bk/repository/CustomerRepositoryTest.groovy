@@ -10,7 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException
  * @author Andrei Petraru
  * 6 Jun 2013
  */
-class CustomerRepositoryGroovyTest extends BaseGroovyTest{
+class CustomerRepositoryTest extends BaseGroovyTest{
 	@Autowired
 	CustomerRepository repository
 

@@ -134,6 +134,6 @@ INSERT INTO goodbooks.book_genres(GENRE_ID, BOOK_ID) VALUES(20, 61);
 
 
 -- CUSTOMERS
-INSERT INTO goodbooks.customer(id,  emailaddress, firstname, lastname, password, username) VALUES (1, 'gigi@yahoo.com', null, null, 'b717f7ac0fa6434719119715dd45fe2fe6adea035ba3babc73238ebab0755dc7', 'gigi');
+INSERT INTO goodbooks.customer(id,  emailaddress, firstname, lastname, password, username) VALUES (1, 'gigi@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'gigi');
 
 commit;

@@ -15,7 +15,7 @@ import spock.lang.Shared;
  * @author: Andrei Petraru
  * Date: 6/5/13
  */
-class ReviewRepositoryGroovyTest extends BaseGroovyTest {
+class ReviewRepositoryTest extends BaseGroovyTest {
 	@Autowired
 	ReviewRepository repository
 	Customer customer = new Customer(username: 'user', password: 'pass', emailAddress: 'email@email.com')

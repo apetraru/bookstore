@@ -12,7 +12,7 @@ import org.springframework.data.domain.Pageable
  * @author: Andrei Petraru
  * Date: 6/5/13
  */
-class GenreRepositoryGroovyTest extends BaseGroovyTest {
+class GenreRepositoryTest extends BaseGroovyTest {
 	@Autowired
 	GenreRepository repository
 
