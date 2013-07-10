@@ -1,4 +1,4 @@
-package com.bk.service;
+package com.bk.service.impl;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bk.model.Book;
 import com.bk.repository.BookRepository;
+import com.bk.service.BookService;
 import com.bk.util.PaginatedHibernateSearch;
 
 /**

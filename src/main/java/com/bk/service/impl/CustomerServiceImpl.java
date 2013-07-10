@@ -1,7 +1,9 @@
-package com.bk.service;
+package com.bk.service.impl;
 
 import com.bk.model.Customer;
 import com.bk.repository.CustomerRepository;
+import com.bk.service.CustomerService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

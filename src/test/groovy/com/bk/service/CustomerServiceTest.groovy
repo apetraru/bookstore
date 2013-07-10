@@ -8,6 +8,7 @@ import spock.lang.Specification
 
 import com.bk.model.Customer
 import com.bk.repository.CustomerRepository
+import com.bk.service.impl.CustomerServiceImpl;
 
 /**
  * @author Andrei Petraru

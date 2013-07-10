@@ -7,6 +7,7 @@ import spock.lang.Specification
 
 import com.bk.model.Book
 import com.bk.repository.BookRepository
+import com.bk.service.impl.BookServiceImpl;
 
 /**
  * @author Andrei Petraru

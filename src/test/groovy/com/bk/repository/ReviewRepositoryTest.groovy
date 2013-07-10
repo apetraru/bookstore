@@ -1,15 +1,11 @@
 package com.bk.repository
 
+import org.springframework.beans.factory.annotation.Autowired
+
 import com.bk.common.BaseGroovyTest
 import com.bk.model.Book
 import com.bk.model.Customer
 import com.bk.model.Review
-import com.sun.corba.se.spi.activation.Repository;
-
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.transaction.annotation.Transactional;
-
-import spock.lang.Shared;
 
 /**
  * @author: Andrei Petraru
