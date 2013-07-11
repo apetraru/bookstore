@@ -29,6 +29,13 @@ body {
 
 .search-button:HOVER {
 	background: white;
+	border-radius: 25px;
+}
+
+.search-image {
+	width: 18px !important;
+	heigth: 18px !important;
+	margin-bottom: -3px
 }
 
 /* FOOTER */
