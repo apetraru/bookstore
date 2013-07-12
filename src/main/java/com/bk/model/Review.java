@@ -1,13 +1,16 @@
-/** @author Andrei Petraru Date: 3/13/13 */
 package com.bk.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+/** @author Andrei Petraru 
+  * Date: 3/13/13 */
 
 @Entity
 public class Review extends AbstractEntity {
@@ -16,9 +19,10 @@ public class Review extends AbstractEntity {
 	private Integer rating;
 
 	@Lob
-	private String review;
+	private String comment;
 
 	@Temporal(TemporalType.DATE)
+	@Column(name = "publish_date")
 	private Date publishDate;
 
 	@ManyToOne
@@ -43,12 +47,12 @@ public class Review extends AbstractEntity {
 		this.rating = rating;
 	}
 
-	public String getReview() {
-		return review;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setReview(String review) {
-		this.review = review;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	public Date getPublishDate() {
