@@ -4,14 +4,14 @@ package com.bk.enums;
  * @author Andrei Petraru
  * Mar 16, 2013
  */
-public enum BookStatus {
-	READING("Reading"),
-	READ("Read"),
-	WANT_TO_READ("Want to Read");
+public enum Status {
+	WANT_TO_READ("Want to Read"),
+	READING("Currently Reading"),
+	READ("Read");
 
     private String status;
 
-    private BookStatus(String status) {
+    private Status(String status) {
         this.status= status;
     }
 
