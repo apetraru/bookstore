@@ -34,7 +34,6 @@ import org.hibernate.search.annotations.Store;
 import org.hibernate.search.annotations.TokenFilterDef;
 import org.hibernate.search.annotations.TokenizerDef;
 
-import com.bk.enums.BookStatus;
 import com.bk.enums.Language;
 
 /**
@@ -42,9 +41,11 @@ import com.bk.enums.Language;
  */
 
 @Entity
-@AnalyzerDef(name = "customanalyzer", tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class), filters = {
-		@TokenFilterDef(factory = StandardFilterFactory.class),
-		@TokenFilterDef(factory = LowerCaseFilterFactory.class), @TokenFilterDef(factory = StopFilterFactory.class) })
+@AnalyzerDef(name = "customanalyzer", 
+			tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class), filters = {
+				@TokenFilterDef(factory = StandardFilterFactory.class),
+				@TokenFilterDef(factory = LowerCaseFilterFactory.class), 
+				@TokenFilterDef(factory = StopFilterFactory.class) })
 @Indexed
 public class Book extends AbstractEntity {
 
@@ -74,9 +75,6 @@ public class Book extends AbstractEntity {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "EDITION_LANGUAGE")
 	private Language language;
-
-	@Enumerated(EnumType.STRING)
-	private BookStatus status;
 
 	@ManyToMany
 	@JoinTable(name = "BOOK_GENRES", 
@@ -136,14 +134,6 @@ public class Book extends AbstractEntity {
 
 	public Language getLanguage() {
 		return language;
-	}
-
-	public BookStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(BookStatus status) {
-		this.status = status;
 	}
 
 	public void setLanguage(Language language) {
