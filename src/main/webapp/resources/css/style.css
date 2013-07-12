@@ -97,6 +97,17 @@ a:hover {
 	margin-right: -100px;
 }
 
+.book-cover {
+	margin-right: -20px;
+}
+
+.book-comments {
+	width: 61%;
+	margin-top: 10px;
+	float: right;
+	margin-right: 80px;
+}
+
 .book-details {
 	width: 60%;
 	float: left;
@@ -205,4 +216,33 @@ a:hover {
 .book-publish-label {
 	font-size: 0.8em;
 	margin-left: 15px;
+}
+
+/* COMMENTS */
+.book-review-likes {
+	font-size: 0.8em;
+}
+
+.book-review-date {
+	font-size: 0.8em;
+	float: right;
+	color: gray;
+	margin-right: 3px;
+}
+
+.book-review {
+	margin-left: 5px;
+}
+
+.book-review-username {
+	float: left;
+	margin: 0;
+	padding: 0;
+	margin-right: 8px;
+	color: #666600 !important;
+}
+
+.book-review-rating {
+	float: left;
+	margin-left: 5px;
 }
