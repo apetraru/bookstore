@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.bk.enums.Status;
+import com.bk.lazydatamodel.ReviewLazyDataModel;
 import com.bk.model.Book;
 import com.bk.model.Review;
 import com.bk.repository.ReviewRepository;
@@ -31,6 +33,9 @@ public class BookBean implements Serializable {
 
 	@Autowired
 	private BookService bookService;
+
+	@Autowired
+	private ReviewLazyDataModel lazyDataModel;
 
 	private Book book;
 	private Review bookReview;
@@ -62,6 +67,7 @@ public class BookBean implements Serializable {
 		else {
 			newRating();
 		}
+		lazyDataModel.setBook(book);
 	}
 
 	public String getAverageRating() {
@@ -118,5 +124,13 @@ public class BookBean implements Serializable {
 
 	public void setBookRating(Review bookRating) {
 		this.bookReview = bookRating;
+	}
+
+	public Status[] getStatuses() {
+		return Status.values();
+	}
+
+	public ReviewLazyDataModel getLazyDataModel() {
+		return lazyDataModel;
 	}
 }
