@@ -29,7 +29,7 @@ public interface ReviewRepository extends Repository<Review, Long>, Serializable
     @Query("select r from Review r where r.book = :book and r.customer = :customer")
     Review getCustomerRating(@Param("book")Book book, @Param("customer") Customer customer);
 
-	@Query("select count(r) from Review r where r.book = :book and r.rating != null")
+	@Query("select count(r) from Review r where r.book = :book and r.rating <> null")
 	Long getNumberOfBookRatings(@Param("book") Book book);
 	
 	Page<Review> findByBook(Book book, Pageable pageable);

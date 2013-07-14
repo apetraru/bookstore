@@ -6,6 +6,11 @@
       xmlns:f="http://java.sun.com/jsf/core">
 
 	<ui:composition template="/templates/template.xhtml">
+        <ui:define name="title">
+            <title>
+                GoodBooks <h:outputText value=" | #{authorBean.author.name}" rendered="#{not empty authorBean.author.id}"/>
+            </title>
+        </ui:define>
 		<ui:define name="body">
 			<f:metadata>
 				<f:viewParam name="id" value="#{authorBean.id}"/>
@@ -46,7 +51,7 @@
 						<p:row>
 							<p:column>
 								<h:outputText value="#{authorBean.author.about}" />
-							</p:column> 
+							</p:column>
 						</p:row>
 					</p:panelGrid>
 				</p:panel>
