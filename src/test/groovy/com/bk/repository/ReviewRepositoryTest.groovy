@@ -1,11 +1,13 @@
 package com.bk.repository
 
-import org.springframework.beans.factory.annotation.Autowired
-
 import com.bk.common.BaseGroovyTest
 import com.bk.model.Book
 import com.bk.model.Customer
 import com.bk.model.Review
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Pageable
 
 /**
  * @author: Andrei Petraru
@@ -75,6 +77,24 @@ class ReviewRepositoryTest extends BaseGroovyTest {
 		
 		then:
 		repository.getNumberOfBookRatings(book) == 1L
+	}
+
+	def 'find by book with pagination'() {
+		when:
+		Pageable page = new PageRequest(0, 5);
+		Page reviews = repository.findByBook(book, page);
+
+		then:
+		reviews.hasContent()
+	}
+
+	def 'find by non existing book with pagination'() {
+		when:
+		Pageable page = new PageRequest(0, 5);
+		Page reviews = repository.findByBook(null, page);
+
+		then:
+		!reviews.hasContent()
 	}
 	
 }
