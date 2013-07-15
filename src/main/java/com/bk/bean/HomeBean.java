@@ -2,7 +2,9 @@ package com.bk.bean;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -25,7 +27,7 @@ import com.bk.service.BookService;
 @Scope("request")
 public class HomeBean {
 
-	private static final Long DISPLAYED_BOOKS = 5L;
+	private static final Long DISPLAYED_BOOKS = 15L;
 
 	@Autowired
 	private BookService bookService;
@@ -40,6 +42,7 @@ public class HomeBean {
 
 	@PostConstruct
 	public void init() {
+		Set<Book> noDuplicates = new HashSet<>();
 		RandomData random = new RandomDataImpl();
 		Long count = bookService.count();
 
@@ -49,8 +52,9 @@ public class HomeBean {
 
 		for (int i = 0; i < DISPLAYED_BOOKS; i++) {
 			Book book = bookService.findById(random.nextLong(1, count));
-			books.add(book);
+			noDuplicates.add(book);
 		}
+		books.addAll(noDuplicates);
 	}
 
 	public List<Book> getBooks() {
