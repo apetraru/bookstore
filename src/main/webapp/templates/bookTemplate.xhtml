@@ -5,7 +5,7 @@
 <ui:composition>
 	<p:separator />
 	<p:graphicImage width="50px" height="75px" styleClass="float-left"
-		value="/resources/images/no_image_available.jpg" />
+		value="#{book.imageUrl}" />
 	<p:button value="#{book.title}" outcome="#{navigationBean.book()}" styleClass="book-title">
 		<f:param name="id" value="#{book.id}" />
 		<f:param name="title" value="#{book.title}" />
