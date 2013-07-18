@@ -18,7 +18,7 @@
 			<p:panel styleClass="book-panel" rendered="#{not empty bookBean.book.id}">
 				<div class="book-image">
 					<div class="book-cover">
-						<p:graphicImage width="50%" height="50%" value="#{bookBean.book.imageUrl}" />
+						<p:graphicImage width="200" height="275" value="#{bookBean.book.imageUrl}" />
 					</div>
 					<p:spacer height="2%" width="100%" />
 					<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!loginBean.loggedOn}" id="bookRatingId">
