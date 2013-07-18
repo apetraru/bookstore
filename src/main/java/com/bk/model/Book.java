@@ -70,10 +70,11 @@ public class Book extends AbstractEntity {
 	@Temporal(TemporalType.DATE)
 	@Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
 	@DateBridge(resolution = Resolution.YEAR)
+	@Column(name = "publish_date")
 	private Date publishDate;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "EDITION_LANGUAGE")
+	@Column(name = "edition_language")
 	private Language language;
 
 	@ManyToMany
@@ -82,6 +83,7 @@ public class Book extends AbstractEntity {
 		inverseJoinColumns = @JoinColumn(name = "GENRE_ID"))
 	private Set<Genre> genres = new HashSet<>();
 
+	@Column(name = "image_url")
 	private String imageUrl;
 
 	public void setTitle(String title) {
