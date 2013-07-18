@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  *
- * @author ph
+ * @author Andrei Petraru
  */
 @Entity
 public class Customer extends AbstractEntity {
@@ -20,7 +20,7 @@ public class Customer extends AbstractEntity {
 	private String username;
 	@Column(nullable = false)
 	private String password;
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false, unique = true, name = "email_address")
 	private String emailAddress;
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "customer_id")
