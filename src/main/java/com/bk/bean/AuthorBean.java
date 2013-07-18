@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.bk.lazydatamodel.BookAuthorLazyDataModel;
 import com.bk.model.Author;
 import com.bk.repository.AuthorRepository;
 
@@ -22,6 +23,9 @@ public class AuthorBean implements Serializable {
 
 	@Autowired
 	private AuthorRepository authorRepository;
+	
+	@Autowired
+	private BookAuthorLazyDataModel lazyDataModel;
 
 	private Author author;
 	private Long id;
@@ -41,6 +45,8 @@ public class AuthorBean implements Serializable {
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
 		}
+		
+		lazyDataModel.setAuthor(author);
 	}
 
 	public void save() {
@@ -62,4 +68,9 @@ public class AuthorBean implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public BookAuthorLazyDataModel getLazyDataModel() {
+		return lazyDataModel;
+	}
+	
 }
