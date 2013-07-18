@@ -9,16 +9,19 @@ import org.hibernate.search.jpa.FullTextQuery;
 import org.hibernate.search.jpa.Search;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bk.model.Author;
 import com.bk.model.Book;
 import com.bk.repository.BookRepository;
 import com.bk.service.BookService;
 import com.bk.util.PaginatedHibernateSearch;
 
 /**
- * User: ph
+ * @author Andrei Petraru
  * Date: 1/28/13
  */
 
@@ -72,6 +75,11 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public Long count() {
 		return repository.count();
+	}
+	
+	@Override
+	public Page<Book> findByAuthor(Author author, Pageable pageable) {
+		return repository.findByAuthor(author, pageable);
 	}
 
 }
