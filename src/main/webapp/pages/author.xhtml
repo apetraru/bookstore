@@ -10,6 +10,7 @@
 		<title>GoodBooks <h:outputText value=" | #{authorBean.author.name}"
 				rendered="#{not empty authorBean.author.id}" />
 		</title>
+        <h:outputScript library="js" name="show-hide.js"/>
 	</ui:define>
 	<ui:define name="body">
 		<f:metadata>
@@ -19,7 +20,7 @@
 		<h:form id="authorForm">
 			<div class="author-image">
 				<p:graphicImage rendered="#{not empty authorBean.author}" value="#{authorBean.author.imageUrl}"
-					width="225" height="300" />
+					width="210" height="300" />
 			</div>
 			<p:panel styleClass="author-panel" header="#{authorBean.author.name}"
 				rendered="#{not empty authorBean.author}">
@@ -72,12 +73,13 @@
 					</p:row>
 					<p:row>
 						<p:column colspan="2">
-							<h:outputText value="#{authorBean.author.about}" />
+                            <div class="author-about collapsed">
+							    <h:outputText value="#{authorBean.author.about}" />
+                            </div>
 						</p:column>
 					</p:row>
 				</p:panelGrid>
 			</p:panel>
-			<p:separator />
 			<p:dataGrid rows="5" paginator="true" columns="1" value="#{authorBean.lazyDataModel}" var="book"
 				paginatorPosition="bottom" lazy="true"
 				paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"

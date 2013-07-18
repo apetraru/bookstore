@@ -149,7 +149,7 @@ a:hover {
 	float: right;
 	width: 600px;
 	margin-right: 10%;
-	margin-top: 10px;
+	margin-top: 15px;
 }
 
 .author-image {
@@ -161,10 +161,27 @@ a:hover {
 	font-weight: bold;
 }
 
+.author-about {
+    font-size: 0.85em;
+}
+
 .author-books {
+    margin-top: 25px;
 	float: right;
 	margin-right: 10%;
 	width: 600px;
+}
+
+.author-about.collapsed {
+    height: 120px;
+    overflow: hidden;
+}
+
+.expanded {
+    position: absolute;
+    height: 21px;
+    color: blue;
+    float: left;
 }
 
 /* HOME PAGE */
