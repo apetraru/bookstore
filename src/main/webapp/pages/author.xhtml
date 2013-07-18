@@ -5,60 +5,96 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
 
-	<ui:composition template="/templates/template.xhtml">
-        <ui:define name="title">
-            <title>
-                GoodBooks <h:outputText value=" | #{authorBean.author.name}" rendered="#{not empty authorBean.author.id}"/>
-            </title>
-        </ui:define>
-		<ui:define name="body">
-			<f:metadata>
-				<f:viewParam name="id" value="#{authorBean.id}"/>
-				<f:event type="preRenderView" listener="#{authorBean.init()}"/>
-			</f:metadata>
-			<h:form id="authorForm">
-				<p:panel styleClass="author-panel" header="#{authorBean.author.name}" rendered="#{not empty authorBean.author}">
-					<p:panelGrid>
-						<p:row>
-							<p:column>
-								<h:outputText value="Date of Birth" />
-							</p:column>
-							<p:column>
-								<h:outputText value="#{authorBean.author.birthDate}" />
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column>
-								<h:outputText value="Gender" />
-							</p:column>
-							<p:column>
-								<h:outputText value="#{authorBean.author.gender}" />
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column>
-								<h:outputText value="Genre"/>
-							</p:column>
-							<p:column>
-								<h:outputText value="TO BE ADDED" />
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column>
-								<h:outputText value="About this author"/>
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column>
-								<h:outputText value="#{authorBean.author.about}" />
-							</p:column>
-						</p:row>
-					</p:panelGrid>
-				</p:panel>
-				<div class="center">
-					<p:messages globalOnly="true" />
-				</div>
-			</h:form>
-		</ui:define>
-	</ui:composition>
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="title">
+		<title>GoodBooks <h:outputText value=" | #{authorBean.author.name}"
+				rendered="#{not empty authorBean.author.id}" />
+		</title>
+	</ui:define>
+	<ui:define name="body">
+		<f:metadata>
+			<f:viewParam name="id" value="#{authorBean.id}" />
+			<f:event type="preRenderView" listener="#{authorBean.init()}" />
+		</f:metadata>
+		<h:form id="authorForm">
+			<div class="author-image">
+				<p:graphicImage rendered="#{not empty authorBean.author}" value="#{authorBean.author.imageUrl}"
+					width="225" height="300" />
+			</div>
+			<p:panel styleClass="author-panel" header="#{authorBean.author.name}"
+				rendered="#{not empty authorBean.author}">
+				<p:panelGrid>
+					<p:row rendered="#{not empty authorBean.author.birthDate}">
+						<p:column>
+							<h:outputText value="Born" styleClass="author-bold" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{authorBean.author.birthDate}">
+								<f:convertDateTime pattern="dd MMMM yyyy" />
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row rendered="#{not empty authorBean.author.deathDate}">
+						<p:column>
+							<h:outputText value="Died" styleClass="author-bold" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{authorBean.author.deathDate}">
+								<f:convertDateTime pattern="dd MMMM yyyy" />
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="Gender" styleClass="author-bold" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{authorBean.author.gender.toString()}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="Genre" styleClass="author-bold" />
+						</p:column>
+						<p:column>
+							<h:outputText value="TO BE ADDED" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<p:separator />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<h:outputText value="About this author" styleClass="author-bold" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText value="#{authorBean.author.about}" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
+			<p:separator />
+			<p:dataGrid rows="5" paginator="true" columns="1" value="#{authorBean.lazyDataModel}" var="book"
+				paginatorPosition="bottom" lazy="true"
+				paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
+				rowsPerPageTemplate="5" styleClass="author-books">
+				<f:facet name="header">
+					<h:outputText value="Books by : #{authorBean.author.name}" />
+				</f:facet>
+				<ui:include src="/templates/bookTemplate.xhtml">
+					<ui:param name="book" value="#{book}" />
+					<ui:param name="totalRatings" value="#{ratingsBean.getNumberOfRatings(book)}" />
+					<ui:param name="averageRating" value="#{ratingsBean.getAverageRating(book)}" />
+				</ui:include>
+			</p:dataGrid>
+			<div class="center">
+				<p:messages globalOnly="true" />
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>

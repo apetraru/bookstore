@@ -146,6 +146,25 @@ a:hover {
 /* AUTHOR */
 .author-panel {
 	border: none;
+	float: right;
+	width: 600px;
+	margin-right: 10%;
+	margin-top: 10px;
+}
+
+.author-image {
+	float: left;
+	padding: 15px;
+}
+
+.author-bold {
+	font-weight: bold;
+}
+
+.author-books {
+	float: right;
+	margin-right: 10%;
+	width: 600px;
 }
 
 /* HOME PAGE */
