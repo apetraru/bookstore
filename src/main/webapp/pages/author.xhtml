@@ -17,7 +17,7 @@
 				<f:event type="preRenderView" listener="#{authorBean.init()}"/>
 			</f:metadata>
 			<h:form id="authorForm">
-				<p:panel styleClass="author-panel" header="#{authorBean.author.name}">
+				<p:panel styleClass="author-panel" header="#{authorBean.author.name}" rendered="#{not empty authorBean.author}">
 					<p:panelGrid>
 						<p:row>
 							<p:column>
@@ -55,6 +55,9 @@
 						</p:row>
 					</p:panelGrid>
 				</p:panel>
+				<div class="center">
+					<p:messages globalOnly="true" />
+				</div>
 			</h:form>
 		</ui:define>
 	</ui:composition>
