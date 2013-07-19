@@ -1,17 +1,29 @@
 package com.bk.repository
 
 import com.bk.common.BaseGroovyTest
+import com.bk.model.Author
 import com.bk.model.Book
+
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Pageable
 
 class BookRepositoryTest extends BaseGroovyTest {
 
 	@Autowired
 	BookRepository repository
+	
+	Author author = new Author(name: 'author')
+	Author authorWithNoBooks = new Author(name: 'author2')
+	
+	Pageable page = new PageRequest(0, 5)
 
 	def setup() {
-		Book book = new Book(title: 'title', isbn: 'isbn', pages: 5)
+		entityManager.persist(author)
+		entityManager.persist(authorWithNoBooks)
+		Book book = new Book(title: 'title', isbn: 'isbn', pages: 5, author: author)
 		repository.save(book)
 	}
 
@@ -88,5 +100,29 @@ class BookRepositoryTest extends BaseGroovyTest {
 	def 'count'() {
 		expect:
 		repository.count() == 1L
+	}
+	
+	def 'find by book with pagination'() {
+		when:
+		Page books = repository.findByAuthor(author, page)
+
+		then:
+		books.hasContent()
+	}
+
+	def 'find by author with no books with pagination'() {
+		when:
+		Page books = repository.findByAuthor(authorWithNoBooks, page)
+
+		then:
+		!books.hasContent()
+	}
+	
+	def 'find by null author with pagination'() {
+		when:
+		Page books = repository.findByAuthor(null, page)
+
+		then:
+		!books.hasContent()
 	}
 }
