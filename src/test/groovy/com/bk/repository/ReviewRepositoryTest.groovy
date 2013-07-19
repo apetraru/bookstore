@@ -16,12 +16,17 @@ import org.springframework.data.domain.Pageable
 class ReviewRepositoryTest extends BaseGroovyTest {
 	@Autowired
 	ReviewRepository repository
+	
 	Customer customer = new Customer(username: 'user', password: 'pass', emailAddress: 'email@email.com')
 	Book book = new Book(title: 'title', isbn: 'isbn', pages: 5)
+	Book bookNoReviews = new Book(title: 'title2', isbn: 'isbn2', pages: 5)
+	
+	Pageable page = new PageRequest(0, 5)
 
 	def setup() {
 		entityManager.persist(customer)
 		entityManager.persist(book)
+		entityManager.persist(bookNoReviews)
 		Review review = new Review(book: book, customer: customer, rating: 5)
 		repository.save(review)
 	}
@@ -81,17 +86,24 @@ class ReviewRepositoryTest extends BaseGroovyTest {
 
 	def 'find by book with pagination'() {
 		when:
-		Pageable page = new PageRequest(0, 5);
-		Page reviews = repository.findByBook(book, page);
+		
+		Page reviews = repository.findByBook(book, page)
 
 		then:
 		reviews.hasContent()
 	}
 
-	def 'find by non existing book with pagination'() {
+	def 'find by book with no reviews with pagination'() {
 		when:
-		Pageable page = new PageRequest(0, 5);
-		Page reviews = repository.findByBook(null, page);
+		Page reviews = repository.findByBook(bookNoReviews, page)
+
+		then:
+		!reviews.hasContent()
+	}
+	
+	def 'find by null book with pagination'() {
+		when:
+		Page reviews = repository.findByBook(null, page)
 
 		then:
 		!reviews.hasContent()
