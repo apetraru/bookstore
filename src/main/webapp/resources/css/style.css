@@ -146,42 +146,41 @@ a:hover {
 /* AUTHOR */
 .author-panel {
 	border: none;
-	float: right;
-	width: 600px;
-	margin-right: 10%;
+	float: left;
+	width: 60%;
+	margin-right: 3%;
 	margin-top: 15px;
 }
 
 .author-image {
 	float: left;
 	padding: 15px;
+	margin-left: 3%;
 }
 
 .author-bold {
 	font-weight: bold;
 }
 
+.author-books {
+    float: left;
+    margin: 5% 0 4% 4%;
+    width: 85%;
+}
+
 .author-about {
+    height: 115px;
+    overflow: hidden;
     font-size: 0.85em;
 }
 
-.author-books {
-    margin-top: 25px;
-	float: right;
-	margin-right: 10%;
-	width: 600px;
+.author-about-expanded {
+	height: 0%;
 }
 
-.author-about.collapsed {
-    height: 120px;
-    overflow: hidden;
-}
-
-.expanded {
-    position: absolute;
-    height: 21px;
-    color: blue;
-    float: left;
+.author-show-more {
+	cursor: pointer;
+	color: blue;
 }
 
 /* HOME PAGE */
