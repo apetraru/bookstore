@@ -18,7 +18,7 @@ import com.bk.service.BookService;
 @Component
 @Scope("request")
 public class SearchBean {
-	private static final int FIRST_RESULT = 1;
+	private static final int FIRST_RESULT = 0;
 	private static final int RESULTS_PER_PAGE = 10;
 
 	@Autowired
