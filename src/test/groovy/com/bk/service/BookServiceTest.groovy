@@ -1,13 +1,10 @@
 package com.bk.service
 
-import java.lang.reflect.Field
-import org.springframework.util.ReflectionUtils;
-
 import spock.lang.Specification
 
 import com.bk.model.Book
 import com.bk.repository.BookRepository
-import com.bk.service.impl.BookServiceImpl;
+import com.bk.service.impl.BookServiceImpl
 
 /**
  * @author Andrei Petraru
@@ -18,9 +15,7 @@ class BookServiceTest extends Specification {
 	BookService service = new BookServiceImpl()
 
 	def setup() {
-		Field field = ReflectionUtils.findField(BookServiceImpl.class, 'repository')
-		ReflectionUtils.makeAccessible(field)
-		service.repository = repository
+		service.@repository = repository
 	}
 
 	def 'test save'() {

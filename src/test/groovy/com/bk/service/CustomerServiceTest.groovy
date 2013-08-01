@@ -1,14 +1,10 @@
 package com.bk.service
 
-import java.lang.reflect.Field
-
-import org.springframework.util.ReflectionUtils
-
 import spock.lang.Specification
 
 import com.bk.model.Customer
 import com.bk.repository.CustomerRepository
-import com.bk.service.impl.CustomerServiceImpl;
+import com.bk.service.impl.CustomerServiceImpl
 
 /**
  * @author Andrei Petraru
@@ -19,9 +15,7 @@ class CustomerServiceTest extends Specification {
 	CustomerService service = new CustomerServiceImpl()
 
 	def setup() {
-		Field field = ReflectionUtils.findField(CustomerServiceImpl.class, 'repository')
-		ReflectionUtils.makeAccessible(field)
-		service.repository = repository
+		service.@repository = repository
 	}
 
 	def 'test save'() {
