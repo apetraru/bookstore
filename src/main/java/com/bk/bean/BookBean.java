@@ -68,6 +68,10 @@ public class BookBean implements Serializable {
 			newRating();
 		}
 		lazyDataModel.setBook(book);
+		if (bookReview.getBook() == null) {
+			bookReview.setBook(book);
+			bookReview.setCustomer(loginBean.getLoggedInUser());
+		}		
 	}
 
 	public String getAverageRating() {
@@ -84,11 +88,11 @@ public class BookBean implements Serializable {
 
 	public void addRating(RateEvent event) {
 		Integer rate = (Integer) event.getRating();
-		if (bookReview.getBook() == null) {
-			bookReview.setBook(book);
-			bookReview.setCustomer(loginBean.getLoggedInUser());
-		}
 		bookReview.setRating(rate);
+		saveReview();
+	}
+	
+	public void saveReview() {
 		reviewRepository.save(bookReview);
 	}
 

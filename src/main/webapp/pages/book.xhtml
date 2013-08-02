@@ -21,17 +21,39 @@
 						<p:graphicImage width="200" height="275" value="#{bookBean.book.imageUrl}" />
 					</div>
 					<p:spacer height="2%" width="100%" />
-					<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!loginBean.loggedOn}" id="bookRatingId">
-						<p:ajax event="rate" listener="#{bookBean.addRating()}" update="bookForm" />
-						<p:ajax event="cancel" listener="#{bookBean.removeRating()}" update="bookForm" />
-					</p:rating>
-					<p:spacer height="2%" width="100%" />
 					<p:selectOneMenu disabled="#{not loginBean.loggedOn}">
 						<f:selectItem itemValue="-1" itemLabel="Book Status" />
 						<f:selectItems value="#{bookBean.statuses}" />
 					</p:selectOneMenu>
 					<p:spacer height="2%" width="100%" />
-					<p:commandButton value="Write a Review" action="#" />
+					<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!loginBean.loggedOn}" id="bookRatingId">
+						<p:ajax event="rate" listener="#{bookBean.addRating}" update="bookForm" />
+						<p:ajax event="cancel" listener="#{bookBean.removeRating}" update="bookForm" />
+					</p:rating>
+					<p:spacer height="2%" width="100%" />
+					<p:commandButton value="#{empty bookBean.bookRating.comment ? 'Write a review' : 'Edit my review'}" 
+						onclick="reviewDialog.show();" type="button" 
+						disabled="#{!loginBean.loggedOn}"/>
+					<p:dialog header="Edit your review" widgetVar="reviewDialog" width="800" height="600"
+						modal="true" showEffect="fade" hideEffect="fade" style="margin-top: 60px; position: fixed">
+						<h:outputText value="#{bookBean.book.title}" styleClass="book-title" />
+						<h:outputText value=" by " />
+						<h:outputText value="#{bookBean.book.author.name}" styleClass="book-author-name" />
+						<p:spacer height="2%" width="100%" />
+						<h:outputText value="My rating " styleClass="float-left"/>
+						<p:spacer height="0" width="3%"/>
+						<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!loginBean.loggedOn}" styleClass="float-left">
+							<p:ajax event="rate" listener="#{bookBean.addRating}"/>
+							<p:ajax event="cancel" listener="#{bookBean.removeRating}"/>
+						</p:rating>
+						<p:spacer height="2%" width="100%" />
+						<h:outputText value="What did you think?" />
+						<p:spacer height="2%" width="100%" />
+						<p:inputTextarea value="#{bookBean.bookRating.comment}" style="width: 90%; height: 420px"/>
+						<p:spacer height="2%" width="100%" />
+						<p:commandButton value="Save" action="#{bookBean.saveReview}" update=":bookForm"
+							oncomplete="reviewDialog.hide();"/>
+					</p:dialog>
 				</div>
 				<div class="book-details">
 					<p:panel styleClass="book-ratings-panel">
@@ -95,7 +117,7 @@
 						<h:outputText value="Comments" />
 					</f:facet>
 					<p:separator/>
-					<p:row>
+					<p:row rendered="#{not empty review.comment}">
 						<p:column>
 							<div class="book-review">
 								<p:commandLink value="#{review.customer.username}" styleClass="book-review-username"/>
@@ -108,7 +130,8 @@
 								<br /> <br />
 								<h:outputText value="#{review.comment}" />
 								<br /> <br />
-								<h:outputText value="#{review.likes} likes" styleClass="book-review-likes" />
+								<h:outputText value="#{review.likes}" styleClass="book-review-likes" />
+								<h:outputText value="#{review.likes eq 1 ? ' like' : ' likes'}" styleClass="book-review-likes" />
 							</div>
 						</p:column>
 					</p:row>
