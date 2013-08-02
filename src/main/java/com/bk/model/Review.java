@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 @Entity
 public class Review extends AbstractEntity {
 
-	private Long likes;
+	private Long likes = 0L;
 	private Integer rating;
 
 	@Lob
