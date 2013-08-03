@@ -1,10 +1,12 @@
 package com.bk.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.RateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -93,6 +95,12 @@ public class BookBean implements Serializable {
 	}
 	
 	public void saveReview() {
+		String comment = bookReview.getComment();
+		if (!StringUtils.isEmpty(comment)) {
+			if (bookReview.getPublishDate() == null) {
+				bookReview.setPublishDate(new Date());
+			}
+		}
 		reviewRepository.save(bookReview);
 	}
 
