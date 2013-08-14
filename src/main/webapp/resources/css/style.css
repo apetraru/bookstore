@@ -281,3 +281,11 @@ a:hover {
 	float: left;
 	margin-left: 5px;
 }
+
+.book-review-like-button {
+	margin-left: 3px;
+}
+
+.book-review-like-button.ui-button-text-only .ui-button-text {
+	padding: 3px;
+}
