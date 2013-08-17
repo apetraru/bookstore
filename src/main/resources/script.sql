@@ -149,18 +149,18 @@ INSERT INTO goodbooks.customer(id,  email_address, firstname, lastname, password
 INSERT INTO goodbooks.customer(id,  email_address, firstname, lastname, password, username) VALUES (14, 'vasile13@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile13');
 
 -- REVIEW
-INSERT INTO goodbooks.review(id, likes, rating, publish_date, comment, book_id, customer_id) VALUES(1, 15, 5, '2007-01-01', 'Great book', 1, 1);
-INSERT INTO goodbooks.review(id, likes, rating, publish_date, comment, book_id, customer_id) VALUES(2, 25, 3, '2009-02-01', 'Great book', 1, 2);
-INSERT INTO goodbooks.review(id, likes, rating, publish_date, comment, book_id, customer_id) VALUES(3, 32, 2, '2013-08-14', 'Great book', 1, 3);
-INSERT INTO goodbooks.review(id, likes, rating, publish_date, comment, book_id, customer_id) VALUES(4, 3, 1, '2013-09-30', 'Great book', 1, 4);
-INSERT INTO goodbooks.review(id, likes, rating, publish_date, comment, book_id, customer_id) VALUES(5, 78, 5, '2013-09-30', 'Great book', 1, 5);
-INSERT INTO goodbooks.review(id, likes, rating, publish_date, comment, book_id, customer_id) VALUES(6, 22, 5, '2013-09-30', 'Great book', 1, 6);
-INSERT INTO goodbooks.review(id, likes, rating, publish_date, comment, book_id, customer_id) VALUES(7, 22, 4, '2013-09-30', 'Great book', 1, 7);
-INSERT INTO goodbooks.review(id, likes, rating, publish_date, comment, book_id, customer_id) VALUES(8, 14, 2, '2013-09-30', 'Great book', 1, 8);
-INSERT INTO goodbooks.review(id, likes, rating, publish_date, comment, book_id, customer_id) VALUES(9, 14, 3, '2013-09-30', 'Great book', 1, 9);
-INSERT INTO goodbooks.review(id, likes, rating, publish_date, comment, book_id, customer_id) VALUES(10, 14, 1, '2013-09-30', 'Great book', 1, 10);
-INSERT INTO goodbooks.review(id, likes, rating, publish_date, comment, book_id, customer_id) VALUES(11, 13, 2, '2013-09-30', 'Great book', 1, 11);
-INSERT INTO goodbooks.review(id, likes, rating, publish_date, comment, book_id, customer_id) VALUES(12, 152, 4, '2013-09-30', 'Great book', 1, 12);
-INSERT INTO goodbooks.review(id, likes, rating, publish_date, comment, book_id, customer_id) VALUES(13, 3, 5, '2013-09-30', 'Great book', 2, 2);
+INSERT INTO goodbooks.review(id, rating, publish_date, comment, book_id, customer_id) VALUES(1, 5, '2007-01-01', 'Great book', 1, 1);
+INSERT INTO goodbooks.review(id, rating, publish_date, comment, book_id, customer_id) VALUES(2, 3, '2009-02-01', 'Great book', 1, 2);
+INSERT INTO goodbooks.review(id, rating, publish_date, comment, book_id, customer_id) VALUES(3, 2, '2013-08-14', 'Great book', 1, 3);
+INSERT INTO goodbooks.review(id, rating, publish_date, comment, book_id, customer_id) VALUES(4, 1, '2013-09-30', 'Great book', 1, 4);
+INSERT INTO goodbooks.review(id, rating, publish_date, comment, book_id, customer_id) VALUES(5, 5, '2013-09-30', 'Great book', 1, 5);
+INSERT INTO goodbooks.review(id, rating, publish_date, comment, book_id, customer_id) VALUES(6, 5, '2013-09-30', 'Great book', 1, 6);
+INSERT INTO goodbooks.review(id, rating, publish_date, comment, book_id, customer_id) VALUES(7, 4, '2013-09-30', 'Great book', 1, 7);
+INSERT INTO goodbooks.review(id, rating, publish_date, comment, book_id, customer_id) VALUES(8, 2, '2013-09-30', 'Great book', 1, 8);
+INSERT INTO goodbooks.review(id, rating, publish_date, comment, book_id, customer_id) VALUES(9, 3, '2013-09-30', 'Great book', 1, 9);
+INSERT INTO goodbooks.review(id, rating, publish_date, comment, book_id, customer_id) VALUES(10, 1, '2013-09-30', 'Great book', 1, 10);
+INSERT INTO goodbooks.review(id, rating, publish_date, comment, book_id, customer_id) VALUES(11, 2, '2013-09-30', 'Great book', 1, 11);
+INSERT INTO goodbooks.review(id, rating, publish_date, comment, book_id, customer_id) VALUES(12, 4, '2013-09-30', 'Great book', 1, 12);
+INSERT INTO goodbooks.review(id, rating, publish_date, comment, book_id, customer_id) VALUES(13, 5, '2013-09-30', 'Great book', 2, 2);
 
 commit;
