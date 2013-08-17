@@ -41,6 +41,7 @@ public class BookBean implements Serializable {
 
 	private Book book;
 	private Review bookReview;
+	private Review likeReview;
 	private Long id;
 
 	public void init() {
@@ -104,14 +105,31 @@ public class BookBean implements Serializable {
 		reviewRepository.save(bookReview);
 	}
 
+	public void like() {
+		if (!isLoggedIn()) {
+			return;
+		}
+
+		if (isReviewLiked()) {
+			likeReview.removeCustomerLike(getUserId());
+		}
+		else {
+			likeReview.addCustomerLike(getUserId());
+		}
+		reviewRepository.save(likeReview);
+	}
+
+	public boolean isReviewLiked() {
+		return isLiked(likeReview);
+	}
+
+	public String isLikedButtonText(Review review) {
+		return isLiked(review) ? "unlike" : "like";
+	}
+
 	public void removeRating() {
 		bookReview.setRating(null);
 		reviewRepository.save(bookReview);
-	}
-
-	private void newRating() {
-		bookReview = new Review();
-		bookReview.setRating(0);
 	}
 
 	public Book getBook() {
@@ -144,5 +162,37 @@ public class BookBean implements Serializable {
 
 	public ReviewLazyDataModel getLazyDataModel() {
 		return lazyDataModel;
+	}
+
+	public Review getLikeReview() {
+		return likeReview;
+	}
+
+	public void setLikeReview(Review likeReview) {
+		this.likeReview = likeReview;
+	}
+
+	private void newRating() {
+		bookReview = new Review();
+		bookReview.setRating(0);
+	}
+
+	private Long getUserId() {
+		return loginBean.getLoggedInUser().getId();
+	}
+
+	private boolean isLoggedIn() {
+		return loginBean.isLoggedOn();
+	}
+
+	private boolean isLiked(Review review) {
+		if (!isLoggedIn()) {
+			return false;
+		}
+		
+		if (review != null) {
+			return review.isLikedByCustomer(getUserId());
+		}
+		return true;
 	}
 }
