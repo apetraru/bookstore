@@ -31,8 +31,8 @@
 						<p:ajax event="cancel" listener="#{bookBean.removeRating}" update="bookForm" />
 					</p:rating>
 					<p:spacer height="2%" width="100%" />
-					<p:commandButton value="#{empty bookBean.bookRating.comment ? 'Write a review' : 'Edit my review'}" 
-						onclick="reviewDialog.show();" type="button" 
+					<p:commandButton value="#{empty bookBean.bookRating.comment ? 'Write a review' : 'Edit my review'}"
+						onclick="reviewDialog.show();" type="button"
 						disabled="#{!loginBean.loggedOn}"/>
 					<p:dialog header="Edit your review" widgetVar="reviewDialog" width="800" height="600"
 						modal="true" showEffect="fade" hideEffect="fade" style="margin-top: 60px; position: fixed">
@@ -112,7 +112,7 @@
 				<p:dataGrid rows="10" paginator="true" columns="1" value="#{bookBean.lazyDataModel}" var="review"
 					paginatorPosition="bottom" lazy="true"
 					paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
-					rowsPerPageTemplate="10" rendered="#{not empty bookBean.book.id}">
+					rowsPerPageTemplate="10" rendered="#{not empty bookBean.book.id}" id="reviews">
 					<f:facet name="header">
 						<h:outputText value="Comments" />
 					</f:facet>
@@ -130,9 +130,19 @@
 								<br /> <br />
 								<h:outputText value="#{review.comment}" />
 								<br /> <br />
-								<h:outputText value="#{review.likes}" styleClass="book-review-likes" />
-								<h:outputText value="#{review.likes eq 1 ? ' like' : ' likes'}" styleClass="book-review-likes" />
-                                <p:commandButton value="like" styleClass="book-review-like-button"/>
+
+                                <div class="book-review-likes">
+                                    <h:outputText value="#{review.likes}" styleClass="book-review-likes-text"/>
+                                    <p:spacer width="5px" styleClass="float-left"/>
+                                    <h:outputText value="#{review.likes eq 1 ? 'like' : 'likes'}"
+                                                  styleClass="book-review-likes-text"/>
+                                </div>
+                                <p:commandButton value="#{bookBean.isLikedButtonText(review)}"
+                                                 styleClass="book-review-like-button"
+                                                 disabled="#{empty loginBean.loggedInUser}"
+                                                 action="#{bookBean.like}" update="reviews">
+                                    <f:setPropertyActionListener value="#{review}" target="#{bookBean.likeReview}" />
+                                </p:commandButton>
 							</div>
 						</p:column>
 					</p:row>

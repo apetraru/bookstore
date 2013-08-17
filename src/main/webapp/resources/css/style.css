@@ -34,7 +34,7 @@ body {
 
 .search-image {
 	width: 18px !important;
-	heigth: 18px !important;
+	height: 18px !important;
 	margin-bottom: -3px
 }
 
@@ -256,6 +256,9 @@ a:hover {
 /* COMMENTS */
 .book-review-likes {
 	font-size: 0.8em;
+    width: 45px;
+    float: left;
+    text-align: center;
 }
 
 .book-review-date {
@@ -271,7 +274,6 @@ a:hover {
 
 .book-review-username {
 	float: left;
-	margin: 0;
 	padding: 0;
 	margin-right: 8px;
 	color: #666600 !important;
@@ -284,8 +286,14 @@ a:hover {
 
 .book-review-like-button {
 	margin-left: 3px;
+    width: 50px;
 }
 
 .book-review-like-button.ui-button-text-only .ui-button-text {
 	padding: 3px;
+}
+
+.book-review-likes-text {
+    margin-top: 4px;
+    float: left;
 }
