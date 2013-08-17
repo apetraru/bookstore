@@ -1,13 +1,10 @@
 package com.bk.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 /** @author Andrei Petraru 
   * Date: 3/13/13 */
@@ -15,8 +12,11 @@ import javax.persistence.TemporalType;
 @Entity
 public class Review extends AbstractEntity {
 
-	private Long likes = 0L;
+	private Integer likes = 0;
 	private Integer rating;
+
+	@ElementCollection(fetch = FetchType.EAGER)
+	private Set<Long> customerLikes = new HashSet<>();
 
 	@Lob
 	private String comment;
@@ -31,12 +31,22 @@ public class Review extends AbstractEntity {
 	@ManyToOne
 	private Customer customer;
 
-	public Long getLikes() {
-		return likes;
+	public Integer getLikes() {
+		return likes == null ? 0 : likes;
 	}
 
-	public void setLikes(Long likes) {
-		this.likes = likes;
+	public void addCustomerLike(Long customerId) {
+		customerLikes.add(customerId);
+		updateLikes();
+	}
+
+	public void removeCustomerLike(Long customerId) {
+		customerLikes.remove(customerId);
+		updateLikes();
+	}
+
+	public boolean isLikedByCustomer(Long customerId) {
+		return customerLikes.contains(customerId);
 	}
 
 	public Integer getRating() {
@@ -77,5 +87,9 @@ public class Review extends AbstractEntity {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	private void updateLikes() {
+		likes = customerLikes.size();
 	}
 }
