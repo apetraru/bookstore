@@ -6,13 +6,14 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-/** @author Andrei Petraru 
-  * Date: 3/13/13 */
+/** @author Andrei Petraru
+  * Date: 3/13/13
+  */
 
 @Entity
 public class Review extends AbstractEntity {
 
-	private Integer likes = 0;
+	private Integer likes;
 	private Integer rating;
 
 	@ElementCollection(fetch = FetchType.EAGER)
@@ -32,7 +33,7 @@ public class Review extends AbstractEntity {
 	private Customer customer;
 
 	public Integer getLikes() {
-		return likes == null ? 0 : likes;
+		return likes;
 	}
 
 	public void addCustomerLike(Long customerId) {

@@ -97,10 +97,8 @@ public class BookBean implements Serializable {
 	
 	public void saveReview() {
 		String comment = bookReview.getComment();
-		if (!StringUtils.isEmpty(comment)) {
-			if (bookReview.getPublishDate() == null) {
-				bookReview.setPublishDate(new Date());
-			}
+		if (!StringUtils.isEmpty(comment) && bookReview.getPublishDate() == null) {
+			bookReview.setPublishDate(new Date());
 		}
 		reviewRepository.save(bookReview);
 	}

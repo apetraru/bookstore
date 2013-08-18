@@ -132,7 +132,8 @@
 								<br /> <br />
 
                                 <div class="book-review-likes">
-                                    <h:outputText value="#{review.likes}" styleClass="book-review-likes-text"/>
+                                    <h:outputText value="#{empty review.likes ? '0' : review.likes}"
+                                                  styleClass="book-review-likes-text"/>
                                     <p:spacer width="5px" styleClass="float-left"/>
                                     <h:outputText value="#{review.likes eq 1 ? 'like' : 'likes'}"
                                                   styleClass="book-review-likes-text"/>
