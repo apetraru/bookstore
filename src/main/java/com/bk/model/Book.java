@@ -5,17 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import org.apache.solr.analysis.LowerCaseFilterFactory;
 import org.apache.solr.analysis.StandardFilterFactory;
@@ -41,6 +31,7 @@ import com.bk.enums.Language;
  */
 
 @Entity
+@Table(name = "BOOK")
 @AnalyzerDef(name = "customanalyzer", 
 			tokenizer = @TokenizerDef(factory = StandardTokenizerFactory.class), filters = {
 				@TokenFilterDef(factory = StandardFilterFactory.class),

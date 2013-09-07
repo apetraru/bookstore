@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 /**
  * @author Andrei Petraru
@@ -14,6 +15,7 @@ import javax.persistence.ManyToMany;
  */
 
 @Entity
+@Table(name = "GENRE")
 public class Genre extends AbstractEntity {
 
     @Column(nullable = false, unique = true)

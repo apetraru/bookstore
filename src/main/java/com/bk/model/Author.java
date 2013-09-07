@@ -5,14 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Lob;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import org.hibernate.search.annotations.Analyzer;
 import org.hibernate.search.annotations.ContainedIn;
@@ -26,6 +19,7 @@ import com.bk.enums.Gender;
  */
 
 @Entity
+@Table(name = "AUTHOR")
 public class Author extends AbstractEntity {
 
 	@Field(analyzer = @Analyzer(definition = "customanalyzer"))

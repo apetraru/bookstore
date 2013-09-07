@@ -1,12 +1,14 @@
 package com.bk.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author ph
  */
 @Entity
+@Table(name = "ADDRESS")
 public class Address extends AbstractEntity {
 
 	private String street;

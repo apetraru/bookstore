@@ -12,6 +12,7 @@ import java.util.Set;
  * @author Andrei Petraru
  */
 @Entity
+@Table(name = "CUSTOMER")
 public class Customer extends AbstractEntity {
 
 	private String firstname;
