@@ -21,10 +21,11 @@
 						<p:graphicImage width="200" height="275" value="#{bookBean.book.imageUrl}" />
 					</div>
 					<p:spacer height="2%" width="100%" />
-					<p:selectOneMenu disabled="#{not loginBean.loggedOn}">
-						<f:selectItem itemValue="-1" itemLabel="Book Status" />
-						<f:selectItems value="#{bookBean.statuses}" />
-					</p:selectOneMenu>
+                    <p:selectOneMenu disabled="#{not loginBean.loggedOn}" value="#{bookBean.shelf.status}">
+                        <f:selectItem itemValue="-1" itemLabel="Book Status" />
+                        <f:selectItems value="#{bookBean.statuses}"/>
+                        <p:ajax event="valueChange" listener="#{bookBean.saveShelf()}" update="bookForm"/>
+                    </p:selectOneMenu>
 					<p:spacer height="2%" width="100%" />
 					<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!loginBean.loggedOn}" id="bookRatingId">
 						<p:ajax event="rate" listener="#{bookBean.addRating}" update="bookForm" />
