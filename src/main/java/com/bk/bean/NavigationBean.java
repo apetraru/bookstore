@@ -39,15 +39,15 @@ public final class NavigationBean {
 	}
 
 	public static String book() {
-		return BOOK;
+		return BOOK + REDIRECT;
 	}
 	
 	public static String author() {
-		return AUTHOR;
+		return AUTHOR + REDIRECT;
 	}
 	
 	public static String genre() {
-		return GENRE;
+		return GENRE + REDIRECT;
 	}
 	
 	public static String search() {
