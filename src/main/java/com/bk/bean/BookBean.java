@@ -6,6 +6,9 @@ import java.util.Date;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import com.bk.model.Customer;
+import com.bk.model.Shelf;
+import com.bk.repository.ShelfRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.RateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +40,20 @@ public class BookBean implements Serializable {
 	private BookService bookService;
 
 	@Autowired
+	private ShelfRepository shelfRepository;
+
+	@Autowired
 	private ReviewLazyDataModel lazyDataModel;
 
 	private Book book;
 	private Review bookReview;
 	private Review likeReview;
+	private Shelf shelf;
 	private Long id;
 
 	public void init() {
+		Customer user = loginBean.getLoggedInUser();
+
 		if (id == null) {
 			String message = "Bad request. Please use a link from within the system.";
 			FacesContext.getCurrentInstance().addMessage(null,
@@ -62,7 +71,7 @@ public class BookBean implements Serializable {
 		}
 
 		if (loginBean.getLoggedInUser() != null) {
-			bookReview = reviewRepository.getCustomerRating(book, loginBean.getLoggedInUser());
+			bookReview = reviewRepository.getCustomerRating(book, user);
 			if (bookReview == null) {
 				newRating();
 			}
@@ -70,11 +79,20 @@ public class BookBean implements Serializable {
 		else {
 			newRating();
 		}
+
 		lazyDataModel.setBook(book);
+
 		if (bookReview.getBook() == null) {
 			bookReview.setBook(book);
-			bookReview.setCustomer(loginBean.getLoggedInUser());
-		}		
+			bookReview.setCustomer(user);
+		}
+
+		shelf = shelfRepository.getCustomerShelf(book, user);
+		if (shelf == null) {
+			shelf = new Shelf();
+			shelf.setBook(book);
+			shelf.setCustomer(user);
+		}
 	}
 
 	public String getAverageRating() {
@@ -125,6 +143,10 @@ public class BookBean implements Serializable {
 		return isLiked(review) ? "unlike" : "like";
 	}
 
+	public void saveShelf() {
+		shelfRepository.save(shelf);
+	}
+
 	public void removeRating() {
 		bookReview.setRating(null);
 		reviewRepository.save(bookReview);
@@ -169,6 +191,18 @@ public class BookBean implements Serializable {
 	public void setLikeReview(Review likeReview) {
 		this.likeReview = likeReview;
 	}
+
+	public Shelf getShelf() {
+		return shelf;
+	}
+
+	public void setShelf(Shelf shelf) {
+		this.shelf = shelf;
+	}
+
+	/*
+	 * Private methods
+	 */
 
 	private void newRating() {
 		bookReview = new Review();
