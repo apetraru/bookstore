@@ -21,8 +21,8 @@
 						<p:graphicImage width="200" height="275" value="#{bookBean.book.imageUrl}" />
 					</div>
 					<p:spacer height="2%" width="100%" />
-                    <p:selectOneMenu disabled="#{not loginBean.loggedOn}" value="#{bookBean.shelf.status}">
-                        <f:selectItem itemValue="-1" itemLabel="Book Status" />
+                    <p:selectOneMenu disabled="#{not loginBean.loggedOn}" value="#{bookBean.shelf.status}" >
+                        <f:selectItem itemValue="" itemLabel="Book Status" />
                         <f:selectItems value="#{bookBean.statuses}"/>
                         <p:ajax event="valueChange" listener="#{bookBean.saveShelf()}" update="bookForm"/>
                     </p:selectOneMenu>
@@ -42,7 +42,6 @@
 						<h:outputText value="#{bookBean.book.author.name}" styleClass="book-author-name" />
 						<p:spacer height="2%" width="100%" />
 						<h:outputText value="My rating " styleClass="float-left"/>
-						<p:spacer height="0" width="3%"/>
 						<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!loginBean.loggedOn}" styleClass="float-left">
 							<p:ajax event="rate" listener="#{bookBean.addRating}"/>
 							<p:ajax event="cancel" listener="#{bookBean.removeRating}"/>
@@ -52,6 +51,10 @@
 						<p:spacer height="2%" width="100%" />
 						<p:inputTextarea value="#{bookBean.bookRating.comment}" style="width: 90%; height: 420px"/>
 						<p:spacer height="2%" width="100%" />
+                        <h:outputText value="Date Finished" />
+                        <p:spacer width="5px" />
+                        <p:calendar value="#{bookBean.shelf.endDate}" maxdate="${bookBean.today}" navigator="true"/>
+                        <p:spacer height="2%" width="100%" />
 						<p:commandButton value="Save" action="#{bookBean.saveReview}" update=":bookForm"
 							oncomplete="reviewDialog.hide();"/>
 					</p:dialog>

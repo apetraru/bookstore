@@ -70,7 +70,7 @@ public class BookBean implements Serializable {
 			return;
 		}
 
-		if (loginBean.getLoggedInUser() != null) {
+		if (user != null) {
 			bookReview = reviewRepository.getCustomerRating(book, user);
 			if (bookReview == null) {
 				newRating();
@@ -118,6 +118,8 @@ public class BookBean implements Serializable {
 		if (!StringUtils.isEmpty(comment) && bookReview.getPublishDate() == null) {
 			bookReview.setPublishDate(new Date());
 		}
+		shelf.setStatus(Status.READ);
+		saveShelf();
 		reviewRepository.save(bookReview);
 	}
 
@@ -198,6 +200,10 @@ public class BookBean implements Serializable {
 
 	public void setShelf(Shelf shelf) {
 		this.shelf = shelf;
+	}
+
+	public Date getToday() {
+		return new Date();
 	}
 
 	/*
