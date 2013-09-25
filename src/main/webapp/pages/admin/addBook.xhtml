@@ -87,8 +87,10 @@
                             <p:commandButton value="Add Book" action="#{addBookBean.save}" update="addBookPanelId"
                                              id="addBookButtonId"/>
                             <p:spacer width="5%" height="1%"/>
-                            <p:commandButton value="Reset" action="#{addBookBean.reset}" immediate="true"
-                                             update="addBookPanelId"/>
+                            <p:commandButton value="Reset" action="#{addBookBean.reset}" update="addBookPanelId"
+                                             process="@this">
+                                <p:resetInput target="addBookPanelId"/>
+                            </p:commandButton>
                             <p:message for="addBookButtonId" display="text"/>
                         </p:column>
                     </p:row>
