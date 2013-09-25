@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/template.xhtml">
+    <ui:define name="title">
+        <title>
+            GoodBooks | Add author
+        </title>
+    </ui:define>
+    <ui:define name="body">
+        <h:form id="addAuthorFormId">
+            <p:panel header="Add author" styleClass="addBook-panel">
+                <p:panelGrid id="addAuthorPanelId">
+                    <p:row>
+                        <p:column styleClass="panel-column">
+                            <h:outputText value="Name"/>
+                            <br/>
+                            <p:inputText value="#{addAuthorBean.author.name}" required="true" id="authorId"
+                                         maxlength="200"/>
+                            <p:message for="authorId" display="text"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="Gender"/>
+                            <br/>
+                            <p:selectOneMenu value="#{addAuthorBean.author.gender}" styleClass="selectonemenu-style">
+                                <f:selectItems value="#{addAuthorBean.genders}"/>
+                            </p:selectOneMenu>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column styleClass="panel-column">
+                            <h:outputText value="Born"/>
+                            <br/>
+                            <p:calendar value="#{addAuthorBean.author.birthDate}" yearRange="1500:" pattern="dd/MM/yyyy"
+                                        showButtonPanel="true" navigator="true"/>
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="Died"/>
+                            <br/>
+                            <p:calendar value="#{addAuthorBean.author.deathDate}" yearRange="1500:" pattern="dd/MM/yyyy"
+                                        showButtonPanel="true" navigator="true"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column styleClass="panel-column" colspan="3">
+                            <h:outputText value="Author picture URL"/>
+                            <br/>
+                            <p:inputText value="#{addAuthorBean.author.imageUrl}" size="70"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column styleClass="panel-column" colspan="2">
+                            <h:outputText value="About"/>
+                            <br/>
+                            <p:inputTextarea value="#{addAuthorBean.author.about}" id="authorAboutId"
+                                             maxlength="32000"/>
+                            <p:message for="authorAboutId" display="text"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column styleClass="panel-column" colspan="2">
+                            <p:commandButton value="Add Author" action="#{addAuthorBean.save}" update="addAuthorPanelId"
+                                             id="addAuthorButtonId"/>
+                            <p:spacer width="5%" height="1%"/>
+                            <p:commandButton value="Reset" action="#{addAuthorBean.reset}" process="@this"
+                                             update="addAuthorPanelId">
+                                <p:resetInput target="addAuthorPanelId"/>
+                            </p:commandButton>
+                            <p:message for="addAuthorButtonId" display="text"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
