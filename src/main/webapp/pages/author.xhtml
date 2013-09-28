@@ -26,7 +26,7 @@
 				rendered="#{not empty authorBean.author}">
 				<p:panelGrid>
 					<p:row rendered="#{not empty authorBean.author.birthDate}">
-						<p:column>
+						<p:column styleClass="author-panel-column">
 							<h:outputText value="Born" styleClass="author-bold" />
 						</p:column>
 						<p:column>
@@ -53,6 +53,16 @@
 							<h:outputText value="#{authorBean.author.gender.toString()}" />
 						</p:column>
 					</p:row>
+                    <p:row rendered="#{not empty authorBean.author.website}">
+                        <p:column>
+                            <h:outputText value="Website" styleClass="author-bold" />
+                        </p:column>
+                        <p:column>
+                            <h:outputLink value="#{authorBean.author.website}" styleClass="author-website">
+                                <h:outputText value="#{authorBean.author.website}" />
+                            </h:outputLink>
+                        </p:column>
+                    </p:row>
 					<p:row>
 						<p:column>
 							<h:outputText value="Genre" styleClass="author-bold" />

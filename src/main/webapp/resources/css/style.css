@@ -152,6 +152,10 @@ a:hover {
 	margin-top: 15px;
 }
 
+.author-panel-column {
+    width: 200px;
+}
+
 .author-image {
 	float: left;
 	padding: 15px;
@@ -172,6 +176,12 @@ a:hover {
     height: 115px;
     overflow: hidden;
     font-size: 0.85em;
+}
+
+.author-website {
+    text-decoration: underline;
+    padding: 0;
+    color: #666600 !important;
 }
 
 .author-about-expanded {
