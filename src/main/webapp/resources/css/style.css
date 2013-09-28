@@ -2,6 +2,7 @@ body {
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 0.8em;
 	width: 960px;
+    min-height: 1100px;
 	margin: 0 auto;
 }
 
