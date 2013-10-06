@@ -29,9 +29,10 @@
 				<f:facet name="header">
 					<h:outputText value="Genres" />
 				</f:facet>
-				<p:button value="#{genre.genre}" outcome="#{navigationBean.genre()}" styleClass="homepage-genre">
+				<h:link value="#{genre.genre}" outcome="#{navigationBean.genre()}" styleClass="homepage-genres">
 					<f:param name="id" value="#{genre.id}" />
-				</p:button>
+                    <f:param name="genre" value="#{genre.genre}" />
+				</h:link>
 			</p:dataGrid>
 		</h:form>
 	</ui:define>
