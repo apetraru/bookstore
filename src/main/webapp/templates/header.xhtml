@@ -23,9 +23,9 @@
 					</p:button>
 				</p:column>
 			</p:autoComplete>
-			<h:link action="#{navigationBean.search()}" styleClass="search-button" id="searchButton">
+			<p:commandLink action="#{navigationBean.search()}" styleClass="search-button" id="searchButton">
 				<p:graphicImage name="images/search.png" styleClass="search-image"/>
-			</h:link>
+			</p:commandLink>
 			<p:watermark value="Title / Author" for="searchBar" />
 			<h:link value="Home" outcome="#{navigationBean.home()}" />
 			<h:link value="Add Book" outcome="#{navigationBean.addBook()}" />
