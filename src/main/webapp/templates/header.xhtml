@@ -10,9 +10,9 @@
 <ui:composition>
 	<h:form>
 		<div class="header">
-			<p:commandLink action="#{navigationBean.home}">
+			<h:link outcome="#{navigationBean.home()}">
 				<p:graphicImage value="/resources/images/logo.png" styleClass="logo" />
-			</p:commandLink>
+			</h:link>
 			<p:autoComplete completeMethod="#{searchBean.search}" id="searchBar" minQueryLength="3"
 				maxResults="10" converter="#{bookConverter}" var="book" queryDelay="200">
 				<p:column>
@@ -23,17 +23,17 @@
 					</p:button>
 				</p:column>
 			</p:autoComplete>
-			<p:commandLink action="#{navigationBean.search()}" styleClass="search-button" id="searchButton">
+			<h:link action="#{navigationBean.search()}" styleClass="search-button" id="searchButton">
 				<p:graphicImage name="images/search.png" styleClass="search-image"/>
-			</p:commandLink>
+			</h:link>
 			<p:watermark value="Title / Author" for="searchBar" />
-			<p:commandLink value="Home" action="#{navigationBean.home}" />
-			<p:commandLink value="Add Book" action="#{navigationBean.addBook}" />
-			<p:commandLink value="Add Author" action="#{navigationBean.addAuthor}" />
-			<p:commandLink value="Recommendations" />
-			<p:commandLink value="Login" action="#{navigationBean.login}" rendered="#{!loginBean.loggedOn}"
+			<h:link value="Home" outcome="#{navigationBean.home()}" />
+			<h:link value="Add Book" outcome="#{navigationBean.addBook()}" />
+			<h:link value="Add Author" outcome="#{navigationBean.addAuthor()}" />
+			<h:link value="Recommendations" />
+			<h:link value="Login" outcome="#{navigationBean.login()}" rendered="#{!loginBean.loggedOn}"
 				styleClass="float-right" />
-			<p:commandLink value="Register" action="#{navigationBean.register}"
+			<h:link value="Register" outcome="#{navigationBean.register()}"
 				rendered="#{!loginBean.loggedOn}" styleClass="float-right" />
 			<p:commandLink value="Logout" rendered="#{loginBean.loggedOn}" action="#{loginBean.logout}"
 				ajax="false" styleClass="float-right" />
