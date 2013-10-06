@@ -54,6 +54,7 @@ a {
 	text-decoration: none;
 	color: black;
 	padding: 5px 10px 5px 10px;
+    font-size: 1.1em;
 }
 
 a:hover {
@@ -202,9 +203,8 @@ a:hover {
 
 .homepage-genres {
 	margin-right: 5%;
-	float: right;
-	font-size: 2em;
-	padding-right: 23%;
+	float: left;
+	font-size: 0.9em;
 }
 
 .homepage-book-datagrid {
