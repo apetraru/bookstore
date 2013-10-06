@@ -245,16 +245,11 @@ a:hover {
 /* BOOK TEMPLATE */
 .book-template-title {
 	font-size: 1em;
-	border: none;
-	background: none;
 }
 
 .book-template-author {
 	font-size: 0.85em;
-	border: none;
-	background: none;
 	margin-left: -5px;
-	margin-top: -7px;
 }
 
 .book-details-panel {
