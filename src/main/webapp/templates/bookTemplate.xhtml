@@ -6,13 +6,13 @@
 	<p:separator />
 	<p:graphicImage width="50px" height="75px" styleClass="float-left"
 		value="#{book.imageUrl}" />
-	<h:link value="#{book.title}" outcome="#{navigationBean.book()}" styleClass="book-title">
+	<h:link value="#{book.title}" outcome="#{navigationBean.book()}" styleClass="book-template-title">
 		<f:param name="id" value="#{book.id}" />
 		<f:param name="title" value="#{book.title}" />
 	</h:link>
 	<br />
 	<h:outputText value="by" styleClass="book-publish-label" />
-	<h:link value="#{book.author.name}" outcome="#{navigationBean.author()}" styleClass="book-author">
+	<h:link value="#{book.author.name}" outcome="#{navigationBean.author()}" styleClass="book-template-author">
 		<f:param name="id" value="#{book.author.id}" />
 		<f:param name="author" value="#{book.author.name}" />
 	</h:link>
