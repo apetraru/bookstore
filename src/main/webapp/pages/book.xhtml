@@ -60,23 +60,23 @@
 					</p:dialog>
 				</div>
 				<div class="book-details">
-					<p:panel styleClass="book-ratings-panel">
-						<h:outputText value="avg. rating: " />
-						<h:outputText value="#{bookBean.averageRating}" />
-						|
-						<h:outputText value="#{bookBean.numberOfRatings}" styleClass="book-ratings-totalRatings" />
-						<h:outputText value="#{bookBean.numberOfRatings eq 1 ? ' rating' : ' ratings'} "
-							styleClass="book-ratings-totalRatings" />
-					</p:panel>
 					<p:spacer width="100%" height="1%" />
 					<h:outputText value="#{bookBean.book.title}" styleClass="book-title" />
-					<br />
+                    <p:spacer width="100%" height="1%" />
 					<h:outputText value="by" />
-					<p:button value="#{bookBean.book.author.name}" outcome="#{navigationBean.author()}" styleClass="book-author-name">
+					<h:link value="#{bookBean.book.author.name}" outcome="#{navigationBean.author()}" styleClass="book-author">
 						<f:param name="id" value="#{bookBean.book.author.id}" />
 						<f:param name="author" value="#{bookBean.book.author.name}" />
-					</p:button>
-					<br />
+					</h:link>
+                    <p:spacer width="100%" height="1%" />
+                    <p:panel styleClass="book-ratings-panel">
+                        <h:outputText value="avg. rating: " />
+                        <h:outputText value="#{bookBean.averageRating}" />
+                        |
+                        <h:outputText value="#{bookBean.numberOfRatings}" styleClass="book-ratings-totalRatings" />
+                        <h:outputText value="#{bookBean.numberOfRatings eq 1 ? ' rating' : ' ratings'} "
+                                      styleClass="book-ratings-totalRatings" />
+                    </p:panel>
 					<p:spacer width="100%" height="2%" />
 					<h:outputText value="#{bookBean.book.description}" />
 					<br />

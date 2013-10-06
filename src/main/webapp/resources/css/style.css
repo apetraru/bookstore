@@ -120,10 +120,11 @@ a:hover {
 	font-size: 1.6em;
 }
 
-.book-author-name.ui-button {
+.book-author {
 	border: none;
 	background: none;
 	margin-left: -5px;
+    font-size: 1em;
 }
 
 .book-author-name.ui-button:hover {
