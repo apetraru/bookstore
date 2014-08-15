@@ -1,11 +1,10 @@
-$(document).ready(function() {
+function aboutExpand() {
+    var authorAbout = document.querySelector('.author-about');
+    var authorShowMore = document.querySelector('.author-show-more');
+    authorShowMore.addEventListener('click', function() {
+        authorAbout.classList.toggle('author-about-expanded');
+    });
 
-    var $aboutLength = $('.author-about').text().length;
-    if ($aboutLength < 500) {
-        $('.author-show-more').css('display', 'none');
-    }
+}
 
-	$('.author-show-more').on('click', function(e) {
-		$('.author-about').toggleClass('author-about-expanded');
-	});
-});
+window.onload = aboutExpand;
