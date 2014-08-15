@@ -2,6 +2,7 @@ package com.bk.lazydatamodel;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
@@ -29,7 +30,7 @@ public class ReviewLazyDataModel extends LazyDataModel<Review> {
 	private Book book;
 
 	@Override
-	public List<Review> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
+	public List<Review> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 		int elementsPerPage = first / pageSize;
 		Pageable pageable = new PageRequest(elementsPerPage, pageSize, Sort.Direction.DESC, "likes");
 		Page<Review> datasource = repository.findByBook(book, pageable);

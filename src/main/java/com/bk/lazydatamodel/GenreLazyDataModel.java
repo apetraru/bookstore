@@ -24,7 +24,7 @@ public class GenreLazyDataModel extends LazyDataModel<Genre> {
 	private GenreRepository genreRepository;
 
 	@Override
-	public List<Genre> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
+	public List<Genre> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 		int elementsPerPage = first / pageSize;
 		Pageable pageable = new PageRequest(elementsPerPage, pageSize);
 		Page<Genre> datasource = genreRepository.findAll(pageable);

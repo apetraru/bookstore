@@ -2,6 +2,7 @@ package com.bk.lazydatamodel;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.LazyDataModel;
@@ -28,7 +29,7 @@ public class BookSearchLazyDataModel extends LazyDataModel<Book> {
 	private String searchTerm;
 
 	@Override
-	public List<Book> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
+	public List<Book> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 		if (StringUtils.length(searchTerm) < LENGTH) {
 			return null;
 		}

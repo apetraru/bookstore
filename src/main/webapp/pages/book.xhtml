@@ -33,10 +33,10 @@
 					</p:rating>
 					<p:spacer height="2%" width="100%" />
 					<p:commandButton value="#{empty bookBean.bookRating.comment ? 'Write a review' : 'Edit my review'}"
-						onclick="reviewDialog.show();" type="button"
+						onclick="PF('reviewDialog').show();" type="button"
 						disabled="#{!loginBean.loggedOn}"/>
 					<p:dialog header="Edit your review" widgetVar="reviewDialog" width="800" height="600"
-						modal="true" showEffect="fade" hideEffect="fade" style="margin-top: 60px; position: fixed">
+						modal="true" showEffect="fade" hideEffect="fade">
 						<h:outputText value="#{bookBean.book.title}" styleClass="book-title" />
 						<h:outputText value=" by " />
 						<h:outputText value="#{bookBean.book.author.name}" styleClass="book-author-name" />
@@ -56,7 +56,7 @@
                         <p:calendar value="#{bookBean.shelf.endDate}" maxdate="${bookBean.today}" navigator="true"/>
                         <p:spacer height="2%" width="100%" />
 						<p:commandButton value="Save" action="#{bookBean.saveReview}" update=":bookForm"
-							oncomplete="reviewDialog.hide();"/>
+							oncomplete="PF('reviewDialog').hide();"/>
 					</p:dialog>
 				</div>
 				<div class="book-details">
