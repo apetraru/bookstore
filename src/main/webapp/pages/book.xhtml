@@ -5,160 +5,157 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/templates/template.xhtml">
-    <ui:define name="title">
-        <title>
-            GoodBooks <h:outputText value=" | #{bookBean.book.title} by #{bookBean.book.author.name}" rendered="#{not empty bookBean.book.id}"/>
-        </title>
-    </ui:define>
-	<ui:define name="body">
-		<f:metadata>
-			<f:viewParam name="id" value="#{bookBean.id}" />
-			<f:event type="preRenderView" listener="#{bookBean.init()}" />
-		</f:metadata>
-		<h:form id="bookForm">
-			<p:panel styleClass="book-panel" rendered="#{not empty bookBean.book.id}">
-				<div class="book-image">
-					<div class="book-cover">
-						<p:graphicImage width="200" height="275" value="#{bookBean.book.imageUrl}" />
-					</div>
-					<p:spacer height="2%" width="100%" />
-                    <p:selectOneMenu disabled="#{not loginBean.loggedOn}" value="#{bookBean.shelf.status}" >
-                        <f:selectItem itemValue="" itemLabel="Book Status" />
-                        <f:selectItems value="#{bookBean.statuses}"/>
-                        <p:ajax event="valueChange" listener="#{bookBean.saveShelf()}" update="bookForm"/>
-                    </p:selectOneMenu>
-					<p:spacer height="2%" width="100%" />
-					<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!loginBean.loggedOn}" id="bookRatingId">
-						<p:ajax event="rate" listener="#{bookBean.addRating}" update="bookForm" />
-						<p:ajax event="cancel" listener="#{bookBean.removeRating}" update="bookForm" />
-					</p:rating>
-					<p:spacer height="2%" width="100%" />
-					<p:commandButton value="#{empty bookBean.bookRating.comment ? 'Write a review' : 'Edit my review'}"
-						onclick="PF('reviewDialog').show();" type="button"
-						disabled="#{!loginBean.loggedOn}"/>
-					<p:dialog header="Edit your review" widgetVar="reviewDialog" width="800" height="600"
-						modal="true" showEffect="fade" hideEffect="fade">
-						<h:outputText value="#{bookBean.book.title}" styleClass="book-title" />
-						<h:outputText value=" by " />
-						<h:outputText value="#{bookBean.book.author.name}" styleClass="book-author-name" />
-						<p:spacer height="2%" width="100%" />
-						<h:outputText value="My rating " styleClass="float-left"/>
-						<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!loginBean.loggedOn}" styleClass="float-left">
-							<p:ajax event="rate" listener="#{bookBean.addRating}"/>
-							<p:ajax event="cancel" listener="#{bookBean.removeRating}"/>
-						</p:rating>
-						<p:spacer height="2%" width="100%" />
-						<h:outputText value="What did you think?" />
-						<p:spacer height="2%" width="100%" />
-						<p:inputTextarea value="#{bookBean.bookRating.comment}" style="width: 90%; height: 420px"/>
-						<p:spacer height="2%" width="100%" />
-                        <h:outputText value="Date Finished" />
-                        <p:spacer width="5px" />
-                        <p:calendar value="#{bookBean.shelf.endDate}" maxdate="${bookBean.today}" navigator="true"/>
-                        <p:spacer height="2%" width="100%" />
-						<p:commandButton value="Save" action="#{bookBean.saveReview}" update=":bookForm"
-							oncomplete="PF('reviewDialog').hide();"/>
-					</p:dialog>
-				</div>
-				<div class="book-details">
-					<p:spacer width="100%" height="1%" />
-					<h:outputText value="#{bookBean.book.title}" styleClass="book-title" />
-                    <p:spacer width="100%" height="1%" />
-					<h:outputText value="by" />
-					<h:link value="#{bookBean.book.author.name}" outcome="#{navigationBean.author()}" styleClass="book-author">
-						<f:param name="id" value="#{bookBean.book.author.id}" />
-						<f:param name="author" value="#{bookBean.book.author.name}" />
-					</h:link>
-                    <p:spacer width="100%" height="1%" />
-                    <p:panel styleClass="book-ratings-panel">
-                        <h:outputText value="avg. rating: " />
-                        <h:outputText value="#{bookBean.averageRating}" />
-                        |
-                        <h:outputText value="#{bookBean.numberOfRatings}" styleClass="book-ratings-totalRatings" />
-                        <h:outputText value="#{bookBean.numberOfRatings eq 1 ? ' rating' : ' ratings'} "
-                                      styleClass="book-ratings-totalRatings" />
-                    </p:panel>
-					<p:spacer width="100%" height="2%" />
-					<h:outputText value="#{bookBean.book.description}" />
-					<br />
-					<p:spacer width="100%" height="2%" />
-					<p:separator />
-					<p:panelGrid>
-						<p:row>
-							<p:column>
-								<h:outputText value="ISBN-13" />
-							</p:column>
-							<p:column>
-								<h:outputText value="#{bookBean.book.isbn}" />
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column>
-								<h:outputText value="Published" />
-							</p:column>
-							<p:column>
-								<h:outputText value="#{bookBean.book.publishDate}" >
-									<f:convertDateTime pattern="dd MMMM yyyy" />
-								</h:outputText>
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column>
-								<h:outputText value="Language" />
-							</p:column>
-							<p:column>
-								<h:outputText value="#{bookBean.book.language.toString()}" />
-							</p:column>
-						</p:row>
-					</p:panelGrid>
-				</div>
-			</p:panel>
-			<div class="book-comments">
-				<p:dataGrid rows="10" paginator="true" columns="1" value="#{bookBean.lazyDataModel}" var="review"
-					paginatorPosition="bottom" lazy="true"
-					paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
-					rowsPerPageTemplate="10" rendered="#{not empty bookBean.book.id}" id="reviews">
-					<f:facet name="header">
-						<h:outputText value="Comments" />
-					</f:facet>
-					<p:separator/>
-					<p:row rendered="#{not empty review.comment}">
-						<p:column>
-							<div class="book-review">
-								<p:commandLink value="#{review.customer.username}" styleClass="book-review-username"/>
-								<h:outputText value="rated it" styleClass="float-left" />
-								<p:rating value="#{review.rating}" styleClass="book-review-rating" readonly="true">
-								</p:rating>
-								<h:outputText value="#{review.publishDate}" styleClass="book-review-date">
-									<f:convertDateTime pattern="dd MMM yyyy" />
-								</h:outputText>
-								<br /> <br />
-								<h:outputText value="#{review.comment}" />
-								<br /> <br />
-
-                                <div class="book-review-likes">
-                                    <h:outputText value="#{empty review.likes ? '0' : review.likes}"
-                                                  styleClass="book-review-likes-text"/>
-                                    <p:spacer width="5px" styleClass="float-left"/>
-                                    <h:outputText value="#{review.likes eq 1 ? 'like' : 'likes'}"
-                                                  styleClass="book-review-likes-text"/>
-                                </div>
-                                <p:commandButton value="#{bookBean.isLikedButtonText(review)}"
-                                                 styleClass="book-review-like-button"
-                                                 disabled="#{empty loginBean.loggedInUser}"
-                                                 action="#{bookBean.like}" update="reviews">
-                                    <f:setPropertyActionListener value="#{review}" target="#{bookBean.likeReview}" />
-                                </p:commandButton>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="title">
+			<title>
+				GoodBooks <h:outputText value=" | #{bookBean.book.title} by #{bookBean.book.author.name}" rendered="#{not empty bookBean.book.id}"/>
+			</title>
+		</ui:define>
+		<ui:define name="body">
+			<f:metadata>
+				<f:viewParam name="id" value="#{bookBean.id}" />
+				<f:event type="preRenderView" listener="#{bookBean.init()}" />
+			</f:metadata>
+			<h:form id="bookForm">
+				<p:panel styleClass="book-panel" rendered="#{not empty bookBean.book.id}">
+					<div class="book-image">
+						<div class="book-cover">
+							<p:graphicImage width="200" height="275" value="#{bookBean.book.imageUrl}" />
+						</div>
+						<div class="float-left">
+							<p:selectOneMenu disabled="#{not loginBean.loggedOn}" value="#{bookBean.shelf.status}" styleClass="margin-top-10px">
+								<f:selectItem itemValue="" itemLabel="Book Status" />
+								<f:selectItems value="#{bookBean.statuses}"/>
+								<p:ajax event="valueChange" listener="#{bookBean.saveShelf()}" update="bookForm"/>
+							</p:selectOneMenu>
+							<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!loginBean.loggedOn}" id="bookRatingId" styleClass="margin-top-10px">
+								<p:ajax event="rate" listener="#{bookBean.addRating}" update="bookForm" />
+								<p:ajax event="cancel" listener="#{bookBean.removeRating}" update="bookForm" />
+							</p:rating>
+							<p:commandButton value="#{empty bookBean.bookRating.comment ? 'Write a review' : 'Edit my review'}"
+											 onclick="PF('reviewDialog').show();" type="button"
+											 disabled="#{!loginBean.loggedOn}"
+											 styleClass="margin-top-10px"/>
+						</div>
+						<p:dialog header="Edit your review" widgetVar="reviewDialog" width="800" height="600"
+								  modal="true" showEffect="fade" hideEffect="fade">
+							<div class="float-left width-all">
+								<h:outputText value="#{bookBean.book.title}" styleClass="book-title" />
+								<h:outputText value=" by " />
+								<h:outputText value="#{bookBean.book.author.name}" styleClass="book-author-name" />
 							</div>
-						</p:column>
-					</p:row>
-				</p:dataGrid>
-			</div>
-			<div class="center">
-				<p:messages globalOnly="true" />
-			</div>
-		</h:form>
-	</ui:define>
-</ui:composition>
+							<br/>
+							<div class="float-left width-all" >
+								<h:outputText value="My rating " styleClass="float-left"/>
+								<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!loginBean.loggedOn}" styleClass="float-left">
+									<p:ajax event="rate" listener="#{bookBean.addRating}"/>
+									<p:ajax event="cancel" listener="#{bookBean.removeRating}"/>
+								</p:rating>
+							</div>
+							<div class="float-left width-all" >
+								<h:outputText value="What did you think?" />
+								<p:inputTextarea value="#{bookBean.bookRating.comment}" style="width: 90%; height: 420px"/>
+							</div>
+							<div class="float-left width-all" >
+								<h:outputText value="Date Finished" />
+								<p:calendar value="#{bookBean.shelf.endDate}" maxdate="${bookBean.today}" navigator="true"/>
+							</div>
+							<p:commandButton value="Save" action="#{bookBean.saveReview}" update=":bookForm"
+											 oncomplete="PF('reviewDialog').hide();" />
+						</p:dialog>
+					</div>
+					<div class="book-details">
+						<h:outputText value="#{bookBean.book.title}" styleClass="book-title" />
+						<h:outputText value="by" />
+						<h:link value="#{bookBean.book.author.name}" outcome="#{navigationBean.author()}" styleClass="book-author">
+							<f:param name="id" value="#{bookBean.book.author.id}" />
+							<f:param name="author" value="#{bookBean.book.author.name}" />
+						</h:link>
+						<p:panel styleClass="book-ratings-panel">
+							<h:outputText value="avg. rating: " />
+							<h:outputText value="#{bookBean.averageRating}" />
+							|
+							<h:outputText value="#{bookBean.numberOfRatings}" styleClass="book-ratings-totalRatings" />
+							<h:outputText value="#{bookBean.numberOfRatings eq 1 ? ' rating' : ' ratings'} "
+										  styleClass="book-ratings-totalRatings" />
+						</p:panel>
+						<h:outputText value="#{bookBean.book.description}" />
+						<br />
+						<p:separator />
+						<p:panelGrid>
+							<p:row>
+								<p:column>
+									<h:outputText value="ISBN-13" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{bookBean.book.isbn}" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									<h:outputText value="Published" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{bookBean.book.publishDate}" >
+										<f:convertDateTime pattern="dd MMMM yyyy" />
+									</h:outputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									<h:outputText value="Language" />
+								</p:column>
+								<p:column>
+									<h:outputText value="#{bookBean.book.language.toString()}" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</div>
+				</p:panel>
+				<div class="book-comments">
+					<p:dataGrid rows="10" paginator="true" columns="1" value="#{bookBean.lazyDataModel}" var="review"
+								paginatorPosition="bottom" lazy="true"
+								paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
+								rowsPerPageTemplate="10" rendered="#{not empty bookBean.book.id}" id="reviews">
+						<f:facet name="header">
+							<h:outputText value="Comments" />
+						</f:facet>
+						<p:separator/>
+						<p:row rendered="#{not empty review.comment}">
+							<p:column>
+								<div class="book-review">
+									<p:commandLink value="#{review.customer.username}" styleClass="book-review-username"/>
+									<h:outputText value="rated it" styleClass="float-left" />
+									<p:rating value="#{review.rating}" styleClass="book-review-rating" readonly="true">
+									</p:rating>
+									<h:outputText value="#{review.publishDate}" styleClass="book-review-date">
+										<f:convertDateTime pattern="dd MMM yyyy" />
+									</h:outputText>
+									<br /> <br />
+									<h:outputText value="#{review.comment}" />
+									<br /> <br />
+
+									<div class="book-review-likes">
+										<h:outputText value="#{empty review.likes ? '0' : review.likes}"
+													  styleClass="book-review-likes-text"/>
+										<h:outputText value="#{review.likes eq 1 ? 'like' : 'likes'}"
+													  styleClass="book-review-likes-text"/>
+									</div>
+									<p:commandButton value="#{bookBean.isLikedButtonText(review)}"
+													 styleClass="book-review-like-button"
+													 disabled="#{empty loginBean.loggedInUser}"
+													 action="#{bookBean.like}" update="reviews">
+										<f:setPropertyActionListener value="#{review}" target="#{bookBean.likeReview}" />
+									</p:commandButton>
+								</div>
+							</p:column>
+						</p:row>
+					</p:dataGrid>
+				</div>
+				<div class="center">
+					<p:messages globalOnly="true" />
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </html>
