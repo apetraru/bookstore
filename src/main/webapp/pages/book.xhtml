@@ -66,6 +66,7 @@
 					</div>
 					<div class="book-details">
 						<h:outputText value="#{bookBean.book.title}" styleClass="book-title" />
+						<br/>
 						<h:outputText value="by" />
 						<h:link value="#{bookBean.book.author.name}" outcome="#{navigationBean.author()}" styleClass="book-author">
 							<f:param name="id" value="#{bookBean.book.author.id}" />
