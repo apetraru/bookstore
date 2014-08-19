@@ -1,22 +1,41 @@
-package com.bk.service;
-
-import java.io.Serializable;
+package com.bk.service.impl;
 
 import com.bk.model.Customer;
+import com.bk.repository.CustomerRepository;
+import com.bk.service.CustomerService;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
- * @author Andrei Petraru
+ * User: ph
  * Date: 1/5/13
  */
 
-public interface CustomerService extends Serializable {
+@Service
+public class CustomerServiceImpl implements CustomerService{
 
-    Customer save(Customer customer);
+    @Autowired
+    private CustomerRepository repository;
 
-    Customer findById(Long id);
+    @Override
+    public Customer save(Customer customer) {
+        return repository.save(customer);
+    }
 
-    Customer findByEmailAddress(String emailAddress);
+    @Override
+    public Customer findById(Long id) {
+        return repository.findById(id);
+    }
 
-    Customer findByUsername(String username);
+    @Override
+    public Customer findByEmailAddress(String emailAddress) {
+        return repository.findByEmailAddress(emailAddress);
+    }
+
+    @Override
+    public Customer findByUsername(String username) {
+        return repository.findByUsername(username);
+    }
 
 }
