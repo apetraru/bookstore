@@ -45,6 +45,7 @@ public class AddAuthorBean {
 
 	public void reset() {
 		author = new Author();
+		author.setGender(Gender.MALE);
 	}
 
 	public Gender[] getGenders() {
@@ -57,6 +58,5 @@ public class AddAuthorBean {
 
 	public void setAuthor(Author author) {
 		this.author = author;
-		author.setGender(Gender.MALE);
 	}
 }
