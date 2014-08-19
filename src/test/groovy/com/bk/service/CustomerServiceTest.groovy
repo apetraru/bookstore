@@ -4,7 +4,6 @@ import spock.lang.Specification
 
 import com.bk.model.Customer
 import com.bk.repository.CustomerRepository
-import com.bk.service.impl.CustomerServiceImpl
 
 /**
  * @author Andrei Petraru
@@ -12,7 +11,7 @@ import com.bk.service.impl.CustomerServiceImpl
  */
 class CustomerServiceTest extends Specification {
 	CustomerRepository repository = Mock()
-	CustomerService service = new CustomerServiceImpl()
+	CustomerService service = new CustomerService()
 
 	def setup() {
 		service.@repository = repository

@@ -4,7 +4,6 @@ import spock.lang.Specification
 
 import com.bk.model.Book
 import com.bk.repository.BookRepository
-import com.bk.service.impl.BookServiceImpl
 
 /**
  * @author Andrei Petraru
@@ -12,7 +11,7 @@ import com.bk.service.impl.BookServiceImpl
  */
 class BookServiceTest extends Specification {
 	BookRepository repository = Mock()
-	BookService service = new BookServiceImpl()
+	BookService service = new BookService()
 
 	def setup() {
 		service.@repository = repository

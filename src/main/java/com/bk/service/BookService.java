@@ -1,4 +1,4 @@
-package com.bk.service.impl;
+package com.bk.service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bk.model.Author;
 import com.bk.model.Book;
 import com.bk.repository.BookRepository;
-import com.bk.service.BookService;
 import com.bk.util.PaginatedHibernateSearch;
 
 /**
@@ -26,7 +25,7 @@ import com.bk.util.PaginatedHibernateSearch;
  */
 
 @Service
-public class BookServiceImpl implements BookService {
+public class BookService {
 	
 	private static final float THRESHOLD = 0.75f;
 
@@ -37,7 +36,6 @@ public class BookServiceImpl implements BookService {
     private EntityManager entityManager;
 
     @Transactional(readOnly = true)
-    @Override
     public PaginatedHibernateSearch<Book> search(String searchTerm, int firstResult, int resultsPerPage) {
 
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
@@ -62,22 +60,18 @@ public class BookServiceImpl implements BookService {
         return results;
     }
 
-    @Override
     public Book save(Book book) {
         return repository.save(book);
     }
 
-    @Override
     public Book findById(Long id) {
         return repository.findById(id);
     }
 
-	@Override
 	public Long count() {
 		return repository.count();
 	}
 	
-	@Override
 	public Page<Book> findByAuthor(Author author, Pageable pageable) {
 		return repository.findByAuthor(author, pageable);
 	}
