@@ -11,30 +11,30 @@
         </title>
     </ui:define>
     <ui:define name="body">
-        <h:form id="loginFormId">
+        <h:form prependId="false">
             <p:panel header="Login" styleClass="login-panel">
                 <p:panelGrid id="loginPanelId">
                     <p:row>
                         <p:column styleClass="panel-column">
-                            <h:outputText value="Username"/>
+                            <p:outputLabel for="j_username" value="Username"/>
                             <br/>
-                            <p:inputText value="#{loginBean.username}" required="true" id="loginUsernameId"/>
-                            <p:message for="loginUsernameId" display="text"/>
+                            <p:inputText value="#{loginBean.username}" required="true" id="j_username"/>
+                            <p:message for="j_username" display="text"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column styleClass="panel-column">
-                            <h:outputText value="Password"/>
+                            <p:outputLabel for="j_password" value="Password"/>
                             <br/>
-                            <p:password value="#{loginBean.password}" required="true" id="passwordId"/>
-                            <p:message for="passwordId" display="text"/>
+                            <p:password value="#{loginBean.password}" required="true" id="j_password"/>
+                            <p:message for="j_password" display="text"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column>
-                            <p:commandButton value="Login" update="loginPanelId" id="loginButtonId"
+                            <p:commandButton value="Login" update="loginPanelId" id="loginButton"
                                              action="#{loginBean.login}" />
-                            <p:message for="loginButtonId" display="text"/>
+                            <p:message for="loginButton" display="text"/>
                         </p:column>
                     </p:row>
                 </p:panelGrid>

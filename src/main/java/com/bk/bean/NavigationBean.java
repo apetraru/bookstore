@@ -19,6 +19,7 @@ public final class NavigationBean {
 	private static final String AUTHOR = "/pages/author.jsf";
 	private static final String GENRE = "/pages/genre.jsf";
 	private static final String SEARCH = "/pages/search.jsf";
+	private static final String NO_ACCESS = "/pages/noaccess.jsf";
 	
 	private NavigationBean() {
 	}
@@ -57,5 +58,9 @@ public final class NavigationBean {
 	
 	public static String search() {
 		return SEARCH + REDIRECT;
+	}
+	
+	public static String noAccess() {
+		return NO_ACCESS + REDIRECT;
 	}
 }

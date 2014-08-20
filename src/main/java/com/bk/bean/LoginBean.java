@@ -1,16 +1,21 @@
 package com.bk.bean;
 
+import java.io.Serializable;
+
+import javax.faces.application.FacesMessage;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
+
 import com.bk.model.Customer;
 import com.bk.service.CustomerService;
 import com.bk.util.Message;
-import com.bk.util.PasswordHash;
-
-import java.io.Serializable;
-import javax.faces.application.FacesMessage;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 /**
  * @author Andrei Petraru
@@ -19,87 +24,65 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Scope("session")
-public class LoginBean implements Serializable{
+public class LoginBean implements Serializable {
 
-    private boolean loggedOn = false;
-    private String username;
-    private String password;
-    private Customer loggedInUser;
+	private boolean loggedOn = false;
+	private String username;
+	private String password;
+	private Customer loggedInUser;
 
-    @Autowired
-    private CustomerService customerService;
+	@Autowired
+	private CustomerService customerService;
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
-    public String login() {
-        if (verifyCredentials()) {
-            loggedOn = true;
-            Message.addMessage("loginFormId:loginButtonId", "Welcome back " + username + "! Redirecting...",
-                FacesMessage.SEVERITY_INFO);
-            clearFields();
-            return NavigationBean.home();
-        }
-        clearFields();
-        return null;
-    }
+	public String login() {
+		try {
+			Authentication request = new UsernamePasswordAuthenticationToken(
+					username, password);
+			Authentication result = authenticationManager.authenticate(request);
+			SecurityContextHolder.getContext().setAuthentication(result);
+			loggedInUser = customerService.findByUsername(username);
+			loggedOn = true;
+			return NavigationBean.home();
+		} catch (AuthenticationException e) {
+			addErrorMessage();
+			return null;
+		}
+	}
 
-    public String logout() {
-        loggedInUser = null;
-        loggedOn = false;
-        return NavigationBean.home();
-    }
+	public String logout() {
+		loggedOn = false;
+		SecurityContextHolder.clearContext();
+		return NavigationBean.home();
+	}
 
-    private boolean verifyCredentials() {
-        loggedInUser = customerService.findByUsername(username);
-        if (loggedInUser == null) {
-            addErrorMessage();
-            return false;
-        }
+	private void addErrorMessage() {
+		Message.addMessage("loginButton", "Incorrect username or password",
+				FacesMessage.SEVERITY_ERROR);
+	}
 
-        if (!StringUtils.equals(username, loggedInUser.getUsername())) {
-            addErrorMessage();
-            return false;
-        }
+	public boolean isLoggedOn() {
+		return loggedOn;
+	}
 
-        String pass = loggedInUser.getPassword();
-        String loginPass = PasswordHash.hash(password);
-        if (!StringUtils.equals(pass, loginPass)) {
-            addErrorMessage();
-            return false;
-        }
+	public String getUsername() {
+		return username;
+	}
 
-        return StringUtils.equals(username, loggedInUser.getUsername()) && (StringUtils.equals(pass, loggedInUser.getPassword()));
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    private void addErrorMessage() {
-        Message.addMessage("loginFormId:loginButtonId", "Incorrect username or password", FacesMessage.SEVERITY_ERROR);
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    private void clearFields() {
-        username = "";
-        password = "";
-    }
-
-    public boolean isLoggedOn() {
-        return loggedOn;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Customer getLoggedInUser() {
-        return loggedInUser;
-    }
+	public Customer getLoggedInUser() {
+		return loggedInUser;
+	}
 }

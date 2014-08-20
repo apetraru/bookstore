@@ -1,7 +1,5 @@
 package com.bk.model;
 
-import org.springframework.util.Assert;
-
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.HashSet;
@@ -26,11 +24,10 @@ public class Customer extends AbstractEntity {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "customer_id")
 	private Set<Address> addresses = new HashSet<>();
+	@OneToMany(fetch=FetchType.EAGER)
+	private Set<Role> roles = new HashSet<>();
 
 	public Customer(String firstname, String lastname) {
-		Assert.hasText(firstname);
-		Assert.hasText(lastname);
-
 		this.firstname = firstname;
 		this.lastname = lastname;
 	}
@@ -39,7 +36,6 @@ public class Customer extends AbstractEntity {
 	}
 
 	public void add(Address address) {
-		Assert.notNull(address);
 		this.addresses.add(address);
 	}
 
@@ -85,5 +81,13 @@ public class Customer extends AbstractEntity {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 }
