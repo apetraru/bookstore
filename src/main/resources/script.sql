@@ -147,7 +147,7 @@ INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username
 INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (12, 'vasile11@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile11');
 INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (13, 'vasile12@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile12');
 INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (14, 'vasile13@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile13');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (15, 'admin@yahoo.com', null, null, 'admin', 'admin');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (15, 'admin@yahoo.com', null, null, '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin');
 INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (16, 'user@yahoo.com', null, null, 'user', 'user');
 
 INSERT INTO ROLE(id, rolename) VALUES(1, 'ADMIN');
