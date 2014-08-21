@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                 http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                 http://www.springframework.org/schema/security
+                 http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<!-- Define bean here because it needs to be picked up by authentication 
+		manager; @Autowired does not work -->
+	<beans:bean id="customerDetailsService" class="com.bk.security.CustomerDetailsService" />
+
+	<beans:bean id="passwordEncoder"
+		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+		<beans:constructor-arg value="256" />
+	</beans:bean>
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="customerDetailsService">
+			<password-encoder ref="passwordEncoder" />
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>
