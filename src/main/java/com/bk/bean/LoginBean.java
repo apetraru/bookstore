@@ -6,14 +6,12 @@ import javax.faces.application.FacesMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.bk.model.Customer;
+import com.bk.security.CustomerAuthenticationService;
 import com.bk.service.CustomerService;
 import com.bk.util.Message;
 
@@ -34,17 +32,15 @@ public class LoginBean implements Serializable {
 	@Autowired
 	private CustomerService customerService;
 	@Autowired
-	private AuthenticationManager authenticationManager;
+	private CustomerAuthenticationService customerAuthenticationService;
 
 	public String login() {
 		try {
-			Authentication request = new UsernamePasswordAuthenticationToken(
+			loggedInUser = customerAuthenticationService.authenticateUser(
 					username, password);
-			Authentication result = authenticationManager.authenticate(request);
-			SecurityContextHolder.getContext().setAuthentication(result);
-			loggedInUser = customerService.findByUsername(username);
 			loggedOn = true;
 			return NavigationBean.home();
+
 		} catch (AuthenticationException e) {
 			addErrorMessage();
 			return null;
