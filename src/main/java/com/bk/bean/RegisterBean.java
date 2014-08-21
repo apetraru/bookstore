@@ -1,15 +1,16 @@
 package com.bk.bean;
 
-import com.bk.model.Customer;
-import com.bk.service.CustomerService;
-import com.bk.util.Message;
-import com.bk.util.PasswordHash;
+import javax.faces.application.FacesMessage;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import javax.faces.application.FacesMessage;
+import com.bk.model.Customer;
+import com.bk.service.CustomerService;
+import com.bk.util.Message;
 
 /**
  * @author Andrei Petraru
@@ -24,8 +25,8 @@ public class RegisterBean {
     private String password;
     private String email;
 
-    @Autowired
-    private CustomerService customerService;
+    @Autowired private CustomerService customerService;
+    @Autowired private ShaPasswordEncoder passwordEncoder;
 
     public void register() {
 
@@ -37,15 +38,9 @@ public class RegisterBean {
             return;
         }
 
-        String pass = PasswordHash.hash(password);
-        if (pass == null) {
-        	addErrorMessage();
-            return;
-        }
-
         Customer newCustomer = new Customer();
         newCustomer.setUsername(username);
-        newCustomer.setPassword(pass);
+        newCustomer.setPassword(passwordEncoder.encodePassword(password, null));
         newCustomer.setEmailAddress(email);
 
         if (customerService.save(newCustomer) != null) {

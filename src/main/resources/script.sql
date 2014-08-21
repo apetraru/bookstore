@@ -133,28 +133,43 @@ INSERT INTO BOOK_GENRES(GENRE_ID, BOOK_ID) VALUES(19, 60);
 INSERT INTO BOOK_GENRES(GENRE_ID, BOOK_ID) VALUES(20, 61);
 
 -- CUSTOMERS
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (1, 'gigi@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'gigi');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (2, 'vasile1@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile1');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (3, 'vasile2@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile2');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (4, 'vasile3@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile3');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (5, 'vasile4@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile4');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (6, 'vasile5@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile5');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (7, 'vasile6@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile6');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (8, 'vasile7@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile7');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (9, 'vasile8@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile8');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (10, 'vasile9@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile9');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (11, 'vasile10@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile10');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (12, 'vasile11@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile11');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (13, 'vasile12@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile12');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (14, 'vasile13@yahoo.com', null, null, '00ac5eaee5c4cfdea2a2f8d65d3f73250a158043b0e35bdea1c406ae93347d376927ccedadf61d45006e48aa4dc719ba8043897152a0c5fcdefb36d23255aa95', 'vasile13');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (15, 'admin@yahoo.com', null, null, '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin');
-INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (16, 'user@yahoo.com', null, null, 'user', 'user');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (1, 'gigi@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'gigi');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (2, 'vasile1@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'vasile1');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (3, 'vasile2@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'vasile2');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (4, 'vasile3@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'vasile3');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (5, 'vasile4@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'vasile4');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (6, 'vasile5@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'vasile5');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (7, 'vasile6@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'vasile6');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (8, 'vasile7@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'vasile7');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (9, 'vasile8@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'vasile8');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (10, 'vasile9@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'vasile9');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (11, 'vasile10@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'vasile10');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (12, 'vasile11@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'vasile11');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (13, 'vasile12@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'vasile12');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (14, 'vasile13@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'vasile13');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (15, 'admin@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'admin');
+INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (16, 'user@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'user');
 
 INSERT INTO ROLE(id, rolename) VALUES(1, 'ADMIN');
 INSERT INTO ROLE(id, rolename) VALUES(2, 'USER');
 
 INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(1, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(2, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(3, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(4, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(5, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(6, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(7, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(8, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(9, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(10, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(11, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(12, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(13, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(14, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(15, 2);
 INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(15, 1);
+INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(15, 2);
 INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(16, 2);
 
 -- REVIEW
