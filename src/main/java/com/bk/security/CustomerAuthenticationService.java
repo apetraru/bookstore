@@ -1,5 +1,8 @@
 package com.bk.security;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,7 +28,9 @@ public class CustomerAuthenticationService {
 			SecurityContextHolder.getContext().setAuthentication(result);
 			return customerDetails.getCustomer();
 		} catch (UsernameNotFoundException e) {
-			throw new UsernameNotFoundException("Not found");
+			Logger.getLogger(CustomerAuthenticationService.class.getName())
+					.log(Level.SEVERE, "Username not found", "Username not found");
+			throw new UsernameNotFoundException("Username not found");
 		}
 	}
 }

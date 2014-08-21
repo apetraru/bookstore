@@ -10,8 +10,7 @@ import com.bk.service.CustomerService;
 
 public class CustomerDetailsService implements UserDetailsService {
 
-	@Autowired
-	private CustomerService customerService;
+	@Autowired private CustomerService customerService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username)

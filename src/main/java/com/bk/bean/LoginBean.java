@@ -29,10 +29,8 @@ public class LoginBean implements Serializable {
 	private String password;
 	private Customer loggedInUser;
 
-	@Autowired
-	private CustomerService customerService;
-	@Autowired
-	private CustomerAuthenticationService customerAuthenticationService;
+	@Autowired private CustomerService customerService;
+	@Autowired private CustomerAuthenticationService customerAuthenticationService;
 
 	public String login() {
 		try {
