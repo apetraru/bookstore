@@ -1,22 +1,14 @@
 package com.bk.bean;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.annotation.PostConstruct;
-
-import org.apache.commons.math.random.RandomData;
-import org.apache.commons.math.random.RandomDataImpl;
+import com.bk.lazydatamodel.GenreLazyDataModel;
+import com.bk.model.Book;
+import com.bk.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.bk.lazydatamodel.GenreLazyDataModel;
-import com.bk.model.Book;
-import com.bk.service.BookService;
+import javax.annotation.PostConstruct;
+import java.util.*;
 
 /**
  * @author Andrei Petraru
@@ -27,7 +19,7 @@ import com.bk.service.BookService;
 @Scope("request")
 public class HomeBean {
 
-	private static final Long DISPLAYED_BOOKS = 15L;
+	private static final int DISPLAYED_BOOKS = 15;
 
 	@Autowired
 	private BookService bookService;
@@ -43,15 +35,15 @@ public class HomeBean {
 	@PostConstruct
 	public void init() {
 		Set<Book> noDuplicates = new HashSet<>();
-		RandomData random = new RandomDataImpl();
-		Long count = bookService.count();
+		Random random = new Random();
+		int count = bookService.count().intValue();
 
-		if (DISPLAYED_BOOKS.compareTo(count) > 0) {
+		if (count < DISPLAYED_BOOKS) {
 			return;
 		}
 
 		for (int i = 0; i < DISPLAYED_BOOKS; i++) {
-			Book book = bookService.findById(random.nextLong(1, count));
+			Book book = bookService.findById((long) random.nextInt(count));
 			noDuplicates.add(book);
 		}
 		books.addAll(noDuplicates);
