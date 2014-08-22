@@ -30,20 +30,11 @@ import com.bk.service.BookService;
 @Scope("session")
 public class BookBean implements Serializable {
 
-	@Autowired
-	private LoginBean loginBean;
-
-	@Autowired
-	private ReviewRepository reviewRepository;
-
-	@Autowired
-	private BookService bookService;
-
-	@Autowired
-	private ShelfRepository shelfRepository;
-
-	@Autowired
-	private ReviewLazyDataModel lazyDataModel;
+	@Autowired private SessionBean sessionBean;
+	@Autowired private ReviewRepository reviewRepository;
+	@Autowired private BookService bookService;
+	@Autowired private ShelfRepository shelfRepository;
+	@Autowired private ReviewLazyDataModel lazyDataModel;
 
 	private Book book;
 	private Review bookReview;
@@ -52,7 +43,7 @@ public class BookBean implements Serializable {
 	private Long id;
 
 	public void init() {
-		Customer user = loginBean.getLoggedInUser();
+		Customer user = sessionBean.getLoggedInUser();
 
 		if (id == null) {
 			String message = "Bad request. Please use a link from within the system.";
@@ -216,11 +207,11 @@ public class BookBean implements Serializable {
 	}
 
 	private Long getUserId() {
-		return loginBean.getLoggedInUser().getId();
+		return sessionBean.getLoggedInUser().getId();
 	}
 
 	private boolean isLoggedIn() {
-		return loginBean.isLoggedOn();
+		return sessionBean.isLoggedOn();
 	}
 
 	private boolean isLiked(Review review) {

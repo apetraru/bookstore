@@ -23,18 +23,18 @@
 							<p:graphicImage width="200" height="275" value="#{bookBean.book.imageUrl}" />
 						</div>
 						<div class="float-left">
-							<p:selectOneMenu disabled="#{not loginBean.loggedOn}" value="#{bookBean.shelf.status}" styleClass="margin-top-10px">
+							<p:selectOneMenu disabled="#{not sessionBean.loggedOn}" value="#{bookBean.shelf.status}" styleClass="margin-top-10px">
 								<f:selectItem itemValue="" itemLabel="Book Status" />
 								<f:selectItems value="#{bookBean.statuses}"/>
 								<p:ajax event="valueChange" listener="#{bookBean.saveShelf()}" update="bookForm"/>
 							</p:selectOneMenu>
-							<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!loginBean.loggedOn}" id="bookRatingId" styleClass="margin-top-10px">
+							<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!sessionBean.loggedOn}" id="bookRatingId" styleClass="margin-top-10px">
 								<p:ajax event="rate" listener="#{bookBean.addRating}" update="bookForm" />
 								<p:ajax event="cancel" listener="#{bookBean.removeRating}" update="bookForm" />
 							</p:rating>
 							<p:commandButton value="#{empty bookBean.bookRating.comment ? 'Write a review' : 'Edit my review'}"
 											 onclick="PF('reviewDialog').show();" type="button"
-											 disabled="#{!loginBean.loggedOn}"
+											 disabled="#{!sessionBean.loggedOn}"
 											 styleClass="margin-top-10px"/>
 						</div>
 						<p:dialog header="Edit your review" widgetVar="reviewDialog" width="800" height="600"
@@ -47,7 +47,7 @@
 							<br/>
 							<div class="float-left width-all" >
 								<h:outputText value="My rating " styleClass="float-left"/>
-								<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!loginBean.loggedOn}" styleClass="float-left">
+								<p:rating value="#{bookBean.bookRating.rating}" readonly="#{!sessionBean.loggedOn}" styleClass="float-left">
 									<p:ajax event="rate" listener="#{bookBean.addRating}"/>
 									<p:ajax event="cancel" listener="#{bookBean.removeRating}"/>
 								</p:rating>
@@ -144,7 +144,7 @@
 									</div>
 									<p:commandButton value="#{bookBean.isLikedButtonText(review)}"
 													 styleClass="book-review-like-button"
-													 disabled="#{empty loginBean.loggedInUser}"
+													 disabled="#{empty sessionBean.loggedInUser}"
 													 action="#{bookBean.like}" update="reviews">
 										<f:setPropertyActionListener value="#{review}" target="#{bookBean.likeReview}" />
 									</p:commandButton>

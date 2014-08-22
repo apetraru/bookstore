@@ -33,14 +33,14 @@
 			<h:link value="Add Book" outcome="#{navigationBean.addBook()}" />
 			<h:link value="Add Author" outcome="#{navigationBean.addAuthor()}" />
 			<h:link value="Recommendations" />
-			<h:link value="Login" outcome="#{navigationBean.login()}" rendered="#{!loginBean.loggedOn}"
+			<h:link value="Login" outcome="#{navigationBean.login()}" rendered="#{!sessionBean.loggedOn}"
 				styleClass="float-right" />
 			<h:link value="Register" outcome="#{navigationBean.register()}"
-				rendered="#{!loginBean.loggedOn}" styleClass="float-right" />
-			<p:commandLink value="Logout" rendered="#{loginBean.loggedOn}" action="#{loginBean.logout}"
+				rendered="#{!sessionBean.loggedOn}" styleClass="float-right" />
+			<p:commandLink value="Logout" rendered="#{sessionBean.loggedOn}" action="#{loginBean.logout}"
 				ajax="false" styleClass="float-right" />
-			<p:commandLink value="#{loginBean.loggedInUser.username}" rendered="#{loginBean.loggedOn}"
-				styleClass="float-right" />
+			<p:commandLink value="#{sessionBean.loggedInUser.username}" rendered="#{sessionBean.loggedOn}"
+				styleClass="float-right" action="#{navigationBean.profile()}"/>
 			<p:defaultCommand target="searchButton" /> 
 		</div>
 	</h:form>

@@ -10,7 +10,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import com.bk.model.Customer;
 import com.bk.security.CustomerAuthenticationService;
 import com.bk.service.CustomerService;
 import com.bk.util.Message;
@@ -21,22 +20,20 @@ import com.bk.util.Message;
  */
 
 @Component
-@Scope("session")
+@Scope("view")
 public class LoginBean implements Serializable {
-
-	private boolean loggedOn = false;
-	private String username;
-	private String password;
-	private Customer loggedInUser;
-
 	@Autowired private CustomerService customerService;
 	@Autowired private CustomerAuthenticationService customerAuthenticationService;
+	@Autowired private SessionBean sessionBean;
+
+	private String username;
+	private String password;
 
 	public String login() {
 		try {
-			loggedInUser = customerAuthenticationService.authenticateUser(
-					username, password);
-			loggedOn = true;
+			sessionBean.setLoggedInUser(customerAuthenticationService.authenticateUser(
+					username, password));
+			sessionBean.setLoggedOn(true);
 			return NavigationBean.home();
 
 		} catch (AuthenticationException e) {
@@ -46,7 +43,7 @@ public class LoginBean implements Serializable {
 	}
 
 	public String logout() {
-		loggedOn = false;
+		sessionBean.setLoggedOn(false);
 		SecurityContextHolder.clearContext();
 		return NavigationBean.home();
 	}
@@ -54,10 +51,6 @@ public class LoginBean implements Serializable {
 	private void addErrorMessage() {
 		Message.addMessage("loginButton", "Incorrect username or password",
 				FacesMessage.SEVERITY_ERROR);
-	}
-
-	public boolean isLoggedOn() {
-		return loggedOn;
 	}
 
 	public String getUsername() {
@@ -74,9 +67,5 @@ public class LoginBean implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Customer getLoggedInUser() {
-		return loggedInUser;
 	}
 }
