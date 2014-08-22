@@ -1,9 +1,15 @@
 package com.bk.model;
 
-import javax.persistence.*;
-import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -21,10 +27,11 @@ public class Customer extends AbstractEntity {
 	private String password;
 	@Column(nullable = false, unique = true, name = "email_address")
 	private String emailAddress;
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "customer_id")
-	private Set<Address> addresses = new HashSet<>();
-	@OneToMany(fetch=FetchType.EAGER)
+	private String address;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "birth_date")
+	private Date birthDate;
+	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Role> roles = new HashSet<>();
 
 	public Customer(String firstname, String lastname) {
@@ -33,10 +40,6 @@ public class Customer extends AbstractEntity {
 	}
 
 	public Customer() {
-	}
-
-	public void add(Address address) {
-		this.addresses.add(address);
 	}
 
 	public String getFirstname() {
@@ -55,16 +58,12 @@ public class Customer extends AbstractEntity {
 		this.lastname = lastname;
 	}
 
-    public String getEmailAddress() {
-        return emailAddress;
-    }
+	public String getEmailAddress() {
+		return emailAddress;
+	}
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
-    public Set<Address> getAddresses() {
-		return Collections.unmodifiableSet(addresses);
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 
 	public String getUsername() {
@@ -89,5 +88,21 @@ public class Customer extends AbstractEntity {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 }
