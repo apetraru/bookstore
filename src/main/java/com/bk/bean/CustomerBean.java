@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import com.bk.model.Customer;
 import com.bk.service.CustomerService;
+import com.bk.util.Message;
 
 @Component
 @Scope("view")
@@ -26,7 +27,6 @@ public class CustomerBean {
 			String message = "Please login first to view your profile";
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
-			return;
 		}
 	}
 
@@ -36,6 +36,11 @@ public class CustomerBean {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public void update() {
+		customer = customerService.save(customer);
+		Message.addMessage("profileForm:updateButton", "Details updated successfully !", FacesMessage.SEVERITY_INFO);
 	}
 
 }
