@@ -2,11 +2,12 @@ package com.bk.bean;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.math.random.RandomData;
+import org.apache.commons.math.random.RandomDataImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -24,7 +25,7 @@ import com.bk.service.BookService;
 @Scope("request")
 public class HomeBean {
 
-	private static final int DISPLAYED_BOOKS = 15;
+	private static final Long DISPLAYED_BOOKS = 15L;
 
 	@Autowired private BookService bookService;
 	@Autowired private GenreLazyDataModel lazyModel;
@@ -34,15 +35,17 @@ public class HomeBean {
 
 	@PostConstruct
 	public void init() {
-//		Random random = new Random();
-//		int count = bookService.count().intValue();
-//
-//		if (count < DISPLAYED_BOOKS) {
-//			return;
-//		}
-//		while (books.size() < DISPLAYED_BOOKS) {
-//			books.add(bookService.findById((long) random.nextInt(count)));
-//		}
+		RandomData random = new RandomDataImpl();
+		Long count = bookService.count();
+
+		if (DISPLAYED_BOOKS.compareTo(count) > 0) {
+			return;
+		}
+
+		for (int i = 0; i < DISPLAYED_BOOKS; i++) {
+			Book book = bookService.findById(random.nextLong(1, count));
+			books.add(book);
+		}
 	}
 
 	public Set<Book> getBooks() {

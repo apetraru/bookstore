@@ -16,7 +16,7 @@
 			<p:spacer width="100%" height="1px" />
 			<p:dataGrid columns="1" lazy="false" value="#{homeBean.books}" var="book" styleClass="homepage-book-datagrid">
 				<f:facet name="header">
-					<h:outputText value="Recommended for you" />
+					<h:outputText value="Today's recommendations" />
 				</f:facet>
 				<ui:include src="/templates/bookTemplate.xhtml">
 					<ui:param name="book" value="#{book}" />
