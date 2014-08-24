@@ -1,16 +1,17 @@
 package com.bk.bean;
 
-import javax.faces.application.FacesMessage;
-
+import com.bk.model.Customer;
+import com.bk.model.Role;
+import com.bk.service.CustomerService;
+import com.bk.service.RoleService;
+import com.bk.util.Message;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.bk.model.Customer;
-import com.bk.service.CustomerService;
-import com.bk.util.Message;
+import javax.faces.application.FacesMessage;
 
 /**
  * @author Andrei Petraru
@@ -21,12 +22,13 @@ import com.bk.util.Message;
 @Scope("request")
 public class RegisterBean {
 
+	@Autowired private CustomerService customerService;
+	@Autowired private ShaPasswordEncoder passwordEncoder;
+	@Autowired private RoleService roleService;
+
     private String username;
     private String password;
     private String email;
-
-    @Autowired private CustomerService customerService;
-    @Autowired private ShaPasswordEncoder passwordEncoder;
 
     public void register() {
 
@@ -39,6 +41,7 @@ public class RegisterBean {
         }
 
         Customer newCustomer = new Customer();
+		Role userRole = roleService.getUserRole();
         newCustomer.setUsername(username);
         newCustomer.setPassword(passwordEncoder.encodePassword(password, null));
         newCustomer.setEmailAddress(email);
@@ -46,9 +49,12 @@ public class RegisterBean {
         if (customerService.save(newCustomer) != null) {
             addSuccessMessage();
             clearFields();
+			newCustomer.setRole(userRole);
+			customerService.save(newCustomer);
         } else {
             addErrorMessage();
         }
+
     }
 
     private boolean checkExistingUser() {
