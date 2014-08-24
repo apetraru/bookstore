@@ -150,27 +150,26 @@ INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username
 INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (15, 'admin@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'admin');
 INSERT INTO CUSTOMER(id,  email_address, firstname, lastname, password, username) VALUES (16, 'user@yahoo.com', null, null, '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'user');
 
-INSERT INTO ROLE(id, rolename) VALUES(1, 'ADMIN');
-INSERT INTO ROLE(id, rolename) VALUES(2, 'USER');
+INSERT INTO ROLE(id, role) VALUES(1, 'ADMIN');
+INSERT INTO ROLE(id, role) VALUES(2, 'USER');
 
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(1, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(2, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(3, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(4, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(5, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(6, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(7, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(8, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(9, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(10, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(11, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(12, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(13, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(14, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(15, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(15, 1);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(15, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, roles_id) VALUES(16, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(1, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(2, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(3, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(4, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(5, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(6, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(7, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(8, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(9, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(10, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(11, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(12, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(13, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(14, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(15, 2);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(15, 1);
+INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(16, 2);
 
 -- REVIEW
 INSERT INTO REVIEW(id, rating, publish_date, comment, book_id, customer_id) VALUES(1, 5, '2007-01-01', 'Great book', 1, 1);
