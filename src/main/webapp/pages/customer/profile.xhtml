@@ -1,70 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-	  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	  xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
-	<ui:composition template="/templates/template.xhtml">
-		<ui:define name="title">
-			<title>#{customerBean.customer.username}</title>
-		</ui:define>
-		<ui:define name="body">
-			<h:form id="profileForm">
-				<p:panel header="Profile" styleClass="addBook-panel">
-					<p:panelGrid id="profileForm">
-						<p:row>
-							<p:column styleClass="panel-column">
-								<h:outputText value="Username"/>
-								<br/>
-								<p:inputText value="#{customerBean.customer.username}" required="true" id="username"
-											 maxlength="200"/>
-								<p:message for="username" display="text"/>
-							</p:column>
-							<p:column styleClass="panel-column">
-								<h:outputLabel for="email" value="Email"/>
-								<br/>
-								<p:inputText value="#{customerBean.customer.emailAddress}" required="true" id="email">
-									<f:validator validatorId="emailValidator"/>
-								</p:inputText>
-								<p:message for="email" display="text"/>
-							</p:column>
-						</p:row>>
-						<p:row>
-							<p:column styleClass="panel-column">
-								<h:outputLabel for="firstname" value="First name"/>
-								<br/>
-								<p:inputText value="#{customerBean.customer.firstname}" id="firstname" maxlength="200"/>
-							</p:column>
-							<p:column styleClass="panel-column">
-								<h:outputLabel for="lastname" value="Last name"/>
-								<br/>
-								<p:inputText value="#{customerBean.customer.lastname}" id="lastname" maxlength="200"/>
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column styleClass="panel-column">
-								<h:outputLabel for="dateOfBirth" value="Date of Birth"/>
-								<br/>
-								<p:calendar value="#{customerBean.customer.birthDate}" pattern="dd/MM/yyyy" yearRange="1900:"
-											showButtonPanel="true" navigator="true" readonlyInput="true" id="dateOfBirth"
-											maxdate="#{addBookBean.today}"/>
-							</p:column>
-							<p:column styleClass="panel-column">
-								<h:outputLabel for="address" value="Address"/>
-								<br/>
-								<p:inputText value="#{customerBean.customer.address}" id="address" maxlength="200"/>
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column styleClass="description-column" colspan="2">
-								<p:commandButton value="Update" action="#{customerBean.update}" id="updateButton" update="@form"/>
-								<p:message for="updateButton" display="text"/>
-								<br/>
-								<p:commandButton value="Change Password" ajax="false" action="#{navigationBean.password()}" />
-							</p:column>
-						</p:row>
-					</p:panelGrid>
-				</p:panel>
-			</h:form>
-		</ui:define>
-	</ui:composition>
+<ui:composition template="/templates/template.xhtml">
+    <ui:define name="title">
+        <title>#{customerBean.customer.username}</title>
+    </ui:define>
+    <ui:define name="body">
+        <h:form id="profileForm">
+            <p:panel header="Profile" styleClass="addBook-panel">
+                <p:panelGrid>
+                    <p:row>
+                        <p:column styleClass="panel-column">
+                            <h:outputText value="Username"/>
+                            <br/>
+                            <p:inputText value="#{customerBean.customer.username}" required="true" id="username"
+                                         maxlength="200"/>
+                            <p:message for="username" display="text"/>
+                        </p:column>
+                        <p:column styleClass="panel-column">
+                            <h:outputLabel for="email" value="Email"/>
+                            <br/>
+                            <p:inputText value="#{customerBean.customer.emailAddress}" required="true" id="email">
+                                <f:validator validatorId="emailValidator"/>
+                            </p:inputText>
+                            <p:message for="email" display="text"/>
+                        </p:column>
+                    </p:row>>
+                    <p:row>
+                        <p:column styleClass="panel-column">
+                            <h:outputLabel for="firstname" value="First name"/>
+                            <br/>
+                            <p:inputText value="#{customerBean.customer.firstname}" id="firstname" maxlength="200"/>
+                        </p:column>
+                        <p:column styleClass="panel-column">
+                            <h:outputLabel for="lastname" value="Last name"/>
+                            <br/>
+                            <p:inputText value="#{customerBean.customer.lastname}" id="lastname" maxlength="200"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column styleClass="panel-column">
+                            <h:outputLabel for="dateOfBirth" value="Date of Birth"/>
+                            <br/>
+                            <p:calendar value="#{customerBean.customer.birthDate}" pattern="dd/MM/yyyy"
+                                        yearRange="1900:"
+                                        showButtonPanel="true" navigator="true" readonlyInput="true" id="dateOfBirth"
+                                        maxdate="#{addBookBean.today}"/>
+                        </p:column>
+                        <p:column styleClass="panel-column">
+                            <h:outputLabel for="address" value="Address"/>
+                            <br/>
+                            <p:inputText value="#{customerBean.customer.address}" id="address" maxlength="200"/>
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column styleClass="description-column" colspan="2">
+                            <p:commandButton value="Update" action="#{customerBean.update}" id="updateButton"
+                                             update="@form"/>
+                            <p:message for="updateButton" display="text"/>
+                            <br/>
+                            <p:commandButton value="Change Password" ajax="false"
+                                             action="#{navigationBean.password()}"/>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>
 </html>
