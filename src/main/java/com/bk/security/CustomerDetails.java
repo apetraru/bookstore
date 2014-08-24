@@ -23,9 +23,7 @@ public class CustomerDetails implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-		for (Role role : customer.getRoles()) {
-			authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
-		}
+		authorities.add(new SimpleGrantedAuthority(customer.getRole().getRole()));
 		return authorities;
 	}
 

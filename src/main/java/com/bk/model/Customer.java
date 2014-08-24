@@ -1,15 +1,7 @@
 package com.bk.model;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+import java.util.*;
 
 /**
  *
@@ -31,8 +23,12 @@ public class Customer extends AbstractEntity {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "birth_date")
 	private Date birthDate;
-	@OneToMany(fetch = FetchType.EAGER)
-	private Set<Role> roles = new HashSet<>();
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinTable(name="customer_role",
+			joinColumns = {@JoinColumn(name="customer_id", referencedColumnName="id")},
+			inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")}
+	)
+	private Role role;
 
 	public Customer(String firstname, String lastname) {
 		this.firstname = firstname;
@@ -82,20 +78,20 @@ public class Customer extends AbstractEntity {
 		this.password = password;
 	}
 
-	public Set<Role> getRoles() {
-		return roles;
+	public Role getRole() {
+		return role;
 	}
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-
-	public String getAddress() {
-		return address;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getAddress() {
+		return address;
 	}
 
 	public Date getBirthDate() {
