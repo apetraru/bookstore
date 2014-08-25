@@ -19,14 +19,17 @@ public class CustomerBean {
 	@Autowired private SessionBean sessionBean;
 
 	private Customer customer;
-	
+
 	@PostConstruct
 	public void init() {
 		customer = sessionBean.getLoggedInUser();
 		if (customer == null) {
 			String message = "Please login first to view your profile";
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+			FacesContext.getCurrentInstance()
+					.addMessage(
+							null,
+							new FacesMessage(FacesMessage.SEVERITY_ERROR,
+									message, null));
 		}
 	}
 
@@ -39,8 +42,43 @@ public class CustomerBean {
 	}
 
 	public void update() {
+		if (usernameExists()) {
+			Message.addMessage("profileForm:username",
+					"Username already exists", FacesMessage.SEVERITY_ERROR);
+			return;
+		}
+
+		if (emailExists()) {
+			Message.addMessage("profileForm:email", "Email already exists",
+					FacesMessage.SEVERITY_ERROR);
+			return;
+		}
+
 		customer = customerService.save(customer);
-		Message.addMessage("profileForm:updateButton", "Details updated successfully !", FacesMessage.SEVERITY_INFO);
+		Message.addMessage("profileForm:updateButton",
+				"Details updated successfully !", FacesMessage.SEVERITY_INFO);
+	}
+
+	private boolean usernameExists() {
+		Customer duplicateCustomer = customerService.findByUsername(customer
+				.getUsername());
+		if (duplicateCustomer == null) {
+			return false;
+		}
+		
+		return (customer.getUsername().equals(duplicateCustomer.getUsername()) && !duplicateCustomer
+				.getId().equals(customer.getId()));
+	}
+
+	private boolean emailExists() {
+		Customer duplicateCustomer = customerService.findByEmailAddress(customer
+				.getEmailAddress());
+		if (duplicateCustomer == null) {
+			return false;
+		}
+		
+		return (customer.getEmailAddress().equals(duplicateCustomer.getEmailAddress()) && !duplicateCustomer
+				.getId().equals(customer.getId()));
 	}
 
 }
