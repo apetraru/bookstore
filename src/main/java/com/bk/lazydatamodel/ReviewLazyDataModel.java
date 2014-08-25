@@ -23,8 +23,8 @@ import com.bk.repository.ReviewRepository;
 
 @Component
 public class ReviewLazyDataModel extends LazyDataModel<Review> {
-	@Autowired
-	private ReviewRepository repository;
+	
+	@Autowired private ReviewRepository repository;
 
 	private Book book;
 

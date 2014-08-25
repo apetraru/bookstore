@@ -20,8 +20,8 @@ import com.bk.repository.GenreRepository;
  */
 @Component
 public class GenreLazyDataModel extends LazyDataModel<Genre> {
-	@Autowired
-	private GenreRepository genreRepository;
+	
+	@Autowired private GenreRepository genreRepository;
 
 	@Override
 	public List<Genre> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {

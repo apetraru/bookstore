@@ -18,6 +18,7 @@ import com.bk.model.Author;
 import com.bk.model.Book;
 import com.bk.repository.BookRepository;
 import com.bk.util.PaginatedHibernateSearch;
+import com.mysema.query.types.Predicate;
 
 /**
  * @author Andrei Petraru
@@ -74,6 +75,10 @@ public class BookService {
 	
 	public Page<Book> findByAuthor(Author author, Pageable pageable) {
 		return repository.findByAuthor(author, pageable);
+	}
+	
+	public Page<Book> findAll(Predicate predicate, Pageable pageable) {
+		return repository.findAll(predicate, pageable);
 	}
 
 }

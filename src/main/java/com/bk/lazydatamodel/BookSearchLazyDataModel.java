@@ -22,8 +22,7 @@ public class BookSearchLazyDataModel extends LazyDataModel<Book> {
 	
 	private static final int LENGTH = 3;
 
-	@Autowired
-	private BookService bookService;
+	@Autowired private BookService bookService;
 
 	private String searchTerm;
 

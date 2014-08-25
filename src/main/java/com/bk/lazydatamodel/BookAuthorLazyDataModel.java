@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.bk.model.Author;
 import com.bk.model.Book;
-import com.bk.repository.BookRepository;
+import com.bk.service.BookService;
 
 /**
  * @author Andrei Petraru
@@ -22,8 +22,8 @@ import com.bk.repository.BookRepository;
 
 @Component
 public class BookAuthorLazyDataModel extends LazyDataModel<Book> {
-	@Autowired
-	private BookRepository bookRepository;
+	
+	@Autowired private BookService bookService;
 
 	private Author author;
 
@@ -32,7 +32,7 @@ public class BookAuthorLazyDataModel extends LazyDataModel<Book> {
 		int elementsPerPage = first / pageSize;
 		Pageable pageable = new PageRequest(elementsPerPage, pageSize);
 
-		Page<Book> datasource = bookRepository.findByAuthor(author, pageable);
+		Page<Book> datasource = bookService.findByAuthor(author, pageable);
 
 		setRowCount((int) datasource.getTotalElements());
 

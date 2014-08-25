@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import com.bk.model.Book;
 import com.bk.model.Genre;
 import com.bk.predicate.BookPredicate;
-import com.bk.repository.BookRepository;
+import com.bk.service.BookService;
 import com.mysema.query.types.Predicate;
 
 /**
@@ -24,8 +24,8 @@ import com.mysema.query.types.Predicate;
 
 @Component
 public class BookGenreLazyDataModel extends LazyDataModel<Book> {
-	@Autowired
-	private BookRepository bookRepository;
+	
+	@Autowired private BookService bookService;
 
 	private Genre genre;
 
@@ -35,7 +35,7 @@ public class BookGenreLazyDataModel extends LazyDataModel<Book> {
 		int elementsPerPage = first / pageSize;
 		Pageable pageable = new PageRequest(elementsPerPage, pageSize);
 
-		Page<Book> datasource = bookRepository.findAll(predicate, pageable);
+		Page<Book> datasource = bookService.findAll(predicate, pageable);
 
 		setRowCount((int) datasource.getTotalElements());
 
