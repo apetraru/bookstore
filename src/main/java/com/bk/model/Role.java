@@ -8,7 +8,7 @@ public class Role extends AbstractEntity {
 	private String role;
 
 	@OneToMany(cascade= CascadeType.ALL)
-	@JoinTable(name="customer_role",
+	@JoinTable(name="CUSTOMER_ROLE",
 			joinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")},
 			inverseJoinColumns = {@JoinColumn(name="customer_id", referencedColumnName="id")}
 	)
