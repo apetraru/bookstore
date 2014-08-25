@@ -9,7 +9,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.bk.model.Customer;
-import com.bk.model.Role;
 
 public class CustomerDetails implements UserDetails {
 
