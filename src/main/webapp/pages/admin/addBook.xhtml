@@ -36,7 +36,7 @@
                             <br/>
                             <p:inputMask value="#{addBookBean.book.isbn}" required="true" id="bookIsbnId"
                                          mask="9999999999999" placeHolder="x">
-                                <f:validator validatorId="isbnValidator"/>
+                                <f:validator binding="#{isbnValidator}"/>
                             </p:inputMask>
                             <p:message for="bookIsbnId" display="text"/>
                         </p:column>

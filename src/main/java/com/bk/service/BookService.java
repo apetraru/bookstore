@@ -69,8 +69,8 @@ public class BookService {
         return repository.findById(id);
     }
 
-	public int count() {
-		return repository.count().intValue();
+	public Long count() {
+		return repository.count();
 	}
 	
 	public Book findByIsbn(String ISBN) {
