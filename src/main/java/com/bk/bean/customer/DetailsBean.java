@@ -1,4 +1,4 @@
-package com.bk.bean;
+package com.bk.bean.customer;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -8,13 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.bk.bean.SessionBean;
 import com.bk.model.Customer;
 import com.bk.service.CustomerService;
 import com.bk.util.Message;
 
 @Component
 @Scope("view")
-public class CustomerBean {
+public class DetailsBean {
 	@Autowired private CustomerService customerService;
 	@Autowired private SessionBean sessionBean;
 
@@ -43,19 +44,19 @@ public class CustomerBean {
 
 	public void update() {
 		if (usernameExists()) {
-			Message.addMessage("profileForm:username",
+			Message.addMessage("table:profileForm:username",
 					"Username already exists", FacesMessage.SEVERITY_ERROR);
 			return;
 		}
 
 		if (emailExists()) {
-			Message.addMessage("profileForm:email", "Email already exists",
+			Message.addMessage("table:profileForm:email", "Email already exists",
 					FacesMessage.SEVERITY_ERROR);
 			return;
 		}
 
 		customer = customerService.save(customer);
-		Message.addMessage("profileForm:updateButton",
+		Message.addMessage("table:profileForm:updateButton",
 				"Details updated successfully !", FacesMessage.SEVERITY_INFO);
 	}
 
