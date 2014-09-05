@@ -30,13 +30,13 @@ public class BookService {
 	
 	private static final float THRESHOLD = 0.75f;
 
-    @Autowired
-    private BookRepository repository;
+    @Autowired private BookRepository repository;
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional(readOnly = true)
+    @SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
     public PaginatedHibernateSearch<Book> search(String searchTerm, int firstResult, int resultsPerPage) {
 
         FullTextEntityManager fullTextEntityManager = Search.getFullTextEntityManager(entityManager);
@@ -69,8 +69,12 @@ public class BookService {
         return repository.findById(id);
     }
 
-	public Long count() {
-		return repository.count();
+	public int count() {
+		return repository.count().intValue();
+	}
+	
+	public Book findByIsbn(String ISBN) {
+		return repository.findByIsbn(ISBN);
 	}
 	
 	public Page<Book> findByAuthor(Author author, Pageable pageable) {
