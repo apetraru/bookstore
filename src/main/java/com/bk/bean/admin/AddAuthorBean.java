@@ -1,4 +1,4 @@
-package com.bk.bean;
+package com.bk.bean.admin;
 
 import com.bk.enums.Gender;
 import com.bk.model.Author;
