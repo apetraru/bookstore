@@ -1,18 +1,22 @@
 package com.bk.bean.admin;
 
+import static com.bk.util.Message.info;
+import static com.bk.util.Message.msg;
+
+import java.util.Date;
+
+import javax.annotation.PostConstruct;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.bk.enums.Language;
 import com.bk.model.Author;
 import com.bk.model.Book;
 import com.bk.repository.AuthorRepository;
 import com.bk.service.BookService;
-import com.bk.util.Message;
-import java.util.Date;
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 
 /**
  * @author Andrei Petraru
@@ -23,11 +27,8 @@ import org.springframework.stereotype.Component;
 @Scope("request")
 public class AddBookBean {
 
-    @Autowired
-    private BookService bookService;
-
-    @Autowired
-    private AuthorRepository authorRepository;
+    @Autowired private BookService bookService;
+    @Autowired private AuthorRepository authorRepository;
 
     private Book book;
     private Author author;
@@ -44,7 +45,7 @@ public class AddBookBean {
             author.addBook(book);
             Author saved = authorRepository.save(author);
             if (saved == null) {
-                Message.addMessage("addBookFormId:addBookButtonId", "Book saving failed", FacesMessage.SEVERITY_ERROR);
+                info("addBookFormId:addBookButtonId", msg("bookSavingFailed"));
             }
             return saved;
         }
@@ -62,11 +63,11 @@ public class AddBookBean {
         addAuthorToBook();
         Book saved = bookService.save(book);
         if (saved != null) {
-            Message.addMessage("addBookFormId:addBookButtonId", "Book saved successfully", FacesMessage.SEVERITY_INFO);
+            info("addBookFormId:addBookButtonId", msg("bookSavingSuccess"));
             reset();
         }
         else {
-            Message.addMessage("addBookFormId:addBookButtonId", "Book saving failed", FacesMessage.SEVERITY_ERROR);
+        	info("addBookFormId:addBookButtonId", msg("bookSavingFailed"));
         }
     }
 
