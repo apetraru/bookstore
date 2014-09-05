@@ -167,7 +167,6 @@ INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(11, 2);
 INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(12, 2);
 INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(13, 2);
 INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(14, 2);
-INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(15, 2);
 INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(15, 1);
 INSERT INTO CUSTOMER_ROLE (customer_id, role_id) VALUES(16, 2);
 
