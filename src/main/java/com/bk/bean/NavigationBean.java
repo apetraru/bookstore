@@ -3,8 +3,7 @@ package com.bk.bean;
 import org.springframework.stereotype.Component;
 
 /**
- * @author Andrei Petraru 
- * Date: 1/17/13
+ * @author Andrei Petraru Date: 1/17/13
  */
 @Component
 public final class NavigationBean {
@@ -20,9 +19,8 @@ public final class NavigationBean {
 	private static final String GENRE = "/pages/genre.jsf";
 	private static final String SEARCH = "/pages/search.jsf";
 	private static final String NO_ACCESS = "/pages/noaccess.jsf";
-	private static final String CUSTOMER = "/pages/customer/profile.jsf";
-	private static final String CHANGE_PASSWORD = "/pages/customer/password.jsf";
-	
+	private static final String CUSTOMER = "/pages/customer/details.jsf";
+
 	private NavigationBean() {
 	}
 
@@ -49,28 +47,25 @@ public final class NavigationBean {
 	public static String book() {
 		return BOOK + REDIRECT;
 	}
-	
+
 	public static String author() {
 		return AUTHOR + REDIRECT;
 	}
-	
+
 	public static String genre() {
 		return GENRE + REDIRECT;
 	}
-	
+
 	public static String search() {
 		return SEARCH + REDIRECT;
 	}
-	
+
 	public static String noAccess() {
 		return NO_ACCESS + REDIRECT;
 	}
-	
+
 	public String profile() {
 		return CUSTOMER + REDIRECT;
 	}
 
-	public String password() {
-		return CHANGE_PASSWORD + REDIRECT;
-	}
 }
