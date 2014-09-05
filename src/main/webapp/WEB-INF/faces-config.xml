@@ -7,11 +7,9 @@
 
 	<application>
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-		<locale-config>
-		</locale-config>
 		<resource-bundle>
-			<base-name>message</base-name>
-			<var>messages</var>
+			<base-name>messages</base-name>
+			<var>msg</var>
 		</resource-bundle>
         <message-bundle>
             error-messages
