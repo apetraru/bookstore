@@ -254,6 +254,11 @@ a:hover {
 }
 
 /* BOOK TEMPLATE */
+
+label {
+	display: block !important;
+}
+
 .book-template-title {
 	font-size: 1em;
 }

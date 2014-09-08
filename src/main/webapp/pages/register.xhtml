@@ -8,49 +8,46 @@
 <ui:composition template="/templates/template.xhtml">
     <ui:define name="title">
         <title>
-            GoodBooks | Register
+            #{msg.goodBooks} | #{msg.register}
         </title>
     </ui:define>
     <ui:define name="body">
-        <h:form id="registerFormId">
-            <p:panel header="Register" styleClass="register-panel">
-                <p:panelGrid id="registerPanelId">
+        <h:form id="registerForm">
+            <p:panel header="#{msg.register}" styleClass="register-panel">
+                <p:panelGrid id="registerPanel">
                     <p:row>
                         <p:column styleClass="panel-column">
-                            <h:outputText value="Username"/>
-                            <br/>
-                            <p:inputText value="#{registerBean.username}" required="true" id="registerUsernameId">
+                            <p:outputLabel value="#{msg.username}"/>
+                            <p:inputText value="#{registerBean.username}" required="true" id="username">
                                 <f:validateLength minimum="3"/>
                             </p:inputText>
-                            <p:message for="registerUsernameId" display="text"/>
+                            <p:message for="username" display="text"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column styleClass="panel-column">
-                            <h:outputText value="Email"/>
-                            <br/>
-                            <p:inputText value="#{registerBean.email}" required="true" id="registerEmailId">
+                            <p:outputLabel value="#{msg.email}"/>
+                            <p:inputText value="#{registerBean.email}" required="true" id="email">
                                 <f:validator validatorId="emailValidator"/>
                             </p:inputText>
-                            <p:message for="registerEmailId" display="text"/>
+                            <p:message for="email" display="text"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column styleClass="panel-column">
-                            <h:outputText value="Password"/>
-                            <br/>
-                            <p:password value="#{registerBean.password}" required="true" id="registerPasswordId"
+                            <p:outputLabel value="#{msg.password}"/>
+                            <p:password value="#{registerBean.password}" required="true" id="password"
                                         feedback="true">
                                 <f:validateLength minimum="5"/>
                             </p:password>
-                            <p:message for="registerPasswordId" display="text"/>
+                            <p:message for="password" display="text"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column>
-                            <p:commandButton value="Register" update="registerPanelId" id="registerButtonId"
+                            <p:commandButton value="#{msg.register}" update="registerPanel" id="register"
                                              action="#{registerBean.register}"/>
-                            <p:message for="registerButtonId" display="text"/>
+                            <p:message for="register" display="text"/>
                         </p:column>
                     </p:row>
                 </p:panelGrid>
@@ -58,5 +55,4 @@
         </h:form>
     </ui:define>
 </ui:composition>
-
 </html>

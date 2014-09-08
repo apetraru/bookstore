@@ -1,17 +1,19 @@
 package com.bk.bean;
 
-import com.bk.model.Customer;
-import com.bk.model.Role;
-import com.bk.service.CustomerService;
-import com.bk.service.RoleService;
-import com.bk.util.Message;
+import static com.bk.util.Message.error;
+import static com.bk.util.Message.info;
+import static com.bk.util.Message.msg;
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import javax.faces.application.FacesMessage;
+import com.bk.model.Customer;
+import com.bk.model.Role;
+import com.bk.service.CustomerService;
+import com.bk.service.RoleService;
 
 /**
  * @author Andrei Petraru
@@ -47,12 +49,12 @@ public class RegisterBean {
         newCustomer.setEmailAddress(email);
 
         if (customerService.save(newCustomer) != null) {
-            addSuccessMessage();
-            clearFields();
 			newCustomer.setRole(userRole);
 			customerService.save(newCustomer);
+            clearFields();
+            info("registerForm:register", msg("registrationSuccess"));
         } else {
-            addErrorMessage();
+            error("registerForm:register", msg("registrationFailed"));
         }
 
     }
@@ -64,7 +66,7 @@ public class RegisterBean {
         }
         String existingUsername = existingCustomer.getUsername();
         if (StringUtils.equalsIgnoreCase(username, existingUsername)) {
-            Message.addMessage("registerFormId:registerUsernameId", "Username already taken", FacesMessage.SEVERITY_ERROR);
+            error("registerForm:username", msg("usernameTaken"));
             return true;
         }
         return false;
@@ -77,18 +79,10 @@ public class RegisterBean {
         }
         String existingEmail = existingCustomer.getEmailAddress();
         if (StringUtils.equalsIgnoreCase(email, existingEmail)) {
-            Message.addMessage("registerFormId:registerEmailId", "Email already taken", FacesMessage.SEVERITY_ERROR);
+            error("registerForm:email", msg("emailTaken"));
             return true;
         }
         return false;
-    }
-
-    private void addErrorMessage() {
-        Message.addMessage("registerFormId:registerButtonId", "Registration failed !", FacesMessage.SEVERITY_ERROR);
-    }
-
-    private void addSuccessMessage() {
-        Message.addMessage("registerFormId:registerButtonId", "Registration successful !", FacesMessage.SEVERITY_INFO);
     }
 
     private void clearFields() {
