@@ -1,7 +1,7 @@
 package com.bk.bean;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import static com.bk.util.Message.globalError;
+import static com.bk.util.Message.msg;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -19,34 +19,25 @@ import com.bk.repository.GenreRepository;
 @Component
 @Scope("request")
 public class GenreBean {
-	@Autowired
-	private BookGenreLazyDataModel lazyModel;
-
-	@Autowired
-	private GenreRepository genreRepository;
-
-	@Autowired
-	private RatingsBean ratings;
+	@Autowired private BookGenreLazyDataModel lazyModel;
+	@Autowired private GenreRepository genreRepository;
+	@Autowired private RatingsBean ratings;
 
 	private Long id;
 	private Genre genre;
 
 	public void init() {
 		if (id == null) {
-			String message = "Bad request. Please use a link from within the system.";
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+			globalError(msg("badRequest"));
 			return;
 		}
 
 		genre = genreRepository.findById(id);
-
 		if (genre == null) {
-			String message = "Bad request. Unknown genre.";
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+			globalError(msg("unknownGenre"));
 			return;
 		}
+		
 		lazyModel.setGenre(genre);
 	}
 

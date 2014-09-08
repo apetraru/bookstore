@@ -21,11 +21,8 @@ import com.bk.repository.AuthorRepository;
 @Scope("request")
 public class AuthorBean implements Serializable {
 
-	@Autowired
-	private AuthorRepository authorRepository;
-	
-	@Autowired
-	private BookAuthorLazyDataModel lazyDataModel;
+	@Autowired private AuthorRepository authorRepository;
+	@Autowired private BookAuthorLazyDataModel lazyDataModel;
 
 	private Author author;
 	private Long id;

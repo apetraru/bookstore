@@ -8,7 +8,7 @@
 <ui:composition template="/templates/template.xhtml">
     <ui:define name="title">
         <title>
-            GoodBooks
+        	#{msg.goodBooks}
             <h:outputText value=" | #{genreBean.genre.genre} books" rendered="#{not empty genreBean.genre.id}"/>
         </title>
     </ui:define>
@@ -19,7 +19,7 @@
 		</f:metadata>
 		<h:form id="genreForm">
 			<p:dataGrid rows="5" paginator="true" columns="1" value="#{genreBean.lazyModel}" var="book"
-				paginatorPosition="bottom" lazy="true"
+				paginatorPosition="bottom" lazy="true" rendered="#{not empty genreBean.genre}"
 				paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
 				rowsPerPageTemplate="15">
 				<f:facet name="header">
