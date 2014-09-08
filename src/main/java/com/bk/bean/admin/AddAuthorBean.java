@@ -1,15 +1,15 @@
 package com.bk.bean.admin;
 
-import com.bk.enums.Gender;
-import com.bk.model.Author;
-import com.bk.repository.AuthorRepository;
-import com.bk.util.Message;
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
+import com.bk.enums.Gender;
+import com.bk.model.Author;
+import com.bk.repository.AuthorRepository;
+import static com.bk.util.Message.*;
 
 /**
  * @author: Andrei Petraru
@@ -19,9 +19,10 @@ import javax.faces.application.FacesMessage;
 @Component
 @Scope("request")
 public class AddAuthorBean {
+	
+	private static final String ADD_AUTHOR = "addAuthorForm:addAuthor";
 
-	@Autowired
-	private AuthorRepository authorRepository;
+	@Autowired private AuthorRepository authorRepository;
 
 	private Author author;
 
@@ -35,11 +36,11 @@ public class AddAuthorBean {
 
 		if (savedAuthor == null) {
 			authorRepository.save(author);
-			Message.addMessage("addAuthorFormId:addAuthorButtonId", "Author saved successfully", FacesMessage.SEVERITY_INFO);
 			reset();
+			info(ADD_AUTHOR, msg("authorSavingSuccess"));
 		}
 		else {
-			Message.addMessage("addAuthorFormId:addAuthorButtonId", "Author already exists", FacesMessage.SEVERITY_ERROR);
+			error("addAuthorForm:name", msg("authorAlreadyExists"));
 		}
 	}
 
