@@ -1,8 +1,8 @@
 package com.bk.bean;
 
-import java.io.Serializable;
+import static com.bk.util.Message.*;
 
-import javax.faces.application.FacesMessage;
+import java.io.Serializable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import com.bk.security.CustomerAuthenticationService;
 import com.bk.service.CustomerService;
-import com.bk.util.Message;
 
 /**
  * @author Andrei Petraru
@@ -37,7 +36,7 @@ public class LoginBean implements Serializable {
 			return NavigationBean.home();
 
 		} catch (AuthenticationException e) {
-			addErrorMessage();
+            error("login", msg("loginFailed"));
 			return null;
 		}
 	}
@@ -46,11 +45,6 @@ public class LoginBean implements Serializable {
 		sessionBean.setLoggedOn(false);
 		SecurityContextHolder.clearContext();
 		return NavigationBean.home();
-	}
-
-	private void addErrorMessage() {
-		Message.addMessage("loginButton", "Incorrect username or password",
-				FacesMessage.SEVERITY_ERROR);
 	}
 
 	public String getUsername() {

@@ -7,34 +7,32 @@
 <ui:composition template="/templates/template.xhtml">
     <ui:define name="title">
         <title>
-            GoodBooks | Login
+            #{msg.goodBooks} | #{msg.login}
         </title>
     </ui:define>
     <ui:define name="body">
         <h:form prependId="false">
-            <p:panel header="Login" styleClass="login-panel">
-                <p:panelGrid id="loginPanelId">
+            <p:panel header="#{msg.login}" styleClass="login-panel">
+                <p:panelGrid id="loginPanel">
                     <p:row>
                         <p:column styleClass="panel-column">
-                            <p:outputLabel for="j_username" value="Username"/>
-                            <br/>
+                            <p:outputLabel for="j_username" value="#{msg.username}"/>
                             <p:inputText value="#{loginBean.username}" required="true" id="j_username"/>
                             <p:message for="j_username" display="text"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column styleClass="panel-column">
-                            <p:outputLabel for="j_password" value="Password"/>
-                            <br/>
+                            <p:outputLabel for="j_password" value="#{msg.password}"/>
                             <p:password value="#{loginBean.password}" required="true" id="j_password"/>
                             <p:message for="j_password" display="text"/>
                         </p:column>
                     </p:row>
                     <p:row>
                         <p:column>
-                            <p:commandButton value="Login" update="loginPanelId" id="loginButton"
+                            <p:commandButton value="#{msg.login}" update="loginPanel" id="login"
                                              action="#{loginBean.login}" />
-                            <p:message for="loginButton" display="text"/>
+                            <p:message for="login" display="text"/>
                         </p:column>
                     </p:row>
                 </p:panelGrid>

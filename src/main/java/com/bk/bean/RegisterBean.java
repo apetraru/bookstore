@@ -56,7 +56,7 @@ public class RegisterBean {
             clearFields();
             info(REGISTER_BUTTON, msg("registrationSuccess"));
         } else {
-            error(REGISTER_BUTTON, msg("registrationFailed"));
+            error("registerForm:register", msg("registrationFailed"));
         }
 
     }
