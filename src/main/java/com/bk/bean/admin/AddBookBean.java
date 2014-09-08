@@ -2,6 +2,7 @@ package com.bk.bean.admin;
 
 import static com.bk.util.Message.info;
 import static com.bk.util.Message.msg;
+import static com.bk.util.Message.error;
 
 import java.util.Date;
 
@@ -26,6 +27,8 @@ import com.bk.service.BookService;
 @Component
 @Scope("request")
 public class AddBookBean {
+	
+	private static final String ADD_BUTTON = "addBookForm:addBook";
 
     @Autowired private BookService bookService;
     @Autowired private AuthorRepository authorRepository;
@@ -45,7 +48,7 @@ public class AddBookBean {
             author.addBook(book);
             Author saved = authorRepository.save(author);
             if (saved == null) {
-                info("addBookFormId:addBookButtonId", msg("bookSavingFailed"));
+                error(ADD_BUTTON, msg("bookSavingFailed"));
             }
             return saved;
         }
@@ -63,11 +66,11 @@ public class AddBookBean {
         addAuthorToBook();
         Book saved = bookService.save(book);
         if (saved != null) {
-            info("addBookFormId:addBookButtonId", msg("bookSavingSuccess"));
+            info(ADD_BUTTON, msg("bookSavingSuccess"));
             reset();
         }
         else {
-        	info("addBookFormId:addBookButtonId", msg("bookSavingFailed"));
+        	error(ADD_BUTTON, msg("bookSavingFailed"));
         }
     }
 

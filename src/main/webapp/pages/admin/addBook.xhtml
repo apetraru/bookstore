@@ -1,102 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/templates/template.xhtml">
-    <ui:define name="title">
-        <title>
-            GoodBooks | Add book
-        </title>
-    </ui:define>
-    <ui:define name="body">
-        <h:form id="addBookFormId">
-            <p:panel header="Add book" styleClass="addBook-panel">
-                <p:panelGrid id="addBookPanelId">
-                    <p:row>
-                        <p:column styleClass="panel-column">
-                            <h:outputText value="Title"/>
-                            <br/>
-                            <p:inputText value="#{addBookBean.book.title}" required="true" id="bookTitleId"
-                                         maxlength="200"/>
-                            <p:message for="bookTitleId" display="text"/>
-                        </p:column>
-                        <p:column styleClass="panel-column">
-                            <h:outputLabel for="bookAuthorId" value="Author"/>
-                            <br/>
-                            <p:inputText value="#{addBookBean.author.name}" id="bookAuthorId" maxlength="200"/>
-                            <p:message for="bookAuthorId" display="text"/>
-                        </p:column>
-                    </p:row>
-                    <p:row>
-                        <p:column styleClass="panel-column">
-                            <h:outputText value="ISBN-13"/>
-                            <br/>
-                            <p:inputMask value="#{addBookBean.book.isbn}" required="true" id="bookIsbnId"
-                                         mask="9999999999999" placeHolder="x">
-                                <f:validator binding="#{isbnValidator}"/>
-                            </p:inputMask>
-                            <p:message for="bookIsbnId" display="text"/>
-                        </p:column>
-                        <p:column styleClass="panel-column">
-                            <h:outputText value="Number of Pages"/>
-                            <br/>
-                            <p:inputText value="#{addBookBean.book.pages}" required="true" id="bookPagesId">
-                                <f:validateLongRange minimum="0" maximum="20000"/>
-                            </p:inputText>
-                            <p:message for="bookPagesId" display="text"/>
-                        </p:column>
-                    </p:row>
-                    <p:row>
-                        <p:column styleClass="panel-column">
-                            <h:outputText value="Publish Date"/>
-                            <br/>
-                            <p:calendar value="#{addBookBean.book.publishDate}" pattern="dd/MM/yyyy" yearRange="1500:"
-                                        showButtonPanel="true" navigator="true" readonlyInput="true"
-                                        maxdate="#{addBookBean.today}"/>
-                        </p:column>
-                        <p:column styleClass="panel-column">
-                            <h:outputText value="Language"/>
-                            <br/>
-                            <p:selectOneMenu value="#{addBookBean.book.language}" id="bookLanguageId"
-                                             styleClass="selectonemenu-style">
-                                <f:selectItems value="#{addBookBean.languages}"/>
-                            </p:selectOneMenu>
-                        </p:column>
-                    </p:row>
-                    <p:row>
-                        <p:column styleClass="description-column" colspan="2">
-                            <h:outputText value="Description"/>
-                            <br/>
-                            <p:inputTextarea value="#{addBookBean.book.description}" id="bookDescriptionId"
-                                             maxlength="32000"/>
-                            <p:message for="bookDescriptionId" display="text"/>
-                        </p:column>
-                    </p:row>
-                    <p:row>
-                        <p:column styleClass="description-column" colspan="3">
-                            <h:outputText value="Book cover URL"/>
-                            <br/>
-                            <p:inputText value="#{addBookBean.book.imageUrl}" size="70"/>
-                        </p:column>
-                    </p:row>
-                    <p:row>
-                        <p:column styleClass="description-column" colspan="2">
-                            <p:commandButton value="Add Book" action="#{addBookBean.save}" update="addBookPanelId"
-                                             id="addBookButtonId"/>
-                            <p:spacer width="5%" height="1%"/>
-                            <p:commandButton value="Reset" action="#{addBookBean.reset}" update="addBookPanelId"
-                                             process="@this">
-                                <p:resetInput target="addBookPanelId"/>
-                            </p:commandButton>
-                            <p:message for="addBookButtonId" display="text"/>
-                        </p:column>
-                    </p:row>
-                </p:panelGrid>
-            </p:panel>
-        </h:form>
-    </ui:define>
+	<ui:define name="title">
+		<title>GoodBooks | Add book</title>
+	</ui:define>
+	<ui:define name="body">
+		<h:form id="addBookForm">
+							<p:messages display="text" showDetail="true" />
+			<p:panel header="#{msg.addBook}">
+				<p:panelGrid id="addBookPanel">
+					<p:row>
+						<p:column>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="panel-column">
+							<p:outputLabel value="#{msg.title}" for="title" />
+							<p:inputText value="#{addBookBean.book.title}" required="true" id="title" maxlength="200" />
+							<p:message for="title" display="text" />
+						</p:column>
+						<p:column styleClass="panel-column">
+							<p:outputLabel for="author" value="#{msg.author}" />
+							<p:inputText value="#{addBookBean.author.name}" id="author" maxlength="200" />
+							<p:message for="author" display="text" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="panel-column">
+							<p:outputLabel value="#{msg.isbn}" for="isbn" />
+							<p:inputMask value="#{addBookBean.book.isbn}" required="true" id="isbn" mask="9999999999999"
+								placeHolder="x">
+								<f:validator binding="#{isbnValidator}" />
+							</p:inputMask>
+							<p:message for="isbn" display="text" />
+						</p:column>
+						<p:column styleClass="panel-column">
+							<p:outputLabel value="Number of Pages" for="pages" />
+							<p:inputText value="#{addBookBean.book.pages}" required="true" id="pages">
+								<f:validateLongRange minimum="0" maximum="20000" />
+							</p:inputText>
+							<p:message for="pages" display="text" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="panel-column">
+							<p:outputLabel value="Publish Date" for="publishDate" />
+							<p:calendar value="#{addBookBean.book.publishDate}" pattern="dd/MM/yyyy" yearRange="1500:"
+								showButtonPanel="true" navigator="true" readonlyInput="true" id="publishDate"
+								maxdate="#{addBookBean.today}" />
+						</p:column>
+						<p:column styleClass="panel-column">
+							<p:outputLabel value="Language" for="language" />
+							<p:selectOneMenu value="#{addBookBean.book.language}" id="language"
+								styleClass="selectonemenu-style">
+								<f:selectItems value="#{addBookBean.languages}" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="description-column" colspan="2">
+							<p:outputLabel value="Description" />
+							<p:inputTextarea value="#{addBookBean.book.description}" id="description" maxlength="32000" />
+							<p:message for="description" display="text" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="description-column" colspan="3">
+							<p:outputLabel value="Book cover URL" for="url" />
+							<p:inputText value="#{addBookBean.book.imageUrl}" size="70" id="url" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="description-column" colspan="2">
+							<p:commandButton value="Add Book" action="#{addBookBean.save}" update="addBookPanel"
+								id="addBook" />
+							<p:spacer width="5%" height="1%" />
+							<p:commandButton value="Reset" action="#{addBookBean.reset}" update="addBookPanel"
+								process="@this">
+								<p:resetInput target="addBookPanel" />
+							</p:commandButton>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
 </ui:composition>
 </html>

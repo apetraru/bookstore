@@ -23,6 +23,8 @@ import com.bk.service.RoleService;
 @Component
 @Scope("request")
 public class RegisterBean {
+	
+	private static final String REGISTER_BUTTON = "registerForm:register";
 
 	@Autowired private CustomerService customerService;
 	@Autowired private ShaPasswordEncoder passwordEncoder;
@@ -52,9 +54,9 @@ public class RegisterBean {
 			newCustomer.setRole(userRole);
 			customerService.save(newCustomer);
             clearFields();
-            info("registerForm:register", msg("registrationSuccess"));
+            info(REGISTER_BUTTON, msg("registrationSuccess"));
         } else {
-            error("registerForm:register", msg("registrationFailed"));
+            error(REGISTER_BUTTON, msg("registrationFailed"));
         }
 
     }
