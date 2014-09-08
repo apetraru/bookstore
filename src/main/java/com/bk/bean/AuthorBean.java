@@ -1,9 +1,9 @@
 package com.bk.bean;
 
-import java.io.Serializable;
+import static com.bk.util.Message.globalError;
+import static com.bk.util.Message.msg;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
+import java.io.Serializable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -32,18 +32,15 @@ public class AuthorBean implements Serializable {
 
 	public void init() {
 		if (id == null) {
-			String message = "Bad request. Please use a link from within the system.";
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+			globalError(msg("badRequest"));
 			return;
 		}
 
 		author = authorRepository.findById(id);
 
 		if (author == null) {
-			String message = "Bad request. Unknown author.";
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+			globalError(msg("unknownAuthor"));
+			return;
 		}
 		
 		lazyDataModel.setAuthor(author);

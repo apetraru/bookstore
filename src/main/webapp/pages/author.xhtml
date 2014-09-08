@@ -7,7 +7,9 @@
 
 <ui:composition template="/templates/template.xhtml">
 	<ui:define name="title">
-		<title>GoodBooks <h:outputText value=" | #{authorBean.author.name}"
+		<title>
+		#{msg.goodBooks} 
+		<h:outputText value=" | #{authorBean.author.name}"
 				rendered="#{not empty authorBean.author.id}" />
 		</title>
         <h:outputScript library="js" name="show-hide.js"/>
@@ -27,7 +29,7 @@
 				<p:panelGrid>
 					<p:row rendered="#{not empty authorBean.author.birthDate}">
 						<p:column styleClass="author-panel-column">
-							<h:outputText value="Born" styleClass="author-bold" />
+							<h:outputText value="#{msg.born}" styleClass="author-bold" />
 						</p:column>
 						<p:column>
 							<h:outputText value="#{authorBean.author.birthDate}">
@@ -37,7 +39,7 @@
 					</p:row>
 					<p:row rendered="#{not empty authorBean.author.deathDate}">
 						<p:column>
-							<h:outputText value="Died" styleClass="author-bold" />
+							<h:outputText value="#{msg.died}" styleClass="author-bold" />
 						</p:column>
 						<p:column>
 							<h:outputText value="#{authorBean.author.deathDate}">
@@ -47,7 +49,7 @@
 					</p:row>
 					<p:row>
 						<p:column>
-							<h:outputText value="Gender" styleClass="author-bold" />
+							<h:outputText value="#{msg.gender}" styleClass="author-bold" />
 						</p:column>
 						<p:column>
 							<h:outputText value="#{authorBean.author.gender.toString()}" />
@@ -55,7 +57,7 @@
 					</p:row>
                     <p:row rendered="#{not empty authorBean.author.website}">
                         <p:column>
-                            <h:outputText value="Website" styleClass="author-bold" />
+                            <h:outputText value="#{msg.website}" styleClass="author-bold" />
                         </p:column>
                         <p:column>
                             <h:outputLink value="#{authorBean.author.website}" styleClass="author-website">
@@ -65,7 +67,7 @@
                     </p:row>
 					<p:row>
 						<p:column>
-							<h:outputText value="Genre" styleClass="author-bold" />
+							<h:outputText value="#{msg.genre}" styleClass="author-bold" />
 						</p:column>
 						<p:column>
 							<h:outputText value="TO BE ADDED" />
@@ -78,7 +80,7 @@
 					</p:row>
 					<p:row>
 						<p:column>
-							<h:outputText value="About this author" styleClass="author-bold" />
+							<h:outputText value="#{msg.aboutAuthor}" styleClass="author-bold" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -87,18 +89,17 @@
 							    <h:outputText value="#{authorBean.author.about}"/>
                             </div>
                             <div class="author-show-more">
-                            	...More
                             </div>
 						</p:column>
 					</p:row>
 				</p:panelGrid>
 			</p:panel>
 			<p:dataGrid rows="5" paginator="true" columns="1" value="#{authorBean.lazyDataModel}" var="book"
-				paginatorPosition="bottom" lazy="true"
+				paginatorPosition="bottom" lazy="true" rendered="#{not empty authorBean.author}"
 				paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
 				rowsPerPageTemplate="5" styleClass="author-books">
 				<f:facet name="header">
-					<h:outputText value="Books by : #{authorBean.author.name}" />
+					<h:outputText value="#{msg.booksBy} : #{authorBean.author.name}" />
 				</f:facet>
 				<ui:include src="/templates/bookTemplate.xhtml">
 					<ui:param name="book" value="#{book}" />
