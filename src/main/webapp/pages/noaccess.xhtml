@@ -5,11 +5,11 @@
 <ui:composition template="/templates/template.xhtml">
     <ui:define name="title">
         <title>
-        	Access Denied
+        	#{msg.accessDenied}
         </title>
     </ui:define>
+    	#{msg.noAccess}
     <ui:define name="body">
-    	You do not have the required access the view this page.
     </ui:define>
 </ui:composition>
 </html>
