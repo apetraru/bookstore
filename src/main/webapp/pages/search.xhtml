@@ -8,7 +8,7 @@
 <ui:composition template="/templates/template.xhtml">
     <ui:define name="title">
         <title>
-            GoodBooks | Search by : ${searchBean.lazyModel.searchTerm}
+            #{msg.goodBooks} | #{msg.searchBy} : ${searchBean.lazyModel.searchTerm}
         </title>
     </ui:define>
     <ui:define name="body">
@@ -18,7 +18,7 @@
                         paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
                         rowsPerPageTemplate="5">
                 <f:facet name="header">
-                    <h:outputText value="Search by : #{searchBean.lazyModel.searchTerm}"/>
+                    <h:outputText value="#{msg.searchBy} : #{searchBean.lazyModel.searchTerm}"/>
                 </f:facet>
                 <ui:include src="/templates/bookTemplate.xhtml">
                     <ui:param name="book" value="#{book}"/>
