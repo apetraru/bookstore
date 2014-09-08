@@ -9,13 +9,8 @@
 	</ui:define>
 	<ui:define name="body">
 		<h:form id="addBookForm">
-							<p:messages display="text" showDetail="true" />
 			<p:panel header="#{msg.addBook}">
 				<p:panelGrid id="addBookPanel">
-					<p:row>
-						<p:column>
-						</p:column>
-					</p:row>
 					<p:row>
 						<p:column styleClass="panel-column">
 							<p:outputLabel value="#{msg.title}" for="title" />
@@ -23,7 +18,7 @@
 							<p:message for="title" display="text" />
 						</p:column>
 						<p:column styleClass="panel-column">
-							<p:outputLabel for="author" value="#{msg.author}" />
+							<p:outputLabel value="#{msg.author}" for="author" />
 							<p:inputText value="#{addBookBean.author.name}" id="author" maxlength="200" />
 							<p:message for="author" display="text" />
 						</p:column>
@@ -38,7 +33,7 @@
 							<p:message for="isbn" display="text" />
 						</p:column>
 						<p:column styleClass="panel-column">
-							<p:outputLabel value="Number of Pages" for="pages" />
+							<p:outputLabel value="#{msg.numberOfPages}" for="pages" />
 							<p:inputText value="#{addBookBean.book.pages}" required="true" id="pages">
 								<f:validateLongRange minimum="0" maximum="20000" />
 							</p:inputText>
@@ -47,13 +42,13 @@
 					</p:row>
 					<p:row>
 						<p:column styleClass="panel-column">
-							<p:outputLabel value="Publish Date" for="publishDate" />
+							<p:outputLabel value="#{msg.publishDate}" for="publishDate" />
 							<p:calendar value="#{addBookBean.book.publishDate}" pattern="dd/MM/yyyy" yearRange="1500:"
 								showButtonPanel="true" navigator="true" readonlyInput="true" id="publishDate"
 								maxdate="#{addBookBean.today}" />
 						</p:column>
 						<p:column styleClass="panel-column">
-							<p:outputLabel value="Language" for="language" />
+							<p:outputLabel value="#{msg.language}" for="language" />
 							<p:selectOneMenu value="#{addBookBean.book.language}" id="language"
 								styleClass="selectonemenu-style">
 								<f:selectItems value="#{addBookBean.languages}" />
@@ -62,26 +57,27 @@
 					</p:row>
 					<p:row>
 						<p:column styleClass="description-column" colspan="2">
-							<p:outputLabel value="Description" />
+							<p:outputLabel value="#{msg.description}" for="description"/>
 							<p:inputTextarea value="#{addBookBean.book.description}" id="description" maxlength="32000" />
 							<p:message for="description" display="text" />
 						</p:column>
 					</p:row>
 					<p:row>
 						<p:column styleClass="description-column" colspan="3">
-							<p:outputLabel value="Book cover URL" for="url" />
+							<p:outputLabel value="#{msg.url}" for="url" />
 							<p:inputText value="#{addBookBean.book.imageUrl}" size="70" id="url" />
 						</p:column>
 					</p:row>
 					<p:row>
 						<p:column styleClass="description-column" colspan="2">
-							<p:commandButton value="Add Book" action="#{addBookBean.save}" update="addBookPanel"
+							<p:commandButton value="#{msg.addBook}" action="#{addBookBean.save}" update="addBookPanel"
 								id="addBook" />
 							<p:spacer width="5%" height="1%" />
-							<p:commandButton value="Reset" action="#{addBookBean.reset}" update="addBookPanel"
+							<p:commandButton value="#{msg.reset}" action="#{addBookBean.reset}" update="addBookPanel"
 								process="@this">
 								<p:resetInput target="addBookPanel" />
 							</p:commandButton>
+							<p:message for="addBook" display="text" />
 						</p:column>
 					</p:row>
 				</p:panelGrid>
