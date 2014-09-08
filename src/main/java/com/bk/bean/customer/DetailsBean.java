@@ -1,8 +1,11 @@
 package com.bk.bean.customer;
 
+import static com.bk.util.Message.error;
+import static com.bk.util.Message.globalError;
+import static com.bk.util.Message.info;
+import static com.bk.util.Message.msg;
+
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -11,7 +14,6 @@ import org.springframework.stereotype.Component;
 import com.bk.bean.SessionBean;
 import com.bk.model.Customer;
 import com.bk.service.CustomerService;
-import com.bk.util.Message;
 
 @Component
 @Scope("view")
@@ -25,12 +27,7 @@ public class DetailsBean {
 	public void init() {
 		customer = sessionBean.getLoggedInUser();
 		if (customer == null) {
-			String message = "Please login first to view your profile";
-			FacesContext.getCurrentInstance()
-					.addMessage(
-							null,
-							new FacesMessage(FacesMessage.SEVERITY_ERROR,
-									message, null));
+			globalError(msg("loginFirst"));
 		}
 	}
 
@@ -44,20 +41,17 @@ public class DetailsBean {
 
 	public void update() {
 		if (usernameExists()) {
-			Message.addMessage("table:profileForm:username",
-					"Username already exists", FacesMessage.SEVERITY_ERROR);
+			error("table:profileForm:username", msg("usernameTaken"));
 			return;
 		}
 
 		if (emailExists()) {
-			Message.addMessage("table:profileForm:email", "Email already exists",
-					FacesMessage.SEVERITY_ERROR);
+			error("table:profileForm:email", msg("emailTaken"));
 			return;
 		}
 
 		customer = customerService.save(customer);
-		Message.addMessage("table:profileForm:updateButton",
-				"Details updated successfully !", FacesMessage.SEVERITY_INFO);
+		info("table:profileForm:updateButton", msg("detailsUpdated"));
 	}
 
 	private boolean usernameExists() {

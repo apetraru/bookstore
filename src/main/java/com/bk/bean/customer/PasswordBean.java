@@ -1,8 +1,11 @@
 package com.bk.bean.customer;
 
+import static com.bk.util.Message.error;
+import static com.bk.util.Message.globalError;
+import static com.bk.util.Message.info;
+import static com.bk.util.Message.msg;
+
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -16,12 +19,11 @@ import com.bk.service.CustomerService;
 @Component
 @Scope("view")
 public class PasswordBean {
-	@Autowired
-	private CustomerService customerService;
-	@Autowired
-	private SessionBean sessionBean;
-	@Autowired
-	private ShaPasswordEncoder passwordEncoder;
+	private static final String UPDATE_PASSWORD = "table:passwordForm:updateButton";
+	
+	@Autowired private CustomerService customerService;
+	@Autowired private SessionBean sessionBean;
+	@Autowired private ShaPasswordEncoder passwordEncoder;
 
 	private String oldPassword;
 	private String newPassword;
@@ -31,28 +33,20 @@ public class PasswordBean {
 	public void init() {
 		customer = sessionBean.getLoggedInUser();
 		if (customer == null) {
-			String message = "Please login first to view your profile";
-			FacesContext.getCurrentInstance()
-					.addMessage(
-							null,
-							new FacesMessage(FacesMessage.SEVERITY_ERROR,
-									message, null));
+			globalError(msg("loginFirst"));
 		}
 	}
 
 	public void update() {
-		String hashedPassword = passwordEncoder.encodePassword(oldPassword,
-				null);
+		String hashedPassword = passwordEncoder.encodePassword(oldPassword, null);
 		if (!hashedPassword.equals(customer.getPassword())) {
-			FacesContext.getCurrentInstance().addMessage("table:passwordForm:updateButton", new FacesMessage(FacesMessage.SEVERITY_ERROR,
-							"Incorrect password", null));
+			error(UPDATE_PASSWORD, msg("incorrectPassword"));
 			return;
 		}
 		hashedPassword = passwordEncoder.encodePassword(newPassword, null);
 		customer.setPassword(hashedPassword);
 		customer = customerService.save(customer);
-		FacesContext.getCurrentInstance().addMessage("table:passwordForm:updateButton", new FacesMessage(FacesMessage.SEVERITY_INFO,
-						"Password updated successfully", null));
+		info(UPDATE_PASSWORD, msg("passwordUpdated"));
 	}
 
 	public String getOldPassword() {

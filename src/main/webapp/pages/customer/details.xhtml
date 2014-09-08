@@ -9,20 +9,18 @@
 	</ui:define>
 	<ui:define name="body">
 		<p:tabView id="table">
-			<p:tab title="Details">
+			<p:tab title="#{msg.details}">
 				<h:form id="profileForm">
 					<p:panelGrid>
 						<p:row>
 							<p:column styleClass="panel-column">
-								<h:outputText value="Username" />
-								<br />
+								<p:outputLabel value="#{msg.username}" for="username" />
 								<p:inputText value="#{detailsBean.customer.username}" required="true" id="username"
 									maxlength="200" />
 								<p:message for="username" display="text" />
 							</p:column>
 							<p:column styleClass="panel-column">
-								<h:outputLabel for="email" value="Email" />
-								<br />
+								<p:outputLabel value="#{msg.email}" for="email" />
 								<p:inputText value="#{detailsBean.customer.emailAddress}" required="true" id="email">
 									<f:validator validatorId="emailValidator" />
 								</p:inputText>
@@ -31,33 +29,29 @@
 						</p:row>>
                     <p:row>
 							<p:column styleClass="panel-column">
-								<h:outputLabel for="firstname" value="First name" />
-								<br />
+								<p:outputLabel value="#{msg.firstName}" for="firstname" />
 								<p:inputText value="#{detailsBean.customer.firstname}" id="firstname" maxlength="200" />
 							</p:column>
 							<p:column styleClass="panel-column">
-								<h:outputLabel for="lastname" value="Last name" />
-								<br />
+								<p:outputLabel value="#{msg.lastName}" for="lastname" />
 								<p:inputText value="#{detailsBean.customer.lastname}" id="lastname" maxlength="200" />
 							</p:column>
 						</p:row>
 						<p:row>
 							<p:column styleClass="panel-column">
-								<h:outputLabel for="dateOfBirth" value="Date of Birth" />
-								<br />
+								<p:outputLabel value="#{msg.dateOfBirth}" for="dateOfBirth" />
 								<p:calendar value="#{detailsBean.customer.birthDate}" pattern="dd/MM/yyyy" yearRange="1900:"
 									showButtonPanel="true" navigator="true" readonlyInput="true" id="dateOfBirth"
 									maxdate="#{addBookBean.today}" />
 							</p:column>
 							<p:column styleClass="panel-column">
-								<h:outputLabel for="address" value="Address" />
-								<br />
+								<p:outputLabel value="#{msg.address}" for="address" />
 								<p:inputText value="#{detailsBean.customer.address}" id="address" maxlength="200" />
 							</p:column>
 						</p:row>
 						<p:row>
 							<p:column styleClass="description-column" colspan="2">
-								<p:commandButton value="Update" action="#{detailsBean.update}" id="updateButton"
+								<p:commandButton value="#{msg.update}" action="#{detailsBean.update}" id="updateButton"
 									update="profileForm" />
 								<p:message for="updateButton" display="text" />
 							</p:column>
@@ -65,31 +59,35 @@
 					</p:panelGrid>
 				</h:form>
 			</p:tab>
-			<p:tab title="Change Password">
+			<p:tab title="#{msg.changePassword}">
 				<h:form id="passwordForm">
 					<p:panelGrid>
 						<p:row>
 							<p:column styleClass="panel-column">
-								<h:outputText value="Old Password" />
+								<h:outputText value="#{msg.oldPassword}" />
 								<br />
 								<p:password value="#{passwordBean.oldPassword}" required="true" id="oldPassword"
-									maxlength="200" feedback="true" />
+									maxlength="200" feedback="true">
+									<f:validateLength minimum="5" />
+								</p:password>
 								<p:message for="oldPassword" display="text" />
 							</p:column>
 						</p:row>
 						<p:row>
 							<p:column styleClass="panel-column">
-								<h:outputText value="New Password" />
+								<h:outputText value="#{msg.newPassword}" />
 								<br />
 								<p:password value="#{passwordBean.newPassword}" required="true" id="newPassword"
-									maxlength="200" feedback="true" />
+									maxlength="200" feedback="true">
+									<f:validateLength minimum="5" />
+								</p:password>
 								<p:message for="newPassword" display="text" />
 							</p:column>
 						</p:row>
 						<p:row>
 							<p:column styleClass="description-column" colspan="2">
-								<p:commandButton value="Change Password" action="#{passwordBean.update}" id="updateButton"
-									update="passwordForm" />
+								<p:commandButton value="#{msg.changePassword}" action="#{passwordBean.update}"
+									id="updateButton" update="passwordForm" />
 								<p:message for="updateButton" display="text" />
 							</p:column>
 						</p:row>
