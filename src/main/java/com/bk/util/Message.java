@@ -22,6 +22,11 @@ public final class Message {
     	addMessage(id, messageBody, FacesMessage.SEVERITY_ERROR);
     }
     
+    public static void globalError(String messageBody) {
+    	FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, messageBody, null));
+    }
+    
     public static void info(String id, String messageBody) {
     	addMessage(id, messageBody, FacesMessage.SEVERITY_INFO);
     }

@@ -1,14 +1,11 @@
 package com.bk.bean;
 
+import static com.bk.util.Message.globalError;
+import static com.bk.util.Message.msg;
+
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
-import com.bk.model.Customer;
-import com.bk.model.Shelf;
-import com.bk.repository.ShelfRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.RateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +15,11 @@ import org.springframework.stereotype.Component;
 import com.bk.enums.Status;
 import com.bk.lazydatamodel.ReviewLazyDataModel;
 import com.bk.model.Book;
+import com.bk.model.Customer;
 import com.bk.model.Review;
+import com.bk.model.Shelf;
 import com.bk.repository.ReviewRepository;
+import com.bk.repository.ShelfRepository;
 import com.bk.service.BookService;
 
 /**
@@ -46,18 +46,14 @@ public class BookBean implements Serializable {
 		Customer user = sessionBean.getLoggedInUser();
 
 		if (id == null) {
-			String message = "Bad request. Please use a link from within the system.";
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+			globalError(msg("badRequest"));
 			return;
 		}
 
 		book = bookService.findById(id);
 
 		if (book == null) {
-			String message = "Bad request. Unknown book.";
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, message, null));
+			globalError(msg("unknownBook"));
 			return;
 		}
 

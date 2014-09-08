@@ -8,7 +8,7 @@
 <ui:composition template="/templates/template.xhtml">
     <ui:define name="title">
         <title>
-            GoodBooks
+        	#{msg.goodBooks}
             <h:outputText value=" | #{bookBean.book.title} by #{bookBean.book.author.name}"
                                     rendered="#{not empty bookBean.book.id}"/>
         </title>
@@ -42,7 +42,7 @@
                                 disabled="#{!sessionBean.loggedOn}"
                                 styleClass="margin-top-10px"/>
                     </div>
-                    <p:dialog header="Edit your review" widgetVar="reviewDialog" width="800" height="600"
+                    <p:dialog header="#{msg.editReview}" widgetVar="reviewDialog" width="800" height="600"
                               modal="true" showEffect="fade" hideEffect="fade">
                         <div class="float-left width-all">
                             <h:outputText value="#{bookBean.book.title}" styleClass="book-title"/>
@@ -52,7 +52,7 @@
                         <br/>
 
                         <div class="float-left width-all">
-                            <h:outputText value="My rating " styleClass="float-left"/>
+                            <h:outputText value="#{msg.myRating}" styleClass="float-left"/>
                             <p:rating value="#{bookBean.bookRating.rating}" readonly="#{!sessionBean.loggedOn}"
                                       styleClass="float-left">
                                 <p:ajax event="rate" listener="#{bookBean.addRating}"/>
@@ -64,10 +64,10 @@
                             <p:inputTextarea value="#{bookBean.bookRating.comment}" style="width: 90%; height: 420px"/>
                         </div>
                         <div class="float-left width-all">
-                            <h:outputText value="Date Finished"/>
+                            <h:outputText value="#{msg.dateFinished}"/>
                             <p:calendar value="#{bookBean.shelf.endDate}" maxdate="${bookBean.today}" navigator="true"/>
                         </div>
-                        <p:commandButton value="Save" action="#{bookBean.saveReview}" update=":bookForm"
+                        <p:commandButton value="#{msg.save}" action="#{bookBean.saveReview}" update=":bookForm"
                                          oncomplete="PF('reviewDialog').hide();"/>
                     </p:dialog>
                 </div>
@@ -94,7 +94,7 @@
                     <p:panelGrid>
                         <p:row>
                             <p:column>
-                                <h:outputText value="ISBN-13"/>
+                                <h:outputText value="#{msg.isbn}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{bookBean.book.isbn}"/>
@@ -102,7 +102,7 @@
                         </p:row>
                         <p:row>
                             <p:column>
-                                <h:outputText value="Published"/>
+                                <h:outputText value="#{msg.publishDate}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{bookBean.book.publishDate}">
@@ -112,7 +112,7 @@
                         </p:row>
                         <p:row>
                             <p:column>
-                                <h:outputText value="Language"/>
+                                <h:outputText value="#{msg.language}"/>
                             </p:column>
                             <p:column>
                                 <h:outputText value="#{bookBean.book.language.toString()}"/>
@@ -128,7 +128,7 @@
                             paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
                             rowsPerPageTemplate="10" rendered="#{not empty bookBean.book.id}" id="reviews">
                     <f:facet name="header">
-                        <h:outputText value="Comments"/>
+                        <h:outputText value="#{msg.comments}"/>
                     </f:facet>
                     <p:separator/>
                     <p:row rendered="#{not empty review.comment}">
