@@ -17,7 +17,7 @@
 			</h:link>
 			<p:autoComplete completeMethod="#{searchBean.search}" id="searchBar" minQueryLength="3"
 				maxResults="10" converter="#{bookConverter}" var="book" queryDelay="200"
-				emptyMessage="No results found">
+				emptyMessage="#{msg.noResultsFound}">
 				<p:column>
 					<p:graphicImage width="30" height="40" value="#{book.imageUrl}" />
 					<h:link value="#{book.title} by #{book.author.name}" outcome="#{navigationBean.book()}">
@@ -29,16 +29,16 @@
 			<p:commandLink action="#{navigationBean.search()}" styleClass="search-button" id="searchButton">
 				<p:graphicImage name="images/search.png" styleClass="search-image" />
 			</p:commandLink>
-			<p:watermark value="Title / Author" for="searchBar" />
-			<h:link value="Home" outcome="#{navigationBean.home()}" />
-			<h:link value="Add Book" outcome="#{navigationBean.addBook()}" />
-			<h:link value="Add Author" outcome="#{navigationBean.addAuthor()}" />
-			<h:link value="Recommendations" />
-			<h:link value="Login" outcome="#{navigationBean.login()}" rendered="#{!sessionBean.loggedOn}"
+			<p:watermark value="#{msg.titleAuthor}" for="searchBar" />
+			<h:link value="#{msg.home}" outcome="#{navigationBean.home()}" />
+			<h:link value="#{msg.addBook}" outcome="#{navigationBean.addBook()}" />
+			<h:link value="#{msg.addAuthor}" outcome="#{navigationBean.addAuthor()}" />
+			<h:link value="#{msg.recommendations}" />
+			<h:link value="#{msg.login}" outcome="#{navigationBean.login()}" rendered="#{!sessionBean.loggedOn}"
 				styleClass="float-right" />
-			<h:link value="Register" outcome="#{navigationBean.register()}"
+			<h:link value="#{msg.register}" outcome="#{navigationBean.register()}"
 				rendered="#{!sessionBean.loggedOn}" styleClass="float-right" />
-			<p:commandLink value="Logout" rendered="#{sessionBean.loggedOn}" action="#{loginBean.logout}"
+			<p:commandLink value="#{msg.logout}" rendered="#{sessionBean.loggedOn}" action="#{loginBean.logout}"
 				ajax="false" styleClass="float-right" />
 			<p:commandLink value="#{sessionBean.loggedInUser.username}" rendered="#{sessionBean.loggedOn}"
 				styleClass="float-right" action="#{navigationBean.profile()}" />
