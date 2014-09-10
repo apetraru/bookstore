@@ -28,20 +28,15 @@ body {
 	margin-bottom: -10px;
 }
 
-.searchButton.ui-button {
-	border: none;
-	background: none;
-}
-
-.search-button:HOVER {
-	background: white;
-	border-radius: 25px;
-}
-
 .search-image {
 	width: 18px !important;
 	height: 18px !important;
 	margin-bottom: -3px;
+}
+
+.search-button:HOVER {
+	background-color: white;
+	border-radius: 35px;
 }
 
 .margin-top-10px {
@@ -66,7 +61,6 @@ body {
 /* LINKS */
 a {
 	text-decoration: none;
-	color: black;
 	padding: 5px 10px 5px 10px;
 	font-size: 1.1em;
 	color: #666600 !important
@@ -74,12 +68,6 @@ a {
 
 a:hover {
 	text-decoration: underline;
-}
-
-/* LOGIN */
-.panel-column {
-	height: 75px;
-	width: 300px
 }
 
 .login-panel {

@@ -60,16 +60,6 @@
     width: 1em !important;
 }
 
-/* autocomplete list always below the input text */
-.ui-autocomplete-panel {
-    top: 40px !important;
-    border: none;
-}
-
-.ui-autocomplete-panel:hover {
-    background: #d3d3d3;
-}
-
 .ui-rating-star, .ui-rating-cancel {
     height: 15px !important;
     width: 15px !important;
@@ -77,4 +67,20 @@
 
 .ui-datagrid-column {
 	padding: 0px !important;
+}
+
+.ui-autocomplete-panel {
+	border: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ui-autocomplete-panel .ui-autocomplete-table th:HOVER, .ui-autocomplete-panel .ui-autocomplete-table td:HOVER {
+	text-decoration: underline !important;
+	background-color: white !important;
+	border: none !important;
+}
+.ui-autocomplete-panel .ui-autocomplete-table th, .ui-autocomplete-panel .ui-autocomplete-table td {
+	border: none !important;
+	background-color: white;
 }

@@ -16,17 +16,18 @@
 				<p:graphicImage value="/resources/images/logo.png" styleClass="logo" />
 			</h:link>
 			<p:autoComplete completeMethod="#{searchBean.search}" id="searchBar" minQueryLength="3"
-				maxResults="10" converter="#{bookConverter}" var="book" queryDelay="200">
+				maxResults="10" converter="#{bookConverter}" var="book" queryDelay="200"
+				emptyMessage="No results found">
 				<p:column>
-					<p:button value="#{book.title} by #{book.author.name}" outcome="#{navigationBean.book()}"
-						styleClass="searchButton">
+					<p:graphicImage width="30" height="40" value="#{book.imageUrl}" />
+					<h:link value="#{book.title} by #{book.author.name}" outcome="#{navigationBean.book()}">
 						<f:param name="id" value="#{book.id}" />
 						<f:param name="title" value="#{book.title}" />
-					</p:button>
+					</h:link>
 				</p:column>
 			</p:autoComplete>
 			<p:commandLink action="#{navigationBean.search()}" styleClass="search-button" id="searchButton">
-				<p:graphicImage name="images/search.png" styleClass="search-image"/>
+				<p:graphicImage name="images/search.png" styleClass="search-image" />
 			</p:commandLink>
 			<p:watermark value="Title / Author" for="searchBar" />
 			<h:link value="Home" outcome="#{navigationBean.home()}" />
@@ -40,8 +41,8 @@
 			<p:commandLink value="Logout" rendered="#{sessionBean.loggedOn}" action="#{loginBean.logout}"
 				ajax="false" styleClass="float-right" />
 			<p:commandLink value="#{sessionBean.loggedInUser.username}" rendered="#{sessionBean.loggedOn}"
-				styleClass="float-right" action="#{navigationBean.profile()}"/>
-			<p:defaultCommand target="searchButton" /> 
+				styleClass="float-right" action="#{navigationBean.profile()}" />
+			<p:defaultCommand target="searchButton" />
 		</div>
 	</h:form>
 </ui:composition>
