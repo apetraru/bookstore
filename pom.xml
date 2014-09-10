@@ -66,8 +66,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.primefaces.themes</groupId>
-			<artifactId>smoothness</artifactId>
-			<version>1.0.8</version>
+			<artifactId>bootstrap</artifactId>
+			<version>1.0.10</version>
 		</dependency>
 
 		<!-- EL -->
@@ -325,7 +325,6 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-
 		<repository>
 			<id>prime-repo</id>
 			<name>PrimeFaces Maven Repository</name>
