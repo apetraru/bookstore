@@ -29,6 +29,9 @@ public class Customer extends AbstractEntity {
 			inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName="id")}
 	)
 	private Role role;
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "book_image_id")
+	private Image image;
 
 	public Customer(String firstname, String lastname) {
 		this.firstname = firstname;
@@ -101,4 +104,13 @@ public class Customer extends AbstractEntity {
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
 }
