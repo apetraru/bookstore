@@ -9,3 +9,5 @@ nb-configuration.xml
 /rebel.xml
 /src/main/resources/rebel.xml
 /com.bk.model.Book
+/nbactions.xml
+/faces-config.NavData
