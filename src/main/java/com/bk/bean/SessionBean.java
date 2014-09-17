@@ -4,6 +4,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.bk.model.Customer;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 @Component
 @Scope("session")
@@ -25,6 +31,16 @@ public class SessionBean {
 
 	public void setLoggedOn(boolean loggedOn) {
 		this.loggedOn = loggedOn;
+	}
+
+	public StreamedContent getImage() throws IOException {
+		FacesContext context = FacesContext.getCurrentInstance();
+		if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE || !loggedOn) {
+			return new DefaultStreamedContent();
+		}
+		else {
+			return new DefaultStreamedContent(new ByteArrayInputStream(loggedInUser.getImage().getFileContent()));
+		}
 	}
 
 }
