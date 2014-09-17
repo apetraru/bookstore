@@ -27,7 +27,7 @@ import com.bk.service.BookService;
  * 4 Mar 2013
  */
 @Component
-@Scope("session")
+@Scope("view")
 public class BookBean implements Serializable {
 
 	@Autowired private SessionBean sessionBean;
