@@ -18,6 +18,7 @@ public class Review extends AbstractEntity {
 	private Integer rating;
 
 	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "REVIEW_CUSTOMER_LIKES")
 	private Set<Long> customerLikes = new HashSet<>();
 
 	@Lob
