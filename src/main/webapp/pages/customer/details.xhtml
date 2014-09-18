@@ -1,100 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/templates/template.xhtml">
-	<ui:define name="title">
-		<title>#{detailsBean.customer.username}</title>
-	</ui:define>
-	<ui:define name="body">
-		<p:tabView id="table">
-			<p:tab title="#{msg.details}">
-				<h:form id="profileForm">
-					<p:panelGrid>
-						<p:row>
-							<p:column styleClass="panel-column">
-								<p:outputLabel value="#{msg.username}" for="username" />
-								<p:inputText value="#{detailsBean.customer.username}" required="true" id="username"
-									maxlength="200" />
-								<p:message for="username" display="text" />
-							</p:column>
-							<p:column styleClass="panel-column">
-								<p:outputLabel value="#{msg.email}" for="email" />
-								<p:inputText value="#{detailsBean.customer.emailAddress}" required="true" id="email">
-									<f:validator validatorId="emailValidator" />
-								</p:inputText>
-								<p:message for="email" display="text" />
-							</p:column>
-						</p:row>>
-                    <p:row>
-							<p:column styleClass="panel-column">
-								<p:outputLabel value="#{msg.firstName}" for="firstname" />
-								<p:inputText value="#{detailsBean.customer.firstname}" id="firstname" maxlength="200" />
-							</p:column>
-							<p:column styleClass="panel-column">
-								<p:outputLabel value="#{msg.lastName}" for="lastname" />
-								<p:inputText value="#{detailsBean.customer.lastname}" id="lastname" maxlength="200" />
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column styleClass="panel-column">
-								<p:outputLabel value="#{msg.dateOfBirth}" for="dateOfBirth" />
-								<p:calendar value="#{detailsBean.customer.birthDate}" pattern="dd/MM/yyyy" yearRange="1900:"
-									showButtonPanel="true" navigator="true" readonlyInput="true" id="dateOfBirth"
-									maxdate="#{addBookBean.today}" />
-							</p:column>
-							<p:column styleClass="panel-column">
-								<p:outputLabel value="#{msg.address}" for="address" />
-								<p:inputText value="#{detailsBean.customer.address}" id="address" maxlength="200" />
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column styleClass="description-column" colspan="2">
-								<p:commandButton value="#{msg.update}" action="#{detailsBean.update}" id="updateButton"
-									update="profileForm" />
-								<p:message for="updateButton" display="text" />
-							</p:column>
-						</p:row>
-					</p:panelGrid>
-				</h:form>
-			</p:tab>
-			<p:tab title="#{msg.changePassword}">
-				<h:form id="passwordForm">
-					<p:panelGrid>
-						<p:row>
-							<p:column styleClass="panel-column">
-								<h:outputText value="#{msg.oldPassword}" />
-								<br />
-								<p:password value="#{passwordBean.oldPassword}" required="true" id="oldPassword"
-									maxlength="200" feedback="true">
-									<f:validateLength minimum="5" />
-								</p:password>
-								<p:message for="oldPassword" display="text" />
-							</p:column>
-						</p:row>
-						<p:row>
-							<p:column styleClass="panel-column">
-								<h:outputText value="#{msg.newPassword}" />
-								<br />
-								<p:password value="#{passwordBean.newPassword}" required="true" id="newPassword"
-									maxlength="200" feedback="true">
-									<f:validateLength minimum="5" />
-								</p:password>
-								<p:message for="newPassword" display="text" />
-							</p:column>
-						</p:row>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="title">
+			<title>#{detailsBean.customer.username}</title>
+		</ui:define>
+		<ui:define name="body">
+			<p:tabView id="table">
+				<p:tab title="#{msg.details}">
+					<h:form id="profileForm">
+						<p:panelGrid>
+							<p:row>
+								<p:column styleClass="panel-column">
+									<p:outputLabel value="#{msg.username}" for="username" />
+									<p:inputText value="#{detailsBean.customer.username}" required="true" id="username"
+												 maxlength="200" />
+									<p:message for="username" display="text" />
+								</p:column>
+								<p:column styleClass="panel-column">
+									<p:outputLabel value="#{msg.email}" for="email" />
+									<p:inputText value="#{detailsBean.customer.emailAddress}" required="true" id="email">
+										<f:validator validatorId="emailValidator" />
+									</p:inputText>
+									<p:message for="email" display="text" />
+								</p:column>
+							</p:row>>
+							<p:row>
+								<p:column styleClass="panel-column">
+									<p:outputLabel value="#{msg.firstName}" for="firstname" />
+									<p:inputText value="#{detailsBean.customer.firstname}" id="firstname" maxlength="200" />
+								</p:column>
+								<p:column styleClass="panel-column">
+									<p:outputLabel value="#{msg.lastName}" for="lastname" />
+									<p:inputText value="#{detailsBean.customer.lastname}" id="lastname" maxlength="200" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="panel-column">
+									<p:outputLabel value="#{msg.dateOfBirth}" for="dateOfBirth" />
+									<p:calendar value="#{detailsBean.customer.birthDate}" pattern="dd/MM/yyyy" yearRange="1900:"
+												showButtonPanel="true" navigator="true" readonlyInput="true" id="dateOfBirth"
+												maxdate="#{addBookBean.today}" />
+								</p:column>
+								<p:column styleClass="panel-column">
+									<p:outputLabel value="#{msg.address}" for="address" />
+									<p:inputText value="#{detailsBean.customer.address}" id="address" maxlength="200" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="description-column" colspan="2">
+									<p:commandButton value="#{msg.update}" action="#{detailsBean.update}" id="updateButton" 
+													 update=":table:profileForm :table:uploadForm" />
+									<p:message for="updateButton" display="text" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</h:form>
+					<h:form enctype="multipart/form-data" id="uploadForm">
 						<p:row>
 							<p:column styleClass="description-column" colspan="2">
-								<p:commandButton value="#{msg.changePassword}" action="#{passwordBean.update}"
-									id="updateButton" update="passwordForm" />
-								<p:message for="updateButton" display="text" />
+								<p:outputLabel value="Profile image"/>
+								<p:fileUpload id="file" update="image" fileUploadListener="#{detailsBean.upload}" auto="true" />
+								<p:graphicImage value="#{sessionBean.image}" id="image" width="150" height="200" cache="false"/>
 							</p:column>
-						</p:row>
-					</p:panelGrid>
-				</h:form>
-			</p:tab>
-		</p:tabView>
-	</ui:define>
-</ui:composition>
+						</p:row>	
+					</h:form>
+				</p:tab>
+				<p:tab title="#{msg.changePassword}">
+					<h:form id="passwordForm">
+						<p:panelGrid>
+							<p:row>
+								<p:column styleClass="panel-column">
+									<h:outputText value="#{msg.oldPassword}" />
+									<br />
+									<p:password value="#{passwordBean.oldPassword}" required="true" id="oldPassword"
+												maxlength="200" feedback="true">
+										<f:validateLength minimum="5" />
+									</p:password>
+									<p:message for="oldPassword" display="text" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="panel-column">
+									<h:outputText value="#{msg.newPassword}" />
+									<br />
+									<p:password value="#{passwordBean.newPassword}" required="true" id="newPassword"
+												maxlength="200" feedback="true">
+										<f:validateLength minimum="5" />
+									</p:password>
+									<p:message for="newPassword" display="text" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="description-column" colspan="2">
+									<p:commandButton value="#{msg.changePassword}" action="#{passwordBean.update}"
+													 id="updateButton" update="passwordForm" />
+									<p:message for="updateButton" display="text" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</h:form>
+				</p:tab>
+			</p:tabView>
+		</ui:define>
+	</ui:composition>
 </html>
