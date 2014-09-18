@@ -3,7 +3,8 @@ package com.bk.bean;
 import org.springframework.stereotype.Component;
 
 /**
- * @author Andrei Petraru Date: 1/17/13
+ * @author Andrei Petraru 
+ * 17 Jan 2013
  */
 @Component
 public final class NavigationBean {
@@ -64,7 +65,7 @@ public final class NavigationBean {
 		return NO_ACCESS + REDIRECT;
 	}
 
-	public String profile() {
+	public static String profile() {
 		return CUSTOMER + REDIRECT;
 	}
 
