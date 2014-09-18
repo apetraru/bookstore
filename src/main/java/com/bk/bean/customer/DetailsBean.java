@@ -22,7 +22,7 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
 @Component
-@Scope("session")
+@Scope("view")
 public class DetailsBean {
 
 	@Autowired private CustomerService customerService;
