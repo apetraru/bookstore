@@ -84,3 +84,13 @@
 	border: none !important;
 	background-color: white;
 }
+
+.ui-fileupload-content {
+	display: none !important;
+}
+
+/* Only display upload component button */
+.ui-fileupload .ui-widget-header {
+	background: none !important;
+	border: none !important;
+}
