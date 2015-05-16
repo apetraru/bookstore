@@ -43,9 +43,7 @@
 					<p:row>
 						<p:column styleClass="panel-column">
 							<p:outputLabel value="#{msg.publishDate}" for="publishDate" />
-							<p:calendar value="#{addBookBean.book.publishDate}" pattern="dd/MM/yyyy" yearRange="1500:"
-								showButtonPanel="true" navigator="true" readonlyInput="true" id="publishDate"
-								maxdate="#{addBookBean.today}" />
+							<p:inputText value="#{addBookBean.book.year}"/>
 						</p:column>
 						<p:column styleClass="panel-column">
 							<p:outputLabel value="#{msg.language}" for="language" />
@@ -65,7 +63,7 @@
 					<p:row>
 						<p:column styleClass="description-column" colspan="3">
 							<p:outputLabel value="#{msg.bookUrl}" for="url" />
-							<p:inputText value="#{addBookBean.book.imageUrl}" size="70" id="url" />
+							<p:inputText value="#{addBookBean.book.imageLarge}" size="70" id="url" />
 						</p:column>
 					</p:row>
 					<p:row>

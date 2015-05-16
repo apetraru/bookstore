@@ -19,7 +19,7 @@
 				maxResults="10" converter="#{bookConverter}" var="book" queryDelay="200"
 				emptyMessage="#{msg.noResultsFound}">
 				<p:column>
-					<p:graphicImage width="30" height="40" value="#{book.imageUrl}" />
+					<p:graphicImage width="30" height="40" value="#{book.imageLarge}" />
 					<h:link value="#{book.title} by #{book.author.name}" outcome="#{navigationBean.book()}">
 						<f:param name="id" value="#{book.id}" />
 						<f:param name="title" value="#{book.title}" />

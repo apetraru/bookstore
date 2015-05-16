@@ -7,7 +7,7 @@
 <ui:composition>
 	<p:separator />
 	<p:graphicImage width="50px" height="75px" styleClass="float-left"
-		value="#{book.imageUrl}" />
+		value="#{book.imageLarge}" />
 	<h:link value="#{book.title}" outcome="#{navigationBean.book()}" styleClass="book-template-title">
 		<f:param name="id" value="#{book.id}" />
 		<f:param name="title" value="#{book.title}" />
@@ -21,9 +21,7 @@
 	<br />
 	<div class="book-details-panel">
 		<h:outputText value="published: " style="margin-left: 15px"/>
-		<h:outputText value="#{book.publishDate}">
-			<f:convertDateTime pattern="yyyy" />
-		</h:outputText>
+		<h:outputText value="#{book.year}"/>
 		|
 		<h:outputText value="avg. rating: " />
 		<h:outputText value="#{averageRating}" />

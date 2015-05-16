@@ -19,10 +19,8 @@ public class Customer extends AbstractEntity {
 	private String password;
 	@Column(nullable = false, unique = true, name = "email_address")
 	private String emailAddress;
-	private String address;
-	@Temporal(TemporalType.DATE)
-	@Column(name = "birth_date")
-	private Date birthDate;
+	private String location;
+	private Integer age;
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinTable(name="CUSTOMER_ROLE",
 			joinColumns = {@JoinColumn(name="customer_id", referencedColumnName="id")},
@@ -89,20 +87,20 @@ public class Customer extends AbstractEntity {
 		this.role = role;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public String getLocation() {
+		return location;
 	}
 
-	public String getAddress() {
-		return address;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
-	public Date getBirthDate() {
-		return birthDate;
+	public Integer getAge() {
+		return age;
 	}
 
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+	public void setAge(Integer age) {
+		this.age = age;
 	}
 
 	public Image getImage() {

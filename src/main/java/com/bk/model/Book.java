@@ -58,11 +58,8 @@ public class Book extends AbstractEntity {
 	@Lob
 	private String description;
 
-	@Temporal(TemporalType.DATE)
-	@Field(index = Index.YES, analyze = Analyze.NO, store = Store.YES)
-	@DateBridge(resolution = Resolution.YEAR)
-	@Column(name = "publish_date")
-	private Date publishDate;
+	@Column(name = "year")
+	private String year;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "edition_language")
@@ -74,8 +71,17 @@ public class Book extends AbstractEntity {
 		inverseJoinColumns = @JoinColumn(name = "GENRE_ID"))
 	private Set<Genre> genres = new HashSet<>();
 
-	@Column(name = "image_url")
-	private String imageUrl;
+	@Column(name = "img_small")
+	private String imageSmall;
+
+	@Column(name = "img_medium")
+	private String imageMedium;
+
+	@Column(name = "img_large")
+	private String imageLarge;
+
+	@Column(name = "publisher")
+	private String publisher;
 
 	public void setTitle(String title) {
 		this.title = title;
@@ -117,28 +123,52 @@ public class Book extends AbstractEntity {
 		this.description = description;
 	}
 
-	public Date getPublishDate() {
-		return publishDate;
-	}
-
-	public void setPublishDate(Date publishDate) {
-		this.publishDate = publishDate;
-	}
-
 	public Language getLanguage() {
 		return language;
 	}
 
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public String getImageSmall() {
+		return imageSmall;
+	}
+
+	public void setImageSmall(String imageSmall) {
+		this.imageSmall = imageSmall;
+	}
+
+	public String getImageMedium() {
+		return imageMedium;
+	}
+
+	public void setImageMedium(String imageMedium) {
+		this.imageMedium = imageMedium;
+	}
+
+	public String getImageLarge() {
+		return imageLarge;
+	}
+
+	public void setImageLarge(String imageLarge) {
+		this.imageLarge = imageLarge;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
 	public void setLanguage(Language language) {
 		this.language = language;
-	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
 	}
 
 	public void addGenre(Genre genre) {

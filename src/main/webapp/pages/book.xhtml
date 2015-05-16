@@ -22,7 +22,7 @@
             <p:panel styleClass="book-panel" rendered="#{not empty bookBean.book.id}">
                 <div class="book-image">
                     <div class="book-cover">
-                        <p:graphicImage width="200" height="275" value="#{bookBean.book.imageUrl}"/>
+                        <p:graphicImage width="200" height="275" value="#{bookBean.book.imageLarge}"/>
                     </div>
                     <div class="float-left">
                         <p:selectOneMenu disabled="#{not sessionBean.loggedOn}" value="#{bookBean.shelf.status}"
@@ -32,7 +32,7 @@
                             <p:ajax event="valueChange" listener="#{bookBean.saveShelf()}" update="bookForm"/>
                         </p:selectOneMenu>
                         <p:rating value="#{bookBean.bookRating.rating}" readonly="#{!sessionBean.loggedOn}"
-                                  id="bookRatingId" styleClass="margin-top-10px">
+                                  id="bookRatingId" styleClass="margin-top-10px" stars="10">
                             <p:ajax event="rate" listener="#{bookBean.addRating}" update="bookForm"/>
                             <p:ajax event="cancel" listener="#{bookBean.removeRating}" update="bookForm"/>
                         </p:rating>
@@ -54,7 +54,7 @@
                         <div class="float-left width-all">
                             <h:outputText value="#{msg.myRating}" styleClass="float-left"/>
                             <p:rating value="#{bookBean.bookRating.rating}" readonly="#{!sessionBean.loggedOn}"
-                                      styleClass="float-left">
+                                      styleClass="float-left" stars="10">
                                 <p:ajax event="rate" listener="#{bookBean.addRating}"/>
                                 <p:ajax event="cancel" listener="#{bookBean.removeRating}"/>
                             </p:rating>
@@ -105,9 +105,7 @@
                                 <h:outputText value="#{msg.publishDate}"/>
                             </p:column>
                             <p:column>
-                                <h:outputText value="#{bookBean.book.publishDate}">
-                                    <f:convertDateTime pattern="dd MMMM yyyy"/>
-                                </h:outputText>
+                                <h:outputText value="#{bookBean.book.year}"/>
                             </p:column>
                         </p:row>
                         <p:row>
@@ -136,7 +134,7 @@
                             <div class="book-review">
                                 <p:commandLink value="#{review.customer.username}" styleClass="book-review-username"/>
                                 <h:outputText value="rated it" styleClass="float-left"/>
-                                <p:rating value="#{review.rating}" styleClass="book-review-rating" readonly="true">
+                                <p:rating value="#{review.rating}" styleClass="book-review-rating" readonly="true" stars="10">
                                 </p:rating>
                                 <h:outputText value="#{review.publishDate}" styleClass="book-review-date">
                                     <f:convertDateTime pattern="dd MMM yyyy"/>
