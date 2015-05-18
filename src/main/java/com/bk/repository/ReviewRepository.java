@@ -1,6 +1,7 @@
 package com.bk.repository;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +32,9 @@ public interface ReviewRepository extends Repository<Review, Long>, Serializable
 
 	@Query("select count(r) from Review r where r.book = :book and r.rating <> null")
 	Long getNumberOfBookRatings(@Param("book") Book book);
+
+    @Query("select r from Review r where r.customer = :customer")
+    List<Review> getCustomerRatings(@Param("customer") Customer customer);
 	
 	Page<Review> findByBook(Book book, Pageable pageable);
 }
