@@ -1,6 +1,5 @@
 package com.bk.bean;
 
-import com.bk.lazydatamodel.BookAuthorLazyDataModel;
 import com.bk.model.Book;
 import com.bk.model.Customer;
 import com.bk.service.BookService;
@@ -50,6 +49,10 @@ public class ProfileBean {
 
 	public List<Book> getBooks() {
 		return books;
+	}
+
+	public Customer getCustomer() {
+		return customer;
 	}
 
 	public Long getId() {
