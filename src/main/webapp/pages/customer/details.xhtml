@@ -39,19 +39,13 @@
 							</p:row>
 							<p:row>
 								<p:column styleClass="panel-column">
-									<p:outputLabel value="#{msg.dateOfBirth}" for="dateOfBirth" />
-									<p:calendar value="#{detailsBean.customer.birthDate}" pattern="dd/MM/yyyy" yearRange="1900:"
-												showButtonPanel="true" navigator="true" readonlyInput="true" id="dateOfBirth"
-												maxdate="#{addBookBean.today}" />
-								</p:column>
-								<p:column styleClass="panel-column">
-									<p:outputLabel value="#{msg.address}" for="address" />
-									<p:inputText value="#{detailsBean.customer.address}" id="address" maxlength="200" />
+									<p:outputLabel value="#{msg.age}" for="dateOfBirth" />
+									<p:inputText value="#{detailsBean.customer.age}" readonlyInput="true" id="dateOfBirth"/>
 								</p:column>
 							</p:row>
 							<p:row>
 								<p:column styleClass="description-column" colspan="2">
-									<p:commandButton value="#{msg.update}" action="#{detailsBean.update}" id="updateButton" 
+									<p:commandButton value="#{msg.update}" action="#{detailsBean.update}" id="updateButton"
 													 update=":table:profileForm :table:uploadForm" />
 									<p:message for="updateButton" display="text" />
 								<p:graphicImage value="#{sessionBean.image}" id="image" width="150" height="200" cache="false"/>
@@ -63,10 +57,10 @@
 						<p:row>
 							<p:column styleClass="description-column" colspan="2">
 								<p:outputLabel value="Profile image"/>
-								<p:fileUpload id="file" update=":table:profileForm:image" 
+								<p:fileUpload id="file" update=":table:profileForm:image"
 											  fileUploadListener="#{detailsBean.upload}" auto="true" />
 							</p:column>
-						</p:row>	
+						</p:row>
 					</h:form>
 				</p:tab>
 				<p:tab title="#{msg.changePassword}">
@@ -97,8 +91,8 @@
 							<p:row>
 								<p:column styleClass="description-column" colspan="2">
 									<p:commandButton value="#{msg.changePassword}" action="#{passwordBean.update}"
-													 id="updateButton" update="passwordForm" />
-									<p:message for="updateButton" display="text" />
+													 id="updatePasswordButton" update="passwordForm" />
+									<p:message for="updatePasswordButton" display="text" />
 								</p:column>
 							</p:row>
 						</p:panelGrid>
