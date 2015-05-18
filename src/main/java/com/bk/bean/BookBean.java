@@ -4,12 +4,16 @@ import static com.bk.util.Message.globalError;
 import static com.bk.util.Message.msg;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.RateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
 
 import com.bk.enums.Status;
@@ -21,6 +25,7 @@ import com.bk.model.Shelf;
 import com.bk.repository.ReviewRepository;
 import com.bk.repository.ShelfRepository;
 import com.bk.service.BookService;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @author Andrei Petraru
@@ -41,6 +46,7 @@ public class BookBean implements Serializable {
 	private Review likeReview;
 	private Shelf shelf;
 	private Long id;
+	private List<Book> recommendations = new ArrayList<>();
 
 	public void init() {
 		Customer user = sessionBean.getLoggedInUser();
@@ -80,6 +86,11 @@ public class BookBean implements Serializable {
 			shelf.setBook(book);
 			shelf.setCustomer(user);
 		}
+
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+		Long[] result = restTemplate.getForObject("http://localhost:9000/book/" + book.getId(), Long[].class);
+		recommendations = bookService.findByIDs(Arrays.asList(result));
 	}
 
 	public String getAverageRating() {
@@ -191,6 +202,10 @@ public class BookBean implements Serializable {
 
 	public Date getToday() {
 		return new Date();
+	}
+
+	public List<Book> getRecommendations() {
+		return recommendations;
 	}
 
 	/*

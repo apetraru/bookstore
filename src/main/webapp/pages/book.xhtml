@@ -132,7 +132,10 @@
                     <p:row rendered="#{not empty review.comment}">
                         <p:column>
                             <div class="book-review">
-                                <p:commandLink value="#{review.customer.username}" styleClass="book-review-username"/>
+                                <h:link value="#{review.customer.username}" outcome="#{navigationBean.user()}"
+                                        styleClass="book-review-username">
+                                    <f:param name="id" value="#{review.customer.id}"/>
+                                </h:link>
                                 <h:outputText value="rated it" styleClass="float-left"/>
                                 <p:rating value="#{review.rating}" styleClass="book-review-rating" readonly="true" stars="10">
                                 </p:rating>
@@ -160,10 +163,24 @@
                     </p:row>
                 </p:dataGrid>
             </div>
-            <div class="center">
-                <p:messages globalOnly="true"/>
-            </div>
         </h:form>
+        <h:form id="recommendationsForm" styleClass="homepage-form">
+            <p:spacer width="100%" height="1px"/>
+            <p:dataGrid columns="1" lazy="false" value="#{bookBean.recommendations}" var="book"
+                        styleClass="homepage-book-datagrid">
+                <f:facet name="header">
+                    <h:outputText value="#{msg.recommend}"/>
+                </f:facet>
+                <ui:include src="/templates/bookTemplate.xhtml">
+                    <ui:param name="book" value="#{book}"/>
+                    <ui:param name="totalRatings" value="#{genreBean.ratings.getNumberOfRatings(book)}"/>
+                    <ui:param name="averageRating" value="#{genreBean.ratings.getAverageRating(book)}"/>
+                </ui:include>
+            </p:dataGrid>
+        </h:form>
+        <div class="center">
+            <p:messages globalOnly="true"/>
+        </div>
     </ui:define>
 </ui:composition>
 </html>

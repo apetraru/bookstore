@@ -21,7 +21,7 @@ public final class NavigationBean {
 	private static final String SEARCH = "/pages/search.jsf";
 	private static final String NO_ACCESS = "/pages/noaccess.jsf";
 	private static final String CUSTOMER = "/pages/customer/details.jsf";
-	private static final String PROFILE = "/pages/profile.jsf";
+	private static final String USER = "/pages/user.jsf";
 	private static final String RECOMMENDATIONS = "/pages/recommendations.jsf";
 
 	private NavigationBean() {
@@ -71,8 +71,8 @@ public final class NavigationBean {
 		return CUSTOMER + REDIRECT;
 	}
 
-	public static String publicProfile() {
-		return PROFILE + REDIRECT;
+	public static String user() {
+		return USER + REDIRECT;
 	}
 
 	public static String recommendations() {
