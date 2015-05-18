@@ -20,6 +20,8 @@ import com.bk.repository.BookRepository;
 import com.bk.util.PaginatedHibernateSearch;
 import com.mysema.query.types.Predicate;
 
+import java.util.List;
+
 /**
  * @author Andrei Petraru
  * Date: 1/28/13
@@ -84,5 +86,13 @@ public class BookService {
 	public Page<Book> findAll(Predicate predicate, Pageable pageable) {
 		return repository.findAll(predicate, pageable);
 	}
+
+    public List<Book> findByIDs(List<Long> ids) {
+        return repository.findByIDs(ids);
+    }
+
+    public List<Book> findByCustomerId(Long customerId) {
+        return repository.findByCustomerId(customerId);
+    }
 
 }
