@@ -33,7 +33,7 @@
 			<h:link value="#{msg.home}" outcome="#{navigationBean.home()}" />
 			<h:link value="#{msg.addBook}" outcome="#{navigationBean.addBook()}" />
 			<h:link value="#{msg.addAuthor}" outcome="#{navigationBean.addAuthor()}" />
-			<h:link value="#{msg.recommendations}" />
+			<h:link value="#{msg.recommendations}" outcome="#{navigationBean.recommendations()}"/>
 			<h:link value="#{msg.login}" outcome="#{navigationBean.login()}" rendered="#{!sessionBean.loggedOn}"
 				styleClass="float-right" />
 			<h:link value="#{msg.register}" outcome="#{navigationBean.register()}"

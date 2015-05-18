@@ -1,20 +1,7 @@
 package com.bk.bean;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.annotation.PostConstruct;
-
-import org.apache.commons.math.random.RandomData;
-import org.apache.commons.math.random.RandomDataImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
-import com.bk.lazydatamodel.GenreLazyDataModel;
-import com.bk.model.Book;
-import com.bk.service.BookService;
 
 /**
  * @author Andrei Petraru
@@ -24,40 +11,5 @@ import com.bk.service.BookService;
 @Component
 @Scope("request")
 public class HomeBean {
-
-	private static final Long DISPLAYED_BOOKS = 15L;
-
-	@Autowired private BookService bookService;
-	@Autowired private GenreLazyDataModel lazyModel;
-	@Autowired private RatingsBean ratings;
-
-	private Set<Book> books = new HashSet<>();
-
-	@PostConstruct
-	public void init() {
-		RandomData random = new RandomDataImpl();
-		Long count = bookService.count();
-
-		if (DISPLAYED_BOOKS.compareTo(count) > 0) {
-			return;
-		}
-
-		for (int i = 0; i < DISPLAYED_BOOKS; i++) {
-			Book book = bookService.findById(random.nextLong(1, count));
-			books.add(book);
-		}
-	}
-
-	public Set<Book> getBooks() {
-		return Collections.unmodifiableSet(books);
-	}
-
-	public GenreLazyDataModel getLazyModel() {
-		return lazyModel;
-	}
-
-	public RatingsBean getRatings() {
-		return ratings;
-	}
 
 }
