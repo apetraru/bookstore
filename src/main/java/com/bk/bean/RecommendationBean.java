@@ -58,10 +58,6 @@ public class RecommendationBean implements Serializable {
 		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 		Long[] result = restTemplate.getForObject("http://localhost:9000/user/" + customer.getId(), Long[].class);
 		books = bookService.findByIDs(Arrays.asList(result));
-//		books = reviews
-//				.stream()
-//				.map(review -> review.getBook())
-//				.collect(Collectors.toList());
 	}
 
 	public List<Book> getBooks() {
