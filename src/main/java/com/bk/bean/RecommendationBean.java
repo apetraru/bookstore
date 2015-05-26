@@ -5,11 +5,9 @@ import com.bk.model.Customer;
 import com.bk.model.Review;
 import com.bk.repository.ReviewRepository;
 import com.bk.service.BookService;
-import com.bk.util.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,11 +15,12 @@ import javax.annotation.PostConstruct;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import static com.bk.util.Message.*;
+import static com.bk.util.Message.globalError;
+import static com.bk.util.Message.msg;
 
 /**
  * Created by ph on 5/17/15.
@@ -54,10 +53,17 @@ public class RecommendationBean implements Serializable {
 			globalError(msg("noBooksRated"));
 			return;
 		}
-		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-		Long[] result = restTemplate.getForObject("http://localhost:9000/user/" + customer.getId(), Long[].class);
-		books = bookService.findByIDs(Arrays.asList(result));
+
+		try {
+			RestTemplate restTemplate = new RestTemplate();
+			restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+			Long[] result = restTemplate.getForObject("http://localhost:9000/user/" + customer.getId(), Long[].class);
+			books = bookService.findByIDs(Arrays.asList(result));
+		}
+		catch (Exception e) {
+			Logger.getLogger(RecommendationBean.class.getName())
+					.log(Level.SEVERE, "Error calling book engine", "Error calling book engine");
+		}
 	}
 
 	public List<Book> getBooks() {

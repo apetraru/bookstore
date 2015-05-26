@@ -1,21 +1,5 @@
 package com.bk.bean;
 
-import static com.bk.util.Message.globalError;
-import static com.bk.util.Message.msg;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.primefaces.event.RateEvent;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.stereotype.Component;
-
 import com.bk.enums.Status;
 import com.bk.lazydatamodel.ReviewLazyDataModel;
 import com.bk.model.Book;
@@ -25,7 +9,24 @@ import com.bk.model.Shelf;
 import com.bk.repository.ReviewRepository;
 import com.bk.repository.ShelfRepository;
 import com.bk.service.BookService;
+import org.apache.commons.lang3.StringUtils;
+import org.primefaces.event.RateEvent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static com.bk.util.Message.globalError;
+import static com.bk.util.Message.msg;
 
 /**
  * @author Andrei Petraru
@@ -87,10 +88,16 @@ public class BookBean implements Serializable {
 			shelf.setCustomer(user);
 		}
 
-		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-		Long[] result = restTemplate.getForObject("http://localhost:9000/book/" + book.getId(), Long[].class);
-		recommendations = bookService.findByIDs(Arrays.asList(result));
+		try {
+			RestTemplate restTemplate = new RestTemplate();
+			restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+			Long[] result = restTemplate.getForObject("http://localhost:9000/book/" + book.getId(), Long[].class);
+			recommendations = bookService.findByIDs(Arrays.asList(result));
+		}
+		catch (Exception e) {
+			Logger.getLogger(BookBean.class.getName())
+					.log(Level.SEVERE, "Error calling book engine", "Error calling book engine");
+		}
 	}
 
 	public String getAverageRating() {
