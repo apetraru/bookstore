@@ -13,8 +13,8 @@
     </ui:define>
     <ui:define name="body">
         <h:form id="registerForm">
-            <p:panel header="#{msg.register}" styleClass="register-panel">
-                <p:panelGrid id="registerPanel">
+            <p:panel header="#{msg.register}" styleClass="register-panel" id="registerPanel">
+                <p:panelGrid>
                     <p:row>
                         <p:column styleClass="panel-column">
                             <p:outputLabel value="#{msg.username}"/>
@@ -52,6 +52,10 @@
                     </p:row>
                 </p:panelGrid>
             </p:panel>
+            <p:blockUI block="registerPanel" trigger="register">
+                Working...<br/>
+                <p:graphicImage name="images/ajaxloadingbar.gif"/>
+            </p:blockUI>
         </h:form>
     </ui:define>
 </ui:composition>
