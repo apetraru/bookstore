@@ -95,10 +95,10 @@
 					</p:row>
 				</p:panelGrid>
 			</p:panel>
-			<p:dataGrid rows="5" paginator="true" columns="1" value="#{authorBean.lazyDataModel}" var="book"
+			<p:dataGrid rows="10" paginator="true" columns="1" value="#{authorBean.lazyDataModel}" var="book"
 				paginatorPosition="bottom" lazy="true" rendered="#{not empty authorBean.author}"
 				paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
-				rowsPerPageTemplate="5" styleClass="author-books">
+				rowsPerPageTemplate="10" styleClass="author-books">
 				<f:facet name="header">
 					<h:outputText value="#{msg.booksBy} : #{authorBean.author.name}" />
 				</f:facet>

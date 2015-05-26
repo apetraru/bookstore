@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import com.bk.model.Author;
@@ -30,12 +31,9 @@ public class BookAuthorLazyDataModel extends LazyDataModel<Book> {
 	@Override
 	public List<Book> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 		int elementsPerPage = first / pageSize;
-		Pageable pageable = new PageRequest(elementsPerPage, pageSize);
-
+		Pageable pageable = new PageRequest(elementsPerPage, pageSize, Sort.Direction.ASC, "title");
 		Page<Book> datasource = bookService.findByAuthor(author, pageable);
-
 		setRowCount((int) datasource.getTotalElements());
-
 		return datasource.getContent();
 	}
 

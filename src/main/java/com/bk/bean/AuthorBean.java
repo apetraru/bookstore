@@ -18,7 +18,7 @@ import com.bk.repository.AuthorRepository;
  * @author Andrei Petraru
  */
 @Component
-@Scope("request")
+@Scope("view")
 public class AuthorBean implements Serializable {
 
 	@Autowired private AuthorRepository authorRepository;
