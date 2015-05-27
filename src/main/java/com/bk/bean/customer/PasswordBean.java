@@ -19,7 +19,7 @@ import com.bk.service.CustomerService;
 @Component
 @Scope("view")
 public class PasswordBean {
-	private static final String UPDATE_PASSWORD = "table:passwordForm:updateButton";
+	private static final String UPDATE_PASSWORD = "table:passwordForm:updatePasswordButton";
 	
 	@Autowired private CustomerService customerService;
 	@Autowired private SessionBean sessionBean;
