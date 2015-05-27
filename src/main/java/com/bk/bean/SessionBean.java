@@ -4,10 +4,15 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.bk.model.Customer;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
+
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
@@ -35,8 +40,10 @@ public class SessionBean {
 
 	public StreamedContent getImage() throws IOException {
 		FacesContext context = FacesContext.getCurrentInstance();
-		if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE || !loggedOn) {
-			return new DefaultStreamedContent();
+		if (context.getCurrentPhaseId() == PhaseId.RENDER_RESPONSE || !loggedOn || loggedInUser.getImage() == null) {
+			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+			InputStream input = externalContext.getResourceAsStream("/resources/images/default-user.png");
+			return new DefaultStreamedContent(input);
 		}
 		else {
 			return new DefaultStreamedContent(new ByteArrayInputStream(loggedInUser.getImage().getFileContent()));
