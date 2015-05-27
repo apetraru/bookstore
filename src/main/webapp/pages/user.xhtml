@@ -17,33 +17,36 @@
             <f:event type="preRenderView" listener="#{profileBean.init()}"/>
         </f:metadata>
         <h:form id="recommendationsForm" styleClass="homepage-form">
-            <div style="margin-left: 4%">
-                <p:spacer height="1"/>
-                <div style="font-size: 20px">
-                    #{profileBean.customer.username}'s Profile
+            <p:panel rendered="#{not empty profileBean.id}">
+                <div style="margin-left: 4%">
+                    <p:spacer height="1"/>
+
+                    <div style="font-size: 20px">
+                        #{profileBean.customer.username}'s Profile
+                    </div>
+                    <div>
+                        Age #{profileBean.customer.age}, #{profileBean.customer.location}
+                        <br/>
+                        #{profileBean.booksRead} books read
+                        (<h:outputText value="#{profileBean.averageRating}">
+                        <f:convertNumber pattern="#0.00"/>
+                    </h:outputText> average rating)
+                    </div>
                 </div>
-                <div>
-                    Age #{profileBean.customer.age}, #{profileBean.customer.location}
-                    <br/>
-                    #{profileBean.booksRead} books read
-                    (<h:outputText value="#{profileBean.averageRating}">
-                    <f:convertNumber pattern="#0.00"/>
-                </h:outputText> average rating)
-                </div>
-            </div>
-            <p:dataGrid rows="10" paginator="true" columns="1" value="#{profileBean.books}" var="book"
-                        paginatorPosition="bottom" lazy="false"
-                        paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
-                        rowsPerPageTemplate="10" styleClass="author-books">
-                <f:facet name="header">
-                    #{msg.booksRatedBy} #{profileBean.customer.username}
-                </f:facet>
-                <ui:include src="/templates/bookTemplate.xhtml">
-                    <ui:param name="book" value="#{book}"/>
-                    <ui:param name="totalRatings" value="#{genreBean.ratings.getNumberOfRatings(book)}"/>
-                    <ui:param name="averageRating" value="#{genreBean.ratings.getAverageRating(book)}"/>
-                </ui:include>
-            </p:dataGrid>
+                <p:dataGrid rows="10" paginator="true" columns="1" value="#{profileBean.books}" var="book"
+                            paginatorPosition="bottom" lazy="false"
+                            paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
+                            rowsPerPageTemplate="10" styleClass="author-books">
+                    <f:facet name="header">
+                        #{msg.booksRatedBy} #{profileBean.customer.username}
+                    </f:facet>
+                    <ui:include src="/templates/bookTemplate.xhtml">
+                        <ui:param name="book" value="#{book}"/>
+                        <ui:param name="totalRatings" value="#{genreBean.ratings.getNumberOfRatings(book)}"/>
+                        <ui:param name="averageRating" value="#{genreBean.ratings.getAverageRating(book)}"/>
+                    </ui:include>
+                </p:dataGrid>
+            </p:panel>
 
             <div class="center">
                 <p:messages globalOnly="true"/>
