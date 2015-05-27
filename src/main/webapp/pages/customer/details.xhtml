@@ -9,7 +9,21 @@
 		</ui:define>
 		<ui:define name="body">
 			<p:tabView id="table">
-				<p:tab title="#{msg.details}">
+			<p:tab title="#{msg.myBooks}">
+				<p:dataGrid rows="10" paginator="true" columns="1"
+					value="#{sessionBean.books}" var="book" paginatorPosition="bottom" lazy="false"
+					paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
+					rowsPerPageTemplate="10" styleClass="author-books">
+					<ui:include src="/templates/bookTemplate.xhtml">
+						<ui:param name="book" value="#{book}" />
+						<ui:param name="totalRatings"
+							value="#{genreBean.ratings.getNumberOfRatings(book)}" />
+						<ui:param name="averageRating"
+							value="#{genreBean.ratings.getAverageRating(book)}" />
+					</ui:include>
+				</p:dataGrid>
+			</p:tab>
+			<p:tab title="#{msg.details}">
 					<h:form id="profileForm">
 						<p:panelGrid>
 							<p:row>
@@ -50,6 +64,11 @@
 									<p:message for="updateButton" display="text" />
 								<p:graphicImage value="#{sessionBean.image}" id="image" width="150" height="200" cache="false"/>
 								</p:column>
+							</p:row>
+							<p:row>
+							<p:column>
+							
+							</p:column>
 							</p:row>
 						</p:panelGrid>
 					</h:form>
