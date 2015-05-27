@@ -38,11 +38,17 @@
 				styleClass="float-right" />
 			<h:link value="#{msg.register}" outcome="#{navigationBean.register()}"
 				rendered="#{!sessionBean.loggedOn}" styleClass="float-right" />
-			<p:commandLink value="#{msg.logout}" rendered="#{sessionBean.loggedOn}" action="#{loginBean.logout}"
-				ajax="false" styleClass="float-right" />
-			<p:commandLink value="#{sessionBean.loggedInUser.username}" rendered="#{sessionBean.loggedOn}"
-				styleClass="float-right" action="#{navigationBean.profile()}" />
-			<p:defaultCommand target="searchButton" />
+			<p:menuButton value="Options" rendered="#{sessionBean.loggedOn}" styleClass="float-right"
+						  icon="ui-icon-gear">
+				<p:menuitem value="#{msg.logout}">
+					<h:link value="#{msg.myProfile}" outcome="#{navigationBean.user()}">
+						<f:param name="id" value="#{sessionBean.loggedInUser.id}"/>
+					</h:link>
+				</p:menuitem>
+				<p:menuitem value="#{msg.editProfile}" action="#{navigationBean.profile()}" style="margin-left: 4px"/>
+				<p:menuitem value="#{msg.logout}" action="#{loginBean.logout}" ajax="false" style="margin-left: 4px"/>
+			</p:menuButton>
+			<p:defaultCommand target="searchButton"/>
 		</div>
 	</h:form>
 </ui:composition>
