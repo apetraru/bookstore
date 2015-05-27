@@ -17,12 +17,19 @@
             <f:event type="preRenderView" listener="#{profileBean.init()}"/>
         </f:metadata>
         <h:form id="recommendationsForm" styleClass="homepage-form">
-            <p:spacer height="1"/>
-            <div style="font-size: 20px">
-                #{profileBean.customer.username}'s Profile
-            </div>
-            <div>
-                Age #{profileBean.customer.age}, #{profileBean.customer.location}
+            <div style="margin-left: 4%">
+                <p:spacer height="1"/>
+                <div style="font-size: 20px">
+                    #{profileBean.customer.username}'s Profile
+                </div>
+                <div>
+                    Age #{profileBean.customer.age}, #{profileBean.customer.location}
+                    <br/>
+                    #{profileBean.booksRead} books read
+                    (<h:outputText value="#{profileBean.averageRating}">
+                    <f:convertNumber pattern="#0.00"/>
+                </h:outputText> average rating)
+                </div>
             </div>
             <p:dataGrid rows="10" paginator="true" columns="1" value="#{profileBean.books}" var="book"
                         paginatorPosition="bottom" lazy="false"

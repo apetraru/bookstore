@@ -35,6 +35,12 @@ public interface ReviewRepository extends Repository<Review, Long>, Serializable
 
     @Query("select r from Review r where r.customer = :customer")
     List<Review> getCustomerRatings(@Param("customer") Customer customer);
-	
+
 	Page<Review> findByBook(Book book, Pageable pageable);
+
+    @Query(value = "SELECT avg(rating) FROM REVIEW WHERE customer_id = ?1", nativeQuery = true)
+    Long getAverageRatingForCustomer(Long customerId);
+
+    @Query("select count(r) from Review r where r.customer = :customer")
+    Long getNumberOfCustomerRatings(@Param("customer") Customer customer);
 }
