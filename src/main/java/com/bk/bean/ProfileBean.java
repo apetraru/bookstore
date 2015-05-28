@@ -2,9 +2,9 @@ package com.bk.bean;
 
 import com.bk.model.Book;
 import com.bk.model.Customer;
-import com.bk.repository.ReviewRepository;
 import com.bk.service.BookService;
 import com.bk.service.CustomerService;
+import com.bk.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -22,7 +22,7 @@ import static com.bk.util.Message.msg;
 @Scope("view")
 public class ProfileBean {
 	@Autowired private CustomerService customerService;
-	@Autowired private ReviewRepository reviewRepository;
+	@Autowired private ReviewService reviewService;
 	@Autowired private BookService bookService;
 
 	private Long id;
@@ -45,8 +45,8 @@ public class ProfileBean {
 		}
 
 		books = bookService.findByCustomerId(customer.getId());
-		averageRating = reviewRepository.getAverageRatingForCustomer(customer);
-		booksRead = reviewRepository.getNumberOfCustomerRatings(customer);
+		averageRating = reviewService.getAverageRatingForCustomer(customer);
+		booksRead = reviewService.getNumberOfCustomerRatings(customer);
 		if (averageRating == null) {
 			averageRating = 0.00;
 		}

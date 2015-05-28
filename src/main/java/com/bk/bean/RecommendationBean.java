@@ -3,8 +3,8 @@ package com.bk.bean;
 import com.bk.model.Book;
 import com.bk.model.Customer;
 import com.bk.model.Review;
-import com.bk.repository.ReviewRepository;
 import com.bk.service.BookService;
+import com.bk.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -29,14 +29,9 @@ import static com.bk.util.Message.msg;
 @Component
 @Scope("request")
 public class RecommendationBean implements Serializable {
-	@Autowired
-	private SessionBean sessionBean;
-
-	@Autowired
-	private BookService bookService;
-
-	@Autowired
-	private ReviewRepository reviewRepository;
+	@Autowired private SessionBean sessionBean;
+	@Autowired private BookService bookService;
+	@Autowired private ReviewService reviewService;
 
 	List<Book> books = new ArrayList<>();
 	List<Review> reviews = new ArrayList<>();
@@ -48,7 +43,7 @@ public class RecommendationBean implements Serializable {
 			globalError(msg("loginForRecommendations"));
 			return;
 		}
-		reviews = reviewRepository.getCustomerRatings(sessionBean.getLoggedInUser());
+		reviews = reviewService.getCustomerRatings(sessionBean.getLoggedInUser());
 		if (reviews.isEmpty()) {
 			globalError(msg("noBooksRated"));
 			return;

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.bk.model.Book;
-import com.bk.repository.ReviewRepository;
+import com.bk.service.ReviewService;
 
 /**
  * @author Andrei Petraru
@@ -14,10 +14,10 @@ import com.bk.repository.ReviewRepository;
 @Component
 public class RatingsBean {
 	@Autowired
-	private ReviewRepository reviewRepository;
+	private ReviewService reviewService;
 
 	public String getAverageRating(Book book) {
-		Double averageRating = reviewRepository.getBookRating(book);
+		Double averageRating = reviewService.getBookRating(book);
 		if (averageRating == null) {
 			return "0.00";
 		}
@@ -25,7 +25,7 @@ public class RatingsBean {
 	}
 
 	public Long getNumberOfRatings(Book book) {
-		return reviewRepository.getNumberOfBookRatings(book);
+		return reviewService.getNumberOfBookRatings(book);
 	}
 
 }

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.bk.model.Book;
 import com.bk.model.Review;
-import com.bk.repository.ReviewRepository;
+import com.bk.service.ReviewService;
 
 /**
  * @author Andrei Petraru
@@ -24,7 +24,7 @@ import com.bk.repository.ReviewRepository;
 @Component
 public class ReviewLazyDataModel extends LazyDataModel<Review> {
 	
-	@Autowired private ReviewRepository repository;
+	@Autowired private ReviewService reviewService;
 
 	private Book book;
 
@@ -32,7 +32,7 @@ public class ReviewLazyDataModel extends LazyDataModel<Review> {
 	public List<Review> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
 		int elementsPerPage = first / pageSize;
 		Pageable pageable = new PageRequest(elementsPerPage, pageSize, Sort.Direction.DESC, "likes");
-		Page<Review> datasource = repository.findByBook(book, pageable);
+		Page<Review> datasource = reviewService.findByBook(book, pageable);
 		setRowCount((int) datasource.getTotalElements());
 		return datasource.getContent();
 	}

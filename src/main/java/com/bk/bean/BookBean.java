@@ -6,9 +6,9 @@ import com.bk.model.Book;
 import com.bk.model.Customer;
 import com.bk.model.Review;
 import com.bk.model.Shelf;
-import com.bk.repository.ReviewRepository;
 import com.bk.repository.ShelfRepository;
 import com.bk.service.BookService;
+import com.bk.service.ReviewService;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.RateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ import static com.bk.util.Message.msg;
 public class BookBean implements Serializable {
 
 	@Autowired private SessionBean sessionBean;
-	@Autowired private ReviewRepository reviewRepository;
+	@Autowired private ReviewService reviewService;
 	@Autowired private BookService bookService;
 	@Autowired private ShelfRepository shelfRepository;
 	@Autowired private ReviewLazyDataModel lazyDataModel;
@@ -65,7 +65,7 @@ public class BookBean implements Serializable {
 		}
 
 		if (user != null) {
-			bookReview = reviewRepository.getCustomerRating(book, user);
+			bookReview = reviewService.getCustomerRating(book, user);
 			if (bookReview == null) {
 				newRating();
 			}
@@ -101,7 +101,7 @@ public class BookBean implements Serializable {
 	}
 
 	public String getAverageRating() {
-		Double averageRating = reviewRepository.getBookRating(book);
+		Double averageRating = reviewService.getBookRating(book);
 		if (averageRating == null) {
 			return "0.00";
 		}
@@ -109,7 +109,7 @@ public class BookBean implements Serializable {
 	}
 
 	public Long getNumberOfRatings() {
-		return reviewRepository.getNumberOfBookRatings(book);
+		return reviewService.getNumberOfBookRatings(book);
 	}
 
 	public void addRating(RateEvent event) {
@@ -125,7 +125,7 @@ public class BookBean implements Serializable {
 		}
 		shelf.setStatus(Status.READ);
 		saveShelf();
-		reviewRepository.save(bookReview);
+		reviewService.save(bookReview);
 	}
 
 	public void like() {
@@ -139,7 +139,7 @@ public class BookBean implements Serializable {
 		else {
 			likeReview.addCustomerLike(getUserId());
 		}
-		reviewRepository.save(likeReview);
+		reviewService.save(likeReview);
 	}
 
 	public boolean isReviewLiked() {
@@ -156,7 +156,7 @@ public class BookBean implements Serializable {
 
 	public void removeRating() {
 		bookReview.setRating(null);
-		reviewRepository.save(bookReview);
+		reviewService.save(bookReview);
 	}
 
 	public Book getBook() {
