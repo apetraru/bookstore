@@ -40,8 +40,8 @@
 				rendered="#{!sessionBean.loggedOn}" styleClass="float-right" />
 			<p:menuButton value="Options" rendered="#{sessionBean.loggedOn}" styleClass="float-right"
 						  icon="ui-icon-gear">
-				<p:menuitem value="#{msg.logout}">
-					<h:link value="#{msg.myProfile}" outcome="#{navigationBean.user()}">
+				<p:menuitem>
+					<h:link value="#{msg.myBooks}" outcome="#{navigationBean.user()}">
 						<f:param name="id" value="#{sessionBean.loggedInUser.id}"/>
 					</h:link>
 				</p:menuitem>

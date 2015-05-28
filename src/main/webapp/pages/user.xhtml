@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <p:dataGrid rows="10" paginator="true" columns="1" value="#{profileBean.books}" var="book"
-                            paginatorPosition="bottom" lazy="false"
+                            paginatorPosition="bottom" lazy="false" rendered="#{not empty profileBean.books}"
                             paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
                             rowsPerPageTemplate="10" styleClass="author-books">
                     <f:facet name="header">

@@ -28,7 +28,7 @@ public class ProfileBean {
 	private Long id;
 	private Customer customer;
 	private List<Book> books;
-	private Long averageRating;
+	private Double averageRating;
 	private Long booksRead;
 
 	public void init() {
@@ -45,8 +45,11 @@ public class ProfileBean {
 		}
 
 		books = bookService.findByCustomerId(customer.getId());
-		averageRating = reviewRepository.getAverageRatingForCustomer(customer.getId());
+		averageRating = reviewRepository.getAverageRatingForCustomer(customer);
 		booksRead = reviewRepository.getNumberOfCustomerRatings(customer);
+		if (averageRating == null) {
+			averageRating = 0.00;
+		}
 	}
 
 	public List<Book> getBooks() {
@@ -69,7 +72,7 @@ public class ProfileBean {
 		return booksRead;
 	}
 
-	public Long getAverageRating() {
+	public Double getAverageRating() {
 		return averageRating;
 	}
 }

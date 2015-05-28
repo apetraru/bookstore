@@ -38,8 +38,8 @@ public interface ReviewRepository extends Repository<Review, Long>, Serializable
 
 	Page<Review> findByBook(Book book, Pageable pageable);
 
-    @Query(value = "SELECT avg(rating) FROM REVIEW WHERE customer_id = ?1", nativeQuery = true)
-    Long getAverageRatingForCustomer(Long customerId);
+    @Query("select AVG(r.rating) from Review r where r.customer = :customer")
+    Double getAverageRatingForCustomer(@Param("customer") Customer customer);
 
     @Query("select count(r) from Review r where r.customer = :customer")
     Long getNumberOfCustomerRatings(@Param("customer") Customer customer);
