@@ -45,6 +45,10 @@
                         <ui:param name="totalRatings" value="#{genreBean.ratings.getNumberOfRatings(book)}"/>
                         <ui:param name="averageRating" value="#{genreBean.ratings.getAverageRating(book)}"/>
                     </ui:include>
+                    <div style="font-size: 0.8em; float: right;">
+                        <h:outputText value="#{profileBean.customer.username}'s rating"/>
+                        <p:rating value="#{profileBean.getUserRating(book.id)}" stars="10" readonly="true"/>
+                    </div>
                 </p:dataGrid>
             </p:panel>
 

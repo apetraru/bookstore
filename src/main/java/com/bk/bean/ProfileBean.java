@@ -5,11 +5,14 @@ import com.bk.model.Customer;
 import com.bk.service.BookService;
 import com.bk.service.CustomerService;
 import com.bk.service.ReviewService;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.bk.util.Message.globalError;
 import static com.bk.util.Message.msg;
@@ -30,6 +33,7 @@ public class ProfileBean {
 	private List<Book> books;
 	private Double averageRating;
 	private Long booksRead;
+	private List<Pair<Long, Integer>> ratingsForUser = new ArrayList<>();
 
 	public void init() {
 		if (id == null) {
@@ -50,6 +54,9 @@ public class ProfileBean {
 		if (averageRating == null) {
 			averageRating = 0.00;
 		}
+
+		List<Long> bookIds = books.stream().map(book -> book.getId()).collect(Collectors.toList());
+		ratingsForUser = reviewService.getCustomerRatingsDTO(bookIds, customer.getId());
 	}
 
 	public List<Book> getBooks() {
@@ -74,5 +81,11 @@ public class ProfileBean {
 
 	public Double getAverageRating() {
 		return averageRating;
+	}
+
+	public Integer getUserRating(Long bookId) {
+		return ratingsForUser.stream()
+				.filter(r -> r.getLeft().equals(bookId))
+				.findFirst().get().getRight();
 	}
 }
