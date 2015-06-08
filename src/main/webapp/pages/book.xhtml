@@ -12,6 +12,7 @@
             <h:outputText value=" | #{bookBean.book.title} by #{bookBean.book.author.name}"
                                     rendered="#{not empty bookBean.book.id}"/>
         </title>
+        <h:outputScript library="js" name="hide-bar.js"/>
     </ui:define>
     <ui:define name="body">
         <f:metadata>
@@ -121,10 +122,10 @@
             </p:panel>
 
             <div class="book-comments">
-                <p:dataGrid rows="10" paginator="true" columns="1" value="#{bookBean.lazyDataModel}" var="review"
+                <p:dataGrid rows="5" paginator="true" columns="1" value="#{bookBean.lazyDataModel}" var="review"
                             paginatorPosition="bottom" lazy="true"
                             paginatorTemplate="Page {CurrentPageReport} Go to page: {JumpToPageDropdown} {PreviousPageLink} {NextPageLink}"
-                            rowsPerPageTemplate="10" rendered="#{not empty bookBean.book.id}" id="reviews">
+                            rowsPerPageTemplate="5" rendered="#{not empty bookBean.book.id}" id="reviews">
                     <f:facet name="header">
                         <h:outputText value="#{msg.comments}"/>
                     </f:facet>
@@ -164,20 +165,17 @@
                 </p:dataGrid>
             </div>
         </h:form>
-        <h:form id="recommendationsForm" styleClass="homepage-form">
-            <p:spacer width="100%" height="1px"/>
-            <p:dataGrid columns="1" lazy="false" value="#{bookBean.recommendations}" var="book"
-                        styleClass="homepage-book-datagrid">
-                <f:facet name="header">
-                    <h:outputText value="#{msg.recommend}"/>
-                </f:facet>
-                <ui:include src="/templates/bookTemplate.xhtml">
-                    <ui:param name="book" value="#{book}"/>
-                    <ui:param name="totalRatings" value="#{genreBean.ratings.getNumberOfRatings(book)}"/>
-                    <ui:param name="averageRating" value="#{genreBean.ratings.getAverageRating(book)}"/>
-                </ui:include>
-            </p:dataGrid>
-        </h:form>
+        <p:spacer width="100%" height="30px"/>
+        <p:carousel value="#{bookBean.recommendations}" headerText="#{msg.recommend}" var="book" numVisible="5"
+                style="margin-left: 100px">
+            <h:link outcome="#{navigationBean.book()}" styleClass="book-template-title">
+                <p:graphicImage width="120px" height="180px" style="padding: 10px"
+                                value="#{book.imageLarge}" alt="book image"/>
+                <f:param name="id" value="#{book.id}" />
+                <f:param name="title" value="#{book.title}" />
+            </h:link>
+        </p:carousel>
+
         <div class="center">
             <p:messages globalOnly="true"/>
         </div>
