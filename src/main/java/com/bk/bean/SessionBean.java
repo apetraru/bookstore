@@ -1,24 +1,19 @@
 package com.bk.bean;
 
+import com.bk.model.Customer;
+import com.bk.service.BookService;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.bk.model.Book;
-import com.bk.model.Customer;
-import com.bk.service.BookService;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseId;
-
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 @Component
 @Scope("session")
@@ -55,10 +50,6 @@ public class SessionBean {
 		else {
 			return new DefaultStreamedContent(new ByteArrayInputStream(loggedInUser.getImage().getFileContent()));
 		}
-	}
-	
-	public List<Book> getBooks() {
-		return bookService.findByCustomerId(loggedInUser.getId());
 	}
 
 }
