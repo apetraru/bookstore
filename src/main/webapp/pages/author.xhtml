@@ -12,7 +12,6 @@
 		<h:outputText value=" | #{authorBean.author.name}"
 				rendered="#{not empty authorBean.author.id}" />
 		</title>
-        <h:outputScript library="js" name="show-hide.js"/>
 	</ui:define>
 	<ui:define name="body">
 		<f:metadata>
@@ -65,14 +64,6 @@
                             </h:outputLink>
                         </p:column>
                     </p:row>
-					<p:row>
-						<p:column>
-							<h:outputText value="#{msg.genre}" styleClass="author-bold" />
-						</p:column>
-						<p:column>
-							<h:outputText value="TO BE ADDED" />
-						</p:column>
-					</p:row>
 					<p:row>
 						<p:column colspan="2">
 							<p:separator />
