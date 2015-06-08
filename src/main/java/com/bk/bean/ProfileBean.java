@@ -56,7 +56,9 @@ public class ProfileBean {
 		}
 
 		List<Long> bookIds = books.stream().map(book -> book.getId()).collect(Collectors.toList());
-		ratingsForUser = reviewService.getCustomerRatingsDTO(bookIds, customer.getId());
+		if (!bookIds.isEmpty()) {
+			ratingsForUser = reviewService.getCustomerRatingsDTO(bookIds, customer.getId());
+		}
 	}
 
 	public List<Book> getBooks() {
