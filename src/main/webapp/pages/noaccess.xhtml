@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
 
 <ui:composition template="/templates/template.xhtml">
     <ui:define name="title">
@@ -8,8 +8,8 @@
         	#{msg.accessDenied}
         </title>
     </ui:define>
-    	#{msg.noAccess}
     <ui:define name="body">
+        <h:outputText styleClass="not-authorized" value="#{msg.noAccess}"/>
     </ui:define>
 </ui:composition>
 </html>

@@ -311,3 +311,8 @@ label {
 	float: left;
 	margin-left: 4px;
 }
+
+.not-authorized {
+	color: red;
+	font-size: 25px;
+}
