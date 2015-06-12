@@ -19,8 +19,9 @@
 		<querydsl.version>3.5.0</querydsl.version>
 		<hamcrest.version>1.3</hamcrest.version>
 		<netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
-		<groovy.version>2.2.2</groovy.version>
+		<groovy.version>2.4.3</groovy.version>
 		<jsf.version>2.2.7</jsf.version>
+		<spock.version>1.0-groovy-2.4</spock.version>
 	</properties>
 
 	<dependencies>
@@ -257,13 +258,13 @@
 		<dependency>
 			<groupId>org.spockframework</groupId>
 			<artifactId>spock-core</artifactId>
-			<version>0.7-groovy-2.0</version>
+			<version>${spock.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.spockframework</groupId>
 			<artifactId>spock-spring</artifactId>
-			<version>0.7-groovy-2.0</version>
+			<version>${spock.version}</version>
 		</dependency>
 
 		<!-- CGLIB for mocking classes -->
@@ -271,13 +272,6 @@
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
 			<version>3.1</version>
-		</dependency>
-		
-		<!-- Apache Math commons -->
-		<dependency>
-			<groupId>commons-math</groupId>
-			<artifactId>commons-math</artifactId>
-			<version>20040218.045431</version>
 		</dependency>
 
 		<dependency>
@@ -309,21 +303,6 @@
 	</dependencies>
 
 	<repositories>
-		<!-- JBoss Repository used for Java EE 6 pieces -->
-		<repository>
-			<id>repository.jboss.org</id>
-			<name>JBoss Repository</name>
-			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-		</repository>
-
-		<repository>
-			<id>org.springframework.maven.milestone</id>
-			<name>Spring Maven Milestone Repository</name>
-			<url>http://maven.springframework.org/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
 		<repository>
 			<id>prime-repo</id>
 			<name>PrimeFaces Maven Repository</name>
@@ -334,18 +313,6 @@
 
 	<build>
 		<plugins>
-
-			<!-- Facilitates downloading source and javadoc in Eclipse -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.9</version>
-				<configuration>
-					<wtpversion>2.0</wtpversion>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
-				</configuration>
-			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -381,49 +348,29 @@
 					</execution>
 				</executions>
 			</plugin>
+			<!-- Mandatory plugins for using Spock -->
 			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.7.1.201405082137</version>
+				<groupId>org.codehaus.gmavenplus</groupId>
+				<artifactId>gmavenplus-plugin</artifactId>
+				<version>1.5</version>
 				<executions>
 					<execution>
-						<id>prepare-agent</id>
 						<goals>
-							<goal>prepare-agent</goal>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.codehaus.gmaven</groupId>
-				<artifactId>gmaven-plugin</artifactId>
-				<version>1.5</version>
-				<dependencies>
-					<dependency>
-						<groupId>org.codehaus.groovy</groupId>
-						<artifactId>groovy-all</artifactId>
-						<version>${groovy.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.codehaus.gmaven.runtime</groupId>
-						<artifactId>gmaven-runtime-1.7</artifactId>
-						<version>1.5</version>
-						<exclusions>
-							<exclusion>
-								<groupId>org.codehaus.groovy</groupId>
-								<artifactId>groovy-all</artifactId>
-							</exclusion>
-						</exclusions>
-					</dependency>
-				</dependencies>
-
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.4.201502262128</version>
 				<executions>
 					<execution>
-						<configuration>
-							<providerSelection>1.8</providerSelection>
-						</configuration>
+						<id>prepare-agent</id>
 						<goals>
-							<goal>testCompile</goal>
+							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
 				</executions>
