@@ -166,7 +166,7 @@
             </div>
         </h:form>
         <p:spacer width="100%" height="30px"/>
-        <p:panel visible="#{not empty bookBean.recommendations}">
+        <p:panel visible="#{not empty bookBean.recommendations}" styleClass="book-panel" >
             <p:carousel value="#{bookBean.recommendations}" headerText="#{msg.recommend}" var="book" numVisible="5"
                         style="margin-left: 100px">
                 <h:link outcome="#{navigationBean.book()}" styleClass="book-template-title">
