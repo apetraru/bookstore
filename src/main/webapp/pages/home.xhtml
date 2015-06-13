@@ -12,9 +12,17 @@
         </title>
     </ui:define>
 	<ui:define name="body">
-		<h:form id="homeForm" styleClass="homepage-form">
-			Welcome to GoodBooks
-		</h:form>
+        <p:dataGrid rows="10" paginator="false" columns="1" value="#{homeBean.books}" var="book"
+                    rendered="#{not empty homeBean.books}" styleClass="author-books">
+            <f:facet name="header">
+                <h:outputText value="#{msg.recommandations} : #{authorBean.author.name}"/>
+            </f:facet>
+            <ui:include src="/templates/bookTemplate.xhtml">
+                <ui:param name="book" value="#{book}"/>
+                <ui:param name="totalRatings" value="#{ratingsBean.getNumberOfRatings(book)}"/>
+                <ui:param name="averageRating" value="#{ratingsBean.getAverageRating(book)}"/>
+            </ui:include>
+        </p:dataGrid>
 	</ui:define>
 </ui:composition>
 

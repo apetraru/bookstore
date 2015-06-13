@@ -37,6 +37,9 @@ public interface BookRepository extends Repository<Book, Long>, QueryDslPredicat
 	List<Book> findByIDs(@Param("ids") List<Long> ids);
 
 	@Query(value = "SELECT * FROM BOOK WHERE id in (SELECT book_id FROM REVIEW WHERE customer_id = ?1)", nativeQuery = true)
-	List<Book> findByCustomerId(Long customerId);
+	List<Book> findByCustomerReview(Long customerId);
+
+	@Query(value = "SELECT * FROM BOOK ORDER BY RAND() LIMIT 10", nativeQuery = true)
+	List<Book> findRandom();
 
 }

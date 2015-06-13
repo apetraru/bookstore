@@ -91,8 +91,12 @@ public class BookService {
         return repository.findByIDs(ids);
     }
 
-    public List<Book> findByCustomerId(Long customerId) {
-        return repository.findByCustomerId(customerId);
+    public List<Book> findByCustomerReview(Long customerId) {
+        return repository.findByCustomerReview(customerId);
+    }
+
+    public List<Book> findRandom() {
+        return repository.findRandom();
     }
 
 }

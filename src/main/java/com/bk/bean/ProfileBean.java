@@ -48,7 +48,7 @@ public class ProfileBean {
 			return;
 		}
 
-		books = bookService.findByCustomerId(customer.getId());
+		books = bookService.findByCustomerReview(customer.getId());
 		averageRating = reviewService.getAverageRatingForCustomer(customer);
 		booksRead = reviewService.getNumberOfCustomerRatings(customer);
 		if (averageRating == null) {
