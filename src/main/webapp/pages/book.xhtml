@@ -166,15 +166,17 @@
             </div>
         </h:form>
         <p:spacer width="100%" height="30px"/>
-        <p:carousel value="#{bookBean.recommendations}" headerText="#{msg.recommend}" var="book" numVisible="5"
-                style="margin-left: 100px">
-            <h:link outcome="#{navigationBean.book()}" styleClass="book-template-title">
-                <p:graphicImage width="120px" height="180px" style="padding: 10px"
-                                value="#{book.imageLarge}" alt="book image"/>
-                <f:param name="id" value="#{book.id}" />
-                <f:param name="title" value="#{book.title}" />
-            </h:link>
-        </p:carousel>
+        <p:panel visible="#{not empty bookBean.recommendations}">
+            <p:carousel value="#{bookBean.recommendations}" headerText="#{msg.recommend}" var="book" numVisible="5"
+                        style="margin-left: 100px">
+                <h:link outcome="#{navigationBean.book()}" styleClass="book-template-title">
+                    <p:graphicImage width="120px" height="180px" style="padding: 10px"
+                                    value="#{book.imageLarge}" alt="book image"/>
+                    <f:param name="id" value="#{book.id}" />
+                    <f:param name="title" value="#{book.title}" />
+                </h:link>
+            </p:carousel>
+        </p:panel>
 
         <div class="center">
             <p:messages globalOnly="true"/>
