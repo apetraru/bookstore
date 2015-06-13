@@ -12,23 +12,22 @@
         </title>
     </ui:define>
     <ui:define name="body">
-        <h:form id="recommendationsForm" styleClass="homepage-form">
-            <p:spacer width="100%" height="1px"/>
-            <p:dataGrid columns="1" lazy="false" value="#{recommendationBean.books}" var="book"
-                        styleClass="homepage-book-datagrid" rendered="#{not empty recommendationBean.books}">
-                <f:facet name="header">
-                    <h:outputText value="#{msg.recommandations}"/>
-                </f:facet>
-                <ui:include src="/templates/bookTemplate.xhtml">
-                    <ui:param name="book" value="#{book}"/>
-                    <ui:param name="totalRatings" value="#{genreBean.ratings.getNumberOfRatings(book)}"/>
-                    <ui:param name="averageRating" value="#{genreBean.ratings.getAverageRating(book)}"/>
-                </ui:include>
-            </p:dataGrid>
-            <div class="center">
-                <p:messages globalOnly="true"/>
-            </div>
-        </h:form>
+        <p:spacer width="100%" height="1px"/>
+        <p:dataGrid columns="1" lazy="false" value="#{recommendationBean.books}" var="book"
+                    styleClass="homepage-book-datagrid" rendered="#{not empty recommendationBean.books}">
+            <f:facet name="header">
+                <h:outputText value="#{msg.recommend}"/>
+            </f:facet>
+            <ui:include src="/templates/bookTemplate.xhtml">
+                <ui:param name="book" value="#{book}"/>
+                <ui:param name="totalRatings" value="#{genreBean.ratings.getNumberOfRatings(book)}"/>
+                <ui:param name="averageRating" value="#{genreBean.ratings.getAverageRating(book)}"/>
+            </ui:include>
+        </p:dataGrid>
+
+        <div class="center">
+            <p:messages globalOnly="true"/>
+        </div>
     </ui:define>
 </ui:composition>
 
