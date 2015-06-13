@@ -38,7 +38,7 @@
 				styleClass="float-right" />
 			<h:link value="#{msg.register}" outcome="#{navigationBean.register()}"
 				rendered="#{!sessionBean.loggedOn}" styleClass="float-right" />
-			<p:menuButton value="Options" rendered="#{sessionBean.loggedOn}" styleClass="float-right"
+			<p:menuButton value="#{sessionBean.loggedInUser.username}" rendered="#{sessionBean.loggedOn}" styleClass="float-right"
 						  icon="ui-icon-gear">
 				<p:menuitem>
 					<h:link value="#{msg.myBooks}" outcome="#{navigationBean.user()}">
