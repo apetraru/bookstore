@@ -16,10 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bk.model.Author;
 import com.bk.model.Book;
+import com.bk.model.Genre;
 import com.bk.repository.BookRepository;
 import com.bk.util.PaginatedHibernateSearch;
-import com.mysema.query.types.Predicate;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -83,10 +84,6 @@ public class BookService {
 		return repository.findByAuthor(author, pageable);
 	}
 	
-	public Page<Book> findAll(Predicate predicate, Pageable pageable) {
-		return repository.findAll(predicate, pageable);
-	}
-
     public List<Book> findByIDs(List<Long> ids) {
         return repository.findByIDs(ids);
     }
@@ -97,6 +94,10 @@ public class BookService {
 
     public List<Book> findRandom() {
         return repository.findRandom();
+    }
+    
+    public Page<Book> findByGenres(Genre genre, Pageable pageable) {
+    	return repository.findByGenres(Arrays.asList(genre), pageable);
     }
 
 }

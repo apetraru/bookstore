@@ -1,5 +1,6 @@
 package com.bk.lazydatamodel;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -13,9 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.bk.model.Book;
 import com.bk.model.Genre;
-import com.bk.predicate.BookPredicate;
 import com.bk.service.BookService;
-import com.mysema.query.types.Predicate;
 
 /**
  * @author Andrei Petraru
@@ -31,11 +30,10 @@ public class BookGenreLazyDataModel extends LazyDataModel<Book> {
 
 	@Override
 	public List<Book> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-		Predicate predicate = BookPredicate.searchByGenre(genre);
 		int elementsPerPage = first / pageSize;
 		Pageable pageable = new PageRequest(elementsPerPage, pageSize);
 
-		Page<Book> datasource = bookService.findAll(predicate, pageable);
+		Page<Book> datasource = bookService.findByGenres(genre, pageable);
 
 		setRowCount((int) datasource.getTotalElements());
 
