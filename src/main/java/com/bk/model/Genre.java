@@ -17,8 +17,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "GENRE")
 public class Genre extends AbstractEntity {
+	private static final long serialVersionUID = 2428536031281203658L;
 
-    @Column(nullable = false, unique = true)
+	@Column(nullable = false, unique = true)
 	private String genre;
 
 	@ManyToMany(mappedBy = "genres")

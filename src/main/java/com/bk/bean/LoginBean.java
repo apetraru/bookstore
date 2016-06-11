@@ -1,8 +1,7 @@
 package com.bk.bean;
 
-import static com.bk.util.Message.*;
-
-import java.io.Serializable;
+import static com.bk.util.Message.error;
+import static com.bk.util.Message.msg;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -11,7 +10,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.bk.security.CustomerAuthenticationService;
-import com.bk.service.CustomerService;
 
 /**
  * @author Andrei Petraru
@@ -20,8 +18,7 @@ import com.bk.service.CustomerService;
 
 @Component
 @Scope("view")
-public class LoginBean implements Serializable {
-	@Autowired private CustomerService customerService;
+public class LoginBean {
 	@Autowired private CustomerAuthenticationService customerAuthenticationService;
 	@Autowired private SessionBean sessionBean;
 

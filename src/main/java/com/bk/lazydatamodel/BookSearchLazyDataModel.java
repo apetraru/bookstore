@@ -19,7 +19,8 @@ import com.bk.util.PaginatedHibernateSearch;
  */
 @Component
 public class BookSearchLazyDataModel extends LazyDataModel<Book> {
-	
+	private static final long serialVersionUID = -3120985321129619916L;
+
 	private static final int LENGTH = 3;
 
 	@Autowired private BookService bookService;

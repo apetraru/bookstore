@@ -5,6 +5,8 @@ import java.util.Set;
 
 @Entity(name = "ROLE")
 public class Role extends AbstractEntity {
+	private static final long serialVersionUID = -3018733147942356685L;
+
 	private String role;
 
 	@OneToMany(cascade= CascadeType.ALL)

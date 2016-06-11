@@ -23,7 +23,8 @@ import com.bk.service.ReviewService;
 
 @Component
 public class ReviewLazyDataModel extends LazyDataModel<Review> {
-	
+	private static final long serialVersionUID = -370455618693353963L;
+
 	@Autowired private ReviewService reviewService;
 
 	private Book book;

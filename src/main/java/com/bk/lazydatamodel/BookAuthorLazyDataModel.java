@@ -23,7 +23,8 @@ import com.bk.service.BookService;
 
 @Component
 public class BookAuthorLazyDataModel extends LazyDataModel<Book> {
-	
+	private static final long serialVersionUID = 8322264685105091017L;
+
 	@Autowired private BookService bookService;
 
 	private Author author;

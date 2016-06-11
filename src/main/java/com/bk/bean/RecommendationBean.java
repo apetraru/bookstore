@@ -1,26 +1,27 @@
 package com.bk.bean;
 
-import com.bk.model.Book;
-import com.bk.model.Customer;
-import com.bk.model.Review;
-import com.bk.service.BookService;
-import com.bk.service.ReviewService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
+import static com.bk.util.Message.globalError;
+import static com.bk.util.Message.msg;
 
-import javax.annotation.PostConstruct;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.bk.util.Message.globalError;
-import static com.bk.util.Message.msg;
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
+import com.bk.model.Book;
+import com.bk.model.Customer;
+import com.bk.model.Review;
+import com.bk.service.BookService;
+import com.bk.service.ReviewService;
 
 /**
  * Created by ph on 5/17/15.
@@ -28,7 +29,7 @@ import static com.bk.util.Message.msg;
 
 @Component
 @Scope("request")
-public class RecommendationBean implements Serializable {
+public class RecommendationBean {
 	@Autowired private SessionBean sessionBean;
 	@Autowired private BookService bookService;
 	@Autowired private ReviewService reviewService;

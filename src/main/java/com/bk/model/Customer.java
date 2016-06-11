@@ -1,7 +1,12 @@
 package com.bk.model;
 
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
@@ -10,6 +15,7 @@ import java.util.*;
 @Entity
 @Table(name = "CUSTOMER")
 public class Customer extends AbstractEntity {
+	private static final long serialVersionUID = 4800787669984230973L;
 
 	private String firstname;
 	private String lastname;

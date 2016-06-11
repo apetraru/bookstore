@@ -1,5 +1,23 @@
 package com.bk.bean;
 
+import static com.bk.util.Message.globalError;
+import static com.bk.util.Message.msg;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.apache.commons.lang3.StringUtils;
+import org.primefaces.event.RateEvent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
+
 import com.bk.enums.Status;
 import com.bk.lazydatamodel.ReviewLazyDataModel;
 import com.bk.model.Book;
@@ -9,24 +27,6 @@ import com.bk.model.Shelf;
 import com.bk.repository.ShelfRepository;
 import com.bk.service.BookService;
 import com.bk.service.ReviewService;
-import org.apache.commons.lang3.StringUtils;
-import org.primefaces.event.RateEvent;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import static com.bk.util.Message.globalError;
-import static com.bk.util.Message.msg;
 
 /**
  * @author Andrei Petraru
@@ -34,7 +34,7 @@ import static com.bk.util.Message.msg;
  */
 @Component
 @Scope("view")
-public class BookBean implements Serializable {
+public class BookBean {
 
 	@Autowired private SessionBean sessionBean;
 	@Autowired private ReviewService reviewService;

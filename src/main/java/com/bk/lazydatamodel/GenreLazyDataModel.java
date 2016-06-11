@@ -20,7 +20,7 @@ import com.bk.repository.GenreRepository;
  */
 @Component
 public class GenreLazyDataModel extends LazyDataModel<Genre> {
-	
+	private static final long serialVersionUID = -7009897375577439822L;
 	@Autowired private GenreRepository genreRepository;
 
 	@Override

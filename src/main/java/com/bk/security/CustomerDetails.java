@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.bk.model.Customer;
 
 public class CustomerDetails implements UserDetails {
+	private static final long serialVersionUID = 5425239504363912390L;
 
 	private Customer customer;
 

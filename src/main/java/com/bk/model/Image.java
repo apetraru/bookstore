@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "IMAGE")
 public class Image extends AbstractEntity {
+	private static final long serialVersionUID = 6819358211220341707L;
 
 	private String name;
 	@Column(name = "file_size")

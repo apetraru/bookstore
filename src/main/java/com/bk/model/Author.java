@@ -21,6 +21,7 @@ import com.bk.enums.Gender;
 @Entity
 @Table(name = "AUTHOR")
 public class Author extends AbstractEntity {
+	private static final long serialVersionUID = 4945135265132862572L;
 
 	@Field(analyzer = @Analyzer(definition = "customanalyzer"))
 	private String name;

@@ -20,6 +20,8 @@ import com.bk.enums.Status;
 @Entity
 @Table(name = "SHELF")
 public class Shelf extends AbstractEntity {
+	private static final long serialVersionUID = -2054868769746721425L;
+
 	private Status status;
 
 	@OneToMany

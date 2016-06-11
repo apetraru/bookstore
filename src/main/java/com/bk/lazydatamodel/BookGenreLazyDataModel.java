@@ -1,6 +1,5 @@
 package com.bk.lazydatamodel;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +22,8 @@ import com.bk.service.BookService;
 
 @Component
 public class BookGenreLazyDataModel extends LazyDataModel<Book> {
-	
+	private static final long serialVersionUID = -8821411664798794007L;
+
 	@Autowired private BookService bookService;
 
 	private Genre genre;

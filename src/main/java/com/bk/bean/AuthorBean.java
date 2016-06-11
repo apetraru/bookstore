@@ -3,8 +3,6 @@ package com.bk.bean;
 import static com.bk.util.Message.globalError;
 import static com.bk.util.Message.msg;
 
-import java.io.Serializable;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -19,7 +17,7 @@ import com.bk.repository.AuthorRepository;
  */
 @Component
 @Scope("view")
-public class AuthorBean implements Serializable {
+public class AuthorBean {
 
 	@Autowired private AuthorRepository authorRepository;
 	@Autowired private BookAuthorLazyDataModel lazyDataModel;

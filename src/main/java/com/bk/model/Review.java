@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "REVIEW")
 public class Review extends AbstractEntity {
+	private static final long serialVersionUID = 4162353972997588762L;
 
 	private Integer likes;
 	private Integer rating;

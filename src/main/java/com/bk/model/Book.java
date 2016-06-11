@@ -42,6 +42,7 @@ import com.bk.enums.Language;
 				@TokenFilterDef(factory = StopFilterFactory.class) })
 @Indexed
 public class Book extends AbstractEntity {
+	private static final long serialVersionUID = 7917593871105236362L;
 
 	@Column(nullable = false)
 	@Field(analyzer = @Analyzer(definition = "customanalyzer"))
