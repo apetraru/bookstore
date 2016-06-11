@@ -20,17 +20,17 @@ public class Genre extends AbstractEntity {
 	private static final long serialVersionUID = 2428536031281203658L;
 
 	@Column(nullable = false, unique = true)
-	private String genre;
+	private String bookGenre;
 
 	@ManyToMany(mappedBy = "genres")
 	private Set<Book> books = new HashSet<>();
 
 	public String getGenre() {
-		return genre;
+		return bookGenre;
 	}
 
 	public void setGenre(String genre) {
-		this.genre = genre;
+		this.bookGenre = genre;
 	}
 
 	public void addBook(Book book) {

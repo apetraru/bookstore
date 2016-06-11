@@ -25,7 +25,7 @@ public class Shelf extends AbstractEntity {
 	private Status status;
 
 	@OneToMany
-	private Set<Book> shelf = new HashSet<>();
+	private Set<Book> bookShelf = new HashSet<>();
 	private Date startDate;
 	private Date endDate;
 
@@ -60,11 +60,11 @@ public class Shelf extends AbstractEntity {
 	}
 
 	public void addBookToShelf(Book book) {
-		this.shelf.add(book);
+		this.bookShelf.add(book);
 	}
 
 	public Set<Book> getShelf() {
-		return Collections.unmodifiableSet(shelf);
+		return Collections.unmodifiableSet(bookShelf);
 	}
 
 	public Date getStartDate() {
