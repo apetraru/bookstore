@@ -155,7 +155,7 @@
                                 </div>
                                 <p:commandButton value="#{bookBean.isLikedButtonText(review)}"
                                                  styleClass="book-review-like-button"
-                                                 disabled="#{empty sessionBean.loggedInUser}"
+                                                 disabled="#{!sessionBean.loggedOn}"
                                                  action="#{bookBean.like}" update="reviews">
                                     <f:setPropertyActionListener value="#{review}" target="#{bookBean.likeReview}"/>
                                 </p:commandButton>
