@@ -130,7 +130,6 @@
                         <h:outputText value="#{msg.comments}"/>
                     </f:facet>
                     <p:separator/>
-                    <p:row rendered="#{not empty review.comment}">
                         <p:column>
                             <div class="book-review">
                                 <h:link value="#{review.customer.username}" outcome="#{navigationBean.user()}"
@@ -161,7 +160,6 @@
                                 </p:commandButton>
                             </div>
                         </p:column>
-                    </p:row>
                 </p:dataGrid>
             </div>
         </h:form>

@@ -22,7 +22,6 @@ public class Review extends AbstractEntity {
 	@CollectionTable(name = "REVIEW_CUSTOMER_LIKES")
 	private Set<Long> customerLikes = new HashSet<>();
 
-	@Lob
 	private String comment;
 
 	@Temporal(TemporalType.DATE)

@@ -36,7 +36,8 @@ public interface ReviewRepository extends Repository<Review, Long>, Serializable
     @Query("select r from Review r where r.customer = :customer")
     List<Review> getCustomerRatings(@Param("customer") Customer customer);
 
-	Page<Review> findByBook(Book book, Pageable pageable);
+    @Query("select r from Review r where r.book = :book and r.comment <> null and r.comment <> ''")
+	Page<Review> findByBook(@Param("book") Book book, Pageable pageable);
 
     @Query("select AVG(r.rating) from Review r where r.customer = :customer")
     Double getAverageRatingForCustomer(@Param("customer") Customer customer);
