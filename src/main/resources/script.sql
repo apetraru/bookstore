@@ -85,29 +85,29 @@ INSERT into BOOK (id, description, isbn, edition_language, pages, year, title, a
 INSERT into BOOK (id, description, isbn, edition_language, pages, year, title, author_id, img_large) VALUES (64, 'The desert planet Arrakis, called Dune, has been destroyed. Now, the Bene Gesserit, heirs to Dune\'s power, have colonized a green world--and are turning it into a desert, mile by scorched mile. Here is the LAST book Frank Herbert wrote before his death. A stunning climax to the epic Dune legend that will live on forever...', '9780441102679', 'ENGLISH', 448, '1985-01-01', 'Chapterhouse: Dune', 18, 'http://d202m5krfqbpi5.cloudfront.net/books/1260954505l/105.jpg');
 
 -- GENRES
-INSERT INTO GENRE(id, genre) VALUES (1, 'Art');
-INSERT INTO GENRE(id, genre) VALUES (2, 'Biography');
-INSERT INTO GENRE(id, genre) VALUES (3, 'Business');
-INSERT INTO GENRE(id, genre) VALUES (4, 'Contemporary');
-INSERT INTO GENRE(id, genre) VALUES (5, 'Crime');
-INSERT INTO GENRE(id, genre) VALUES (6, 'Erotica');
-INSERT INTO GENRE(id, genre) VALUES (7, 'Fantasy');
-INSERT INTO GENRE(id, genre) VALUES (8, 'General Fiction');
-INSERT INTO GENRE(id, genre) VALUES (9, 'Graphic Novel');
-INSERT INTO GENRE(id, genre) VALUES (10, 'Humor');
-INSERT INTO GENRE(id, genre) VALUES (11, 'Mystery');
-INSERT INTO GENRE(id, genre) VALUES (12, 'Religious');
-INSERT INTO GENRE(id, genre) VALUES (13, 'Inspirational');
-INSERT INTO GENRE(id, genre) VALUES (14, 'Romance');
-INSERT INTO GENRE(id, genre) VALUES (15, 'Science Fiction');
-INSERT INTO GENRE(id, genre) VALUES (16, 'Thriller');
-INSERT INTO GENRE(id, genre) VALUES (17, 'Western');
-INSERT INTO GENRE(id, genre) VALUES (18, 'Young Adult');
-INSERT INTO GENRE(id, genre) VALUES (19, 'Psychology');
-INSERT INTO GENRE(id, genre) VALUES (20, 'Relationships and Dating');
-INSERT INTO GENRE(id, genre) VALUES (21, 'Self Help');
-INSERT INTO GENRE(id, genre) VALUES (22, 'Sports');
-INSERT INTO GENRE(id, genre) VALUES (23, 'Travel');
+INSERT INTO GENRE(id, bookGenre) VALUES (1, 'Art');
+INSERT INTO GENRE(id, bookGenre) VALUES (2, 'Biography');
+INSERT INTO GENRE(id, bookGenre) VALUES (3, 'Business');
+INSERT INTO GENRE(id, bookGenre) VALUES (4, 'Contemporary');
+INSERT INTO GENRE(id, bookGenre) VALUES (5, 'Crime');
+INSERT INTO GENRE(id, bookGenre) VALUES (6, 'Erotica');
+INSERT INTO GENRE(id, bookGenre) VALUES (7, 'Fantasy');
+INSERT INTO GENRE(id, bookGenre) VALUES (8, 'General Fiction');
+INSERT INTO GENRE(id, bookGenre) VALUES (9, 'Graphic Novel');
+INSERT INTO GENRE(id, bookGenre) VALUES (10, 'Humor');
+INSERT INTO GENRE(id, bookGenre) VALUES (11, 'Mystery');
+INSERT INTO GENRE(id, bookGenre) VALUES (12, 'Religious');
+INSERT INTO GENRE(id, bookGenre) VALUES (13, 'Inspirational');
+INSERT INTO GENRE(id, bookGenre) VALUES (14, 'Romance');
+INSERT INTO GENRE(id, bookGenre) VALUES (15, 'Science Fiction');
+INSERT INTO GENRE(id, bookGenre) VALUES (16, 'Thriller');
+INSERT INTO GENRE(id, bookGenre) VALUES (17, 'Western');
+INSERT INTO GENRE(id, bookGenre) VALUES (18, 'Young Adult');
+INSERT INTO GENRE(id, bookGenre) VALUES (19, 'Psychology');
+INSERT INTO GENRE(id, bookGenre) VALUES (20, 'Relationships and Dating');
+INSERT INTO GENRE(id, bookGenre) VALUES (21, 'Self Help');
+INSERT INTO GENRE(id, bookGenre) VALUES (22, 'Sports');
+INSERT INTO GENRE(id, bookGenre) VALUES (23, 'Travel');
 
 -- BOOK_GENRES
 INSERT INTO BOOK_GENRES(GENRE_ID, BOOK_ID) VALUES(1, 1);
