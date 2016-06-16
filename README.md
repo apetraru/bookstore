@@ -1,12 +1,11 @@
-bookstore
-
 A book rating application that enables the users to rate, comment and keep track of the books they read
 
-=========
-Spring
-JPA/Hibernate
-JSF/Primefaces
+#####Requirements
+* Java 8
+* Tomcat 8
+* MySql 5+
 
-Requirements :
-Tomcat 7
-MySql -> create goodbooks schema
+#####How to run
+* Create __goodbooks__ schema
+* mvn clean install
+* deploy on tomcat (make sure tomcat is run with **-Dfile.encoding=UTF8**)
