@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.RateEvent;
@@ -88,16 +86,6 @@ public class BookBean {
 			shelf.setCustomer(user);
 		}
 
-		try {
-			RestTemplate restTemplate = new RestTemplate();
-			restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-			Long[] result = restTemplate.getForObject("http://localhost:9000/book/" + book.getId(), Long[].class);
-			recommendations = bookService.findByIDs(Arrays.asList(result));
-		}
-		catch (Exception e) {
-			Logger.getLogger(BookBean.class.getName())
-					.log(Level.SEVERE, "Error calling book engine", "Error calling book engine");
-		}
 	}
 
 	public String getAverageRating() {
@@ -129,10 +117,6 @@ public class BookBean {
 	}
 
 	public void like() {
-		if (!isLoggedIn()) {
-			return;
-		}
-
 		if (isReviewLiked()) {
 			likeReview.removeCustomerLike(getUserId());
 		}
@@ -175,12 +159,12 @@ public class BookBean {
 		this.id = id;
 	}
 
-	public Review getBookRating() {
+	public Review getBookReview() {
 		return bookReview;
 	}
 
-	public void setBookRating(Review bookRating) {
-		this.bookReview = bookRating;
+	public void setBookReview(Review bookReview) {
+		this.bookReview = bookReview;
 	}
 
 	public Status[] getStatuses() {
@@ -215,10 +199,6 @@ public class BookBean {
 		return recommendations;
 	}
 
-	/*
-	 * Private methods
-	 */
-
 	private void newRating() {
 		bookReview = new Review();
 		bookReview.setRating(0);
@@ -241,5 +221,17 @@ public class BookBean {
 			return review.isLikedByCustomer(getUserId());
 		}
 		return true;
+	}
+
+	/**
+	 * Retrieves the recommendations from the recommendation server if it's up
+	 * TODO: enable this when server is up
+	 */
+	@SuppressWarnings("unused")
+	private void getRecommendationsFromURL() {
+		RestTemplate restTemplate = new RestTemplate();
+		restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+		Long[] result = restTemplate.getForObject("http://localhost:9000/book/" + book.getId(), Long[].class);
+		recommendations = bookService.findByIDs(Arrays.asList(result));
 	}
 }

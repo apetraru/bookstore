@@ -32,13 +32,13 @@
                             <f:selectItems value="#{bookBean.statuses}"/>
                             <p:ajax event="valueChange" listener="#{bookBean.saveShelf()}" update="bookForm"/>
                         </p:selectOneMenu>
-                        <p:rating value="#{bookBean.bookRating.rating}" readonly="#{!sessionBean.loggedOn}"
-                                  id="bookRatingId" styleClass="margin-top-10px" stars="10">
+                        <p:rating value="#{bookBean.bookReview.rating}" readonly="#{!sessionBean.loggedOn}"
+                                  id="bookReviewId" styleClass="margin-top-10px" stars="10">
                             <p:ajax event="rate" listener="#{bookBean.addRating}" update="bookForm"/>
                             <p:ajax event="cancel" listener="#{bookBean.removeRating}" update="bookForm"/>
                         </p:rating>
                         <p:commandButton
-                                value="#{empty bookBean.bookRating.comment ? 'Write a review' : 'Edit my review'}"
+                                value="#{empty bookBean.bookReview.comment ? 'Write a review' : 'Edit my review'}"
                                 onclick="PF('reviewDialog').show();" type="button"
                                 disabled="#{!sessionBean.loggedOn}"
                                 styleClass="margin-top-10px"/>
@@ -54,7 +54,7 @@
 
                         <div class="float-left width-all">
                             <h:outputText value="#{msg.myRating}" styleClass="float-left"/>
-                            <p:rating value="#{bookBean.bookRating.rating}" readonly="#{!sessionBean.loggedOn}"
+                            <p:rating value="#{bookBean.bookReview.rating}" readonly="#{!sessionBean.loggedOn}"
                                       styleClass="float-left" stars="10">
                                 <p:ajax event="rate" listener="#{bookBean.addRating}"/>
                                 <p:ajax event="cancel" listener="#{bookBean.removeRating}"/>
@@ -62,11 +62,11 @@
                         </div>
                         <div class="float-left width-all">
                             <h:outputText value="What did you think?"/>
-                            <p:inputTextarea value="#{bookBean.bookRating.comment}" style="width: 90%; height: 420px"/>
+                            <p:inputTextarea value="#{bookBean.bookReview.comment}" style="width: 90%; height: 420px"/>
                         </div>
                         <div class="float-left width-all">
                             <h:outputText value="#{msg.dateFinished}"/>
-                            <p:calendar value="#{bookBean.shelf.endDate}" maxdate="${bookBean.today}" navigator="true"/>
+                            <p:calendar value="#{bookBean.bookReview.publishDate}" maxdate="${bookBean.today}" navigator="true"/>
                         </div>
                         <p:commandButton value="#{msg.save}" action="#{bookBean.saveReview}" update=":bookForm"
                                          oncomplete="PF('reviewDialog').hide();"/>
